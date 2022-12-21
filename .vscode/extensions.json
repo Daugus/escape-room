@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "shufo.vscode-blade-formatter",
+        "vue.volar",
+        "syler.sass-indented",
+        "hollowtree.vue-snippets",
+        "christian-kohler.path-intellisense",
+        "bmewburn.vscode-intelephense-client",
+        "usernamehw.errorlens",
+        "onecentlin.laravel-blade"
+    ]
+}
