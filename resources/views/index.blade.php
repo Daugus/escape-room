@@ -1,16 +1,10 @@
-<!DOCTYPE html>
+@extends('layouts.master')
+{{-- @section('title', 'index') --}}
 
-<html lang="es">
+@section('content')
+    <main>
+        <h1>index</h1>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Escape Room</title>
-
-    @vite(['resources/js/main.js', 'resources/css/app.scss'])
-</head>
-
-<body id="app"></body>
-
-</html>
+        <div id="app"></div>
+    </main>
+@endsection
