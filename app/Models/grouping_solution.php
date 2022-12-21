@@ -9,7 +9,7 @@ class grouping_solution extends Model
 {
     use HasFactory;
 
-    protected $table = 'shared_solutions';
+    protected $table = 'grouping_solutions';
     protected $primaryKey = 'id';
     protected $fillable = ['field', 'concept'];
 

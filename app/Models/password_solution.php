@@ -9,7 +9,7 @@ class password_solution extends Model
 {
     use HasFactory;
 
-    protected $table = 'shared_solutions';
+    protected $table = 'password_solutions';
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'element', 'discovery_year', 'text', 'code'];
 
