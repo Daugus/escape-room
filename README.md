@@ -44,7 +44,7 @@ git checkout -b registrar-usuarios
 ##### Cambiar a existente
 
 ```bash
-git checkout rama existente
+git checkout rama-existente
 ```
 
 #### Commits
