@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class User extends Model
 {
     use HasFactory;
 
-    protected $table = 'groups';
+    protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $fillable = ['name'];
+    protected $fillable = ['role', 'name', 'surname', 'nickname', 'password', 'email', 'picture'];
 
     public $timestamps = false;
 
-    public function users()
+    public function groups()
     {
         return $this->belongsToMany(Alumno::class, 'user_group');
     }

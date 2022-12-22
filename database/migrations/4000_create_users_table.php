@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            $table->time('time');
-            $table->enum('state', ['ongoing', 'finished']);
-            $table->smallInteger('used_hints');
-
-            $table->foreignId('difficulty_id')->constrained('difficulties')->cascadeOnDelete();
-            $table->foreignId('group_id')->constrained('groups')->cascadeOnDelete();
+            $table->enum('role', ['profesor', 'alumno']);
+            $table->string('name');
+            $table->string('surname');
+            $table->string('nickname')->unique();
+            $table->string('password');
+            $table->string('email');
+            $table->string('picture');
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('users');
     }
 };
