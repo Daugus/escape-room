@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class challenge extends Model
+class Challenge extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,15 @@ class challenge extends Model
     protected $fillable = ['name'];
 
     public $timestamps = false;
+
+
+    public function hints()
+    {
+        return $this->belongsToMany(hint::class, 'foreign_key');
+    }
+
+    public function shared_solutions()
+    {
+        return $this->belongsToMany(shared_solution::class, 'foreign_key');
+    }
 }

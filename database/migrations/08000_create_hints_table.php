@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('shared_solutions', function (Blueprint $table) {
+        Schema::create('hints', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
-            $table->string('answer');
+            $table->integer('order');
+            $table->string('text');
+            $table->foreignId('challenge_id')->constrained('challenges')->cascadeOnDelete();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shared_solutions');
+        Schema::dropIfExists('hints');
     }
 };

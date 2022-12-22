@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('element');
-            $table->int('discovery_year');
+            $table->integer('discovery_year');
             $table->string('text');
-            $table->int('code');
+            $table->integer('code');
         });
     }
 

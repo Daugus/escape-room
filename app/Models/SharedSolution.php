@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class shared_solution extends Model
+class SharedSolution extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,9 @@ class shared_solution extends Model
     protected $fillable = ['name', 'question', 'answer'];
 
     public $timestamps = false;
+
+    public function challenge()
+    {
+        return $this->belongsTo(Challenge::class, 'foreign_key');
+    }
 }
