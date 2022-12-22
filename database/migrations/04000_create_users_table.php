@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('surname');
             $table->string('nickname')->unique();
             $table->string('password');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('picture');
         });
     }

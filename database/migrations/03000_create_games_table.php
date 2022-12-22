@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
 
-            $table->time('time');
-            $table->enum('state', ['ongoing', 'finished']);
+            $table->time('time')->nullable();
+            $table->enum('state', ['cancelada', 'perdida', 'ganada']);
             $table->smallInteger('used_hints');
 
             $table->foreignId('difficulty_id')->constrained('difficulties')->cascadeOnDelete();
