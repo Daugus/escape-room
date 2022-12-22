@@ -11,7 +11,7 @@ class HangmanSolution extends Model
 
     protected $table = 'hangman_solutions';
     protected $primaryKey = 'id';
-    protected $fillable = ['microorganisms'];
+    protected $fillable = ['microorganism'];
 
     public $timestamps = false;
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('hangman_solutions', function (Blueprint $table) {
             $table->id();
-            $table->string('microorganisms');
+            $table->string('microorganism');
         });
     }
 
