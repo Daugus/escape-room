@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(UserSeeder::class);
         $this->call(DifficultySeeder::class);
         $this->call(GroupSeeder::class);
         $this->call(GameSeeder::class); // después de grupos
