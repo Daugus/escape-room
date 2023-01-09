@@ -52,6 +52,9 @@ import Key from "./Key.vue";
     overflow: hidden;
     padding: 1rem;
 
+    background-color: gray;
+    padding: 1rem;
+
     .row {
         display: flex;
     }
