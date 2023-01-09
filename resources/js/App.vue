@@ -1,11 +1,11 @@
 <script setup>
-import Ejemplo from "./components/Ejemplo.vue";
+import Keyboard from "./components/hangman/Keyboard.vue";
+import Panel from "./components/hangman/Panel.vue";
 </script>
 
 <template>
     <main>
-        <h1 class="text-xl">App.vue</h1>
-        <Ejemplo />
+        <Keyboard />
     </main>
 </template>
 
