@@ -4,9 +4,21 @@ import Panel from "./components/hangman/Panel.vue";
 </script>
 
 <template>
-    <main>
+    <div class="capsule"></div>
+    <div class="word-panel">
+        <Panel word="STREPTOCOCCUS THERMOPHILUS" />
         <Keyboard />
-    </main>
+    </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.word-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+    background-color: #ccc;
+}
+</style>
