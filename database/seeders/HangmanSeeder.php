@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\HangmanSolution;
 use Illuminate\Database\Seeder;
 
@@ -49,106 +48,106 @@ class HangmanSeeder extends Seeder
         $ahorcado11->microorganism = 'Mycobacterium tuberculosis';
 
         $ahorcado12 = new HangmanSolution();
-        $ahorcado12->microorganism = ' Proteus vulgaris ';
+        $ahorcado12->microorganism = ' Proteus vulgaris';
 
         $ahorcado13 = new HangmanSolution();
-        $ahorcado13->microorganism = 'Desulfovibrio desulfuricans ';
+        $ahorcado13->microorganism = 'Desulfovibrio desulfuricans';
 
         $ahorcado14 = new HangmanSolution();
-        $ahorcado14->microorganism = 'Saccharomyces cerevisiae ';
+        $ahorcado14->microorganism = 'Saccharomyces cerevisiae';
 
         $ahorcado15 = new HangmanSolution();
-        $ahorcado15->microorganism = 'Acidophilus bifidus ';
+        $ahorcado15->microorganism = 'Acidophilus bifidus';
 
         $ahorcado16 = new HangmanSolution();
-        $ahorcado16->microorganism = 'Pseudomonas putida ';
+        $ahorcado16->microorganism = 'Pseudomonas putida';
 
         $ahorcado17 = new HangmanSolution();
-        $ahorcado17->microorganism = 'Pseudomonas fluorescens ';
+        $ahorcado17->microorganism = 'Pseudomonas fluorescens';
 
         $ahorcado18 = new HangmanSolution();
-        $ahorcado18->microorganism = 'Enterococcus faecalis ';
+        $ahorcado18->microorganism = 'Enterococcus faecalis';
 
         $ahorcado19 = new HangmanSolution();
-        $ahorcado19->microorganism = 'Clostridium botulinum ';
+        $ahorcado19->microorganism = 'Clostridium botulinum';
 
         $ahorcado20 = new HangmanSolution();
-        $ahorcado20->microorganism = 'Leuconostoc mesenteroides ';
+        $ahorcado20->microorganism = 'Leuconostoc mesenteroides';
 
         $ahorcado21 = new HangmanSolution();
-        $ahorcado21->microorganism = 'Micrococcus luteus ';
+        $ahorcado21->microorganism = 'Micrococcus luteus';
 
         $ahorcado22 = new HangmanSolution();
-        $ahorcado22->microorganism = 'Citrobacter freundii ';
+        $ahorcado22->microorganism = 'Citrobacter freundii';
 
         $ahorcado23 = new HangmanSolution();
-        $ahorcado23->microorganism = 'Enterobacter aerogenes ';
+        $ahorcado23->microorganism = 'Enterobacter aerogenes';
 
         $ahorcado24 = new HangmanSolution();
-        $ahorcado24->microorganism = 'Penicillium citrinum ';
+        $ahorcado24->microorganism = 'Penicillium citrinum';
 
         $ahorcado25 = new HangmanSolution();
-        $ahorcado25->microorganism = 'Aspergillus fumigatus ';
+        $ahorcado25->microorganism = 'Aspergillus fumigatus';
 
         $ahorcado26 = new HangmanSolution();
-        $ahorcado26->microorganism = 'Bifidobacterium bifidum ';
+        $ahorcado26->microorganism = 'Bifidobacterium bifidum';
 
         $ahorcado27 = new HangmanSolution();
-        $ahorcado27->microorganism = 'Lactobacillus plantarum ';
+        $ahorcado27->microorganism = 'Lactobacillus plantarum';
 
         $ahorcado28 = new HangmanSolution();
-        $ahorcado28->microorganism = 'Lactobacillus reuteri ';
+        $ahorcado28->microorganism = 'Lactobacillus reuteri';
 
         $ahorcado29 = new HangmanSolution();
-        $ahorcado29->microorganism = 'Lactobacillus bulgaricus ';
+        $ahorcado29->microorganism = 'Lactobacillus bulgaricus';
 
         $ahorcado30 = new HangmanSolution();
-        $ahorcado30->microorganism = 'Streptococcus salivarius ';
+        $ahorcado30->microorganism = 'Streptococcus salivarius';
 
         $ahorcado31 = new HangmanSolution();
-        $ahorcado31->microorganism = 'Streptococcus lactis ';
+        $ahorcado31->microorganism = 'Streptococcus lactis';
 
         $ahorcado32 = new HangmanSolution();
-        $ahorcado32->microorganism = 'Streptococcus pyogenes ';
+        $ahorcado32->microorganism = 'Streptococcus pyogenes';
 
         $ahorcado33 = new HangmanSolution();
-        $ahorcado33->microorganism = 'Streptococcus pneumoniae ';
+        $ahorcado33->microorganism = 'Streptococcus pneumoniae';
 
         $ahorcado34 = new HangmanSolution();
-        $ahorcado34->microorganism = 'Mycobacterium leprae ';
+        $ahorcado34->microorganism = 'Mycobacterium leprae';
 
         $ahorcado35 = new HangmanSolution();
-        $ahorcado35->microorganism = 'Enterococcus durans ';
+        $ahorcado35->microorganism = 'Enterococcus durans';
 
         $ahorcado36 = new HangmanSolution();
-        $ahorcado36->microorganism = 'Clostridium tetani ';
+        $ahorcado36->microorganism = 'Clostridium tetani';
 
         $ahorcado37 = new HangmanSolution();
-        $ahorcado37->microorganism = 'Clostridium difficile ';
+        $ahorcado37->microorganism = 'Clostridium difficile';
 
         $ahorcado38 = new HangmanSolution();
-        $ahorcado38->microorganism = ' Clostridium perfringens ';
+        $ahorcado38->microorganism = ' Clostridium perfringens';
 
         $ahorcado39 = new HangmanSolution();
-        $ahorcado39->microorganism = 'Salmonella typhi ';
+        $ahorcado39->microorganism = 'Salmonella typhi';
 
         $ahorcado40 = new HangmanSolution();
-        $ahorcado40->microorganism = 'Shigella dysenteriae ';
+        $ahorcado40->microorganism = 'Shigella dysenteriae';
 
         $ahorcado41 = new HangmanSolution();
-        $ahorcado41->microorganism = 'Yersinia pestis  ';
+        $ahorcado41->microorganism = 'Yersinia pestis ';
 
         $ahorcado42 = new HangmanSolution();
-        $ahorcado42->microorganism = 'Serratia marcescens ';
+        $ahorcado42->microorganism = 'Serratia marcescens';
 
         $ahorcado43 = new HangmanSolution();
-        $ahorcado43->microorganism = 'Proteus vulgaris ';
+        $ahorcado43->microorganism = 'Proteus vulgaris';
 
         $ahorcado44 = new HangmanSolution();
-        $ahorcado44->microorganism = 'Klebsiella pneumoniae ';
+        $ahorcado44->microorganism = 'Klebsiella pneumoniae';
 
         $ahorcado45 = new HangmanSolution();
-        $ahorcado45->microorganism = 'Hafnia alabaster ';
+        $ahorcado45->microorganism = 'Hafnia alabaster';
 
         $ahorcado46 = new HangmanSolution();
         $ahorcado46->microorganism = 'Providencia stuartii';
