@@ -151,5 +151,52 @@ class HangmanSeeder extends Seeder
 
         $ahorcado46 = new HangmanSolution();
         $ahorcado46->microorganism = 'Providencia stuartii';
+
+        $ahorcado1->save();
+        $ahorcado2->save();
+        $ahorcado3->save();
+        $ahorcado4->save();
+        $ahorcado5->save();
+        $ahorcado6->save();
+        $ahorcado7->save();
+        $ahorcado8->save();
+        $ahorcado9->save();
+        $ahorcado10->save();
+        $ahorcado11->save();
+        $ahorcado12->save();
+        $ahorcado13->save();
+        $ahorcado14->save();
+        $ahorcado15->save();
+        $ahorcado16->save();
+        $ahorcado17->save();
+        $ahorcado18->save();
+        $ahorcado19->save();
+        $ahorcado20->save();
+        $ahorcado21->save();
+        $ahorcado22->save();
+        $ahorcado23->save();
+        $ahorcado24->save();
+        $ahorcado25->save();
+        $ahorcado26->save();
+        $ahorcado27->save();
+        $ahorcado28->save();
+        $ahorcado29->save();
+        $ahorcado30->save();
+        $ahorcado31->save();
+        $ahorcado32->save();
+        $ahorcado33->save();
+        $ahorcado34->save();
+        $ahorcado35->save();
+        $ahorcado36->save();
+        $ahorcado37->save();
+        $ahorcado38->save();
+        $ahorcado39->save();
+        $ahorcado40->save();
+        $ahorcado41->save();
+        $ahorcado42->save();
+        $ahorcado43->save();
+        $ahorcado44->save();
+        $ahorcado45->save();
+        $ahorcado46->save();
     }
 }
