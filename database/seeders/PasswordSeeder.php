@@ -16,7 +16,5 @@ class PasswordSeeder extends Seeder
     public function run()
     {
         //
-        $contra1 = new PasswordSolution();
-        $contra1->name = '';
     }
 }
