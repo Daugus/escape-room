@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GameSeeder::class); // después de grupos
 
         $this->call(ChallengeSeeder::class);
+
+        $this->call(GroupingSeeder::class);
+        $this->call(SharedSeeder::class);
     }
 }
