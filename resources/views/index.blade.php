@@ -3,8 +3,6 @@
 
 @section('content')
     <main>
-        <h1>index</h1>
-
-        <div id="app"></div>
+        <div id="hangman"></div>
     </main>
 @endsection
