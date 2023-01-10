@@ -137,7 +137,6 @@ class SharedSeeder extends Seeder
         $obeja30->answer = 'Medio para ensayos de Rojo de metilo y Voges-Proskauer (APHA) para la identificación acorde al IMVIC';
 
         //KUKU
-
         $kuku1 = new SharedSolution();
         $kuku1->question = 'Formaldehído';
         $kuku1->answer = 'Formaldehído.png';
