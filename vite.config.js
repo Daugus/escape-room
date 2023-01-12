@@ -2,17 +2,20 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
+import glob from "glob";
+
+let jsFiles = glob.sync("./resources/js/components/**/main.js");
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["./resources/css/app.scss", "./resources/js/main.js"],
+            input: jsFiles.concat(["./resources/css/app.scss"]),
             refresh: true,
         }),
         vue(),
     ],
     resolve: {
-        extensions: [".js", ".vue", "css", ".scss"],
+        extensions: [".js", ".vue", ".css", ".scss"],
         alias: {
             "@": path.resolve(__dirname, "./public"),
         },
