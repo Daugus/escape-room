@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "instalar": "composer install && npm i && npm run build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.0.0",

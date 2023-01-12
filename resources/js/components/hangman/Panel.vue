@@ -44,14 +44,14 @@ export default {
 <template>
     <div class="panel">
         <p class="word">{{ wordToString }}</p>
-        <img src="../../../../public/src/img/ruido.gif" />
+        <img src="@/src/img/ruido.gif" />
     </div>
 </template>
 
 <style scoped lang="scss">
 @font-face {
     font-family: digital-7;
-    src: url(../../../../public/src/fonts/digital-7.ttf);
+    src: url("@/src/fonts/digital-7.ttf");
 }
 
 .panel {

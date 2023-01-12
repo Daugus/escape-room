@@ -4,7 +4,7 @@
 
 <template>
     <div class="capsule">
-        <img src="../../../../public/src/img/Capsule.png" />
+        <img src="@/src/img/Capsule.png" />
         <div class="bar">
             <div class="progress"></div>
         </div>
@@ -18,6 +18,7 @@
 
     img {
         z-index: 3;
+        pointer-events: none;
     }
 
     .bar {

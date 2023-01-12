@@ -25,7 +25,7 @@ export default {
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
             const res = await fetch(
-                window.location.origin + "/api/hangman/getWord",
+                `${window.location.origin}/api/hangman/getWord`,
                 {
                     method: "POST",
                     headers: new Headers({
@@ -50,7 +50,7 @@ export default {
         <div class="word-panel">
             <Panel :secretWord="wordArray" :letter="letter" />
             <Keyboard />
-            <img src="../../../../public/src/img/metal.jpg" />
+            <img src="@/src/img/metal.jpg" />
         </div>
     </section>
 </template>
@@ -86,6 +86,7 @@ section {
         opacity: 0.7;
         width: 100%;
         height: 100%;
+        pointer-events: none;
     }
 }
 </style>
