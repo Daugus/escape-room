@@ -10,12 +10,14 @@ class HangmanSolutionController extends Controller
     public function getWord()
     {
 
+        // $data = HangmanSolution::select('SELECT * FROM hangman_solutions LIMIT 1');
+        $data = HangmanSolution::query()->inRandomOrder()->limit(1)->get();
         // $data = HangmanSolution::hangman_solutions('posts')
-        //     ->select('posts.id', 'posts.name', 'posts.title')
+        //     ->select('microorganism')
         //     ->inRandomOrder()
-        //     ->limit(5)
+        //     ->limit(1)
         //     ->get();
 
-        return response()->json(['microorganism' => 'Clostridium botulinum']);
+        return response()->json($data);
     }
 }
