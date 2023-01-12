@@ -10,9 +10,6 @@
     "explorer.compactFolders": false,
     "css.lint.unknownAtRules": "ignore",
     "scss.lint.unknownAtRules": "ignore",
-    "[blade]": {
-        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
-    },
     "[php]": {
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
         "editor.linkedEditing": true
