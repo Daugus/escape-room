@@ -1,42 +1,66 @@
 <script>
 export default {
     props: {
-        letter: String,
+        keyLetter: String,
+    },
+    data() {
+        return {
+            clickedLetter: "",
+        };
+    },
+    methods: {
+        getKey(letter) {
+            this.clickedLetter = letter;
+            console.log(letter);
+            console.log(this.clickedLetter);
+        },
+    },
+    watch: {
+        //esta funcion observa en todo momento si la variable clickedLetter se modifica
+        nombre: function () {
+            return this.$emit("clickedLetter", this.clickedLetter);
+        },
+    },
+    mounted() {
+        //esta funcion se ejecuta después de que la instancia VUE y el DOM ya está montado
+        this.$emit("clickedLetter", this.clickedLetter); //de esta manera emito el evento hacia el componente padre
     },
 };
 </script>
 
 <template>
-    <button :id="letter">
-        {{ letter }}
+    <button @click="getKey(keyLetter)" :id="keyLetter">
+        {{ keyLetter }}
     </button>
 </template>
 
 <style scoped lang="scss">
 button {
+    --bg: black;
     color: black;
-    font-size: 1.4rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 3rem;
-    height: 3rem;
-    border: 3px outset #a7a7a7;
+    width: 4rem;
+    height: 4rem;
+    border: 6px outset #a7a7a7;
     background-color: #999999;
     box-shadow: 0.25rem 0.25rem 1rem #00000080;
-    margin: 0.3rem;
+    margin: 0.5rem;
     position: relative;
 
     &:not(#ESC)::before {
         content: "";
-        width: 4px;
-        height: 4px;
+        width: 6px;
+        height: 6px;
         border-radius: 50%;
         position: absolute;
-        background-color: #000;
-        top: 0.2rem;
-        left: 0.2rem;
+        top: 10%;
+        left: 10%;
+        background-color: var(--bg);
+        box-shadow: 0 0 0.5rem var(--bg);
     }
 }
 </style>

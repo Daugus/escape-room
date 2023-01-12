@@ -2,40 +2,51 @@
 import Key from "./Key.vue";
 </script>
 
+<script>
+export default {
+    data() {
+        return {
+            letter: "",
+        };
+    },
+};
+</script>
+
 <template>
+    <h1>{{ letter }}</h1>
     <div class="plate">
         <div class="row">
-            <Key letter="Q" />
-            <Key letter="W" />
-            <Key letter="E" />
-            <Key letter="R" />
-            <Key letter="T" />
-            <Key letter="Y" />
-            <Key letter="U" />
-            <Key letter="I" />
-            <Key letter="O" />
-            <Key letter="P" />
+            <Key keyLetter="Q" @clickedLetter="letter = $event" />
+            <Key keyLetter="W" @clickedLetter="letter = $event" />
+            <Key keyLetter="E" @clickedLetter="letter = $event" />
+            <Key keyLetter="R" @clickedLetter="letter = $event" />
+            <Key keyLetter="T" @clickedLetter="letter = $event" />
+            <Key keyLetter="Y" @clickedLetter="letter = $event" />
+            <Key keyLetter="U" @clickedLetter="letter = $event" />
+            <Key keyLetter="I" @clickedLetter="letter = $event" />
+            <Key keyLetter="O" @clickedLetter="letter = $event" />
+            <Key keyLetter="P" @clickedLetter="letter = $event" />
         </div>
         <div class="row">
-            <Key letter="A" />
-            <Key letter="S" />
-            <Key letter="D" />
-            <Key letter="F" />
-            <Key letter="G" />
-            <Key letter="H" />
-            <Key letter="J" />
-            <Key letter="K" />
-            <Key letter="L" />
+            <Key keyLetter="A" @clickedLetter="letter = $event" />
+            <Key keyLetter="S" @clickedLetter="letter = $event" />
+            <Key keyLetter="D" @clickedLetter="letter = $event" />
+            <Key keyLetter="F" @clickedLetter="letter = $event" />
+            <Key keyLetter="G" @clickedLetter="letter = $event" />
+            <Key keyLetter="H" @clickedLetter="letter = $event" />
+            <Key keyLetter="J" @clickedLetter="letter = $event" />
+            <Key keyLetter="K" @clickedLetter="letter = $event" />
+            <Key keyLetter="L" @clickedLetter="letter = $event" />
         </div>
         <div class="row">
-            <Key letter="Z" />
-            <Key letter="X" />
-            <Key letter="C" />
-            <Key letter="V" />
-            <Key letter="B" />
-            <Key letter="N" />
-            <Key letter="M" />
-            <Key letter="ESC" />
+            <Key keyLetter="Z" @clickedLetter="letter = $event" />
+            <Key keyLetter="X" @clickedLetter="letter = $event" />
+            <Key keyLetter="C" @clickedLetter="letter = $event" />
+            <Key keyLetter="V" @clickedLetter="letter = $event" />
+            <Key keyLetter="B" @clickedLetter="letter = $event" />
+            <Key keyLetter="N" @clickedLetter="letter = $event" />
+            <Key keyLetter="M" @clickedLetter="letter = $event" />
+            <Key keyLetter="ESC" />
         </div>
     </div>
 </template>
@@ -48,10 +59,10 @@ import Key from "./Key.vue";
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: max-content;
+    width: 70%;
     overflow: hidden;
     padding: 1rem;
-
+    z-index: 1;
     background-color: gray;
     padding: 1rem;
 
