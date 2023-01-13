@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(GroupingSeeder::class);
         $this->call(SharedSeeder::class);
+        $this->call(GroupingSeeder::class);
+        $this->call(HangmanSeeder::class);
     }
 }
