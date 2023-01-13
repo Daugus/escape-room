@@ -169,42 +169,42 @@ class SharedSeeder extends Seeder
         //KUKU
         $kuku1 = new SharedSolution();
         $kuku1->question = 'Formaldehído';
-        $kuku1->answer = 'Formaldehído.png';
+        $kuku1->answer = 'formaldehido.png';
         $kuku1->challenge_id = '2';
 
         $kuku2 = new SharedSolution();
         $kuku2->question = 'Galactosa';
-        $kuku2->answer = 'Galactosa.png';
+        $kuku2->answer = 'galactosa.png';
         $kuku2->challenge_id = '2';
 
         $kuku3 = new SharedSolution();
         $kuku3->question = 'Ribosa';
-        $kuku3->answer = 'Ribosa.png';
+        $kuku3->answer = 'ribosa.png';
         $kuku3->challenge_id = '2';
 
         $kuku4 = new SharedSolution();
         $kuku4->question = 'Fructosa';
-        $kuku4->answer = 'Fructosa.png';
+        $kuku4->answer = 'fructosa.png';
         $kuku4->challenge_id = '2';
 
         $kuku5 = new SharedSolution();
         $kuku5->question = 'Piruvato';
-        $kuku5->answer = 'Piruvato.png';
+        $kuku5->answer = 'piruvato.png';
         $kuku5->challenge_id = '2';
 
         $kuku6 = new SharedSolution();
         $kuku6->question = 'Glucosa';
-        $kuku6->answer = 'Glucosa.png';
+        $kuku6->answer = 'glucosa.png';
         $kuku6->challenge_id = '2';
 
         $kuku7 = new SharedSolution();
         $kuku7->question = 'Ácido láctico';
-        $kuku7->answer = 'Ácido_láctico.png';
+        $kuku7->answer = 'acido-lactico.png';
         $kuku7->challenge_id = '2';
 
         $kuku8 = new SharedSolution();
         $kuku8->question = 'Cloruro de bencilo';
-        $kuku8->answer = 'Cloruro_de_bencilo.png';
+        $kuku8->answer = 'cloruro-de-bencilo.png';
         $kuku8->challenge_id = '2';
 
         $kuku9 = new SharedSolution();
@@ -214,12 +214,12 @@ class SharedSeeder extends Seeder
 
         $kuku10 = new SharedSolution();
         $kuku10->question = '2,3-dimetilbutano';
-        $kuku10->answer = '2,3-dimetilbutano.png';
+        $kuku10->answer = '2-3-dimetilbutano.png';
         $kuku10->challenge_id = '2';
 
         $kuku11 = new SharedSolution();
         $kuku11->question = '3,4,5-trimetilciclohexeno';
-        $kuku11->answer = '3,4,5-trimetilciclohexeno.png';
+        $kuku11->answer = '3-4-5-trimetilciclohexeno.png';
         $kuku11->challenge_id = '2';
 
         $kuku12 = new SharedSolution();
@@ -229,17 +229,17 @@ class SharedSeeder extends Seeder
 
         $kuku13 = new SharedSolution();
         $kuku13->question = '2,2,4-trimetilpentano';
-        $kuku13->answer = '2,2,4-trimetilpentano.png';
+        $kuku13->answer = '2-2-4-trimetilpentano.png';
         $kuku13->challenge_id = '2';
 
         $kuku14 = new SharedSolution();
         $kuku14->question = '4-etil-4,5-dimetilciclohexeno';
-        $kuku14->answer = '4-etil-4,5-dimetilciclohexeno.png';
+        $kuku14->answer = '4-etil-4-5-dimetilciclohexeno.png';
         $kuku14->challenge_id = '2';
 
         $kuku15 = new SharedSolution();
         $kuku15->question = '1-etil-2,5-dimetil-4-propilbenceno';
-        $kuku15->answer = '1-etil-2,5-dimetil-4-propilbenceno.png';
+        $kuku15->answer = '1-etil-2-5-dimetil-4-propilbenceno.png';
         $kuku15->challenge_id = '2';
 
         $kuku16 = new SharedSolution();
@@ -254,7 +254,7 @@ class SharedSeeder extends Seeder
 
         $kuku18 = new SharedSolution();
         $kuku18->question = '5-(1,2-dimetilpropil)-4-etil-2-metilnonano';
-        $kuku18->answer = '5-(1,2-dimetilpropil)-4-etil-2-metilnonano.png';
+        $kuku18->answer = '5-1-2-dimetilpropil-4-etil-2-metilnonano.png';
         $kuku18->challenge_id = '2';
 
         $kuku19 = new SharedSolution();
@@ -269,12 +269,12 @@ class SharedSeeder extends Seeder
 
         $kuku21 = new SharedSolution();
         $kuku21->question = '4-etil-2,4-dimetilhexano';
-        $kuku21->answer = '4-etil-2,4-dimetilhexano.png';
+        $kuku21->answer = '4-etil-2-4-dimetilhexano.png';
         $kuku21->challenge_id = '2';
 
         $kuku22 = new SharedSolution();
         $kuku22->question = '3-isopropil-2,5-dimetilheptano';
-        $kuku22->answer = '3-isopropil-2,5-dimetilheptano.png';
+        $kuku22->answer = '3-isopropil-2-5-dimetilheptano.png';
         $kuku22->challenge_id = '2';
 
         $kuku23 = new SharedSolution();
@@ -294,27 +294,27 @@ class SharedSeeder extends Seeder
 
         $kuku26 = new SharedSolution();
         $kuku26->question = 'Propadieno-Aleno';
-        $kuku26->answer = 'Propadieno-Aleno.png';
+        $kuku26->answer = 'propadieno-aleno.png';
         $kuku26->challenge_id = '2';
 
         $kuku27 = new SharedSolution();
         $kuku27->question = 'Radical isopropenilo';
-        $kuku27->answer = 'Radical isopropenilo.png';
+        $kuku27->answer = 'radical-isopropenilo.png';
         $kuku27->challenge_id = '2';
 
         $kuku28 = new SharedSolution();
         $kuku28->question = 'Radical 1,3-butadienilo';
-        $kuku28->answer = 'Radical 1,3-butadienilo.png';
+        $kuku28->answer = 'radical-1-3-butadienilo.png';
         $kuku28->challenge_id = '2';
 
         $kuku29 = new SharedSolution();
         $kuku29->question = 'Rad. 2-butil-2-butenilo';
-        $kuku29->answer = 'Rad. 2-butil-2-butenilo.png';
+        $kuku29->answer = 'rad-2-butil-2-butenilo.png';
         $kuku29->challenge_id = '2';
 
         $kuku30 = new SharedSolution();
-        $kuku30->question = 'Rad.4-(1-propenil)-2,5,6-heptatrienilo';
-        $kuku30->answer = 'Rad.4-(1-propenil)-2,5,6-heptatrienilo.png';
+        $kuku30->question = 'Rad.4-(1-propenil)-2-5-6-heptatrienilo';
+        $kuku30->answer = 'rad-4-1-propenil-2-5-6-heptatrienilo.png';
         $kuku30->challenge_id = '2';
 
         $kuku31 = new SharedSolution();
@@ -339,57 +339,57 @@ class SharedSeeder extends Seeder
 
         $kuku35 = new SharedSolution();
         $kuku35->question = 'Metoxibenceno';
-        $kuku35->answer = 'Metoxibenceno.png';
+        $kuku35->answer = 'metoxibenceno.png';
         $kuku35->challenge_id = '2';
 
         $kuku36 = new SharedSolution();
         $kuku36->question = 'ácido 4-oxopentanoico';
-        $kuku36->answer = 'ácido 4-oxopentanoico.png';
+        $kuku36->answer = 'acido-4-oxopentanoico.png';
         $kuku36->challenge_id = '2';
 
         $kuku37 = new SharedSolution();
         $kuku37->question = 'Acetato sódico';
-        $kuku37->answer = 'Acetato sódico.png';
+        $kuku37->answer = 'acetato-sodico.png';
         $kuku37->challenge_id = '2';
 
         $kuku38 = new SharedSolution();
         $kuku38->question = 'Acetato de metilo';
-        $kuku38->answer = 'Acetato de metilo.png';
+        $kuku38->answer = 'acetato-de-metilo.png';
         $kuku38->challenge_id = '2';
 
         $kuku39 = new SharedSolution();
         $kuku39->question = 'Benzoato de etilo';
-        $kuku39->answer = 'Benzoato de etilo.png';
+        $kuku39->answer = 'benzoato-de-etilo.png';
         $kuku39->challenge_id = '2';
 
         $kuku40 = new SharedSolution();
         $kuku40->question = 'Anhídrido benzoico';
-        $kuku40->answer = 'Anhídrido benzoico.png';
+        $kuku40->answer = 'anhidrido-benzoico.png';
         $kuku40->challenge_id = '2';
 
         $kuku41 = new SharedSolution();
         $kuku41->question = 'Bromuro de etanoilo';
-        $kuku41->answer = 'Bromuro de etanoilo.png';
+        $kuku41->answer = 'bromuro-de-etanoilo.png';
         $kuku41->challenge_id = '2';
 
         $kuku42 = new SharedSolution();
         $kuku42->question = 'etil isopropil eter';
-        $kuku42->answer = 'etil isopropil eter.png';
+        $kuku42->answer = 'etil-isopropil-eter.png';
         $kuku42->challenge_id = '2';
 
         $kuku43 = new SharedSolution();
         $kuku43->question = 'Cloruro de 3-metilciclopentanocarbonilo';
-        $kuku43->answer = 'Cloruro de 3-metilciclopentanocarbonilo.png';
+        $kuku43->answer = 'cloruro-de-3-metilciclopentanocarbonilo.png';
         $kuku43->challenge_id = '2';
 
         $kuku44 = new SharedSolution();
         $kuku44->question = 'Bromuro de acetilo';
-        $kuku44->answer = 'Bromuro de acetilo.png';
+        $kuku44->answer = 'bromuro-de-acetilo.png';
         $kuku44->challenge_id = '2';
 
         $kuku45 = new SharedSolution();
         $kuku45->question = '3-bromoformilciclohexanocarboxilato de metilo';
-        $kuku45->answer = '3-bromoformilciclohexanocarboxilato de metilo.png';
+        $kuku45->answer = '3-bromoformilciclohexanocarboxilato-de-metilo.png';
         $kuku45->challenge_id = '2';
 
         //TODO BIEN EQUILIBRADO

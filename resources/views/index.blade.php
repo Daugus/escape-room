@@ -7,8 +7,10 @@
 
 @section('content')
     <ul>
-        <li><a href="{{ route('hangman.index') }}"
-                class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Hangman</a></li>
+        <li>
+            <a href="{{ route('hangman.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
+            <a href="{{ route('kuku.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
+        </li>
     </ul>
 
     <div id="vue"></div>
