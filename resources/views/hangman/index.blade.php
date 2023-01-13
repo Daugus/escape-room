@@ -6,5 +6,5 @@
 
 @section('content')
     <h1>hangman</h1>
-    <div id="app"></div>
+    <div id="vue"></div>
 @endsection

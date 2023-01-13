@@ -7,4 +7,4 @@ Route::get('/hangman', [HangmanController::class, 'index'])->name('hangman.index
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');

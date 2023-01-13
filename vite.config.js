@@ -18,6 +18,8 @@ export default defineConfig({
         extensions: [".js", ".vue", ".css", ".scss"],
         alias: {
             "@": path.resolve(__dirname, "./public"),
+            ziggy: "/vendor/tightenco/ziggy/src/js",
+            "ziggy-vue": "/vendor/tightenco/ziggy/src/js/vue",
         },
     },
 });

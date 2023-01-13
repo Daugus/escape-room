@@ -9,6 +9,7 @@
 
     <title>Escape Room</title>
 
+    @routes
     @yield('vitejs')
     @vite(['resources/css/app.scss'])
 </head>

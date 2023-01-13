@@ -7,9 +7,10 @@
 
 @section('content')
     <ul>
-        <li><a href="{{ route('hangman.index') }}">Hangman</a></li>
+        <li><a href="{{ route('hangman.index') }}"
+                class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Hangman</a></li>
     </ul>
 
+    <div id="vue"></div>
     <h1>index</h1>
-    <div id="app"></div>
 @endsection

@@ -1,4 +1,7 @@
 import App from "./App.vue";
 import { createApp } from "vue";
+import { ZiggyVue } from "ziggy-vue";
 
-createApp(App).mount("#app");
+const VueApp = createApp(App);
+VueApp.use(ZiggyVue);
+VueApp.mount("#vue");

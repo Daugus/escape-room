@@ -2,6 +2,7 @@
 import Keyboard from "./Keyboard.vue";
 import Panel from "./Panel.vue";
 import Capsule from "./Capsule.vue";
+import route from "ziggy";
 </script>
 
 <script>
@@ -43,6 +44,12 @@ export default {
 </script>
 
 <template>
+    <a
+        class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
+        :href="route('index')"
+        >Volver</a
+    >
+
     <section>
         <div class="capsule">
             <Capsule />
