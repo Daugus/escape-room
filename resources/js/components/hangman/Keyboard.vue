@@ -4,48 +4,160 @@ import Key from "./Key.vue";
 
 <script>
 export default {
+    props: {
+        secretWord: Array,
+    },
     data() {
         return {
             letter: "",
         };
     },
+    methods: {
+        getLetterKey(char) {
+            this.letter = char;
+            this.$emit("getLetterKey", this.letter);
+        },
+    },
 };
 </script>
 
 <template>
-    <h1>{{ letter }}</h1>
     <div class="plate">
         <div class="row">
-            <Key keyLetter="Q" @clickedLetter="letter = $event" />
-            <Key keyLetter="W" @clickedLetter="letter = $event" />
-            <Key keyLetter="E" @clickedLetter="letter = $event" />
-            <Key keyLetter="R" @clickedLetter="letter = $event" />
-            <Key keyLetter="T" @clickedLetter="letter = $event" />
-            <Key keyLetter="Y" @clickedLetter="letter = $event" />
-            <Key keyLetter="U" @clickedLetter="letter = $event" />
-            <Key keyLetter="I" @clickedLetter="letter = $event" />
-            <Key keyLetter="O" @clickedLetter="letter = $event" />
-            <Key keyLetter="P" @clickedLetter="letter = $event" />
+            <Key
+                keyLetter="Q"
+                :secretWord="secretWord"
+                @click="getLetterKey('Q')"
+            />
+            <Key
+                keyLetter="W"
+                :secretWord="secretWord"
+                @click="getLetterKey('W')"
+            />
+            <Key
+                keyLetter="E"
+                :secretWord="secretWord"
+                @click="getLetterKey('E')"
+            />
+            <Key
+                keyLetter="R"
+                :secretWord="secretWord"
+                @click="getLetterKey('R')"
+            />
+            <Key
+                keyLetter="T"
+                :secretWord="secretWord"
+                @click="getLetterKey('T')"
+            />
+            <Key
+                keyLetter="Y"
+                :secretWord="secretWord"
+                @click="getLetterKey('Y')"
+            />
+            <Key
+                keyLetter="U"
+                :secretWord="secretWord"
+                @click="getLetterKey('U')"
+            />
+            <Key
+                keyLetter="I"
+                :secretWord="secretWord"
+                @click="getLetterKey('I')"
+            />
+            <Key
+                keyLetter="O"
+                :secretWord="secretWord"
+                @click="getLetterKey('O')"
+            />
+            <Key
+                keyLetter="P"
+                :secretWord="secretWord"
+                @click="getLetterKey('P')"
+            />
         </div>
         <div class="row">
-            <Key keyLetter="A" @clickedLetter="letter = $event" />
-            <Key keyLetter="S" @clickedLetter="letter = $event" />
-            <Key keyLetter="D" @clickedLetter="letter = $event" />
-            <Key keyLetter="F" @clickedLetter="letter = $event" />
-            <Key keyLetter="G" @clickedLetter="letter = $event" />
-            <Key keyLetter="H" @clickedLetter="letter = $event" />
-            <Key keyLetter="J" @clickedLetter="letter = $event" />
-            <Key keyLetter="K" @clickedLetter="letter = $event" />
-            <Key keyLetter="L" @clickedLetter="letter = $event" />
+            <Key
+                keyLetter="A"
+                :secretWord="secretWord"
+                @click="getLetterKey('A')"
+            />
+            <Key
+                keyLetter="S"
+                :secretWord="secretWord"
+                @click="getLetterKey('S')"
+            />
+            <Key
+                keyLetter="D"
+                :secretWord="secretWord"
+                @click="getLetterKey('D')"
+            />
+            <Key
+                keyLetter="F"
+                :secretWord="secretWord"
+                @click="getLetterKey('F')"
+            />
+            <Key
+                keyLetter="G"
+                :secretWord="secretWord"
+                @click="getLetterKey('G')"
+            />
+            <Key
+                keyLetter="H"
+                :secretWord="secretWord"
+                @click="getLetterKey('H')"
+            />
+            <Key
+                keyLetter="J"
+                :secretWord="secretWord"
+                @click="getLetterKey('J')"
+            />
+            <Key
+                keyLetter="K"
+                :secretWord="secretWord"
+                @click="getLetterKey('K')"
+            />
+            <Key
+                keyLetter="L"
+                :secretWord="secretWord"
+                @click="getLetterKey('L')"
+            />
         </div>
         <div class="row">
-            <Key keyLetter="Z" @clickedLetter="letter = $event" />
-            <Key keyLetter="X" @clickedLetter="letter = $event" />
-            <Key keyLetter="C" @clickedLetter="letter = $event" />
-            <Key keyLetter="V" @clickedLetter="letter = $event" />
-            <Key keyLetter="B" @clickedLetter="letter = $event" />
-            <Key keyLetter="N" @clickedLetter="letter = $event" />
-            <Key keyLetter="M" @clickedLetter="letter = $event" />
+            <Key
+                keyLetter="Z"
+                :secretWord="secretWord"
+                @click="getLetterKey('Z')"
+            />
+            <Key
+                keyLetter="X"
+                :secretWord="secretWord"
+                @click="getLetterKey('X')"
+            />
+            <Key
+                keyLetter="C"
+                :secretWord="secretWord"
+                @click="getLetterKey('C')"
+            />
+            <Key
+                keyLetter="V"
+                :secretWord="secretWord"
+                @click="getLetterKey('V')"
+            />
+            <Key
+                keyLetter="B"
+                :secretWord="secretWord"
+                @click="getLetterKey('B')"
+            />
+            <Key
+                keyLetter="N"
+                :secretWord="secretWord"
+                @click="getLetterKey('N')"
+            />
+            <Key
+                keyLetter="M"
+                :secretWord="secretWord"
+                @click="getLetterKey('M')"
+            />
             <Key keyLetter="ESC" />
         </div>
     </div>
@@ -61,7 +173,6 @@ export default {
     align-items: center;
     width: 70%;
     overflow: hidden;
-    padding: 1rem;
     z-index: 1;
     background-color: gray;
     padding: 1rem;
