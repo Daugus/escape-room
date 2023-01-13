@@ -101,7 +101,6 @@ img {
 }
 
 .word-panel {
-    opacity: 0;
     z-index: 5;
     flex-direction: column;
     width: 70%;
