@@ -10,7 +10,6 @@ export default {
             positions: [],
         };
     },
-    methods: {},
     computed: {
         // Cambiar la Array a String
         wordToString() {
@@ -28,11 +27,13 @@ export default {
         letter: function () {
             if (this.letter === "") return;
             this.positions = [];
+            // Guardar posiciones de la letra
             for (let i = 0; i < this.secretWord.length; i++) {
                 if (this.letter === this.secretWord[i]) {
                     this.positions.push(i);
                 }
             }
+            // Cambiar letra en posiciones
             for (let i = 0; i < this.positions.length; i++) {
                 this.word[this.positions[i]] = this.letter;
             }
@@ -58,7 +59,7 @@ export default {
     display: flex;
     justify-content: center;
     text-align: center;
-    min-width: 95%;
+    min-width: 100%;
     max-width: max-content;
     box-shadow: 0 0 1rem #0f0 inset;
     background-color: darkgreen;
@@ -77,8 +78,8 @@ img {
 
 .word {
     font-family: digital-7;
-    font-size: 5rem;
-    letter-spacing: 0.5rem;
+    font-size: 4rem;
+    letter-spacing: 0.3rem;
     text-shadow: 0 0 1rem #0f0;
     color: #0f0;
     margin: 0.5rem 1rem;

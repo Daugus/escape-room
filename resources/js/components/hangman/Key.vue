@@ -2,41 +2,36 @@
 export default {
     props: {
         keyLetter: String,
-    },
-    data() {
-        return {
-            clickedLetter: "",
-        };
+        secretWord: Array,
     },
     methods: {
-        getKey(letter) {
-            this.clickedLetter = letter;
-            console.log(letter);
-            console.log(this.clickedLetter);
+        ligthChanger(key) {
+            let exists = this.secretWord.includes(key);
+            let element = document.getElementById(key);
+            let color = "";
+            switch (exists) {
+                case true:
+                    color = "#0f0";
+                    break;
+                case false:
+                    color = "#f00";
+                    break;
+            }
+            element.style.setProperty("--color", color);
         },
-    },
-    watch: {
-        //esta funcion observa en todo momento si la variable clickedLetter se modifica
-        nombre: function () {
-            return this.$emit("clickedLetter", this.clickedLetter);
-        },
-    },
-    mounted() {
-        //esta funcion se ejecuta después de que la instancia VUE y el DOM ya está montado
-        this.$emit("clickedLetter", this.clickedLetter); //de esta manera emito el evento hacia el componente padre
     },
 };
 </script>
 
 <template>
-    <button @click="getKey(keyLetter)" :id="keyLetter">
+    <button :id="keyLetter" @click="ligthChanger(keyLetter)">
         {{ keyLetter }}
     </button>
 </template>
 
 <style scoped lang="scss">
 button {
-    --bg: black;
+    --color: #000;
     color: black;
     font-size: 1.5rem;
     font-weight: 700;
@@ -59,8 +54,9 @@ button {
         position: absolute;
         top: 10%;
         left: 10%;
-        background-color: var(--bg);
-        box-shadow: 0 0 0.5rem var(--bg);
+        background-color: var(--color);
+        box-shadow: 0 0 0.5rem var(--color);
+        transition: all 0.2s ease-in;
     }
 }
 </style>
