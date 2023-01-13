@@ -10,6 +10,11 @@ export default {
             exists: null,
         };
     },
+    methods: {
+        endGame() {
+            // Crear final del juego
+        },
+    },
     computed: {
         errorProgress() {
             let progress = "";
@@ -34,6 +39,7 @@ export default {
                     break;
                 case 6:
                     progress = "100%";
+                    setTimeout(endGame(), 1.5 * 1000);
                     break;
             }
             return progress;

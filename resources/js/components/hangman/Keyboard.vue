@@ -9,13 +9,18 @@ export default {
     },
     data() {
         return {
-            letter: "",
+            usedLetters: [],
         };
     },
     methods: {
         getLetterKey(char) {
-            this.letter = char;
-            this.$emit("getLetterKey", this.letter);
+            if (this.usedLetters.includes(char)) {
+                return;
+            } else {
+                this.usedLetters.push(char);
+                this.letter = char;
+                this.$emit("getLetterKey", char);
+            }
         },
     },
 };
