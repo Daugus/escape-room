@@ -28,7 +28,7 @@ export default {
     >
         <p>{{ cardInfo.id }}</p>
         <img v-if="cardInfo.image" :src="imageSource" :alt="cardInfo.name" />
-        <p v-else class="text-center">{{ cardInfo.name }}</p>
+        <p v-else class="text-center ">{{ cardInfo.name }}</p>
     </article>
 </template>
 
