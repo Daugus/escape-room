@@ -33,6 +33,8 @@ export default {
 
             const cards = await res.json();
 
+            // llena el array con dos cartas (una con la imagen y
+            // otra con el texto) por cada resultado de la bd
             for await (const card of cards) {
                 this.cardList.push({ id: card.id, name: card.name });
 
@@ -42,13 +44,37 @@ export default {
                     image: card.image,
                 });
             }
+
+            // mezcla las cartas
+            for (let i = this.cardList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+
+                [this.cardList[i], this.cardList[j]] = [
+                    this.cardList[j],
+                    this.cardList[i],
+                ];
+            }
         },
-        getFlippedCard(cardId) {
-            this.flippedCards.push(cardId);
+        // recibe el elemento html de la carta
+        getFlippedCard(card) {
+            const firstCard = this.flippedCards[0];
+            this.flippedCards.push(card);
+
+            // si la carta nueva es la misma que la primera se quita del array
+            if (firstCard && firstCard.id === card.id)
+                this.flippedCards.shift();
 
             if (this.flippedCards.length === 2) {
-                if (this.flippedCards[0] === this.flippedCards[1]) {
+                const secondCard = this.flippedCards[1];
+
+                // si la id de las cartas (el id de la fila en la bd) no coincide, se ocultan ambas
+                if (firstCard.dataset.id !== secondCard.dataset.id) {
+                    setTimeout(() => {
+                        firstCard.classList.remove("flipped");
+                        secondCard.classList.remove("flipped");
+                    }, 500);
                 }
+
                 this.flippedCards = [];
             }
         },
