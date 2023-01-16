@@ -9,6 +9,9 @@
     <title>Escape Room</title>
     {{-- <title>@yield('title')</title> --}}
 
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
     @vite(['resources/js/main.js', 'resources/css/app.scss'])
 </head>
 
