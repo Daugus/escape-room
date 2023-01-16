@@ -6,21 +6,31 @@ import Key from "./Key.vue";
 export default {
     props: {
         secretWord: Array,
+        errors: Number,
     },
     data() {
         return {
             usedLetters: [],
+            letter: "",
         };
     },
     methods: {
         getLetterKey(char) {
-            if (this.usedLetters.includes(char)) {
-                return;
-            } else {
-                this.usedLetters.push(char);
-                this.letter = char;
-                this.$emit("getLetterKey", char);
+            if (this.errors === 6) {
+                this.usedLetters = [];
+                let keys = document.querySelectorAll("button:not(#ESC)");
+                keys.forEach((key) => {
+                    this.usedLetters.push(key.id);
+                });
+            } else if (this.errors === 0) {
+                this.usedLetters = [];
             }
+
+            if (this.usedLetters.includes(char) === true) return;
+
+            this.letter = char;
+            this.usedLetters.push(char);
+            this.$emit("getLetterKey", char);
         },
     },
 };
@@ -31,51 +41,61 @@ export default {
         <div class="row">
             <Key
                 keyLetter="Q"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('Q')"
             />
             <Key
                 keyLetter="W"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('W')"
             />
             <Key
                 keyLetter="E"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('E')"
             />
             <Key
                 keyLetter="R"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('R')"
             />
             <Key
                 keyLetter="T"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('T')"
             />
             <Key
                 keyLetter="Y"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('Y')"
             />
             <Key
                 keyLetter="U"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('U')"
             />
             <Key
                 keyLetter="I"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('I')"
             />
             <Key
                 keyLetter="O"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('O')"
             />
             <Key
                 keyLetter="P"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('P')"
             />
@@ -83,46 +103,55 @@ export default {
         <div class="row">
             <Key
                 keyLetter="A"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('A')"
             />
             <Key
                 keyLetter="S"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('S')"
             />
             <Key
                 keyLetter="D"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('D')"
             />
             <Key
                 keyLetter="F"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('F')"
             />
             <Key
                 keyLetter="G"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('G')"
             />
             <Key
                 keyLetter="H"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('H')"
             />
             <Key
                 keyLetter="J"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('J')"
             />
             <Key
                 keyLetter="K"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('K')"
             />
             <Key
                 keyLetter="L"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('L')"
             />
@@ -130,36 +159,43 @@ export default {
         <div class="row">
             <Key
                 keyLetter="Z"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('Z')"
             />
             <Key
                 keyLetter="X"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('X')"
             />
             <Key
                 keyLetter="C"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('C')"
             />
             <Key
                 keyLetter="V"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('V')"
             />
             <Key
                 keyLetter="B"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('B')"
             />
             <Key
                 keyLetter="N"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('N')"
             />
             <Key
                 keyLetter="M"
+                :letter="letter"
                 :secretWord="secretWord"
                 @click="getLetterKey('M')"
             />

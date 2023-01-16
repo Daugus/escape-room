@@ -2,12 +2,13 @@
 export default {
     props: {
         keyLetter: String,
+        letter: String,
         secretWord: Array,
     },
-    methods: {
-        ligthChanger(key) {
-            let exists = this.secretWord.includes(key);
-            let element = document.getElementById(key);
+    watch: {
+        letter() {
+            let exists = this.secretWord.includes(this.letter);
+            let element = document.getElementById(this.letter);
             let color = "";
             switch (exists) {
                 case true:
@@ -24,7 +25,7 @@ export default {
 </script>
 
 <template>
-    <button :id="keyLetter" @click="ligthChanger(keyLetter)">
+    <button :id="keyLetter">
         {{ keyLetter }}
     </button>
 </template>
@@ -43,7 +44,7 @@ button {
     border: 6px outset #a7a7a7;
     background-color: #999999;
     box-shadow: 0.25rem 0.25rem 1rem #00000080;
-    margin: 0.5rem;
+    margin: 0.4rem;
     position: relative;
 
     &:not(#ESC)::before {

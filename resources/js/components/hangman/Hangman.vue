@@ -10,6 +10,8 @@ export default {
         return {
             wordArray: [],
             letter: "",
+            errors: 0,
+            newWord: false,
         };
     },
     async mounted() {
@@ -35,8 +37,24 @@ export default {
             let word = data[0].microorganism;
             this.wordArray = word.toUpperCase().split("");
         },
+        getNewWord(newWord) {
+            this.newWord = newWord;
+        },
         getLetterKey(letter) {
             this.letter = letter;
+        },
+        getErrors(errors) {
+            this.errors = errors;
+        },
+    },
+    watch: {
+        newWord: function () {
+            if (this.newWord === true) {
+                this.getWord();
+                let word = document.querySelector(".panel p");
+                word.classList.remove("charging");
+            }
+            this.newWord = false;
         },
     },
 };
@@ -45,11 +63,20 @@ export default {
 <template>
     <section>
         <div class="capsule">
-            <Capsule :secretWord="wordArray" :letter="letter" />
+            <Capsule
+                :secretWord="wordArray"
+                :letter="letter"
+                @getErrors="getErrors"
+                @getNewWord="getNewWord"
+            />
         </div>
         <div class="word-panel">
-            <Panel :secretWord="wordArray" :letter="letter" />
-            <Keyboard :secretWord="wordArray" @getLetterKey="getLetterKey" />
+            <Panel :secretWord="wordArray" :letter="letter" :errors="errors" />
+            <Keyboard
+                :secretWord="wordArray"
+                :errors="errors"
+                @getLetterKey="getLetterKey"
+            />
             <img src="@/src/img/metal.jpg" />
         </div>
         <img src="@/src/img/Window.png" id="window" />
@@ -110,15 +137,13 @@ img {
     overflow: hidden;
     position: relative;
     border: 0.7rem outset #9f9f9f;
-    bottom: -75px;
+    bottom: -80px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.176);
 
     img {
         position: absolute;
         opacity: 0.7;
         width: 100%;
-        height: 100%;
-        pointer-events: none;
     }
 }
 </style>

@@ -2,18 +2,16 @@
 export default {
     props: {
         secretWord: Array,
+        usedLetters: Array,
         letter: String,
     },
     data() {
         return {
             errors: 0,
-            exists: null,
+            time: 0,
+            tries: 0,
+            newWord: true,
         };
-    },
-    methods: {
-        endGame() {
-            // Crear final del juego
-        },
     },
     computed: {
         errorProgress() {
@@ -39,20 +37,59 @@ export default {
                     break;
                 case 6:
                     progress = "100%";
-                    setTimeout(endGame(), 1.5 * 1000);
-                    break;
+
+                    // Crear una cuenta regresiva en base al numero de intentos
+                    this.tries = this.tries + 1;
+                    this.time = this.tries * 120;
+
+                    // Cambiar estilos del panel y de las teclas
+                    let panel = document.querySelector(".panel");
+                    let word = document.querySelector(".panel p");
+                    let keys = document.querySelectorAll("button");
+
+                    // Se ejecuta en 5 segundos (5000 milesimas)
+                    setTimeout(() => {
+                        this.errors = 0;
+                        progress = "9%";
+                        // Cambiar estilos del panel
+                        panel.classList.add("default");
+                        panel.classList.remove("fail");
+                        // Cambiar la palabra del panel
+                        word.innerText = "quaero verbum";
+                        word.classList.add("charging");
+                        // Quitar luces de las teclas y desactivarlas
+                        keys.forEach((key) => {
+                            key.style.setProperty("--color", "#000");
+                        });
+                    }, 5000);
+
+                    // Mandar orden para generar nueva palabra y reiniciar errores
+                    setTimeout(() => {
+                        this.$emit("getNewWord", this.newWord);
+                        this.$emit("getErrors", this.errors);
+                    }, this.tries * 120000);
             }
             return progress;
+        },
+        timer() {
+            let timer = "";
+            if (this.errors !== 0) {
+                timer = "1s";
+            } else {
+                timer = this.tries * 120 + "s";
+            }
+            return timer;
         },
     },
     watch: {
         letter: function () {
+            let exists = null;
             if (this.letter === "") return;
-            this.exists = null;
-            this.exists = this.secretWord.includes(this.letter);
-            if (this.exists === false) {
+            exists = this.secretWord.includes(this.letter);
+            if (exists === false) {
                 this.errors = this.errors + 1;
             }
+            this.$emit("getErrors", this.errors);
         },
     },
 };
@@ -75,7 +112,6 @@ export default {
 
     #container {
         z-index: 3;
-        filter: drop-shadow();
     }
 
     .bar {
@@ -89,25 +125,26 @@ export default {
         .progress {
             --errorProgress: v-bind("errorProgress");
             height: 100%;
+            border-radius: 1rem;
             width: var(--errorProgress);
             background-color: #b00;
             box-shadow: 0 0 5rem #fff inset;
             animation: liquid 3s infinite ease-in-out;
-            transition: all 1.5s ease-out;
+            transition: all v-bind("timer") ease-out;
         }
     }
 }
 
 @keyframes liquid {
     0% {
-        box-shadow: 0 0 5rem transparent;
+        box-shadow: none;
     }
     50% {
         background-color: #f00;
         box-shadow: 0 0 5rem #f00;
     }
     100% {
-        box-shadow: 0 0 5rem transparent;
+        box-shadow: none;
     }
 }
 </style>
