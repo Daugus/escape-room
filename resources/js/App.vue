@@ -29,7 +29,7 @@ export default {
             if (name === "") {
                 document.getElementById("grid-first-name").style.borderColor =
                     "blue";
-            } else if (/^[a-zA-Z0-9]{0,15}$/.test(name)) {
+            } else if (name !== "") {
                 this.error.exists = false;
                 document.getElementById("grid-first-name").style.borderColor =
                     "green";
@@ -40,17 +40,28 @@ export default {
             }
         },
 
+        validateSurname(surname) {
+            if (surname === "") {
+                document.getElementById("grid-surname").style.borderColor =
+                    "blue";
+            } else if (surname !== "") {
+                this.error.exists = false;
+                document.getElementById("grid-surname").style.borderColor =
+                    "green";
+            } else {
+                this.error.exists = true;
+                document.getElementById("grid-surname").style.borderColor =
+                    "red";
+            }
+        },
+
         validateUser(user) {
             if (user === "") {
                 document.getElementById("grid-username").style.borderColor =
                     "blue";
 
                 document.getElementsByTagName;
-            } else if (
-                /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,15}[a-zA-Z0-9]$/.test(
-                    user
-                )
-            ) {
+            } else if (user !== "") {
                 this.error.exists = false;
                 document.getElementById("grid-username").style.borderColor =
                     "green";
@@ -95,14 +106,30 @@ export default {
         },
 
         compareTo(pass2) {
-            if (pass1 === pass2) {
+            if (pass2 === "") {
+                document.getElementById("grid-second-pass").style.borderColor =
+                    "blue";
+            } else if (pass1 === pass2) {
+                this.error.exist = false;
+                document.getElementById("grid-second-pass").style.borderColor =
+                    "green";
+            } else {
+                this.error.exist = true;
+                document.getElementById("grid-second-pass").style.borderColor =
+                    "red";
             }
         },
     },
+
     watch: {
         name(value) {
             this.name = value;
             this.validateName(value);
+        },
+
+        surname(value) {
+            this.surname = value;
+            this.validateSurname(value);
         },
 
         user(value) {
@@ -114,9 +141,14 @@ export default {
             this.validateEmail(value);
         },
 
-        pass(value) {
-            this.pass = value;
+        pass1(value) {
+            this.pass1 = value;
             this.validatePassword(value);
+        },
+
+        pass2(value) {
+            this.pass2 = value;
+            this.compareTo(value);
         },
     },
 };
@@ -159,6 +191,7 @@ export default {
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-surname"
                             v-model="surname"
+                            @keyup="validateSurname(this.surname)"
                             type="text"
                         />
                     </div>
@@ -219,7 +252,7 @@ export default {
                             id="grid-second-pass"
                             type="password"
                             v-model="pass2"
-                            @keyup="validatePassword(this.pass1)"
+                            @keyup="compareTo(this.pass2)"
                             placeholder="******************"
                         />
                     </div>
@@ -238,8 +271,8 @@ export default {
                             <option>Alumno</option>
                         </select>
                     </div>
-                    <div class="flex items-center justify-center w-full">
-                        <label
+                    <div class="w-full px-3 mb-6 md:mb-0">
+                        <!-- <label
                             for="dropzone-file"
                             class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
@@ -265,12 +298,12 @@ export default {
                                 type="file"
                                 class="hidden"
                             />
-                        </label>
-                        <!-- <input
-                            class="flex flex-col items-center justify-center mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                        </label> -->
+                        <input
+                            class="block appearance-none w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="default_size"
                             type="file"
-                        /> -->
+                        />
                     </div>
                     <div class="flex items-center justify-between mt-4 ml-3">
                         <button
