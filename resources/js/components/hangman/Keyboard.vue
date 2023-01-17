@@ -7,6 +7,7 @@ export default {
     props: {
         secretWord: Array,
         errors: Number,
+        guessed: Boolean,
     },
     data() {
         return {
@@ -31,6 +32,16 @@ export default {
             this.letter = char;
             this.usedLetters.push(char);
             this.$emit("getLetterKey", char);
+        },
+    },
+    watch: {
+        guessed: function () {
+            if (this.wordGuessed === null) return;
+            this.usedLetters = [];
+            let keys = document.querySelectorAll("button:not(#ESC)");
+            keys.forEach((key) => {
+                this.usedLetters.push(key.id);
+            });
         },
     },
 };

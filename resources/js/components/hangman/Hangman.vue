@@ -12,6 +12,7 @@ export default {
             letter: "",
             errors: 0,
             newWord: false,
+            guessed: null,
         };
     },
     async mounted() {
@@ -46,6 +47,9 @@ export default {
         getErrors(errors) {
             this.errors = errors;
         },
+        wordGuessed(guessed) {
+            this.guessed = guessed;
+        },
     },
     watch: {
         newWord: function () {
@@ -66,15 +70,22 @@ export default {
             <Capsule
                 :secretWord="wordArray"
                 :letter="letter"
+                :guessed="guessed"
                 @getErrors="getErrors"
                 @getNewWord="getNewWord"
             />
         </div>
         <div class="word-panel">
-            <Panel :secretWord="wordArray" :letter="letter" :errors="errors" />
+            <Panel
+                :secretWord="wordArray"
+                :letter="letter"
+                :errors="errors"
+                @wordGuessed="wordGuessed"
+            />
             <Keyboard
                 :secretWord="wordArray"
                 :errors="errors"
+                :guessed="guessed"
                 @getLetterKey="getLetterKey"
             />
             <img src="@/src/img/metal.jpg" />

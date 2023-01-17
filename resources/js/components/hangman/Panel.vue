@@ -2,13 +2,14 @@
 export default {
     props: {
         secretWord: Array,
-        usedLetters: Array,
         letter: String,
         errors: Number,
     },
     data() {
         return {
             word: [],
+            rigthLetters: [],
+            wordGuessed: false,
         };
     },
     computed: {
@@ -27,6 +28,7 @@ export default {
         // Cambiar _ por letra en "word"
         letter: function () {
             if (this.letter === "") return;
+            if (this.secretWord.includes(this.letter) === false) return;
             let positions = [];
             // Guardar posiciones de la letra
             for (let i = 0; i < this.secretWord.length; i++) {
@@ -37,6 +39,27 @@ export default {
             // Cambiar letra en posiciones
             for (let i = 0; i < positions.length; i++) {
                 this.word[positions[i]] = this.letter;
+            }
+
+            this.rigthLetters.push(this.letter);
+
+            // Comparar la palabra secreta y la del panel
+            if (this.word.join("") === this.secretWord.join("")) {
+                this.wordGuessed = true;
+                let panel = document.querySelector(".panel");
+                let keys = document.querySelectorAll("button:not(#ESC)");
+
+                // Cambiar estilos del panel
+                panel.classList.add("success");
+                panel.classList.remove("default");
+
+                // Quitar luces de las teclas incorrectas
+                keys.forEach((key) => {
+                    if (this.rigthLetters.includes(key.id) === false) {
+                        key.style.setProperty("--color", "#000");
+                    }
+                });
+                this.$emit("wordGuessed", this.wordGuessed);
             }
         },
         // Comprobar el marcador de errores
@@ -88,6 +111,10 @@ export default {
         letter-spacing: 0.3rem;
         margin: 0.5rem 1rem;
         z-index: 3;
+
+        &::selection {
+            display: none;
+        }
     }
 }
 
@@ -115,7 +142,7 @@ export default {
 .success {
     --bg: darkgreen;
     --accent: #0f0;
-    animation: flicker 0.5s 3;
+    animation: flicker 0.5s 6 linear;
 
     box-shadow: 0 0 2rem var(--accent);
     background-color: var(--bg);

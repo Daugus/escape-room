@@ -4,6 +4,7 @@ export default {
         secretWord: Array,
         usedLetters: Array,
         letter: String,
+        guessed: Boolean,
     },
     data() {
         return {
@@ -45,7 +46,7 @@ export default {
                     // Cambiar estilos del panel y de las teclas
                     let panel = document.querySelector(".panel");
                     let word = document.querySelector(".panel p");
-                    let keys = document.querySelectorAll("button");
+                    let keys = document.querySelectorAll("button:not(#ESC)");
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
@@ -91,6 +92,20 @@ export default {
             }
             this.$emit("getErrors", this.errors);
         },
+        guessed: function () {
+            if (this.wordGuessed === null) return;
+
+            // Quitar barra de progreso
+            let progressBar = document.querySelector(".progress");
+            progressBar.style.setProperty("--errorProgress", "0%");
+
+            // Se ejecuta en 5 segundos (5000 milesimas)
+            setTimeout(() => {
+                progressBar.style.setProperty("--bg", "#0b0");
+                progressBar.style.setProperty("--accent", "#0f0");
+                progressBar.style.setProperty("--errorProgress", "100%");
+            }, 5000);
+        },
     },
 };
 </script>
@@ -124,10 +139,12 @@ export default {
 
         .progress {
             --errorProgress: v-bind("errorProgress");
+            --bg: #b00;
+            --accent: #f00;
             height: 100%;
             border-radius: 1rem;
             width: var(--errorProgress);
-            background-color: #b00;
+            background-color: var(--bg);
             box-shadow: 0 0 5rem #fff inset;
             animation: liquid 3s infinite ease-in-out;
             transition: all v-bind("timer") ease-out;
@@ -140,8 +157,8 @@ export default {
         box-shadow: none;
     }
     50% {
-        background-color: #f00;
-        box-shadow: 0 0 5rem #f00;
+        background-color: var(--accent);
+        box-shadow: 0 0 5rem var(--accent);
     }
     100% {
         box-shadow: none;

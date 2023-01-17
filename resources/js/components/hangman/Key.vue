@@ -59,5 +59,9 @@ button {
         box-shadow: 0 0 0.5rem var(--color);
         transition: all 0.2s ease-in;
     }
+
+    &::selection {
+        display: none;
+    }
 }
 </style>
