@@ -15,6 +15,9 @@ export default {
             letter: "",
         };
     },
+    mounted() {
+        document.addEventListener("keypress", this.pressedKey);
+    },
     methods: {
         getLetterKey(char) {
             if (this.errors === 6) {
@@ -32,6 +35,10 @@ export default {
             this.letter = char;
             this.usedLetters.push(char);
             this.$emit("getLetterKey", char);
+        },
+        pressedKey(event) {
+            let key = `${event.key}`.toUpperCase();
+            this.getLetterKey(key);
         },
     },
     watch: {
@@ -223,11 +230,12 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: max-content;
+    padding: 0.5rem;
     overflow: hidden;
     z-index: 1;
     background-color: gray;
-    padding: 1rem;
+    // padding: 0.5rem;
 
     .row {
         display: flex;

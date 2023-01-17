@@ -88,7 +88,7 @@ export default {
                 :guessed="guessed"
                 @getLetterKey="getLetterKey"
             />
-            <img src="@/src/img/metal.jpg" />
+            <img src="@/src/img/metal.jpg" id="metal" />
         </div>
         <img src="@/src/img/Window.png" id="window" />
         <img src="@/src/img/Background.png" id="background" />
@@ -117,7 +117,8 @@ img {
 }
 
 #window,
-#background {
+#background,
+#metal {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -142,19 +143,41 @@ img {
     z-index: 5;
     flex-direction: column;
     width: 70%;
+    height: max-content;
     padding: 2rem;
     gap: 1.5rem;
     background-color: #ccc;
     overflow: hidden;
     position: relative;
     border: 0.7rem outset #9f9f9f;
-    bottom: -80px;
+    bottom: 0;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.176);
 
     img {
         position: absolute;
         opacity: 0.7;
         width: 100%;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (max-width: 1200px) {
+    .word-panel {
+        padding: 1vw;
+        gap: 1vw;
+        border: 0.5vw outset #9f9f9f;
     }
 }
 </style>

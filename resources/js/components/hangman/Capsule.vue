@@ -122,8 +122,7 @@ export default {
 <style scoped lang="scss">
 .capsule {
     position: relative;
-    width: 65%;
-    top: 2rem;
+    width: 70%;
 
     #container {
         z-index: 3;
@@ -133,16 +132,15 @@ export default {
         z-index: 2;
         position: absolute;
         background-color: #5f5f5f;
-        width: 27.5%;
+        width: 25%;
         height: 15%;
-        top: 25%;
+        top: 20%;
 
         .progress {
             --errorProgress: v-bind("errorProgress");
             --bg: #b00;
             --accent: #f00;
             height: 100%;
-            border-radius: 1rem;
             width: var(--errorProgress);
             background-color: var(--bg);
             box-shadow: 0 0 5rem #fff inset;

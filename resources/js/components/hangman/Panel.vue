@@ -107,7 +107,7 @@ export default {
 
     p {
         font-family: digital-7;
-        font-size: 4rem;
+        font-size: 4vw;
         letter-spacing: 0.3rem;
         margin: 0.5rem 1rem;
         z-index: 3;
@@ -193,6 +193,32 @@ export default {
     }
     100% {
         content: "";
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (max-width: 768px) {
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    .panel {
+        min-width: 100%;
+        max-width: max-content;
+
+        p {
+            font-size: 4vw;
+            letter-spacing: 0.3rem;
+            margin: 0;
+        }
     }
 }
 </style>
