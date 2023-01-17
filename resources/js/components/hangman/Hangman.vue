@@ -170,7 +170,7 @@ img {
 @media only screen and (max-width: 992px) {
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
     .word-panel {
         padding: 1vw;
         gap: 1vw;

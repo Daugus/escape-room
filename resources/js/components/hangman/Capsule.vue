@@ -47,6 +47,10 @@ export default {
                     let panel = document.querySelector(".panel");
                     let word = document.querySelector(".panel p");
                     let keys = document.querySelectorAll("button:not(#ESC)");
+                    let smoke = document.querySelector(".gas-container");
+
+                    // Activar gas
+                    smoke.style.opacity = "1";
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
@@ -68,6 +72,8 @@ export default {
                     setTimeout(() => {
                         this.$emit("getNewWord", this.newWord);
                         this.$emit("getErrors", this.errors);
+                        // Desactivar gas
+                        smoke.style.opacity = "0";
                     }, this.tries * 120000);
             }
             return progress;
@@ -117,15 +123,27 @@ export default {
             <div class="progress"></div>
         </div>
     </div>
+    <div class="gas-container">
+        <div class="smoke">
+            <img src="@/src/img/smokes/smoke_1.png" id="smoke1" />
+            <img src="@/src/img/smokes/smoke_2.png" id="smoke2" />
+            <img src="@/src/img/smokes/smoke_3.png" id="smoke3" />
+            <img src="@/src/img/smokes/smoke_4.png" id="smoke4" />
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
 .capsule {
     position: relative;
     width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     #container {
         z-index: 3;
+        position: relative;
     }
 
     .bar {
@@ -163,6 +181,99 @@ export default {
     }
 }
 
+.gas-container {
+    z-index: 4;
+    overflow: hidden;
+    position: absolute;
+    width: 88.2%;
+    height: 63%;
+    top: 0;
+    opacity: 0;
+    transition: all 10s ease-out;
+
+    .smoke {
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+        }
+    }
+}
+
+#smoke1 {
+    animation: smoke 12s infinite;
+}
+#smoke2 {
+    animation: smoke 6s infinite;
+}
+#smoke3 {
+    animation: movement-smoke 27s infinite;
+}
+#smoke4 {
+    animation: movement-smoke 72s infinite;
+}
+
+@keyframes smoke {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+        filter: saturate(6);
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes movement-smoke {
+    0% {
+        left: 0;
+        top: 0;
+        opacity: 0.3;
+    }
+    17% {
+        left: -1%;
+        top: 1%;
+        opacity: 1;
+        filter: saturate(10);
+    }
+    34% {
+        opacity: 0.3;
+        width: 110%;
+        filter: blur(1rem);
+        filter: saturate(3);
+    }
+    51% {
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+    68% {
+        opacity: 0.3;
+        filter: blur(1rem);
+        filter: saturate(5);
+    }
+    85% {
+        left: 1%;
+        top: -1%;
+        opacity: 1;
+        width: 95%;
+    }
+    100% {
+        left: 0;
+        top: 0;
+        opacity: 0.3;
+    }
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
 }
@@ -173,7 +284,7 @@ export default {
 @media only screen and (max-width: 992px) {
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
     .capsule {
         width: 55%;
     }

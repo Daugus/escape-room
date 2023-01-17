@@ -209,7 +209,7 @@ export default {
 @media only screen and (max-width: 992px) {
 }
 /* Extra large devices (large laptops and desktops, 1200px and down) */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1500px) {
     .panel {
         min-width: 100%;
         max-width: max-content;
