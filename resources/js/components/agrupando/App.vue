@@ -10,7 +10,6 @@ export default {
         return {
             conceptList: [],
             folderInfoList: [],
-            currentFileInfo: {},
         };
     },
     async mounted() {
@@ -33,9 +32,10 @@ export default {
                 }
             );
 
+            // guardar en array y mezclar los conceptos
+            // ya que vienen ordenados por campo
             this.conceptList = await res.json();
 
-            // mezcla los conceptos
             for (let i = this.conceptList.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
@@ -45,11 +45,43 @@ export default {
                 ];
             }
         },
+        // carga los datos emitidos por cada Folder
         getCurrentFolderInfo(folderInfo) {
             this.folderInfoList.push(folderInfo);
         },
+        // carga los datos del File soltado
         getCurrentFileInfo(fileInfo) {
-            this.currentFileInfo = fileInfo;
+            // busca la Folder correspondiente
+            const targetFolderInfo = this.folderInfoList.filter(
+                (folder) => folder.field === fileInfo.field
+            )[0];
+
+            // comprueba que el File esté dentro de los límites del Folder
+            // Opción 1: cambiar estilo
+            if (
+                fileInfo.start.x >= targetFolderInfo.start.x &&
+                fileInfo.start.y >= targetFolderInfo.start.y &&
+                fileInfo.end.x <= targetFolderInfo.end.x &&
+                fileInfo.end.y <= targetFolderInfo.end.y
+            ) {
+                document
+                    .querySelector(`#${fileInfo.id}`)
+                    .classList.add("correct");
+            } else {
+                document
+                    .querySelector(`#${fileInfo.id}`)
+                    .classList.remove("correct");
+            }
+
+            // Opción 2: eliminar File
+            // if (
+            //     fileInfo.start.x >= targetFolderInfo.start.x &&
+            //     fileInfo.start.y >= targetFolderInfo.start.y &&
+            //     fileInfo.end.x <= targetFolderInfo.end.x &&
+            //     fileInfo.end.y <= targetFolderInfo.end.y
+            // ) {
+            //     this.conceptList.splice(fileInfo.listIndex, 1);
+            // }
         },
     },
 };
@@ -62,25 +94,32 @@ export default {
         >Volver</a
     >
 
-    <section class="grid grid-cols-3 gap-3">
+    <section class="grid grid-cols-2 gap-3">
         <div class="grid grid-cols-2 gap-3">
-            <Folder @currentFolderInfo="currentFolderInfo" field="Análisis" />
             <Folder
-                @currentFolderInfo="currentFolderInfo"
+                @getCurrentFolderInfo="getCurrentFolderInfo"
+                field="Análisis"
+            />
+            <Folder
+                @getCurrentFolderInfo="getCurrentFolderInfo"
                 field="Microbiología"
             />
-            <Folder @currentFolderInfo="currentFolderInfo" field="Medida" />
             <Folder
-                @currentFolderInfo="currentFolderInfo"
+                @getCurrentFolderInfo="getCurrentFolderInfo"
+                field="Medida"
+            />
+            <Folder
+                @getCurrentFolderInfo="getCurrentFolderInfo"
                 field="Biotecnología"
             />
         </div>
 
-        <div class="border-2 border-black col-span-2 p-2 relative">
+        <div class="border-2 border-black p-2 relative">
             <p>Conceptos</p>
             <File
-                v-for="concept in conceptList"
+                v-for="(concept, index) in conceptList"
                 :conceptInfo="concept"
+                :conceptListIndex="index"
                 @getCurrentFileInfo="getCurrentFileInfo"
             />
         </div>

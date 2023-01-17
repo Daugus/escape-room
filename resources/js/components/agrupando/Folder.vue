@@ -8,26 +8,30 @@ export default {
     props: {
         field: String,
     },
+    // envía sus coordenadas y campo nada más ser montada
     mounted() {
         const articleRect = document
             .querySelector(`#${this.bdField}`)
             .getBoundingClientRect();
 
+        const folderLimitOffset = 15;
+
         this.folderInfo = {
             field: this.bdField,
             start: {
-                x: articleRect.x,
-                y: articleRect.y,
+                x: articleRect.x - folderLimitOffset,
+                y: articleRect.y - folderLimitOffset,
             },
             end: {
-                x: articleRect.x + articleRect.width,
-                y: articleRect.y + articleRect.height,
+                x: articleRect.x + articleRect.width + folderLimitOffset,
+                y: articleRect.y + articleRect.height + folderLimitOffset,
             },
         };
 
         this.$emit("getCurrentFolderInfo", this.folderInfo);
     },
     computed: {
+        // el campo en minúsculas para poder ser comparado con el folder
         bdField() {
             return this.field.toLowerCase();
         },
@@ -41,7 +45,6 @@ export default {
         :id="bdField"
     >
         <p>{{ field }}</p>
-        <pre>{{ folderInfo }}</pre>
     </article>
 </template>
 
