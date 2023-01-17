@@ -2,6 +2,9 @@
 
 ## Git
 
+<details>
+<summary>Configurar</summary>
+
 ### Configurar
 
 ```bash
@@ -25,7 +28,12 @@ Agregar clave ssh a GitHub:
     1. Key: pegar texto de notepad
     1. Click en Add SSH Key
 
-### Uso
+</details>
+
+<details>
+<summary>Usar</summary>
+
+### Usar
 
 #### Ramas
 
@@ -81,7 +89,12 @@ git commit -m 'Agregado formulario de registro de usuarios'
 git push
 ```
 
-## Configurar y desplegar proyecto
+</details>
+
+## Proyecto
+
+<details>
+<summary>Configurar y desplegar</summary>
 
 ### Instalar extensiones para Visual Studio Code
 
@@ -133,3 +146,5 @@ npm run build
 ```
 
 Los archivos se generarán en `./public/build/assets`.
+
+</details>
