@@ -1,11 +1,14 @@
 <script setup>
 import route from "ziggy";
+import IncubationMethod from "./IncubationMethod.vue";
 </script>
 
 <script>
 export default {
     data() {
-        return {};
+        return {
+            incubationMethodList: [],
+        };
     },
     async mounted() {
         await this.getIncubationMethods();
@@ -26,13 +29,41 @@ export default {
                     }),
                 }
             );
-            const data = await res.json();
-            console.log(data);
+
+            const incubationMethods = await res.json();
+            for await (const incubationMethod of incubationMethods) {
+                this.incubationMethodList.push({
+                    id: incubationMethod.id,
+                    concept: incubationMethod.concept,
+                });
+
+                this.incubationMethodList.push({
+                    id: incubationMethod.id,
+                    definition: incubationMethod.definition,
+                });
+            }
+
+            // mezcla las cartas
+            for (let i = this.incubationMethodList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+
+                [this.incubationMethodList[i], this.incubationMethodList[j]] = [
+                    this.incubationMethodList[j],
+                    this.incubationMethodList[i],
+                ];
+            }
+
+            console.log(this.incubationMethodList);
         },
     },
 };
 </script>
 
-<template></template>
+<template>
+    <IncubationMethod
+        v-for="incubationMethod in incubationMethodList"
+        :incubationMethodInfo="incubationMethod"
+    />
+</template>
 
 <style scoped lang="scss"></style>

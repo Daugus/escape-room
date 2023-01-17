@@ -85,7 +85,7 @@ class OvejaController extends Controller
     }
     public function getIncubationMethods()
     {
-        $data = SharedSolution::query()->select('id', 'question AS concept', 'answer AS definition')->where('challenge_id', '=', '1')->inRandomOrder()->limit(12)->get();
+        $data = SharedSolution::query()->select('id', 'question AS concept', 'answer AS definition')->where('challenge_id', '=', '1')->inRandomOrder()->limit(6)->get();
 
         return response()->json($data);
     }
