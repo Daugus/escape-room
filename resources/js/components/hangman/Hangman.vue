@@ -90,9 +90,9 @@ export default {
             />
             <img src="@/src/img/metal.jpg" id="metal" />
         </div>
-        <img src="@/src/img/Window.png" id="window" />
-        <img src="@/src/img/Background.png" id="background" />
     </section>
+    <img src="@/src/img/Window.png" id="window" />
+    <img src="@/src/img/Background.png" id="background" />
 </template>
 
 <style scoped lang="scss">
@@ -110,6 +110,7 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
 }
 
 img {
@@ -143,7 +144,6 @@ img {
     z-index: 5;
     flex-direction: column;
     width: 70%;
-    height: max-content;
     padding: 2rem;
     gap: 1.5rem;
     background-color: #ccc;
@@ -160,9 +160,6 @@ img {
     }
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
 }

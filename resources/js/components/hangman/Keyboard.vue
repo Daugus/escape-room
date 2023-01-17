@@ -235,7 +235,6 @@ export default {
     overflow: hidden;
     z-index: 1;
     background-color: gray;
-    // padding: 0.5rem;
 
     .row {
         display: flex;
