@@ -44,9 +44,9 @@ class RegistroController extends Controller
             'name' => 'required|max:30',
             'surname' => 'required|max:60',
             'nickname' => 'required|max:60',
-            //password
+            //password => 'required|max:30'
             //'email' => 'required|max:80',
-            //picture
+            //picture=>
         ]);
 
         $user = new User($request->all());

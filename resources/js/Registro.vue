@@ -16,6 +16,7 @@ export default {
             },
         };
     },
+
     methods: {
         onSubmit(event) {
             event.preventDefault();
@@ -99,7 +100,7 @@ export default {
                 document.getElementById("grid-first-pass").style.borderColor =
                     "green";
             } else {
-                this.error.exist = true;
+                this.error.exists = true;
                 document.getElementById("grid-first-pass").style.borderColor =
                     "red";
             }
@@ -109,12 +110,12 @@ export default {
             if (pass2 === "") {
                 document.getElementById("grid-second-pass").style.borderColor =
                     "blue";
-            } else if (pass1 === pass2) {
-                this.error.exist = false;
+            } else if (this.pass1 === pass2) {
+                this.error.exists = false;
                 document.getElementById("grid-second-pass").style.borderColor =
                     "green";
             } else {
-                this.error.exist = true;
+                this.error.exists = true;
                 document.getElementById("grid-second-pass").style.borderColor =
                     "red";
             }
@@ -136,6 +137,7 @@ export default {
             this.user = value;
             this.validateUser(value);
         },
+
         email(value) {
             this.email = value;
             this.validateEmail(value);
@@ -178,6 +180,7 @@ export default {
                             v-model="name"
                             @keyup="validateName(this.name)"
                             type="text"
+                            placeholder="Nombre"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -222,6 +225,7 @@ export default {
                             id="grid-email"
                             type="email"
                             v-model="email"
+                            @keyup="validateEmail(this.email)"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -299,8 +303,14 @@ export default {
                                 class="hidden"
                             />
                         </label> -->
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
+                            for="grid-first-pass"
+                        >
+                            Img
+                        </label>
                         <input
-                            class="block appearance-none w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
                             id="default_size"
                             type="file"
                         />
@@ -318,7 +328,7 @@ export default {
                     <div class="flex items-center justify-between mt-4">
                         <a
                             class="inline-block align-baseline font-bold text-l"
-                            href="Registro.vue"
+                            href="#"
                         >
                             Tienes cuenta? Inciar sesión
                         </a>

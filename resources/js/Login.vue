@@ -25,6 +25,8 @@ export default {
             document.getElementById("password").classList;
         },
     },
+
+    watch: {},
 };
 </script>
 
@@ -37,7 +39,12 @@ export default {
             />
         </div>
         <div class="flex justify-center items-center">
-            <form class="w-full max-w-sm" id="form-login">
+            <form
+                class="w-full max-w-sm"
+                id="form-login"
+                action="{{ route ('resgistro.store') }}"
+                method="POST"
+            >
                 <div class="mb-4">
                     <label class="text-3xl font-bold" for="username">
                         Username
@@ -57,7 +64,7 @@ export default {
                         class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
                         id="pass"
                         type="password"
-                        placeholder="******************"
+                        placeholder="Passworssd"
                     />
                 </div>
 
