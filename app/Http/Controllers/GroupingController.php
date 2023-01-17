@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\GroupingSolution;
+use Illuminate\Database\Eloquent\Collection;
 
 class GroupingController extends Controller
 {
@@ -85,7 +86,18 @@ class GroupingController extends Controller
 
     public function getConcepts()
     {
-        $data = GroupingSolution::query()->inRandomOrder()->limit(12)->get();
+
+        $fields = ['análisis', 'biotecnología', 'medida', 'microbiología'];
+
+        $data = new Collection();
+
+        foreach ($fields as $field) {
+            $data = $data->merge(GroupingSolution::query()
+                ->where('field', '=', $field)
+                ->inRandomOrder()
+                ->limit(5)
+                ->get());
+        }
 
         return response()->json($data);
     }
