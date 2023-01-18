@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,7 @@ class UserFactory extends Factory
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
             'nickname' => $this->faker->unique()->word(),
-            'password' => $this->faker->password(),
+            'password' => Hash::make('1234'),
             'email' => $this->faker->email(),
             'picture' => 'ejemplo.png'
         ];

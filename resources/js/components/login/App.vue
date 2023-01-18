@@ -6,12 +6,17 @@ import route from "ziggy";
 export default {
     data() {
         return {
-            username: "",
+            csrf_token: "",
+            nickname: "",
             pass: "",
             error: "",
         };
     },
-
+    mounted() {
+        this.csrf_token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+    },
     methods: {
         onSubmit(event) {
             event.preventDefault();
@@ -21,15 +26,14 @@ export default {
             document.querySelector("#form-login").submit();
         },
 
-        validateUsername(username) {
-            document.getElementById("username").style.borderColor = "green";
+        validateNickname(nickname) {
+            document.getElementById("nickname").style.borderColor = "green";
         },
 
         validatePassword(pass) {
             document.getElementById("password").classList;
         },
     },
-
     watch: {},
 };
 </script>
@@ -41,27 +45,36 @@ export default {
         </div>
 
         <div class="flex justify-center items-center">
-            <form class="w-full max-w-sm" id="form-login">
+            <form
+                class="w-full max-w-sm"
+                method="GET"
+                :action="route('login.authenticate')"
+                id="form-login"
+            >
+                <input type="hidden" name="_token" :value="csrf_token" />
+
                 <div class="mb-4">
-                    <label class="text-3xl font-bold" for="username">
-                        Username
+                    <label class="text-3xl font-bold" for="nickname">
+                        Usuario
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
-                        id="username"
+                        id="nickname"
+                        name="nickname"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Usuario"
                     />
                 </div>
                 <div class="mb-6">
                     <label class="text-3xl font-bold" for="password">
-                        Password
+                        Contraseña
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
                         id="pass"
+                        name="password"
                         type="password"
-                        placeholder="Passworssd"
+                        placeholder="Contraseña"
                     />
                 </div>
 
@@ -110,7 +123,7 @@ export default {
     background-color: #ff7b26;
 }
 
-#username {
+#nickname {
     background-color: #e5e7e6;
 }
 
