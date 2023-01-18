@@ -1,5 +1,11 @@
 <script>
 export default {
+    data() {
+        return {
+            distanceTop: "4rem",
+            distanceLeft: "2rem",
+        };
+    },
     props: {
         conceptInfo: Object,
         conceptListIndex: Number,
@@ -12,7 +18,7 @@ export default {
     },
     methods: {
         // permite que el File sea arrastrado
-        dragElement(element, dragzone) {
+        dragElement(file, dragzone) {
             let pos1 = 0,
                 pos2 = 0,
                 pos3 = 0,
@@ -22,7 +28,7 @@ export default {
                 document.onpointerup = null;
                 document.onpointermove = null;
 
-                element.classList.remove("drag");
+                file.classList.remove("drag");
 
                 // envía sus coordenadas, campo e id a App
                 const fileRect = document
@@ -46,25 +52,25 @@ export default {
                 this.$emit("getCurrentFileInfo", fileInfo);
             };
 
-            const dragPointerMove = (event) => {
-                event.preventDefault();
+            const dragPointerMove = (e) => {
+                e.preventDefault();
 
-                pos1 = pos3 - event.clientX;
-                pos2 = pos4 - event.clientY;
-                pos3 = event.clientX;
-                pos4 = event.clientY;
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
 
-                element.style.top = `${element.offsetTop - pos2}px`;
-                element.style.left = `${element.offsetLeft - pos1}px`;
+                this.distanceTop = `${file.offsetTop - pos2}px`;
+                this.distanceLeft = `${file.offsetLeft - pos1}px`;
             };
 
-            const dragPointerDown = (event) => {
-                event.preventDefault();
+            const dragPointerDown = (e) => {
+                e.preventDefault();
 
-                pos3 = event.clientX;
-                pos4 = event.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
 
-                element.classList.add("drag");
+                file.classList.add("drag");
 
                 document.onpointerup = dragPointerUp;
                 document.onpointermove = dragPointerMove;
@@ -92,7 +98,7 @@ export default {
                 class="wrapper flex justify-center items-center flex-col h-full"
             >
                 <p>{{ conceptInfo.concept }}</p>
-                <!-- <pre>{{ conceptInfo.field }}</pre> -->
+                <pre>{{ conceptInfo.field }}</pre>
             </div>
         </div>
     </div>
@@ -110,8 +116,8 @@ export default {
 
     z-index: 9;
     position: absolute;
-    top: 4rem;
-    left: 2rem;
+    top: v-bind("distanceTop");
+    left: v-bind("distanceLeft");
 
     &.drag {
         border-color: white;

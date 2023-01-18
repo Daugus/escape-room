@@ -58,30 +58,30 @@ export default {
 
             // comprueba que el File esté dentro de los límites del Folder
             // Opción 1: cambiar estilo
-            if (
-                fileInfo.start.x >= targetFolderInfo.start.x &&
-                fileInfo.start.y >= targetFolderInfo.start.y &&
-                fileInfo.end.x <= targetFolderInfo.end.x &&
-                fileInfo.end.y <= targetFolderInfo.end.y
-            ) {
-                document
-                    .querySelector(`#${fileInfo.id}`)
-                    .classList.add("correct");
-            } else {
-                document
-                    .querySelector(`#${fileInfo.id}`)
-                    .classList.remove("correct");
-            }
-
-            // Opción 2: eliminar File
             // if (
             //     fileInfo.start.x >= targetFolderInfo.start.x &&
             //     fileInfo.start.y >= targetFolderInfo.start.y &&
             //     fileInfo.end.x <= targetFolderInfo.end.x &&
             //     fileInfo.end.y <= targetFolderInfo.end.y
             // ) {
-            //     this.conceptList.splice(fileInfo.listIndex, 1);
+            //     document
+            //         .querySelector(`#${fileInfo.id}`)
+            //         .classList.add("correct");
+            // } else {
+            //     document
+            //         .querySelector(`#${fileInfo.id}`)
+            //         .classList.remove("correct");
             // }
+
+            // Opción 2: eliminar File
+            if (
+                fileInfo.start.x >= targetFolderInfo.start.x &&
+                fileInfo.start.y >= targetFolderInfo.start.y &&
+                fileInfo.end.x <= targetFolderInfo.end.x &&
+                fileInfo.end.y <= targetFolderInfo.end.y
+            ) {
+                this.conceptList.splice(fileInfo.listIndex, 1);
+            }
         },
     },
 };
