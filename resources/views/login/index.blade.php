@@ -1,8 +1,7 @@
 @extends('layouts.master')
-{{-- @section('title', 'index') --}}
 
 @section('vitejs')
-    @vite(['resources/js/components/main/main.js'])
+    @vite(['resources/js/components/login/main.js'])
 @endsection
 
 @section('content')

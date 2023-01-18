@@ -83,12 +83,6 @@ export default {
 </script>
 
 <template>
-    <a
-        class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-        :href="route('index')"
-        >Volver</a
-    >
-
     <section>
         <div class="grid grid-cols-6 gap-5 mx-28" id="grid">
             <Card

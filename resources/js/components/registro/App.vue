@@ -1,3 +1,7 @@
+<script setup>
+import route from "ziggy";
+</script>
+
 <script>
 //email -> /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 //password -> /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/
@@ -182,10 +186,7 @@ export default {
 <template>
     <div id="wrapper" class="grid grid-cols-2 items-center pr-12 pl-8 pb-12">
         <div class="flex justify-center items-center" id="logoBorder">
-            <img
-                class="logo"
-                src="../../public/src/img/menu/parasolCorporation.png"
-            />
+            <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
         <div class="flex justify-center items-center">
             <form
@@ -331,7 +332,7 @@ export default {
                     <div class="flex items-center justify-between mt-4">
                         <a
                             class="inline-block align-baseline font-bold text-l"
-                            href="#"
+                            :href="route('login.index')"
                         >
                             Tienes cuenta? Inciar sesión
                         </a>
@@ -346,7 +347,7 @@ export default {
 #wrapper {
     height: 100vh;
     width: 100%;
-    background-image: url("../../public/src/img/menu/fondoMenu.jpg");
+    background-image: url("@/src/img/menu/fondoMenu.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100vh;
 }
