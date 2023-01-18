@@ -20,26 +20,28 @@
 <body>
     <ul class="absolute right-0 flex gap-2">
         <li>
-            <a href="{{ route('index') }}" class="underline text-blue-600 hover:text-blue-800 ">Inicio</a>
+            <a href="{{ route('index') }}" class="underline text-blue-600 ">Inicio</a>
         </li>
         <li>
-            <a href="{{ route('login.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
+            <a href="{{ route('login.index') }}" class="underline text-blue-600 ">Login</a>
         </li>
         <li>
-            <a href="{{ route('registro.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>
+            <a href="{{ route('registro.index') }}" class="underline text-blue-600 ">Registro</a>
         </li>
         <li>
-            <a href="{{ route('hangman.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
+            <a href="{{ route('perfil.index') }}" class="underline text-blue-600 ">Perfil</a>
         </li>
         <li>
-            <a href="{{ route('kuku.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
+            <a href="{{ route('hangman.index') }}" class="underline text-blue-600 ">Hangman</a>
         </li>
         <li>
-            <a href="{{ route('agrupando.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
+            <a href="{{ route('kuku.index') }}" class="underline text-blue-600 ">Kukú</a>
         </li>
         <li>
-            <a href="{{ route('equilibrado.index') }}"
-                class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
+            <a href="{{ route('agrupando.index') }}" class="underline text-blue-600 ">Agrupando</a>
+        </li>
+        <li>
+            <a href="{{ route('equilibrado.index') }}" class="underline text-blue-600 ">Equilibrado</a>
         </li>
     </ul>
 
