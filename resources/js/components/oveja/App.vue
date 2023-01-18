@@ -8,6 +8,9 @@ export default {
     data() {
         return {
             incubationMethodList: [],
+            definitionArray: [],
+            conceptArray: [],
+            incubationDiv: null,
         };
     },
     async mounted() {
@@ -53,9 +56,28 @@ export default {
                 ];
             }
 
-            console.log(this.incubationMethodList);
+            setTimeout(this.separateMethods, 500);
+        },
+
+        separateMethods() {
+            let thisElements = document.querySelectorAll("#vue div");
+            console.log(thisElements);
+        },
+
+        getConcept(concept) {
+            this.conceptArray.push(concept);
+        },
+        getDefinition(concept) {
+            this.definitionArray.push(concept);
         },
     },
+    // watch: {
+    //     incubationDiv: function () {
+    //         //
+    //         console.log(this.incubationDiv);
+    //         // this.incubationDiv = null;
+    //     },
+    // },
 };
 </script>
 
@@ -63,6 +85,8 @@ export default {
     <IncubationMethod
         v-for="incubationMethod in incubationMethodList"
         :incubationMethodInfo="incubationMethod"
+        @getDefinition="getDefinition"
+        @getConcept="getConcept"
     />
 </template>
 
