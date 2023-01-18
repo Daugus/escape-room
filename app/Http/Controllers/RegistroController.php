@@ -46,17 +46,15 @@ class RegistroController extends Controller
             'nickname' => 'required|max:60',
             //password => 'required|max:30'
             //'email' => 'required|max:80',
-            //picture=>
+            'picture' => 'mimes:jpg,png,webp'
         ]);
 
         $user = new User($request->all());
         $nickname = $user->nickname;
-        $fileName = $nickname . '.' . $request->foto->extension();
 
-        $request->foto->move("../../../public/src/img/users", $fileName);
-        $nickname->foto->$fileName;
-        if ($fileName === '') {
-        }
+        $fileName = $nickname . '.' . $request->foto->extension();
+        $request->foto->move(public_path('src/img/users'), $fileName);
+        $user->foto = $fileName;
 
         $nickname->save();
     }

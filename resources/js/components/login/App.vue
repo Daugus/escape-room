@@ -39,12 +39,7 @@ export default {
             />
         </div>
         <div class="flex justify-center items-center">
-            <form
-                class="w-full max-w-sm"
-                id="form-login"
-                action="{{ route ('resgistro.store') }}"
-                method="POST"
-            >
+            <form class="w-full max-w-sm" id="form-login">
                 <div class="mb-4">
                     <label class="text-3xl font-bold" for="username">
                         Username

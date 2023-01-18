@@ -18,107 +18,130 @@ export default {
     },
 
     methods: {
-        onSubmit(event) {
+        sendForm(event) {
             event.preventDefault();
 
-            if (this.error.exists) return console.log("ERROR");
-
-            document.querySelector("#form-registro").submit();
+            if (this.validateFormCompletely()) {
+                //document.querySelector("#form-registro").submit();
+                console.log("Todo correcto. Procedemos a enviar el FORM");
+            } else {
+                console.log("ERROR. Algunos de los campos no son válidos");
+            }
         },
 
         validateName(name) {
-            if (name === "") {
-                document.getElementById("grid-first-name").style.borderColor =
-                    "blue";
-            } else if (name !== "") {
-                this.error.exists = false;
+            if (name !== "") {
+                this.error = false;
                 document.getElementById("grid-first-name").style.borderColor =
                     "green";
+            } else if (name === "") {
+                this.error = true;
+                document.getElementById("grid-first-name").style.borderColor =
+                    "blue";
             } else {
-                this.error.exists = true;
+                this.error = true;
                 document.getElementById("grid-first-name").style.borderColor =
                     "red";
             }
         },
 
         validateSurname(surname) {
-            if (surname === "") {
-                document.getElementById("grid-surname").style.borderColor =
-                    "blue";
-            } else if (surname !== "") {
-                this.error.exists = false;
+            if (surname !== "") {
+                this.error = false;
                 document.getElementById("grid-surname").style.borderColor =
                     "green";
+            } else if (surname === "") {
+                this.error = true;
+                document.getElementById("grid-surname").style.borderColor =
+                    "blue";
             } else {
-                this.error.exists = true;
+                this.error = true;
                 document.getElementById("grid-surname").style.borderColor =
                     "red";
             }
         },
 
         validateUser(user) {
-            if (user === "") {
-                document.getElementById("grid-username").style.borderColor =
-                    "blue";
-
-                document.getElementsByTagName;
-            } else if (user !== "") {
-                this.error.exists = false;
+            if (user !== "") {
+                this.error = false;
                 document.getElementById("grid-username").style.borderColor =
                     "green";
+            } else if (user === "") {
+                this.error = true;
+                document.getElementById("grid-username").style.borderColor =
+                    "blue";
+                document.getElementsByTagName;
             } else {
-                this.error.exists = true;
+                this.error = true;
                 document.getElementById("grid-username").style.borderColor =
                     "red";
             }
         },
 
         validateEmail(email) {
-            if (email === "") {
-                document.getElementById("grid-email").style.borderColor =
-                    "blue";
-            } else if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
-                this.error.exists = false;
+            if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
+                this.error = false;
                 document.getElementById("grid-email").style.borderColor =
                     "green";
+            } else if (email === "") {
+                this.error = true;
+                document.getElementById("grid-email").style.borderColor =
+                    "blue";
             } else {
-                this.error.exists = true;
+                this.error = true;
                 document.getElementById("grid-email").style.borderColor = "red";
             }
         },
 
         validatePassword(pass1) {
-            if (pass1 === "") {
-                document.getElementById("grid-first-pass").style.borderColor =
-                    "blue";
-            } else if (
+            if (
                 /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/.test(
                     pass1
                 )
             ) {
-                this.error.exists = false;
+                this.error = false;
                 document.getElementById("grid-first-pass").style.borderColor =
                     "green";
-            } else {
-                this.error.exists = true;
+            } else if (pass1 === "") {
+                this.error = true;
                 document.getElementById("grid-first-pass").style.borderColor =
+                    "blue";
+            } else {
+                this.error = true;
+                document.getElementById("grid-first-pass").style.borderColor =
+                    "red";
+            }
+            this.comparePasswords(this.pass1, this.pass2);
+        },
+
+        comparePasswords(pass1, pass2) {
+            if (pass1 === pass2 && pass1 !== "") {
+                this.error = false;
+                document.getElementById("grid-second-pass").style.borderColor =
+                    "green";
+            } else if (pass2 === "") {
+                this.error = true;
+                document.getElementById("grid-second-pass").style.borderColor =
+                    "blue";
+            } else {
+                this.error = true;
+                document.getElementById("grid-second-pass").style.borderColor =
                     "red";
             }
         },
 
-        compareTo(pass2) {
-            if (pass2 === "") {
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "blue";
-            } else if (this.pass1 === pass2) {
-                this.error.exists = false;
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "green";
-            } else {
-                this.error.exists = true;
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "red";
-            }
+        validateFormCompletely() {
+            console.log("Comprobamos todo");
+
+            // Comprobar las validaciones
+            this.validateName(this.name);
+            this.validateSurname(this.surname);
+            this.validateUser(this.user);
+            this.validateEmail(this.email);
+            this.validatePassword(this.pass1);
+            this.comparePasswords(this.pass1, this.pass2);
+
+            return !this.error;
         },
     },
 
@@ -150,7 +173,7 @@ export default {
 
         pass2(value) {
             this.pass2 = value;
-            this.compareTo(value);
+            this.comparePasswords(value);
         },
     },
 };
@@ -165,7 +188,13 @@ export default {
             />
         </div>
         <div class="flex justify-center items-center">
-            <form class="w-full max-w-" id="form-registro">
+            <form
+                class="w-full max-w-"
+                id="form-registro"
+                action="{{ route('registro.store') }}"
+                method="post"
+                enctype="multipart/form-data"
+            >
                 <div class="grid grid-cols-2 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
@@ -196,6 +225,7 @@ export default {
                             v-model="surname"
                             @keyup="validateSurname(this.surname)"
                             type="text"
+                            placeholder="Apellido"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -211,6 +241,7 @@ export default {
                             v-model="user"
                             @keyup="validateUser(this.user)"
                             type="text"
+                            placeholder="Username"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -221,9 +252,10 @@ export default {
                             Correo
                         </label>
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                             id="grid-email"
                             type="email"
+                            placeholder="Email"
                             v-model="email"
                             @keyup="validateEmail(this.email)"
                         />
@@ -256,7 +288,7 @@ export default {
                             id="grid-second-pass"
                             type="password"
                             v-model="pass2"
-                            @keyup="compareTo(this.pass2)"
+                            @keyup="comparePasswords(this.pass1, this.pass2)"
                             placeholder="******************"
                         />
                     </div>
@@ -265,49 +297,20 @@ export default {
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
                             for="grid-second-pass"
                         >
-                            Rol
                         </label>
                         <select
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
                             id="grid-role"
                         >
-                            <option>Profesor</option>
                             <option>Alumno</option>
+                            <option>Profesor</option>
                         </select>
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <!-- <label
-                            for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-30 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                        >
-                            <div
-                                class="flex flex-col items-center justify-center pt-5 pb-6"
-                            >
-                                <p
-                                    class="mb-2 text-sm text-gray-500 dark:text-gray-400"
-                                >
-                                    <span class="font-semibold">
-                                        Click to upload
-                                    </span>
-                                    or drag and drop
-                                </p>
-                                <p
-                                    class="text-l text-gray-500 dark:text-gray-400"
-                                >
-                                    PNG or JPG (MAX. 800x400px)
-                                </p>
-                            </div>
-                            <input
-                                id="dropzone-file"
-                                type="file"
-                                class="hidden"
-                            />
-                        </label> -->
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-first-pass"
+                            for="grid-second-pass"
                         >
-                            Img
                         </label>
                         <input
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
@@ -320,7 +323,7 @@ export default {
                             class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             id="btn-color"
                             type="submit"
-                            @click="onSubmit"
+                            @click="sendForm"
                         >
                             Sign In
                         </button>
