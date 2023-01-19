@@ -51,10 +51,11 @@ class RegistroController extends Controller
 
         $nickname = $user->nickname;
 
-        $fileName = $nickname . '.' . $request->picture->extension();
-        $request->picture->move(public_path('src/img/users'), $fileName);
-        $user->picture = $fileName;
-
+        if (isset($request->picture)) {
+            $fileName = $nickname . '.' . $request->picture->extension();
+            $request->picture->move(public_path('src/img/users'), $fileName);
+            $user->picture = $fileName;
+        }
 
         $user->save();
         return print("guarda");

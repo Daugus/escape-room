@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'nickname' => $this->faker->unique()->word(),
             'password' => $this->faker->password(),
             'email' => $this->faker->email(),
-            'picture' => 'ejemplo.png'
+            'picture' => 'user.png'
         ];
     }
 }

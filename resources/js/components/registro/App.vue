@@ -339,6 +339,7 @@ export default {
                             id="btn-color"
                             type="submit"
                             @click="sendForm"
+                            required
                         >
                             Registrarse
                         </button>
