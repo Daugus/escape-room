@@ -1,6 +1,7 @@
 <script setup>
 import route from "ziggy";
-import IncubationMethod from "./IncubationMethod.vue";
+import Concept from "./Concept.vue";
+import Definition from "./Definition.vue";
 </script>
 
 <script>
@@ -8,13 +9,14 @@ export default {
     data() {
         return {
             incubationMethodList: [],
-            definitionArray: [],
-            conceptArray: [],
-            incubationDiv: null,
+            definitionList: [],
+            conceptList: [],
+            definitionRectList: [],
         };
     },
     async mounted() {
         await this.getIncubationMethods();
+        document.body.classList.add("overflow-clip");
     },
     methods: {
         // Coger una palabra aleatoria desde un JSON
@@ -34,60 +36,72 @@ export default {
             );
 
             const incubationMethods = await res.json();
-            for await (const incubationMethod of incubationMethods) {
-                this.incubationMethodList.push({
-                    id: incubationMethod.id,
-                    concept: incubationMethod.concept,
+
+            for await (const method of incubationMethods) {
+                this.conceptList.push({
+                    id: method.id,
+                    concept: method.concept,
                 });
 
-                this.incubationMethodList.push({
-                    id: incubationMethod.id,
-                    definition: incubationMethod.definition,
+                this.definitionList.push({
+                    id: method.id,
+                    definition: method.definition,
                 });
             }
 
             // mezcla las cartas
-            for (let i = this.incubationMethodList.length - 1; i > 0; i--) {
+            for (let i = this.conceptList.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
-                [this.incubationMethodList[i], this.incubationMethodList[j]] = [
-                    this.incubationMethodList[j],
-                    this.incubationMethodList[i],
+                [this.conceptList[i], this.conceptList[j]] = [
+                    this.conceptList[j],
+                    this.conceptList[i],
                 ];
             }
+            for (let i = this.definitionList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
 
-            setTimeout(this.separateMethods, 500);
+                [this.definitionList[i], this.definitionList[j]] = [
+                    this.definitionList[j],
+                    this.definitionList[i],
+                ];
+            }
         },
+        getCurrentDefinitionInfo(definitionInfo) {
+            this.definitionRectList.push(definitionInfo);
+        },
+        getCurrentConceptInfo(conceptInfo) {
+            const targetDefinitionInfo = this.definitionRectList.filter(
+                (definition) => definition.id === conceptInfo.id
+            )[0];
 
-        separateMethods() {
-            let thisElements = document.querySelectorAll("#vue div");
-            console.log(thisElements);
-        },
-
-        getConcept(concept) {
-            this.conceptArray.push(concept);
-        },
-        getDefinition(concept) {
-            this.definitionArray.push(concept);
+            console.log(targetDefinitionInfo);
         },
     },
-    // watch: {
-    //     incubationDiv: function () {
-    //         //
-    //         console.log(this.incubationDiv);
-    //         // this.incubationDiv = null;
-    //     },
-    // },
 };
 </script>
 
 <template>
-    <IncubationMethod
-        v-for="incubationMethod in incubationMethodList"
-        :incubationMethodInfo="incubationMethod"
-        @getDefinition="getDefinition"
-        @getConcept="getConcept"
-    />
+    <div class="grid h-screen grid-oveja p-6">
+        <div class="grid grid-cols-6 gap-6">
+            <Concept
+                v-for="concept in conceptList"
+                :conceptInfo="concept"
+                @getCurrentConceptInfo="getCurrentConceptInfo"
+            />
+        </div>
+        <div class="grid grid-cols-6 gap-6 auto-rows-max">
+            <Definition
+                v-for="definition in definitionList"
+                :definitionInfo="definition"
+                @getCurrentDefinitionInfo="getCurrentDefinitionInfo"
+            />
+        </div>
+    </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.grid-oveja {
+    grid-template-rows: auto 1fr;
+}
+</style>
