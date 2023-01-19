@@ -8,14 +8,27 @@ import Capsule from "./Capsule.vue";
 export default {
     data() {
         return {
+            hangman: {},
             wordArray: [],
             letter: "",
             errors: 0,
             newWord: false,
             guessed: null,
+            quit: null,
         };
     },
     async mounted() {
+        // Comprobar si en el localstorage hay un objeto Hangman
+        if (localStorage) {
+            //Como Saber si existe Sidebar
+            if (
+                localStorage.getItem("Hangman") !== undefined &&
+                localStorage.getItem("Hangman")
+            ) {
+                console.log("Cargando datos de Hangman");
+            }
+        }
+        // Sino, generar una palabra aleatoria nueva
         await this.getWord();
     },
     methods: {
@@ -38,20 +51,48 @@ export default {
             let word = data[0].microorganism;
             this.wordArray = word.toUpperCase().split("");
         },
+        // Hacer llamada para generar una nueva palabra
         getNewWord(newWord) {
             this.newWord = newWord;
         },
+        // Recoger letra pulsada
         getLetterKey(letter) {
             this.letter = letter;
         },
+        // Recoger numero de errores
         getErrors(errors) {
             this.errors = errors;
         },
+        // Recoger si la palabra ha sido acertada o no
         wordGuessed(guessed) {
             this.guessed = guessed;
         },
+        // Llamada a los hijos para generar objetos con data necesaria
+        quitChallenge(call) {
+            this.quit = call;
+            this.hangman = {
+                errors: this.errors,
+                guessed: this.guessed,
+                wordArray: this.wordArray,
+            };
+        },
+        // Guardar datos en objeto Hangman
+        saveData(name, obj) {
+            this.hangman[name] = obj;
+
+            if (
+                this.hangman.capsule &&
+                this.hangman.panel &&
+                this.hangman.keyboard
+            ) {
+                console.log("Se puede guardar en el localStorage");
+                const hangmanString = JSON.stringify(this.hangman);
+                localStorage.setItem("Hangman", hangmanString);
+            }
+        },
     },
     watch: {
+        // Llamar a funcion que genera una palabra desde la base de datos
         newWord: function () {
             if (this.newWord === true) {
                 this.getWord();
@@ -71,8 +112,10 @@ export default {
                 :secretWord="wordArray"
                 :letter="letter"
                 :guessed="guessed"
+                :quit="quit"
                 @getErrors="getErrors"
                 @getNewWord="getNewWord"
+                @saveData="saveData"
             />
         </div>
         <div class="word-panel">
@@ -80,13 +123,17 @@ export default {
                 :secretWord="wordArray"
                 :letter="letter"
                 :errors="errors"
+                :quit="quit"
                 @wordGuessed="wordGuessed"
+                @saveData="saveData"
             />
             <Keyboard
                 :secretWord="wordArray"
                 :errors="errors"
                 :guessed="guessed"
                 @getLetterKey="getLetterKey"
+                @quitChallenge="quitChallenge"
+                @saveData="saveData"
             />
             <img src="@/src/img/metal.jpg" id="metal" />
         </div>
@@ -169,8 +216,11 @@ img {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (max-width: 992px) {
 }
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* Extra large devices (large laptops and desktops, 1500px and down) */
 @media only screen and (max-width: 1500px) {
+    .section {
+        padding: 0.5rem;
+    }
     .word-panel {
         padding: 1vw;
         gap: 1vw;

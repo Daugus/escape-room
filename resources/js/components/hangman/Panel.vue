@@ -4,6 +4,7 @@ export default {
         secretWord: Array,
         letter: String,
         errors: Number,
+        quit: Boolean,
     },
     data() {
         return {
@@ -70,13 +71,21 @@ export default {
                 element.classList.add("fail");
             }
         },
+        quit: function () {
+            if (this.quit === null) return;
+
+            let panel = {
+                rigthLetters: this.rigthLetters,
+            };
+            this.$emit("saveData", "panel", panel);
+        },
     },
 };
 </script>
 
 <template>
     <div class="panel default">
-        <p>{{ wordToString }}</p>
+        <p draggable="false">{{ wordToString }}</p>
         <img src="@/src/img/ruido.gif" />
     </div>
 </template>
@@ -114,6 +123,10 @@ export default {
 
         &::selection {
             display: none;
+        }
+
+        &:hover {
+            cursor: default;
         }
     }
 }

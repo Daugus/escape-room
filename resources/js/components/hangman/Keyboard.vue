@@ -16,17 +16,21 @@ export default {
         };
     },
     mounted() {
-        document.addEventListener("keypress", this.pressedKey);
+        // Añadir eventListener al documento para poder usar el teclado
+        document.addEventListener("keyup", this.pressedKey);
     },
     methods: {
+        // Pasar el caracter de la letra
         getLetterKey(char) {
             if (this.errors === 6) {
+                document.removeEventListener("keyup", this.pressedKey);
                 this.usedLetters = [];
                 let keys = document.querySelectorAll("button:not(#ESC)");
                 keys.forEach((key) => {
                     this.usedLetters.push(key.id);
                 });
             } else if (this.errors === 0) {
+                document.addEventListener("keyup", this.pressedKey);
                 this.usedLetters = [];
             }
 
@@ -36,9 +40,32 @@ export default {
             this.usedLetters.push(char);
             this.$emit("getLetterKey", char);
         },
+        // Pasar la tecla pulsada desde el teclado a "getLetterKey"
         pressedKey(event) {
+            // Si la tecla pulsada es Escape
+            if (
+                event.key === "Escape" ||
+                event.code === "Escape" ||
+                event.keyCode === 27
+            ) {
+                this.quitChallenge();
+                return;
+            }
+            if (/^[a-z]{1}$/.test(`${event.key}`) === false) return;
             let key = `${event.key}`.toUpperCase();
             this.getLetterKey(key);
+        },
+        // Generar objeto con data necesaria y pasarla al padre
+        sareData() {
+            let keyboard = {
+                usedLetters: this.usedLetters,
+            };
+            this.$emit("saveData", "keyboard", keyboard);
+        },
+        // Emitir llamada a funcion "quitChallenge" de otros componentes
+        quitChallenge() {
+            this.$emit("quitChallenge", true);
+            this.sareData();
         },
     },
     watch: {
@@ -217,7 +244,7 @@ export default {
                 :secretWord="secretWord"
                 @click="getLetterKey('M')"
             />
-            <Key keyLetter="ESC" />
+            <Key keyLetter="ESC" @click="quitChallenge" />
         </div>
     </div>
 </template>

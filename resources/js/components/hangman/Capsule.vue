@@ -5,6 +5,7 @@ export default {
         usedLetters: Array,
         letter: String,
         guessed: Boolean,
+        quit: Boolean,
     },
     data() {
         return {
@@ -48,13 +49,15 @@ export default {
                     let word = document.querySelector(".panel p");
                     let keys = document.querySelectorAll("button:not(#ESC)");
                     let smoke = document.querySelector(".gas-container");
+                    let alarm = document.querySelector("audio");
 
-                    // Activar gas
+                    // Activar gas y alarma
                     smoke.style.opacity = "1";
+                    alarm.volume = 1;
+                    alarm.play();
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
-                        this.errors = 0;
                         progress = "9%";
                         // Cambiar estilos del panel
                         panel.classList.add("default");
@@ -66,6 +69,8 @@ export default {
                         keys.forEach((key) => {
                             key.style.setProperty("--color", "#000");
                         });
+                        // Bajar volumen de la ala
+                        alarm.volume = 0.1;
                     }, 5000);
 
                     // Mandar orden para generar nueva palabra y reiniciar errores
@@ -74,6 +79,7 @@ export default {
                         this.$emit("getErrors", this.errors);
                         // Desactivar gas
                         smoke.style.opacity = "0";
+                        this.errors = 0;
                     }, this.tries * 120000);
             }
             return progress;
@@ -112,6 +118,20 @@ export default {
                 progressBar.style.setProperty("--errorProgress", "100%");
             }, 5000);
         },
+        quit: function () {
+            if (this.quit === null) return;
+
+            // Parar alarma
+            let alarm = document.querySelector("audio");
+            alarm.pause();
+            alarm.currentTime = 0;
+
+            let capsule = {
+                time: this.time,
+                tries: this.tries,
+            };
+            this.$emit("saveData", "capsule", capsule);
+        },
     },
 };
 </script>
@@ -131,12 +151,15 @@ export default {
             <img src="@/src/img/smokes/smoke_4.png" id="smoke4" />
         </div>
     </div>
+    <audio>
+        <source src="@/src/img/alarm.mp3" type="audio/mpeg" />
+    </audio>
 </template>
 
 <style scoped lang="scss">
 .capsule {
     position: relative;
-    width: 70%;
+    width: 65%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,6 +212,7 @@ export default {
     height: 63%;
     top: 0;
     opacity: 0;
+    rotate: 180deg;
     transition: all 10s ease-out;
 
     .smoke {
@@ -225,8 +249,9 @@ export default {
         opacity: 0.5;
     }
     50% {
-        opacity: 1;
+        opacity: 0.7;
         filter: saturate(6);
+        transform: scale(1.02);
     }
     100% {
         opacity: 0.5;
@@ -238,23 +263,21 @@ export default {
         left: 0;
         top: 0;
         opacity: 0.3;
+        transform: scale(0.9);
     }
     17% {
-        left: -1%;
-        top: 1%;
-        opacity: 1;
-        filter: saturate(10);
+        opacity: 0.7;
+        filter: saturate(7);
+        transform: rotate(2deg);
     }
     34% {
         opacity: 0.3;
-        width: 110%;
         filter: blur(1rem);
         filter: saturate(3);
     }
     51% {
-        left: 0;
-        top: 0;
         opacity: 0;
+        transform: scale(1.1);
     }
     68% {
         opacity: 0.3;
@@ -262,15 +285,14 @@ export default {
         filter: saturate(5);
     }
     85% {
-        left: 1%;
-        top: -1%;
-        opacity: 1;
-        width: 95%;
+        opacity: 0.7;
+        transform: rotate(-2deg);
     }
     100% {
         left: 0;
         top: 0;
         opacity: 0.3;
+        transform: scale(0.9);
     }
 }
 

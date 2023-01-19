@@ -34,14 +34,14 @@ export default {
 button {
     --color: #000;
     color: black;
-    font-size: 1.5vw;
+    font-size: 1.4vw;
     font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 4rem;
     height: 4rem;
-    border: 0.4vw outset #a7a7a7;
+    border: 0.3vw outset #a7a7a7;
     background-color: #999999;
     box-shadow: 0.25rem 0.25rem 1rem #00000080;
     margin: 0.5vw;
