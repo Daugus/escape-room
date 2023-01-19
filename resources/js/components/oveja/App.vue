@@ -75,7 +75,7 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
-            console.log(targetDefinitionInfo);
+            console.log(this.definitionRectList);
         },
     },
 };
