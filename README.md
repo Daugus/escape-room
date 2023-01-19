@@ -21,7 +21,7 @@ ssh-add ~/.ssh/id_ed25519
 
 Agregar clave ssh a GitHub:
 
-1. Ejecutar `notepad ~/.ssh/id_ed25519` y copiar texto
+1. Ejecutar `notepad ~/.ssh/id_ed25519.pub` y copiar texto
 1. Ir a [configuración en GitHub](https://github.com/settings/keys)
 1. Click en New SSH key
     1. Poner Title (Ej: Clase)
