@@ -36,23 +36,27 @@ class RegistroController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'role' => 'required|bool',
-            'name' => 'required|max:30',
-            'surname' => 'required|max:60',
-            'nickname' => 'required|max:60',
-            //password => 'required|max:30'
-            //'email' => 'required|max:80',
-            'picture' => 'mimes:jpg,png,webp'
-        ]);
+
+        // $request->validate([
+        //     'role' => 'required|bool',
+        //     'name' => 'required|max:30',
+        //     'surname' => 'required|max:60',
+        //     'nickname' => 'required|max:60',
+        //     'password' => 'required|max:30',
+        //     'email' => 'required|max:60',
+        //     'picture' => 'mimes:jpg,png,webp'
+        // ]);
 
         $user = new User($request->all());
+
         $nickname = $user->nickname;
 
-        $fileName = $nickname . '.' . $request->foto->extension();
-        $request->foto->move(public_path('src/img/users'), $fileName);
-        $user->foto = $fileName;
+        $fileName = $nickname . '.' . $request->picture->extension();
+        $request->picture->move(public_path('src/img/users'), $fileName);
+        $user->picture = $fileName;
 
-        $nickname->save();
+
+        $user->save();
+        return print("guarda");
     }
 }

@@ -3,8 +3,6 @@ import route from "ziggy";
 </script>
 
 <script>
-//email -> /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-//password -> /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/
 export default {
     data() {
         return {
@@ -14,6 +12,8 @@ export default {
             email: "",
             pass1: "",
             pass2: "",
+            picture: "",
+            csrf_token: "",
             error: {
                 exists: false,
                 mensaje: "",
@@ -21,12 +21,18 @@ export default {
         };
     },
 
+    mounted() {
+        this.csrf_token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+    },
+
     methods: {
         sendForm(event) {
             event.preventDefault();
 
             if (this.validateFormCompletely()) {
-                //document.querySelector("#form-registro").submit();
+                document.querySelector("#form-registro").submit();
                 console.log("Todo correcto. Procedemos a enviar el FORM");
             } else {
                 console.log("ERROR. Algunos de los campos no son válidos");
@@ -192,10 +198,11 @@ export default {
             <form
                 class="w-full max-w-"
                 id="form-registro"
-                action="{{ route('registro.store') }}"
-                method="post"
+                :action="route('registro.store')"
+                method="POST"
                 enctype="multipart/form-data"
             >
+                <input type="hidden" name="_token" :value="csrf_token" />
                 <div class="grid grid-cols-2 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
@@ -211,6 +218,7 @@ export default {
                             @keyup="validateName(this.name)"
                             type="text"
                             placeholder="Nombre"
+                            name="name"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -227,6 +235,7 @@ export default {
                             @keyup="validateSurname(this.surname)"
                             type="text"
                             placeholder="Apellido"
+                            name="surname"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -243,6 +252,7 @@ export default {
                             @keyup="validateUser(this.user)"
                             type="text"
                             placeholder="Username"
+                            name="nickname"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -259,6 +269,7 @@ export default {
                             placeholder="Email"
                             v-model="email"
                             @keyup="validateEmail(this.email)"
+                            name="email"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -275,6 +286,7 @@ export default {
                             v-model="pass1"
                             @keyup="validatePassword(this.pass1)"
                             placeholder="******************"
+                            name="password"
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
@@ -296,11 +308,12 @@ export default {
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-second-pass"
+                            for="grid-role"
                         >
                         </label>
                         <select
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
+                            name="role"
                             id="grid-role"
                         >
                             <option>Alumno</option>
@@ -310,12 +323,13 @@ export default {
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-second-pass"
+                            for="picture"
                         >
                         </label>
                         <input
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
-                            id="default_size"
+                            name="picture"
+                            id="picture"
                             type="file"
                         />
                     </div>
@@ -326,7 +340,7 @@ export default {
                             type="submit"
                             @click="sendForm"
                         >
-                            Sign In
+                            Registrarse
                         </button>
                     </div>
                     <div class="flex items-center justify-between mt-4">
