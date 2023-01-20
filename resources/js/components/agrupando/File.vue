@@ -31,9 +31,7 @@ export default {
                 file.classList.remove("drag");
 
                 // envía sus coordenadas, campo e id a App
-                const fileRect = document
-                    .querySelector(`#${this.draggableId}`)
-                    .getBoundingClientRect();
+                const fileRect = file.getBoundingClientRect();
 
                 const fileInfo = {
                     id: this.dragzoneId,
@@ -114,7 +112,6 @@ export default {
     box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s, box-shadow 0.2s;
 
-    z-index: 9;
     position: absolute;
     top: v-bind("distanceTop");
     left: v-bind("distanceLeft");

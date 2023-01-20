@@ -47,8 +47,8 @@ export default {
         <div class="flex justify-center items-center">
             <form
                 class="w-full max-w-sm"
-                method="GET"
-                :action="route('login.authenticate')"
+                method="POST"
+                :action="route('login.validate')"
                 id="form-login"
             >
                 <input type="hidden" name="_token" :value="csrf_token" />

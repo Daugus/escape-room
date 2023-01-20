@@ -22,7 +22,7 @@
         <li>
             <a href="{{ route('index') }}" class="underline text-blue-600 ">Inicio</a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ route('login.index') }}" class="underline text-blue-600 ">Login</a>
         </li>
         <li>
@@ -30,7 +30,7 @@
         </li>
         <li>
             <a href="{{ route('perfil.index') }}" class="underline text-blue-600 ">Perfil</a>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ route('hangman.index') }}" class="underline text-blue-600 ">Hangman</a>
         </li>

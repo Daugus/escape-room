@@ -36,11 +36,7 @@ return [
     */
 
     'guards' => [
-        'profesor' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-        'alumno' => [
+        'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
