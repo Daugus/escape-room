@@ -1,5 +1,6 @@
 <script>
 export default {
+    emits: ["getNewWord", "getErrors"],
     props: {
         secretWord: Array,
         usedLetters: Array,
@@ -14,6 +15,15 @@ export default {
             tries: 0,
             newWord: true,
         };
+    },
+    mounted() {
+        // Comprobar si existen los datos guardados
+        if (localStorage.getItem("intentos")) {
+            this.tries = localStorage.getItem("intentos");
+
+            // Borrar el item del localStorage
+            localStorage.removeItem("intentos");
+        }
     },
     computed: {
         errorProgress() {
@@ -59,6 +69,7 @@ export default {
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
                         progress = "9%";
+                        this.errors = 0;
                         // Cambiar estilos del panel
                         panel.classList.add("default");
                         panel.classList.remove("fail");
@@ -79,7 +90,6 @@ export default {
                         this.$emit("getErrors", this.errors);
                         // Desactivar gas
                         smoke.style.opacity = "0";
-                        this.errors = 0;
                     }, this.tries * 120000);
             }
             return progress;
@@ -126,11 +136,14 @@ export default {
             alarm.pause();
             alarm.currentTime = 0;
 
-            let capsule = {
-                time: this.time,
-                tries: this.tries,
-            };
-            this.$emit("saveData", "capsule", capsule);
+            // Guardar los datos en localStorage
+            localStorage.setItem("intentos", this.tries);
+
+            // Redirigir al laboratorio
+            // location.replace("https://www.google.es/");
+            setTimeout(() => {
+                location.replace("https://www.google.es/");
+            }, 1000);
         },
     },
 };

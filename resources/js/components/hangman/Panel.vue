@@ -71,14 +71,12 @@ export default {
                 element.classList.add("fail");
             }
         },
-        quit: function () {
-            if (this.quit === null) return;
+        // quit: function () {
+        //     if (this.quit === null) return;
 
-            let panel = {
-                rigthLetters: this.rigthLetters,
-            };
-            this.$emit("saveData", "panel", panel);
-        },
+        //     // Guardar los datos en localStorage
+        //     localStorage.setItem("letras", this.tries);
+        // },
     },
 };
 </script>

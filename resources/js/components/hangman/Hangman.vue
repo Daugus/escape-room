@@ -18,18 +18,16 @@ export default {
         };
     },
     async mounted() {
-        // Comprobar si en el localstorage hay un objeto Hangman
-        if (localStorage) {
-            //Como Saber si existe Sidebar
-            if (
-                localStorage.getItem("Hangman") !== undefined &&
-                localStorage.getItem("Hangman")
-            ) {
-                console.log("Cargando datos de Hangman");
-            }
+        // Comprobar si existen los datos guardados
+        if (localStorage.getItem("palabra")) {
+            this.wordArray = localStorage.getItem("palabra").split("");
+
+            // Borrar el item del localStorage
+            localStorage.removeItem("palabra");
+        } else {
+            // Sino, generar una palabra aleatoria nueva
+            await this.getWord();
         }
-        // Sino, generar una palabra aleatoria nueva
-        await this.getWord();
     },
     methods: {
         // Coger una palabra aleatoria desde un JSON
@@ -69,26 +67,11 @@ export default {
         },
         // Llamada a los hijos para generar objetos con data necesaria
         quitChallenge(call) {
+            // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
             this.quit = call;
-            this.hangman = {
-                errors: this.errors,
-                guessed: this.guessed,
-                wordArray: this.wordArray,
-            };
-        },
-        // Guardar datos en objeto Hangman
-        saveData(name, obj) {
-            this.hangman[name] = obj;
 
-            if (
-                this.hangman.capsule &&
-                this.hangman.panel &&
-                this.hangman.keyboard
-            ) {
-                console.log("Se puede guardar en el localStorage");
-                const hangmanString = JSON.stringify(this.hangman);
-                localStorage.setItem("Hangman", hangmanString);
-            }
+            // Guardar los datos en localStorage
+            localStorage.setItem("palabra", this.wordArray.join(""));
         },
     },
     watch: {
@@ -115,7 +98,6 @@ export default {
                 :quit="quit"
                 @getErrors="getErrors"
                 @getNewWord="getNewWord"
-                @saveData="saveData"
             />
         </div>
         <div class="word-panel">
@@ -125,7 +107,6 @@ export default {
                 :errors="errors"
                 :quit="quit"
                 @wordGuessed="wordGuessed"
-                @saveData="saveData"
             />
             <Keyboard
                 :secretWord="wordArray"
@@ -133,7 +114,6 @@ export default {
                 :guessed="guessed"
                 @getLetterKey="getLetterKey"
                 @quitChallenge="quitChallenge"
-                @saveData="saveData"
             />
             <img src="@/src/img/metal.jpg" id="metal" />
         </div>

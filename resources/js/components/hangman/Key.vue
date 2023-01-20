@@ -2,24 +2,6 @@
 export default {
     props: {
         keyLetter: String,
-        letter: String,
-        secretWord: Array,
-    },
-    watch: {
-        letter() {
-            let exists = this.secretWord.includes(this.letter);
-            let element = document.getElementById(this.letter);
-            let color = "";
-            switch (exists) {
-                case true:
-                    color = "#0f0";
-                    break;
-                case false:
-                    color = "#f00";
-                    break;
-            }
-            element.style.setProperty("--color", color);
-        },
     },
 };
 </script>
