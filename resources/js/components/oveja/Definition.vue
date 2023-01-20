@@ -10,7 +10,7 @@ export default {
     },
     async mounted() {
         const definitionRect = document
-            .querySelector(`#${definitionInfo.id}`)
+            .querySelector(`#${this.getId}`)
             .getBoundingClientRect();
 
         const limitOfSett = 15;
@@ -30,14 +30,26 @@ export default {
         this.$emit("getCurrentDefinitionInfo", this.definitionRectInfo);
     },
     methods: {},
-    computed: {},
+    computed: {
+        getId() {
+            return `definition-${this.definitionInfo.id}`;
+        },
+    },
 };
 </script>
 
 <template>
-    <div class="self-end" :id="definitionInfo.id">
-        <p class="border-2 border-black p-3">{{ definitionInfo.definition }}</p>
+    <div class="fondo" :id="getId">
+        <p>{{ definitionInfo.definition }} , {{ definitionInfo.id }}</p>
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.fondo {
+    min-height: 220px;
+    background-image: url("@/src/img/hoja.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+</style>

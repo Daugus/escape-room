@@ -1,9 +1,12 @@
 <script>
 export default {
+    expose: ["id", "movible"],
     data() {
         return {
+            id: 0,
             distanciaX: 0,
             distanciaY: 0,
+            movible: true,
         };
     },
     props: {
@@ -14,6 +17,8 @@ export default {
             dragzone = document.getElementById(this.getDragzoneId);
 
         this.dragElement(dragable, dragzone);
+
+        this.id = this.conceptInfo.id;
     },
     methods: {
         dragElement(concept, dragzone) {
@@ -61,6 +66,8 @@ export default {
             const dragPointerDown = (event) => {
                 event.preventDefault();
 
+                if (!this.movible) return;
+
                 const elementRect = concept.getBoundingClientRect();
                 this.distanciaX = elementRect.x;
                 this.distanciaY = elementRect.y;
@@ -98,10 +105,10 @@ export default {
 </script>
 
 <template>
-    <div class="self-center" :id="getDraggableId">
+    <div class="fondo self-center" :id="getDraggableId">
         <div :id="getDragzoneId">
             <div class="wrapper">
-                <p>{{ conceptInfo.concept }}</p>
+                <p>{{ conceptInfo.concept }} , {{ conceptInfo.id }}</p>
             </div>
         </div>
     </div>
@@ -111,18 +118,15 @@ export default {
 [id^="draggable"] {
     width: 10rem;
 
-    border: 0.2rem solid red;
     border-radius: 0.2rem;
     box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s, box-shadow 0.2s;
-    background-color: red;
     overflow: hidden;
 
     top: v-bind("getDistanciaYpx");
     left: v-bind("getDistanciaXpx");
 
     &.drag {
-        border-color: white;
         box-shadow: 3px 6px 24px rgba(0, 0, 0, 0.5);
     }
 
@@ -138,5 +142,13 @@ export default {
 .wrapper {
     position: relative;
     border-radius: 10px;
+}
+
+.fondo {
+    min-height: 220px;
+    background-image: url("@/src/img/placaPetri.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 </style>

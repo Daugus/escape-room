@@ -12,6 +12,7 @@ export default {
             definitionList: [],
             conceptList: [],
             definitionRectList: [],
+            movible: true,
         };
     },
     async mounted() {
@@ -37,35 +38,38 @@ export default {
 
             const incubationMethods = await res.json();
 
+            const concepts = [];
+            const definitions = [];
+
             for await (const method of incubationMethods) {
-                this.conceptList.push({
+                concepts.push({
                     id: method.id,
                     concept: method.concept,
                 });
 
-                this.definitionList.push({
+                definitions.push({
                     id: method.id,
                     definition: method.definition,
                 });
             }
 
             // mezcla las cartas
-            for (let i = this.conceptList.length - 1; i > 0; i--) {
+            for (let i = concepts.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
-                [this.conceptList[i], this.conceptList[j]] = [
-                    this.conceptList[j],
-                    this.conceptList[i],
-                ];
+                [concepts[i], concepts[j]] = [concepts[j], concepts[i]];
             }
-            for (let i = this.definitionList.length - 1; i > 0; i--) {
+            for (let i = definitions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
-                [this.definitionList[i], this.definitionList[j]] = [
-                    this.definitionList[j],
-                    this.definitionList[i],
+                [definitions[i], definitions[j]] = [
+                    definitions[j],
+                    definitions[i],
                 ];
             }
+
+            this.conceptList = concepts;
+            this.definitionList = definitions;
         },
         getCurrentDefinitionInfo(definitionInfo) {
             this.definitionRectList.push(definitionInfo);
@@ -75,7 +79,19 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
-            console.log(this.definitionRectList);
+            if (
+                conceptInfo.start.x >= targetDefinitionInfo.start.x &&
+                conceptInfo.start.y >= targetDefinitionInfo.start.y &&
+                conceptInfo.end.x <= targetDefinitionInfo.end.x &&
+                conceptInfo.end.y <= targetDefinitionInfo.end.y
+            ) {
+                this.$refs.conceptos.filter(
+                    (concepto) => concepto.id === conceptInfo.id
+                )[0].movible = false;
+            }
+        },
+        getConceptRef(id) {
+            return `ref-${id}`;
         },
     },
 };
@@ -88,9 +104,10 @@ export default {
                 v-for="concept in conceptList"
                 :conceptInfo="concept"
                 @getCurrentConceptInfo="getCurrentConceptInfo"
+                ref="conceptos"
             />
         </div>
-        <div class="grid grid-cols-6 gap-6 auto-rows-max">
+        <div class="my-auto grid grid-cols-6 gap-6 auto-rows-max">
             <Definition
                 v-for="definition in definitionList"
                 :definitionInfo="definition"
@@ -102,6 +119,6 @@ export default {
 
 <style scoped lang="scss">
 .grid-oveja {
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 2fr 1fr;
 }
 </style>
