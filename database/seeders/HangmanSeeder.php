@@ -48,7 +48,7 @@ class HangmanSeeder extends Seeder
         $ahorcado11->microorganism = 'Mycobacterium tuberculosis';
 
         $ahorcado12 = new HangmanSolution();
-        $ahorcado12->microorganism = ' Proteus vulgaris';
+        $ahorcado12->microorganism = 'Proteus vulgaris';
 
         $ahorcado13 = new HangmanSolution();
         $ahorcado13->microorganism = 'Desulfovibrio desulfuricans';
@@ -126,7 +126,7 @@ class HangmanSeeder extends Seeder
         $ahorcado37->microorganism = 'Clostridium difficile';
 
         $ahorcado38 = new HangmanSolution();
-        $ahorcado38->microorganism = ' Clostridium perfringens';
+        $ahorcado38->microorganism = 'Clostridium perfringens';
 
         $ahorcado39 = new HangmanSolution();
         $ahorcado39->microorganism = 'Salmonella typhi';

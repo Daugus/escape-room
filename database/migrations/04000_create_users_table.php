@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nickname')->unique();
             $table->string('password');
             $table->string('email')->unique();
-            $table->string('picture');
+            $table->string('picture')->default('user.png');
         });
     }
 

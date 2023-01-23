@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HangmanSolution;
 
 class HangmanController extends Controller
 {
@@ -80,5 +81,12 @@ class HangmanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getWord()
+    {
+        $data = HangmanSolution::query()->inRandomOrder()->limit(1)->get();
+
+        return response()->json($data);
     }
 }
