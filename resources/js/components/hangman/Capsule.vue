@@ -82,6 +82,8 @@ export default {
                         });
                         // Bajar volumen de la ala
                         alarm.volume = 0.1;
+
+                        console.log("FUNCIONA CARAJO");
                     }, 5000);
 
                     // Mandar orden para generar nueva palabra y reiniciar errores
