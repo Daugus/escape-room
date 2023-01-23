@@ -5,6 +5,5 @@
 @endsection
 
 @section('content')
-    <h1>oveja</h1>
     <div id="vue"></div>
 @endsection
