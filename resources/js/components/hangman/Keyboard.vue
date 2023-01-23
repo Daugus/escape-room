@@ -16,16 +16,16 @@ export default {
         };
     },
     mounted() {
-        // Añadir eventListener al documento para poder usar el teclado fisico
-        document.addEventListener("keyup", this.pressedKey);
-
-        // Añadir eventListener a los botones (teclas)
-        const keys = document.querySelectorAll("button:not(#ESC)");
-        keys.forEach((key) => {
-            key.addEventListener("click", () => this.getLetterKey(key.id));
-        });
-
         setTimeout(() => {
+            // Añadir eventListener al documento para poder usar el teclado fisico
+            document.addEventListener("keyup", this.pressedKey);
+
+            // Añadir eventListener a los botones (teclas)
+            const keys = document.querySelectorAll("button:not(#ESC)");
+            keys.forEach((key) => {
+                key.addEventListener("click", () => this.getLetterKey(key.id));
+            });
+
             // Comprobar si existen los datos guardados
             if (localStorage.getItem("letras")) {
                 // Comprobar las letras con la palabra
