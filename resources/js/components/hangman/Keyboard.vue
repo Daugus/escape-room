@@ -107,11 +107,10 @@ export default {
                 // Quitar eventListener a los botones (teclas)
                 const keys = document.querySelectorAll("button:not(#ESC)");
                 keys.forEach((key) => {
-                    key.removeEventListener("click", this.getLetterKey(key.id));
+                    key.removeEventListener("click", () =>
+                        this.getLetterKey(key.id)
+                    );
                 });
-
-                // Vaciar array de teclas usadas
-                this.usedLetters = [];
             } else if (this.errors === 0) {
                 // Añadir eventListener al documento para poder usar el teclado fisico
                 document.addEventListener("keyup", this.pressedKey);
@@ -119,12 +118,13 @@ export default {
                 // Añadir eventListener a los botones (teclas)
                 const keys = document.querySelectorAll("button:not(#ESC)");
                 keys.forEach((key) => {
-                    key.removeEventListener("click", this.getLetterKey(key.id));
+                    key.addEventListener("click", () =>
+                        this.getLetterKey(key.id)
+                    );
                 });
-
-                // Vaciar array de teclas usadas
-                this.usedLetters = [];
             }
+            // Vaciar array de teclas usadas
+            this.usedLetters = [];
         },
     },
 };
