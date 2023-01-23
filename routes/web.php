@@ -1,10 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-use App\Http\Controllers\HangmanController;
-use App\Http\Controllers\OvejaController;
-=======
->>>>>>> dcb6e43c15b1c1cf91c3ac0b839c4a5555383a68
 use Illuminate\Support\Facades\Route;
 
 // menú
@@ -12,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 
 // pruebas
+use App\Http\Controllers\OvejaController;
 use App\Http\Controllers\HangmanController;
 use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
