@@ -40,16 +40,24 @@ export default {
 
 <template>
     <div class="fondo" :id="getId">
-        <p>{{ definitionInfo.definition }} , {{ definitionInfo.id }}</p>
+        <p class="altura">
+            {{ definitionInfo.definition }} , {{ definitionInfo.id }}
+        </p>
     </div>
 </template>
 
 <style scoped lang="scss">
 .fondo {
-    min-height: 220px;
+    min-height: 300px;
     background-image: url("@/src/img/hoja.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    padding: 1.5rem;
+}
+.altura {
+    background-color: aqua;
+    min-height: 100%;
 }
 </style>
