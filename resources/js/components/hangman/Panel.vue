@@ -71,12 +71,6 @@ export default {
                 element.classList.add("fail");
             }
         },
-        // quit: function () {
-        //     if (this.quit === null) return;
-
-        //     // Guardar los datos en localStorage
-        //     localStorage.setItem("letras", this.tries);
-        // },
     },
 };
 </script>
