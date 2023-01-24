@@ -142,9 +142,8 @@ export default {
             localStorage.setItem("intentos", this.tries);
 
             // Redirigir al laboratorio
-            // location.replace("https://www.google.es/");
             setTimeout(() => {
-                location.replace("https://www.google.es/");
+                location.replace(route("laboratorio.index"));
             }, 1000);
         },
     },
@@ -153,21 +152,21 @@ export default {
 
 <template>
     <div class="capsule">
-        <img src="@/src/img/Capsule.png" id="container" />
+        <img src="@/src/img/hangman/Capsule.png" id="container" />
         <div class="bar">
             <div class="progress"></div>
         </div>
     </div>
     <div class="gas-container">
         <div class="smoke">
-            <img src="@/src/img/smokes/smoke_1.png" id="smoke1" />
-            <img src="@/src/img/smokes/smoke_2.png" id="smoke2" />
-            <img src="@/src/img/smokes/smoke_3.png" id="smoke3" />
-            <img src="@/src/img/smokes/smoke_4.png" id="smoke4" />
+            <img src="@/src/img/hangman/smokes/smoke_1.png" id="smoke1" />
+            <img src="@/src/img/hangman/smokes/smoke_2.png" id="smoke2" />
+            <img src="@/src/img/hangman/smokes/smoke_3.png" id="smoke3" />
+            <img src="@/src/img/hangman/smokes/smoke_4.png" id="smoke4" />
         </div>
     </div>
     <audio>
-        <source src="@/src/img/alarm.mp3" type="audio/mpeg" />
+        <source src="@/src/audio/hangman/alarm.mp3" type="audio/mpeg" />
     </audio>
 </template>
 
