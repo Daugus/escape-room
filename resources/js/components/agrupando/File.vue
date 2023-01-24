@@ -36,7 +36,7 @@ export default {
                     .getBoundingClientRect();
 
                 const fileInfo = {
-                    id: this.dragzoneId,
+                    id: this.draggableId,
                     field: this.conceptInfo.field,
                     listIndex: this.conceptListIndex,
                     start: {
@@ -97,6 +97,7 @@ export default {
             <div
                 class="wrapper flex justify-center items-center flex-col h-full"
             >
+                <pre>{{ conceptListIndex }}</pre>
                 <p>{{ conceptInfo.concept }}</p>
                 <pre>{{ conceptInfo.field }}</pre>
             </div>
@@ -142,6 +143,6 @@ export default {
 }
 
 .correct {
-    background-color: green;
+    display: none;
 }
 </style>
