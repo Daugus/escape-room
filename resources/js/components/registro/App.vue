@@ -229,7 +229,7 @@ export default {
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
                             for="grid-surname"
                         >
-                            Apellido
+                            Apellidos
                         </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
