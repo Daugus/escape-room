@@ -11,12 +11,14 @@ import Button from "./Button.vue";
             <img class="logo" src="@/src/img/menu/ParasolCorporation.png" />
         </div>
 
-        <div class="grid grid-rows-3 gap-y-10 pl-12">
+        <div class="grid grid-rows-4 gap-y-10 pl-12">
             <Button
                 ruta="registro"
                 imagen="src/img/menu/BTN1.png"
-                texto="Nuevo Usuario"
-            />
+                texto="Nuevo
+                Usuario"
+            >
+            </Button>
             <Button
                 ruta="login"
                 imagen="src/img/menu/BTN2.png"
@@ -27,6 +29,7 @@ import Button from "./Button.vue";
                 imagen="src/img/menu/BTN3.png"
                 texto="Demo"
             />
+            <img src="@/src/img/menu/moreInfo.png" alt="" class="moreInfo" />
         </div>
     </div>
 </template>
@@ -44,5 +47,9 @@ import Button from "./Button.vue";
 }
 #logoBorder {
     border-right: solid 3px black;
+}
+.moreInfo {
+    height: 4rem;
+    margin-left: 30rem;
 }
 </style>
