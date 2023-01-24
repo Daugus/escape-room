@@ -78,7 +78,7 @@ export default {
 <template>
     <div class="panel default">
         <p draggable="false">{{ wordToString }}</p>
-        <img src="@/src/img/ruido.gif" />
+        <img src="@/src/img/hangman/ruido.gif" />
     </div>
 </template>
 

@@ -116,11 +116,11 @@ export default {
                 @getLetterKey="getLetterKey"
                 @quitChallenge="quitChallenge"
             />
-            <img src="@/src/img/metal.jpg" id="metal" />
+            <img src="@/src/img/hangman/metal.jpg" id="metal" />
         </div>
     </section>
-    <img src="@/src/img/Window.png" id="window" />
-    <img src="@/src/img/Background.png" id="background" />
+    <img src="@/src/img/hangman/Window.png" id="window" />
+    <img src="@/src/img/hangman/Background.png" id="background" />
 </template>
 
 <style scoped lang="scss">
