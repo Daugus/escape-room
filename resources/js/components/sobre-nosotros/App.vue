@@ -8,76 +8,80 @@ import route from "ziggy";
     <div id="wrapper" class="grid items-center p-16">
         <div class="grid grid-cols-1 grid-rows-1 items-center m-10">
             <div class="px-8 scrollbar-thin overflow-y-scroll" id="altura">
-                <div class="flex justify-center items-center" id="logoBorder">
+                <div
+                    class="flex justify-center items-center mb-8"
+                    id="logoBorder"
+                >
                     <img
-                        class="logo"
                         src="@/src/img/sobre-nosotros/ParasolCorporation.png"
+                        class="logo"
                     />
                 </div>
-                <div class="grid grid-cols-2 items-center">
-                    <div>¿Qué tenía el vial?</div>
-                    <div>
+
+                <div class="grid grid-cols-3 gap-4 justify-center items-center">
+                    <div class="flex items-stretch">
+                        <h1>¿Qué tenía el vial?</h1>
                         <img
-                            src="@/src/img/sobre-nosotros/ParasolCorporation.png"
+                            src="@/src/img/sobre-nosotros/vial.png"
+                            id="vial"
                         />
                     </div>
+                    <div class="col-span-2 p-4" id="bg-text">
+                        <p>
+                            En un laboratorio de máxima seguridad biológica, ha
+                            ocurrido un terrible accidente. A una persona se le
+                            ha roto un vial cuando lo transportaba el cual,
+                            contiene agentes biológicos del grupo IV. Esto
+                            supone un peligro para las personas trabajadoras,
+                            con muchas probabilidades de que se propague a la
+                            colectividad y sin que exista, generalmente, una
+                            profilaxis o un tratamiento eficaz.
+                        </p>
+                        <br />
+                        <p>
+                            Desgraciadamente, la persona encargada ha olvidado
+                            etiquetar este vial. No sabemos de qué
+                            microorganismo se trata ni el tratamiento,
+                            antibiótico o antídoto que debemos utilizar…
+                        </p>
+                        <br />
+                        <p>
+                            Menos mal que ha reaccionado con rapidez al romper
+                            el vial y se ha apresurado a presionar el botón de
+                            alarma y las puertas blindadas se han cerrado a
+                            tiempo para impedir la expansión del agente
+                            biológico.
+                        </p>
+                        <br />
+                        <p>
+                            A partir de este momento hay 60 minutos para
+                            determinar el antídoto, ingerirlo y acabar con el
+                            microorganismo mortal. Para conseguirlo deberá
+                            realizar una serie de pruebas, que le permitirán
+                            obtener los códigos secretos que abren las puertas
+                            de otras salas y almacenes de reactivos. ¿Le ayudas
+                            a conseguirlo?
+                        </p>
+                    </div>
                 </div>
-                <h1 class="border-b-4 border-black mb-4">
-                    ¿Qué tenía el vial?
-                </h1>
-                <p>
-                    En un laboratorio de máxima seguridad biológica, seguridad
-                    de nivel 4, ha ocurrido un terrible accidente. A una persona
-                    trabajadora del mismo, Eider, se le ha roto un vial cuando
-                    lo transportaba. Dicho vial contiene agentes biológicos del
-                    grupo IV. Esto quiere decir, como sabes, que supone un serio
-                    peligro para las personas trabajadoras, con muchas
-                    probabilidades de que se propague a la colectividad y sin
-                    que exista, generalmente, una profilaxis o un tratamiento
-                    eficaz.
-                </p>
                 <br />
-                <p>
-                    Desgraciadamente, la persona encargada de la gestión del
-                    vial ha olvidado etiquetar este. No sabemos de qué
-                    microorganismo se trata ni el tratamiento, antibiótico o
-                    antídoto que debemos utilizar…
-                </p>
-                <br />
-                <p>
-                    Menos mal que Eider ha reaccionado con rapidez al romper el
-                    vial y se ha apresurado a presionar el botón de alarma y las
-                    puertas blindadas se han cerrado a tiempo para impedir la
-                    expansión del agente biológico.
-                </p>
-                <br />
-                <p>
-                    Eider tiene a partir de este momento 60 minutos para
-                    determinar el antídoto, ingerirlo y acabar con el
-                    microorganismo mortal. Para conseguirlo deberá realizar una
-                    serie de pruebas, que le permitirán obtener los códigos
-                    secretos que abren las puertas de otras salas y almacenes de
-                    reactivos. ¿Le ayudas a conseguirlo?
-                </p>
-
-                <h1 class="border-b-4 border-black">Juego</h1>
-
-                <h1 class="border-b-4 border-black">Recomendaciones</h1>
-                <p class="p-4"></p>
+                <h1 class="border-b-4 border-black">Información</h1>
+                <p class="p-4">Este ecape room es completamente online</p>
 
                 <h1 class="border-b-4 border-black">Sobre nosotros</h1>
-                <p class="p-4"></p>
-
-                <h1 class="border-b-4 border-black">Terminos etc(?</h1>
-                <p class="p-4"></p>
+                <p class="p-4">
+                    Parasol corporation nace apartir de un proyecto con el
+                    objetivo de crear una escape room para el departamento de
+                    quimica del centro FP Txurdinaga, Bilbao.
+                </p>
+                <p class="p-4">
+                    Esta escape room ha sido creada desde cero por Luka Carmona,
+                    Augusto de la Camara, Carmen Gabiola y Iker González,
+                    alumnos del ciclo de Diseño de Aplicaciones Web del centro
+                    FP Txurdinaga.
+                </p>
             </div>
         </div>
-        <!-- <div class="flex" id="logoBorder">
-            <img
-                class="logo"
-                src="@/src/img/sobre-nosotros/ParasolCorporation.png"
-            />
-        </div> -->
 
         <!--
             -Sobre nosotros
@@ -108,6 +112,20 @@ import route from "ziggy";
 }
 
 #altura {
-    height: 570px;
+    height: 480px;
+}
+
+#vial {
+    display: flex;
+    height: 200px;
+}
+
+#bg-text {
+    background-color: #e6a002;
+    border-radius: 1rem;
+}
+
+P {
+    text-align: justify;
 }
 </style>
