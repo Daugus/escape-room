@@ -13,6 +13,7 @@ export default {
             pass1: "",
             pass2: "",
             picture: "",
+            role: "",
             csrf_token: "",
             error: {
                 exists: false,
@@ -24,6 +25,21 @@ export default {
         this.csrf_token = document
             .querySelector('meta[name="csrf-token"]')
             .getAttribute("content");
+
+        const oldDiv = document.querySelector("#old");
+        if (oldDiv) {
+            const oldData = JSON.parse(oldDiv.innerText);
+
+            if (oldData.name) {
+                this.name = oldData.name;
+                this.role = oldData.role;
+                this.surname = oldData.surname;
+                this.email = oldData.email;
+                this.user = oldData.nickname;
+            }
+
+            oldDiv.remove();
+        }
     },
     methods: {
         sendForm(event) {
@@ -322,8 +338,12 @@ export default {
                             name="role"
                             id="grid-role"
                         >
-                            <option>Alumno</option>
-                            <option>Profesor</option>
+                            <option :selected="role === 'Alumno'">
+                                Alumno
+                            </option>
+                            <option :selected="role === 'Profesor'">
+                                Profesor
+                            </option>
                         </select>
                     </div>
 
@@ -338,6 +358,7 @@ export default {
                             name="picture"
                             id="picture"
                             type="file"
+                            accept=".jpg,.jpeg,.png"
                         />
                     </div>
 

@@ -27,15 +27,16 @@ class UserController extends Controller
     {
         $request->validate([
             'role' => 'required',
-            'name' => 'required|max:255|unique:users,nickname',
+            'name' => 'required|max:255',
             'surname' => 'required|max:255',
-            'nickname' => 'required|max:255',
+            'nickname' => 'required|max:255|unique:users',
             'password' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|max:255|unique:users',
             'picture' => 'mimes:jpg,png,webp'
         ]);
 
         $user = new User($request->all());
+        $user->password = bcrypt($user->password);
 
         $nickname = $user->nickname;
 
