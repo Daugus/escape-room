@@ -466,24 +466,24 @@ class PasswordSeeder extends Seeder
         $password73->name = 'William Cruickshank';
         $password73->element = 'Estroncio';
         $password73->discovery_year = '1790';
-        $password73->text = '';
+        $password73->text = 'William Cruickshank (fallecido en 1810 o 1811) fue un cirujano militar escocés, químico y profesor de química en la Real Academia Militar de Woolwich, a su vez descubrio el estroncio en 1790.';
 
         $password74 = new PasswordSolution();
         $password74->name = 'William Gregor';
         $password74->element = 'Titanio';
         $password74->discovery_year = '1791';
-        $password74->text = '';
+        $password74->text = 'William Gregor (* 25 de diciembre de 1761-11 de junio de 1817) fue un clérigo inglés y mineralólogo que descubrió el metal elemental del titanio en 1791.';
 
         $password75 = new PasswordSolution();
         $password75->name = 'William H. Wollaston';
-        $password75->element = 'Paladio, Rodio';
+        $password75->element = 'Rodio';
         $password75->discovery_year = '1803';
-        $password75->text = '';
+        $password75->text = 'William Hyde Wollaston fue un físico y químico británico (East Dereham, 6 de agosto de 1776 – Londres, 22 de diciembre de 1828). Perfeccionó la pila inventada por el italiano Alessandro Volta,1​ y descubrió los metales rodio en 1803';
 
         $password76 = new PasswordSolution();
         $password76->name = 'William Ramsay';
-        $password76->element = 'Helio, Argón, Neón, Kriptón, Xenón';
-        $password76->discovery_year = '1868, 1894, 1898, ';
-        $password76->text = '';
+        $password76->element = 'Kriptón';
+        $password76->discovery_year = '1898';
+        $password76->text = 'William Ramsay (2 de octubre de 1852, Glasgow - 23 de julio de 1916, High Wycombe, Buckinghamshire) fue un químico británico que recibió el Premio Nobel de Química en 1904. Después de que él y John William Strutt descubriesen el radón, Ramsay investigó otros gases atmosféricos. Descubrió varios gases. Como por ejemplo el criptón en 1898 ';
     }
 }
