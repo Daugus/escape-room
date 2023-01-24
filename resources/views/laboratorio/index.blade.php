@@ -8,9 +8,11 @@
     <div id="lab">
         {{-- COUNTERS --}}
         <div id="general-counter">
+            {{-- Cambiar contador en base a la dificultad --}}
             <span>1:00:00</span>
         </div>
         <div id="hangman-counter">
+            {{-- Cambiar el contador en base al de Hangman --}}
             <span>02:00</span>
         </div>
 
@@ -25,7 +27,7 @@
         {{-- AGRUPANDO --}}
         <a href="{{ route('agrupando.index')}}" id="agrupando"></a>
         {{-- NECESITAMOS UNA CONTRASEÑA --}}
-        {{-- <a href="{{ route('juego.index')}}" id="prueba 6"></a> --}}
+        <a href="#" id="password"></a>
 
         {{-- HINTS --}}
     </div>
