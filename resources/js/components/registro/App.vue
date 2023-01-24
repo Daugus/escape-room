@@ -213,7 +213,7 @@ export default {
             >
                 <input type="hidden" name="_token" :value="csrf_token" />
 
-                <div class="grid grid-cols-2 items-center px-12">
+                <div class="grid grid-cols-2 gap-y-5 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -379,7 +379,8 @@ export default {
                             class="inline-block align-baseline font-bold text-l"
                             :href="route('login.index')"
                         >
-                            Tienes cuenta? Inciar sesión
+                            ¿Tienes cuenta?
+                            <span class="underline">Iniciar sesión</span>
                         </a>
                     </div>
                 </div>

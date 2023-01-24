@@ -77,7 +77,8 @@ export default {
                         class="inline-block align-baseline font-bold text-l"
                         :href="route('user.create')"
                     >
-                        No tienes cuenta? Registrate!
+                        ¿No tienes cuenta?
+                        <span class="underline">Registrate!</span>
                     </a>
                 </div>
             </form>
