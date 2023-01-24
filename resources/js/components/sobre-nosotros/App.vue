@@ -6,8 +6,8 @@ import route from "ziggy";
 
 <template>
     <div id="wrapper" class="grid items-center p-16">
-        <div class="grid grid-cols-1 grid-rows-1 items-center m-10">
-            <div class="px-8 scrollbar-thin overflow-y-scroll" id="altura">
+        <div class="m-12 overflow-y-scroll h-4/5">
+            <div class="px-8" id="altura">
                 <div
                     class="flex justify-center items-center mb-8"
                     id="logoBorder"
@@ -18,16 +18,19 @@ import route from "ziggy";
                     />
                 </div>
 
-                <div class="grid grid-cols-3 gap-4 justify-center items-center">
-                    <div class="flex items-stretch">
-                        <h1>¿Qué tenía el vial?</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3">
+                    <div>
+                        <h1 class="text-4xl font-bold mt-0 mb-2">
+                            ¿Qué tenía el vial?
+                        </h1>
                         <img
                             src="@/src/img/sobre-nosotros/vial.png"
+                            class="flex justify-center items-center"
                             id="vial"
                         />
                     </div>
                     <div class="col-span-2 p-4" id="bg-text">
-                        <p>
+                        <p class="text-base">
                             En un laboratorio de máxima seguridad biológica, ha
                             ocurrido un terrible accidente. A una persona se le
                             ha roto un vial cuando lo transportaba el cual,
@@ -66,7 +69,9 @@ import route from "ziggy";
                 </div>
                 <br />
                 <h1 class="border-b-4 border-black">Información</h1>
-                <p class="p-4">Este ecape room es completamente online</p>
+                <p class="p-4">
+                    ¿Qué tenía el vial? Es una sala de escape room online
+                </p>
 
                 <h1 class="border-b-4 border-black">Sobre nosotros</h1>
                 <p class="p-4">
@@ -75,10 +80,10 @@ import route from "ziggy";
                     quimica del centro FP Txurdinaga, Bilbao.
                 </p>
                 <p class="p-4">
-                    Esta escape room ha sido creada desde cero por Luka Carmona,
-                    Augusto de la Camara, Carmen Gabiola y Iker González,
-                    alumnos del ciclo de Diseño de Aplicaciones Web del centro
-                    FP Txurdinaga.
+                    Tanto el diseño como el código se han hecho completamente
+                    desde cero por Luka Carmona, Augusto de la Camara, Carmen
+                    Gabiola y Iker González, alumnos del ciclo de Diseño de
+                    Aplicaciones Web del mismo centro.
                 </p>
             </div>
         </div>
@@ -111,12 +116,11 @@ import route from "ziggy";
     align-content: flex-start;
 }
 
-#altura {
+/* #altura {
     height: 480px;
-}
+} */
 
 #vial {
-    display: flex;
     height: 200px;
 }
 

@@ -190,11 +190,14 @@ export default {
 </script>
 
 <template>
-    <div id="wrapper" class="grid grid-cols-2 items-center pr-12 pl-8 pb-12">
-        <div class="flex justify-center items-center" id="logoBorder">
+    <div
+        id="wrapper"
+        class="grid grid-cols-2 md:grid-cols-4 items-center pr-12 pl-8 pb-12"
+    >
+        <div class="flex justify-center col-span-2" id="logoBorder">
             <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center col-span-2">
             <form
                 class="w-full max-w-"
                 id="form-registro"
