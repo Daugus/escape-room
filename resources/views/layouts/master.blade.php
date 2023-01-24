@@ -9,6 +9,8 @@
 
     <title>Escape Room</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('src/img/parasol.ico') }}">
+
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
@@ -26,7 +28,7 @@
             <a href="{{ route('login.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
         </li>
         <li>
-            <a href="{{ route('registro.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>
+            <a href="{{ route('user.create') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>
         </li>
         <li>
             <a href="{{ route('hangman.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>

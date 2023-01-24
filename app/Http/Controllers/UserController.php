@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class RegistroController extends Controller
+class UserController extends Controller
 {
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,17 +25,15 @@ class RegistroController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        // $request->validate([
-        //     'role' => 'required|bool',
-        //     'name' => 'required|max:30',
-        //     'surname' => 'required|max:60',
-        //     'nickname' => 'required|max:60',
-        //     'password' => 'required|max:30',
-        //     'email' => 'required|max:60',
-        //     'picture' => 'mimes:jpg,png,webp'
-        // ]);
+        $request->validate([
+            'role' => 'required',
+            'name' => 'required|max:255|unique:users,nickname',
+            'surname' => 'required|max:255',
+            'nickname' => 'required|max:255',
+            'password' => 'required|max:255',
+            'email' => 'required|max:255',
+            'picture' => 'mimes:jpg,png,webp'
+        ]);
 
         $user = new User($request->all());
 

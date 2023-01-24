@@ -20,23 +20,17 @@ export default {
             },
         };
     },
-
     mounted() {
         this.csrf_token = document
             .querySelector('meta[name="csrf-token"]')
             .getAttribute("content");
     },
-
     methods: {
         sendForm(event) {
             event.preventDefault();
 
-            if (this.validateFormCompletely()) {
+            if (this.validateFormCompletely())
                 document.querySelector("#form-registro").submit();
-                console.log("Todo correcto. Procedemos a enviar el FORM");
-            } else {
-                console.log("ERROR. Algunos de los campos no son válidos");
-            }
         },
 
         validateName(name) {
@@ -141,8 +135,6 @@ export default {
         },
 
         validateFormCompletely() {
-            console.log("Comprobamos todo");
-
             // Comprobar las validaciones
             this.validateName(this.name);
             this.validateSurname(this.surname);
@@ -194,15 +186,17 @@ export default {
         <div class="flex justify-center items-center" id="logoBorder">
             <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
+
         <div class="flex justify-center items-center">
             <form
                 class="w-full max-w-"
                 id="form-registro"
-                :action="route('registro.store')"
+                :action="route('user.store')"
                 method="POST"
                 enctype="multipart/form-data"
             >
                 <input type="hidden" name="_token" :value="csrf_token" />
+
                 <div class="grid grid-cols-2 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
@@ -219,8 +213,10 @@ export default {
                             type="text"
                             placeholder="Nombre"
                             name="name"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -236,8 +232,10 @@ export default {
                             type="text"
                             placeholder="Apellido"
                             name="surname"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -253,8 +251,10 @@ export default {
                             type="text"
                             placeholder="Username"
                             name="nickname"
+                            maxlength="50"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -270,8 +270,10 @@ export default {
                             v-model="email"
                             @keyup="validateEmail(this.email)"
                             name="email"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -287,8 +289,10 @@ export default {
                             @keyup="validatePassword(this.pass1)"
                             placeholder="******************"
                             name="password"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -303,8 +307,10 @@ export default {
                             v-model="pass2"
                             @keyup="comparePasswords(this.pass1, this.pass2)"
                             placeholder="******************"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -320,6 +326,7 @@ export default {
                             <option>Profesor</option>
                         </select>
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -333,6 +340,7 @@ export default {
                             type="file"
                         />
                     </div>
+
                     <div class="flex items-center justify-between mt-4 ml-3">
                         <button
                             class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -344,6 +352,7 @@ export default {
                             Registrarse
                         </button>
                     </div>
+
                     <div class="flex items-center justify-between mt-4">
                         <a
                             class="inline-block align-baseline font-bold text-l"

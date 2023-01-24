@@ -75,7 +75,7 @@ export default {
                     </button>
                     <a
                         class="inline-block align-baseline font-bold text-l"
-                        :href="route('registro.index')"
+                        :href="route('user.create')"
                     >
                         No tienes cuenta? Registrate!
                     </a>
