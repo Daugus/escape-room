@@ -39,25 +39,38 @@ export default {
 </script>
 
 <template>
-    <div class="fondo" :id="getId">
-        <p class="altura">
-            {{ definitionInfo.definition }} , {{ definitionInfo.id }}
-        </p>
+    <div class="zone" :id="getId">
+        <div class="container">
+            <p>{{ definitionInfo.definition }} ,{{ definitionInfo.id }}</p>
+            <img src="@/src/img/oveja/hoja.png" />
+        </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-.fondo {
-    min-height: 300px;
-    background-image: url("@/src/img/hoja.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 1.5rem;
+.zone {
+    width: 100%;
 }
-.altura {
-    background-color: aqua;
-    min-height: 100%;
+
+.container {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    display: inline-block;
+
+    p {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 17% 15%;
+
+        transform: rotate(1deg);
+        font-size: 1.75vh;
+    }
+
+    img {
+        width: 100%;
+    }
 }
 </style>
