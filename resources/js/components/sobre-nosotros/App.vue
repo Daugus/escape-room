@@ -116,10 +116,6 @@ import route from "ziggy";
     align-content: flex-start;
 }
 
-/* #altura {
-    height: 480px;
-} */
-
 #vial {
     height: 200px;
 }
