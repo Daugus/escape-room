@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -48,5 +50,29 @@ class UserController extends Controller
 
         $user->save();
         return print("guarda");
+    }
+
+    public function login()
+    {
+        return view('login.index');
+    }
+
+    public function validateLogin(Request $request)
+    {
+        $request->validate([
+            'nickname' => 'required|max:255',
+            'password' => 'required|max:255',
+        ]);
+
+        $usuarioEnviado = new User($request->all());
+
+        $user = User::query()->where('nickname', $usuarioEnviado->nickname)->first();
+
+        if (isset($user) && Hash::check($usuarioEnviado->password, $user->password)) {
+            session(['user' => $user]);
+            return redirect('/');
+        } else {
+            return back()->onlyInput('nickname');
+        }
     }
 }

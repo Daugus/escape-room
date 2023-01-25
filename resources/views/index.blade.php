@@ -6,5 +6,13 @@
 @endsection
 
 @section('content')
+    @if (session('user'))
+        <p>logged</p>
+        @php
+            session()->forget('user');
+        @endphp
+    @else
+        <p>not logged</p>
+    @endif
     <div id="vue"></div>
 @endsection

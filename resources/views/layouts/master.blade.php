@@ -25,7 +25,7 @@
             <a href="{{ route('index') }}" class="underline text-blue-600 hover:text-blue-800 ">Inicio</a>
         </li>
         <li>
-            <a href="{{ route('login.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
+            <a href="{{ route('user.login') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
         </li>
         <li>
             <a href="{{ route('user.create') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>

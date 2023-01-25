@@ -18,7 +18,7 @@ import Button from "./Button.vue";
                 texto="Nuevo Usuario"
             />
             <Button
-                ruta="login.index"
+                ruta="user.login"
                 imagen="src/img/menu/BTN2.png"
                 texto="Iniciar Sesión"
             />

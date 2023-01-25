@@ -6,31 +6,54 @@ import route from "ziggy";
 export default {
     data() {
         return {
-            username: "",
+            csrf_token: "",
+            user: "",
             pass: "",
-            error: "",
+            error: false,
         };
     },
-
+    mounted() {
+        this.csrf_token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+    },
     methods: {
         onSubmit(event) {
             event.preventDefault();
 
-            if (this.error.exists) return console.log("ERROR");
-
-            document.querySelector("#form-login").submit();
+            if (this.validateForm())
+                document.querySelector("#form-login").submit();
         },
+        validateUser(user) {
+            const input = document.querySelector("#username");
 
-        validateUsername(username) {
-            document.getElementById("username").style.borderColor = "green";
+            if (user === "") {
+                this.error = true;
+                input.style.borderColor = "red";
+            } else {
+                this.error = false;
+                input.style.borderColor = "green";
+            }
         },
-
         validatePassword(pass) {
-            document.getElementById("password").classList;
+            const input = document.querySelector("#pass");
+
+            if (pass === "") {
+                this.error = true;
+                input.style.borderColor = "red";
+            } else {
+                this.error = false;
+                input.style.borderColor = "green";
+            }
+        },
+        validateForm() {
+            // Comprobar las validaciones
+            this.validateUser(this.user);
+            this.validatePassword(this.pass1);
+
+            return !this.error;
         },
     },
-
-    watch: {},
 };
 </script>
 
@@ -41,16 +64,26 @@ export default {
         </div>
 
         <div class="flex justify-center items-center">
-            <form class="w-full max-w-sm" id="form-login">
+            <form
+                class="w-full max-w-sm"
+                id="form-login"
+                :action="route('user.login')"
+                method="POST"
+            >
+                <input type="hidden" name="_token" :value="csrf_token" />
+
                 <div class="mb-4">
                     <label class="text-3xl font-bold" for="username">
                         Username
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
+                        v-model="user"
                         id="username"
                         type="text"
                         placeholder="Username"
+                        name="nickname"
+                        @keyup="validateUser(this.user)"
                     />
                 </div>
                 <div class="mb-6">
@@ -59,9 +92,12 @@ export default {
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
+                        v-model="pass"
                         id="pass"
                         type="password"
-                        placeholder="Passworssd"
+                        placeholder="Password"
+                        name="password"
+                        @keyup="validatePassword(this.pass)"
                     />
                 </div>
 
