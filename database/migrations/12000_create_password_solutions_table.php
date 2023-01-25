@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('element');
             $table->integer('discovery_year');
-            $table->string('text');
-            $table->integer('code');
+            $table->string('text', 1000);
+            $table->string('code', 6)->nullable();
+            $table->string('image');
         });
     }
 
