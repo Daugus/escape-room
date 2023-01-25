@@ -35,44 +35,50 @@ export default {
 </script>
 
 <template>
-    <div id="wrapper" class="grid grid-cols-2 items-center pr-12 pl-8 pb-12">
-        <div class="flex justify-center items-center" id="logoBorder">
-            <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
+    <div
+        id="wrapper"
+        class="grid grid-cols-1 md:grid-cols-2 items-center py-32 px-12 md:p-14"
+    >
+        <div class="flex justify-center md:border-r-4">
+            <a class="logo" :href="route('index')"
+                ><img src="@/src/img/menu/parasolCorporation.png"
+            /></a>
         </div>
 
         <div class="flex justify-center items-center">
             <form class="w-full max-w-sm" id="form-login">
-                <div class="mb-4">
-                    <label class="text-3xl font-bold" for="username">
+                <div class="w-full mb-6">
+                    <label class="text-2xl font-bold" for="username">
                         Username
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
+                        class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                         id="username"
                         type="text"
-                        placeholder="Username"
                     />
                 </div>
-                <div class="mb-6">
-                    <label class="text-3xl font-bold" for="password">
+                <div class="w-full mb-6">
+                    <label class="text-2xl font-bold" for="password">
                         Password
                     </label>
                     <input
-                        class="shadow appearance-none border rounded w-full mt-2 py-2 px-3 leading-tight focus:outline-none"
+                        class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                         id="pass"
                         type="password"
-                        placeholder="Passworssd"
+                        placeholder="**********"
                     />
                 </div>
 
-                <div class="flex items-center justify-between mt-4">
+                <div class="w-full mb-6">
                     <button
-                        class="text-white font-bold py-2 px-4 rounded focus:outline-none"
+                        class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none"
                         id="btn-color"
                         type="submit"
                     >
                         Sign In
                     </button>
+                </div>
+                <div class="w-full mb-6">
                     <a
                         class="inline-block align-baseline font-bold text-l"
                         :href="route('registro.index')"
@@ -98,10 +104,6 @@ export default {
     width: 60%;
 }
 
-#logoBorder {
-    border-right: solid 3px black;
-}
-
 #btn-color {
     background-color: #fca100;
 }
@@ -110,12 +112,9 @@ export default {
     background-color: #ff7b26;
 }
 
-#username {
-    background-color: #e5e7e6;
-}
-
-#pass {
-    background-color: #e5e7e6;
+input[type="text"],
+[type="password"] {
+    background-color: #e5e5e5;
 }
 
 input,
