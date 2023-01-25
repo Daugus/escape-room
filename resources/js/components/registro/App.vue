@@ -208,12 +208,6 @@ export default {
                 <input type="hidden" name="_token" :value="csrf_token" />
                 <div class="grid grid-cols-2 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-first-name"
-                        >
-                            Nombre
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-first-name"
@@ -225,12 +219,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-surname"
-                        >
-                            Apellidos
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-surname"
@@ -242,12 +230,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-username"
-                        >
-                            Username
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                             id="grid-username"
@@ -259,12 +241,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-email"
-                        >
-                            Correo
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                             id="grid-email"
@@ -276,12 +252,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-first-pass"
-                        >
-                            Contraseña
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                             id="grid-first-pass"
@@ -293,12 +263,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-second-pass"
-                        >
-                            Repetir contraseña
-                        </label>
                         <input
                             class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
                             id="grid-second-pass"
@@ -309,11 +273,6 @@ export default {
                         />
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-role"
-                        >
-                        </label>
                         <select
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
                             name="role"
@@ -324,11 +283,6 @@ export default {
                         </select>
                     </div>
                     <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="picture"
-                        >
-                        </label>
                         <input
                             class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
                             name="picture"
