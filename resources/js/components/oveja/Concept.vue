@@ -11,14 +11,33 @@ export default {
     },
     props: {
         conceptInfo: Object,
+        index: Number,
     },
     async mounted() {
         const dragable = document.getElementById(this.getDraggableId),
-            dragzone = document.getElementById(this.getDragzoneId);
+            dragzone = document.getElementById(this.getDragzoneId),
+            wrapper = document.querySelector(
+                `#${this.getDraggableId} .wrapper`
+            );
 
         this.dragElement(dragable, dragzone);
 
         this.id = this.conceptInfo.id;
+
+        let methodIMG = new URL(
+            `/public/src/img/oveja/methods/${this.index}.png`,
+            import.meta.url
+        );
+        let methodURL = "url(" + methodIMG + ")";
+        dragable.style.backgroundImage = methodURL;
+
+        let random = Math.floor(Math.random() * 4);
+        let placaIMG = new URL(
+            `/public/src/img/oveja/placas/${random + 1}.png`,
+            import.meta.url
+        );
+        let placaURL = "url(" + placaIMG + ")";
+        wrapper.style.backgroundImage = placaURL;
     },
     methods: {
         dragElement(concept, dragzone) {
@@ -32,7 +51,6 @@ export default {
                 document.onpointermove = null;
 
                 concept.classList.remove("drag");
-                // element.classList.add("z-0");
 
                 const conceptRect = concept.getBoundingClientRect();
 
@@ -78,7 +96,6 @@ export default {
                 pos4 = event.clientY;
 
                 concept.classList.add("drag");
-                // element.classList.remove("z-10");
 
                 document.onpointerup = dragPointerUp;
                 document.onpointermove = dragPointerMove;
@@ -109,7 +126,7 @@ export default {
         <div :id="getDragzoneId">
             <div class="wrapper">
                 <p class="text-center">
-                    {{ conceptInfo.concept }} , {{ conceptInfo.id }}
+                    {{ conceptInfo.concept }} {{ conceptInfo.id }}
                 </p>
             </div>
         </div>
@@ -118,9 +135,8 @@ export default {
 
 <style scoped lang="scss">
 [id^="draggable"] {
-    width: 10rem;
+    max-width: 20%;
 
-    border-radius: 0.2rem;
     box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s, box-shadow 0.2s;
     overflow: hidden;
@@ -128,8 +144,11 @@ export default {
     top: v-bind("getDistanciaYpx");
     left: v-bind("getDistanciaXpx");
 
+    transition: transform 0.2s ease-in-out;
+
     &.drag {
         box-shadow: 3px 6px 24px rgba(0, 0, 0, 0.5);
+        transform: scale(1.2);
     }
 
     & [id^="dragzone"] {
@@ -137,20 +156,38 @@ export default {
 
         cursor: move;
         z-index: 10;
-        background-color: #0055ff;
     }
 }
 
-.wrapper {
-    position: relative;
-    border-radius: 10px;
-}
-
 .fondo {
-    min-height: 220px;
-    background-image: url("@/src/img/placaPetri.png");
+    z-index: 11;
+    width: 25vh;
+    height: 25vh;
+    border-radius: 50%;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    .wrapper {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        p {
+            max-width: 70%;
+            max-height: 34%;
+            font-size: 2.35vh;
+            font-weight: 600;
+        }
+    }
 }
 </style>
