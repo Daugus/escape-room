@@ -233,9 +233,15 @@ export default {
                             name="surname"
                         />
                     </div>
-                    <div class="w-full px-3 mb-6">
+                    <div class="w-full px-3 mb-6 md:mb-0">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2"
+                            for="grid-username"
+                        >
+                            Username
+                        </label>
                         <input
-                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 h-8 lg:h-12 leading-tight focus:outline-none focus:bg-white"
                             id="grid-username"
                             v-model="user"
                             @keyup="validateUser(this.user)"
@@ -244,9 +250,15 @@ export default {
                             name="nickname"
                         />
                     </div>
-                    <div class="w-full px-3 mb-6">
+                    <div class="w-full px-3 mb-6 md:mb-0">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2"
+                            for="grid-email"
+                        >
+                            Correo
+                        </label>
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 h-8 lg:h-12 leading-tight focus:outline-none"
                             id="grid-email"
                             type="email"
                             placeholder="Email"
@@ -255,9 +267,15 @@ export default {
                             name="email"
                         />
                     </div>
-                    <div class="w-full px-3 mb-6">
+                    <div class="w-full px-3 mb-6 md:mb-0">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2"
+                            for="grid-first-pass"
+                        >
+                            Contraseña
+                        </label>
                         <input
-                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 h-8 lg:h-12 leading-tight focus:outline-none"
                             id="grid-first-pass"
                             type="password"
                             v-model="pass1"
@@ -266,9 +284,15 @@ export default {
                             name="password"
                         />
                     </div>
-                    <div class="w-full px-3 mb-6">
+                    <div class="w-full px-3 mb-6 md:mb-0">
+                        <label
+                            class="block uppercase tracking-wide text-gray-700 text-sm font-bold mb-2"
+                            for="grid-second-pass"
+                        >
+                            Repetir contraseña
+                        </label>
                         <input
-                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 h-8 lg:h-12 leading-tight focus:outline-none"
                             id="grid-second-pass"
                             type="password"
                             v-model="pass2"
