@@ -17,9 +17,11 @@ class PasswordController extends Controller
     {
         return view('infocientificos.index');
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/infocientificos
     /**
-     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -86,10 +88,11 @@ class PasswordController extends Controller
     public function getScientist()
     {
 
-        $fields = ['id', 'name', 'element', 'discovery-year', 'text', 'code', 'image'];
 
-        $data = PasswordSolution::query()->select($fields)->where('code', 'is not', 'null')->inRandomOrder()->limit(1)->get();
-        $data = $data->merge(PasswordSolution::query()->select($fields)->where('code', 'is', 'null')->inRandomOrder()->limit(3)->get());
+
+        $data = PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNotNull('code')->limit(1)->get();
+        $data = $data->merge(PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNull('code')
+            ->limit(3)->get());
 
         return response()->json($data);
     }

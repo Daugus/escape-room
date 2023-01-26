@@ -5,6 +5,5 @@
 @endsection
 
 @section('content')
-
     <div id="vue"></div>
 @endsection

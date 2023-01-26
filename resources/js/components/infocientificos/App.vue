@@ -28,6 +28,7 @@ export default {
             );
 
             const Scientist = await res.json();
+            console.log(Scientist);
         },
     },
 };
