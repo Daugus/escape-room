@@ -23,6 +23,16 @@
     src: url("@/src/fonts/EurostileExtendedBlack.ttf");
 }
 
+@font-face {
+    font-family: Digital7;
+    src: url("@/src/fonts/digital-7.ttf");
+}
+
+@font-face {
+    font-family: ReachStory;
+    src: url("@/src/fonts/Reach Story.ttf");
+}
+
 body {
     min-height: 100vh;
 }
@@ -77,8 +87,8 @@ body {
 
     // ------ CADA OVEJA CON SU PAREJA ------
     #oveja {
-        inset: 84% 56% 3.5% 34%;
-        clip-path: polygon(33% 0, 100% 0, 80% 100%, 0 100%);
+        inset: 84% 55% 3.5% 34%;
+        clip-path: polygon(35% 0, 97% 0, 67% 100%, 0 100%);
     }
 
     // ------ KUKU ------

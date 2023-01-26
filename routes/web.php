@@ -33,7 +33,7 @@ Route::get('/lab', [LabController::class, 'index'])->name('laboratorio.index');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobre-nosotros.index');
 
 Route::get('/hangman', [HangmanController::class, 'index'])->name('hangman.index');
-Route::get('/kuku', [KukuController::class, 'index'])->name('kuku.index')->middleware('logged');
+Route::get('/kuku', [KukuController::class, 'index'])->name('kuku.index');
 Route::get('/agrupando', [GroupingController::class, 'index'])->name('agrupando.index');
 Route::get('/equilibrado', [EquilibradoController::class, 'index'])->name('equilibrado.index');
 Route::get('/oveja', [OvejaController::class, 'index'])->name('oveja.index');
