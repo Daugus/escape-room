@@ -135,7 +135,7 @@ export default {
 
 <style scoped lang="scss">
 [id^="draggable"] {
-    width: 10rem;
+    max-width: 20%;
 
     box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s, box-shadow 0.2s;
@@ -161,8 +161,8 @@ export default {
 
 .fondo {
     z-index: 11;
-    width: 27vh;
-    height: 27vh;
+    width: 25vh;
+    height: 25vh;
     border-radius: 50%;
 
     background-size: cover;

@@ -89,6 +89,9 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
+            console.log(conceptInfo);
+            console.log(targetDefinitionInfo);
+
             if (
                 conceptInfo.start.x >= targetDefinitionInfo.start.x &&
                 conceptInfo.start.y >= targetDefinitionInfo.start.y &&
@@ -98,6 +101,8 @@ export default {
                 this.$refs.conceptos.filter(
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
+
+                console.log("YA NO SE PUEDE MOVER");
             }
         },
         getConceptRef(id) {

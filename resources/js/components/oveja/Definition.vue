@@ -9,25 +9,27 @@ export default {
         definitionInfo: Object,
     },
     async mounted() {
-        const definitionRect = document
-            .querySelector(`#${this.getId}`)
-            .getBoundingClientRect();
+        setTimeout(() => {
+            const definitionRect = document
+                .querySelector(`#${this.getId}`)
+                .getBoundingClientRect();
 
-        const limitOfSett = 15;
+            const limitOfSett = 15;
 
-        this.definitionRectInfo = {
-            id: this.definitionInfo.id,
-            start: {
-                x: definitionRect.x - limitOfSett,
-                y: definitionRect.y - limitOfSett,
-            },
-            end: {
-                x: definitionRect.x + definitionRect.width + limitOfSett,
-                y: definitionRect.y + definitionRect.height + limitOfSett,
-            },
-        };
+            this.definitionRectInfo = {
+                id: this.definitionInfo.id,
+                start: {
+                    x: definitionRect.x - limitOfSett,
+                    y: definitionRect.y - limitOfSett,
+                },
+                end: {
+                    x: definitionRect.x + definitionRect.width + limitOfSett,
+                    y: definitionRect.y + definitionRect.height + limitOfSett,
+                },
+            };
 
-        this.$emit("getCurrentDefinitionInfo", this.definitionRectInfo);
+            this.$emit("getCurrentDefinitionInfo", this.definitionRectInfo);
+        }, 100);
     },
     methods: {},
     computed: {
