@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function show()
+    {
+        return view('profile.index')
+    }
+
     /*
      * Show the form for creating a new resource.
      *
