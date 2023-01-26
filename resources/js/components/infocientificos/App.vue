@@ -12,7 +12,6 @@ export default {
         document.body.classList.add("overflow-clip");
     },
     methods: {
-
         async getScientist() {
             const token = document
                 .querySelector('meta[name="csrf-token"]')
@@ -29,7 +28,7 @@ export default {
             );
 
             const Scientist = await res.json();
-
+        },
     },
 };
 </script>

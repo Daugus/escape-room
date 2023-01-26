@@ -47,6 +47,9 @@
             <a href="{{ route('equilibrado.index') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>
+        <li>
+            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
+        </li>
     </ul>
 
     @yield('content')

@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Models\PasswordSolution;
 use Illuminate\Database\Eloquent\Collection;
 
-class OvejaController extends Controller
+class PasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        return view('infocientificos.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
