@@ -34,16 +34,15 @@ export default {
 
             // guardar en array y mezclar los conceptos
             // ya que vienen ordenados por campo
-            this.conceptList = await res.json();
+            const concepts = await res.json();
 
-            for (let i = this.conceptList.length - 1; i > 0; i--) {
+            for (let i = concepts.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
-                [this.conceptList[i], this.conceptList[j]] = [
-                    this.conceptList[j],
-                    this.conceptList[i],
-                ];
+                [concepts[i], concepts[j]] = [concepts[j], concepts[i]];
             }
+
+            this.conceptList = concepts;
         },
         // carga los datos emitidos por cada Folder
         getCurrentFolderInfo(folderInfo) {
@@ -57,30 +56,19 @@ export default {
             )[0];
 
             // comprueba que el File esté dentro de los límites del Folder
-            // Opción 1: cambiar estilo
-            // if (
-            //     fileInfo.start.x >= targetFolderInfo.start.x &&
-            //     fileInfo.start.y >= targetFolderInfo.start.y &&
-            //     fileInfo.end.x <= targetFolderInfo.end.x &&
-            //     fileInfo.end.y <= targetFolderInfo.end.y
-            // ) {
-            //     document
-            //         .querySelector(`#${fileInfo.id}`)
-            //         .classList.add("correct");
-            // } else {
-            //     document
-            //         .querySelector(`#${fileInfo.id}`)
-            //         .classList.remove("correct");
-            // }
-
-            // Opción 2: eliminar File
             if (
                 fileInfo.start.x >= targetFolderInfo.start.x &&
                 fileInfo.start.y >= targetFolderInfo.start.y &&
                 fileInfo.end.x <= targetFolderInfo.end.x &&
                 fileInfo.end.y <= targetFolderInfo.end.y
             ) {
-                this.conceptList.splice(fileInfo.listIndex, 1);
+                document
+                    .querySelector(`#${fileInfo.id}`)
+                    .classList.add("correct");
+            } else {
+                document
+                    .querySelector(`#${fileInfo.id}`)
+                    .classList.remove("correct");
             }
         },
     },

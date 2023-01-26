@@ -41,6 +41,9 @@
             <a href="{{ route('agrupando.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
         </li>
         <li>
+            <a href="{{ route('oveja.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
+        </li>
+        <li>
             <a href="{{ route('equilibrado.index') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>

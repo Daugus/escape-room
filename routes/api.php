@@ -6,6 +6,8 @@ use App\Http\Controllers\HangmanController;
 use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
+use App\Http\Controllers\OvejaController;
+
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -23,3 +25,6 @@ Route::post('agrupando/getConcepts', [GroupingController::class, 'getConcepts'])
 
 // Ruta para coger el JSON de Todo Bien Equilibrado desde Vue
 Route::post('equilibrado/getFormulas', [EquilibradoController::class, 'getFormulas']);
+
+
+Route::post('oveja/getIncubationMethods', [OvejaController::class, 'getIncubationMethods']);
