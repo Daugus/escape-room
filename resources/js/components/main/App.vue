@@ -15,8 +15,10 @@ import Button from "./Button.vue";
             <Button
                 ruta="registro"
                 imagen="src/img/menu/BTN1.png"
-                texto="Nuevo Usuario"
-            />
+                texto="Nuevo
+                Usuario"
+            >
+            </Button>
             <Button
                 ruta="login"
                 imagen="src/img/menu/BTN2.png"

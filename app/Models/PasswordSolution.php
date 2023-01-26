@@ -11,7 +11,7 @@ class PasswordSolution extends Model
 
     protected $table = 'password_solutions';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'element', 'discovery_year', 'text', 'code'];
+    protected $fillable = ['name', 'element', 'discovery_year', 'text', 'code', 'image'];
 
     public $timestamps = false;
 }
