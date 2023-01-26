@@ -19,8 +19,8 @@ export default {
 
 <template>
     <div class="flex">
-        <a :href="this.rutaHref"><img :src="imagen" /></a>
-        <a class="font-bold text-3xl" :href="this.rutaHref">{{ texto }}</a>
+        <a :href="rutaHref"><img :src="imagen" /></a>
+        <a class="font-bold text-3xl" :href="rutaHref">{{ texto }}</a>
     </div>
 </template>
 

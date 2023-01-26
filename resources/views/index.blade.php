@@ -6,10 +6,10 @@
 @endsection
 
 @section('content')
-    @if (session('user'))
+    @if (session()->has('user'))
         <p>logged</p>
         @php
-            session()->forget('user');
+            // session()->forget('user');
         @endphp
     @else
         <p>not logged</p>

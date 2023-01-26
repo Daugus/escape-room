@@ -20,6 +20,6 @@ class SessionMiddleware
             return $next($request);
         }
 
-        redirect('/login');
+        return back();
     }
 }
