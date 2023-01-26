@@ -12,6 +12,7 @@ use App\Http\Controllers\HangmanController;
 use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
+use App\Http\Controllers\PasswordController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro.index');
@@ -22,6 +23,8 @@ Route::get('/kuku', [KukuController::class, 'index'])->name('kuku.index');
 Route::get('/agrupando', [GroupingController::class, 'index'])->name('agrupando.index');
 Route::get('/equilibrado', [EquilibradoController::class, 'index'])->name('equilibrado.index');
 Route::get('/oveja', [OvejaController::class, 'index'])->name('oveja.index');
+Route::get('/infocientificos', [PasswordController::class, 'index'])->name('infocientificos.index');
+
 
 
 Route::get('/', function () {

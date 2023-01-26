@@ -7,6 +7,7 @@ use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
 use App\Http\Controllers\OvejaController;
+use App\Http\Controllers\PasswordController;
 
 
 
