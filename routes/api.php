@@ -28,3 +28,5 @@ Route::post('equilibrado/getFormulas', [EquilibradoController::class, 'getFormul
 
 
 Route::post('oveja/getIncubationMethods', [OvejaController::class, 'getIncubationMethods']);
+
+Route::post('password/getScientist', [PasswordController::class, 'getScientist']);
