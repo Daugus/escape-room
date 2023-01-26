@@ -17,11 +17,8 @@ class PasswordController extends Controller
     {
         return view('infocientificos.index');
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/infocientificos
     /**
+     *
      *
      * @return \Illuminate\Http\Response
      */
