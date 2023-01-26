@@ -28,7 +28,7 @@ export default {
                 }
             );
 
-            const incubationMethods = await res.json();
+            const Scientist = await res.json();
 
     },
 };
