@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function show()
     {
-        return view('profile.index')
+        return view('profile.index');
     }
 
     /*
