@@ -20,7 +20,7 @@ export default {
 <template>
     <div class="flex">
         <a :href="rutaIndex"><img :src="imagen" /></a>
-        <a class="font-bold text-3xl" href="">{{ texto }}</a>
+        <a class="font-bold text-3xl" :href="rutaIndex">{{ texto }}</a>
     </div>
 </template>
 
