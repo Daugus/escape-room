@@ -59,6 +59,7 @@ export default {
             this.validatePassword(this.pass1);
 
             return !this.error;
+        },
     },
 };
 </script>
