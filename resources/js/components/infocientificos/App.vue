@@ -5,7 +5,9 @@ import route from "ziggy";
 <script>
 export default {
     data() {
-        return {};
+        return {
+            imagenes: [],
+        };
     },
     async mounted() {
         await this.getScientist();
@@ -16,7 +18,7 @@ export default {
             const token = document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
-            const res = await fetch(
+            const Scientistlist = await fetch(
                 `${window.location.origin}/api/password/getScientist`,
                 {
                     method: "POST",
@@ -27,11 +29,11 @@ export default {
                 }
             );
 
-            const Scientistlist = await res.json();
+            // const Scientistlist = await res.json();
             console.log(Scientistlist);
 
             for (let i = 0; i < Scientistlist.length; i++) {
-                const imagen = Scientistlist[i].image;
+                this.imagenes.push(Scientistlist[i].image);
                 console.log(imagen);
             }
         },
@@ -55,25 +57,24 @@ export default {
                 />
                 <div
                     class="carousel-item absolute opacity-0"
-                    style="height: 50vh"
+                    style="height: 100vh"
                 >
                     <div
                         class="block h-full w-full bg-indigo-500 text-white text-5xl text-center"
                     >
                         Slide 1
                         <!-- <img src="@/src/img/password/{{ imagen }}" alt="" /> -->
+                        {{ imagenes[0] }}
                     </div>
                 </div>
                 <label
                     for="carousel-3"
                     class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto"
-                    >‹</label
-                >
+                ></label>
                 <label
                     for="carousel-2"
                     class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-blue-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto"
-                    >›</label
-                >
+                ></label>
 
                 <!--Slide 2-->
                 <input
@@ -92,6 +93,7 @@ export default {
                         class="block h-full w-full bg-orange-500 text-white text-5xl text-center"
                     >
                         Slide 2
+                        {{ imagenes[1] }}
                     </div>
                 </div>
                 <label
@@ -122,6 +124,7 @@ export default {
                         class="block h-full w-full bg-green-500 text-white text-5xl text-center"
                     >
                         Slide 3
+                        {{ imagenes[2] }}
                     </div>
                 </div>
                 <label
