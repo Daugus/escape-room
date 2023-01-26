@@ -10,21 +10,18 @@ import route from "ziggy";
             <div class="flex justify-center mb-8">
                 <img
                     src="@/src/img/sobre-nosotros/ParasolCorporation.png"
-                    class="w-full md:w-6/12"
+                    class="w-full md:w-3/6"
                 />
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3">
                 <div>
-                    <h1 class="text-4xl font-bold mt-0 mb-2">
-                        ¿Qué tenía el vial?
-                    </h1>
+                    <h1 class="text-4xl font-bold mb-2">¿Qué tenía el vial?</h1>
                     <img
                         src="@/src/img/sobre-nosotros/vial.png"
-                        class="flex justify-center items-center"
-                        id="vial"
+                        class="flex justify-center w-3/6 md:w-36"
                     />
                 </div>
-                <div class="col-span-2 p-4" id="bg-text">
+                <div class="col-span-2 p-4 rounded-lg" id="bg-text">
                     <p class="text-base">
                         En un laboratorio de máxima seguridad biológica, ha
                         ocurrido un terrible accidente. A una persona se le ha
@@ -99,22 +96,8 @@ import route from "ziggy";
     background-size: 100% 100vh;
 }
 
-.logo {
-    width: 50%;
-}
-
-.flex {
-    display: flex;
-    align-content: flex-start;
-}
-
-#vial {
-    height: 200px;
-}
-
 #bg-text {
     background-color: #e6a002;
-    border-radius: 1rem;
 }
 
 P {
