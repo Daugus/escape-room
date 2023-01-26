@@ -29,6 +29,8 @@ Route::get('/signup', [UserController::class, 'create'])->name('user.create')->m
 Route::post('/signup', [UserController::class, 'store'])->name('user.store')->middleware('invitado');
 Route::get('/logout', [UserController::class, 'logout'])->name('user.logout')->middleware('logged');
 
+Route::get('/perfil', [UserController::class, 'show'])->name('user.show')->middleware('logged');
+
 Route::get('/lab', [LabController::class, 'index'])->name('laboratorio.index');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobre-nosotros.index');
 
