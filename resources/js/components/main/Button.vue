@@ -10,8 +10,8 @@ export default {
         texto: String,
     },
     computed: {
-        rutaIndex() {
-            return route(`${this.ruta}.index`);
+        rutaHref() {
+            return route(this.ruta);
         },
     },
 };
@@ -19,8 +19,8 @@ export default {
 
 <template>
     <div class="flex">
-        <a :href="rutaIndex"><img :src="imagen" /></a>
-        <a class="font-bold text-3xl" href="">{{ texto }}</a>
+        <a :href="rutaHref"><img :src="imagen" /></a>
+        <a class="font-bold text-3xl" :href="rutaHref">{{ texto }}</a>
     </div>
 </template>
 

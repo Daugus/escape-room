@@ -6,6 +6,13 @@ import route from "ziggy";
 export default {
     data() {
         return {
+            rg: {
+                name: /^[A-Za-zÀ-ÖØ-öø-ÿ\- ]{1,200}$/,
+                surname: /^[A-Za-zÀ-ÖØ-öø-ÿ\- ]{1,200}$/,
+                username: /^[A-Za-z0-9_-]{1,50}$/,
+                email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                pass: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/,
+            },
             name: "",
             surname: "",
             user: "",
@@ -13,6 +20,7 @@ export default {
             pass1: "",
             pass2: "",
             picture: "",
+            role: "",
             csrf_token: "",
             error: {
                 exists: false,
@@ -20,129 +28,109 @@ export default {
             },
         };
     },
-
     mounted() {
         this.csrf_token = document
             .querySelector('meta[name="csrf-token"]')
             .getAttribute("content");
-    },
 
+        const oldDiv = document.querySelector("#old");
+        if (oldDiv) {
+            const oldData = JSON.parse(oldDiv.innerText);
+
+            if (oldData.name) {
+                this.name = oldData.name;
+                this.role = oldData.role;
+                this.surname = oldData.surname;
+                this.email = oldData.email;
+                this.user = oldData.nickname;
+            }
+
+            oldDiv.remove();
+        }
+    },
     methods: {
         sendForm(event) {
             event.preventDefault();
 
-            if (this.validateFormCompletely()) {
+            if (this.validateForm())
                 document.querySelector("#form-registro").submit();
-                console.log("Todo correcto. Procedemos a enviar el FORM");
-            } else {
-                console.log("ERROR. Algunos de los campos no son válidos");
-            }
         },
 
         validateName(name) {
-            if (name !== "") {
+            const input = document.getElementById("grid-first-name");
+
+            if (this.rg.name.test(name)) {
                 this.error = false;
-                document.getElementById("grid-first-name").style.borderColor =
-                    "green";
-            } else if (name === "") {
-                this.error = true;
-                document.getElementById("grid-first-name").style.borderColor =
-                    "blue";
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-first-name").style.borderColor =
-                    "red";
+                input.style.borderColor = name === "" ? "blue" : "red";
             }
         },
 
         validateSurname(surname) {
-            if (surname !== "") {
+            const input = document.getElementById("grid-surname");
+
+            if (this.rg.surname.test(surname)) {
                 this.error = false;
-                document.getElementById("grid-surname").style.borderColor =
-                    "green";
-            } else if (surname === "") {
-                this.error = true;
-                document.getElementById("grid-surname").style.borderColor =
-                    "blue";
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-surname").style.borderColor =
-                    "red";
+                input.style.borderColor = surname === "" ? "blue" : "red";
             }
         },
 
         validateUser(user) {
-            if (user !== "") {
+            const input = document.getElementById("grid-username");
+
+            if (this.rg.username.test(user)) {
                 this.error = false;
-                document.getElementById("grid-username").style.borderColor =
-                    "green";
-            } else if (user === "") {
-                this.error = true;
-                document.getElementById("grid-username").style.borderColor =
-                    "blue";
-                document.getElementsByTagName;
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-username").style.borderColor =
-                    "red";
+                input.style.borderColor = user === "" ? "blue" : "red";
             }
         },
 
         validateEmail(email) {
-            if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
+            const input = document.getElementById("grid-email");
+
+            if (this.rg.email.test(email)) {
                 this.error = false;
-                document.getElementById("grid-email").style.borderColor =
-                    "green";
-            } else if (email === "") {
-                this.error = true;
-                document.getElementById("grid-email").style.borderColor =
-                    "blue";
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-email").style.borderColor = "red";
+                input.style.borderColor = email === "" ? "blue" : "red";
             }
         },
 
         validatePassword(pass1) {
-            if (
-                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,}$/.test(
-                    pass1
-                )
-            ) {
+            const input = document.getElementById("grid-first-pass");
+
+            if (this.rg.pass.test(pass1)) {
                 this.error = false;
-                document.getElementById("grid-first-pass").style.borderColor =
-                    "green";
-            } else if (pass1 === "") {
-                this.error = true;
-                document.getElementById("grid-first-pass").style.borderColor =
-                    "blue";
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-first-pass").style.borderColor =
-                    "red";
+                input.style.borderColor = pass1 === "" ? "blue" : "red";
             }
+
             this.comparePasswords(this.pass1, this.pass2);
         },
 
         comparePasswords(pass1, pass2) {
+            const input = document.getElementById("grid-second-pass");
+
             if (pass1 === pass2 && pass1 !== "") {
                 this.error = false;
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "green";
-            } else if (pass2 === "") {
-                this.error = true;
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "blue";
+                input.style.borderColor = "green";
             } else {
                 this.error = true;
-                document.getElementById("grid-second-pass").style.borderColor =
-                    "red";
+                input.style.borderColor = pass2 === "" ? "blue" : "red";
             }
         },
 
-        validateFormCompletely() {
-            console.log("Comprobamos todo");
-
+        validateForm() {
             // Comprobar las validaciones
             this.validateName(this.name);
             this.validateSurname(this.surname);
@@ -154,38 +142,6 @@ export default {
             return !this.error;
         },
     },
-
-    watch: {
-        name(value) {
-            this.name = value;
-            this.validateName(value);
-        },
-
-        surname(value) {
-            this.surname = value;
-            this.validateSurname(value);
-        },
-
-        user(value) {
-            this.user = value;
-            this.validateUser(value);
-        },
-
-        email(value) {
-            this.email = value;
-            this.validateEmail(value);
-        },
-
-        pass1(value) {
-            this.pass1 = value;
-            this.validatePassword(value);
-        },
-
-        pass2(value) {
-            this.pass2 = value;
-            this.comparePasswords(value);
-        },
-    },
 };
 </script>
 
@@ -194,15 +150,17 @@ export default {
         <div class="flex justify-center items-center" id="logoBorder">
             <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
+
         <div class="flex justify-center items-center">
             <form
                 class="w-full max-w-"
                 id="form-registro"
-                :action="route('registro.store')"
+                :action="route('user.store')"
                 method="POST"
                 enctype="multipart/form-data"
             >
                 <input type="hidden" name="_token" :value="csrf_token" />
+
                 <div class="grid grid-cols-2 items-center px-12">
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
@@ -219,8 +177,10 @@ export default {
                             type="text"
                             placeholder="Nombre"
                             name="name"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -236,8 +196,10 @@ export default {
                             type="text"
                             placeholder="Apellido"
                             name="surname"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -253,8 +215,10 @@ export default {
                             type="text"
                             placeholder="Username"
                             name="nickname"
+                            maxlength="50"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -270,8 +234,10 @@ export default {
                             v-model="email"
                             @keyup="validateEmail(this.email)"
                             name="email"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -287,8 +253,10 @@ export default {
                             @keyup="validatePassword(this.pass1)"
                             placeholder="******************"
                             name="password"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -303,8 +271,10 @@ export default {
                             v-model="pass2"
                             @keyup="comparePasswords(this.pass1, this.pass2)"
                             placeholder="******************"
+                            maxlength="200"
                         />
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -316,10 +286,15 @@ export default {
                             name="role"
                             id="grid-role"
                         >
-                            <option>Alumno</option>
-                            <option>Profesor</option>
+                            <option :selected="role === 'Alumno'">
+                                Alumno
+                            </option>
+                            <option :selected="role === 'Profesor'">
+                                Profesor
+                            </option>
                         </select>
                     </div>
+
                     <div class="w-full px-3 mb-6 md:mb-0">
                         <label
                             class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
@@ -331,8 +306,10 @@ export default {
                             name="picture"
                             id="picture"
                             type="file"
+                            accept=".jpg,.jpeg,.png"
                         />
                     </div>
+
                     <div class="flex items-center justify-between mt-4 ml-3">
                         <button
                             class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -344,12 +321,14 @@ export default {
                             Registrarse
                         </button>
                     </div>
+
                     <div class="flex items-center justify-between mt-4">
                         <a
                             class="inline-block align-baseline font-bold text-l"
-                            :href="route('login.index')"
+                            :href="route('user.login')"
                         >
-                            Tienes cuenta? Inciar sesión
+                            ¿Tienes cuenta?
+                            <span class="underline">Iniciar sesión</span>
                         </a>
                     </div>
                 </div>

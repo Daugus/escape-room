@@ -85,7 +85,7 @@ class KukuController extends Controller
 
     public function getCards()
     {
-        $data = SharedSolution::query()->select('id', 'question AS name', 'answer AS image')->where('challenge_id', '=', '2')->inRandomOrder()->limit(12)->get();
+        $data = SharedSolution::query()->select('id', 'question AS name', 'answer AS image')->where('challenge_id', '=', '2')->inRandomOrder()->limit(9)->get();
 
         return response()->json($data);
     }

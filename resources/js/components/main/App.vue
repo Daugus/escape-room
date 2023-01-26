@@ -13,17 +13,17 @@ import Button from "./Button.vue";
 
         <div class="grid grid-rows-3 gap-y-10 pl-12">
             <Button
-                ruta="registro"
+                ruta="user.create"
                 imagen="src/img/menu/BTN1.png"
                 texto="Nuevo Usuario"
             />
             <Button
-                ruta="login"
+                ruta="user.login"
                 imagen="src/img/menu/BTN2.png"
                 texto="Iniciar Sesión"
             />
             <Button
-                ruta="hangman"
+                ruta="hangman.index"
                 imagen="src/img/menu/BTN3.png"
                 texto="Demo"
             />
