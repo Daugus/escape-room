@@ -14,6 +14,7 @@ use App\Http\Controllers\HangmanController;
 use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
+use App\Http\Controllers\SobreNosotrosController;
 
 /*
     middlewares (especificados en Kernel.php):
@@ -29,6 +30,7 @@ Route::post('/signup', [UserController::class, 'store'])->name('user.store')->mi
 Route::get('/logout', [UserController::class, 'logout'])->name('user.logout')->middleware('logged');
 
 Route::get('/lab', [LabController::class, 'index'])->name('laboratorio.index');
+Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobre-nosotros.index');
 
 Route::get('/hangman', [HangmanController::class, 'index'])->name('hangman.index');
 Route::get('/kuku', [KukuController::class, 'index'])->name('kuku.index')->middleware('logged');

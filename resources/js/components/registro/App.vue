@@ -146,31 +146,30 @@ export default {
 </script>
 
 <template>
-    <div id="wrapper" class="grid grid-cols-2 items-center pr-12 pl-8 pb-12">
-        <div class="flex justify-center items-center" id="logoBorder">
-            <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
+    <div
+        id="wrapper"
+        class="grid grid-cols-1 md:grid-cols-2 items-center py-24 px-10 md:p-14"
+    >
+        <div class="flex justify-center md:border-r-4">
+            <a class="logo" :href="route('index')"
+                ><img src="@/src/img/menu/parasolCorporation.png"
+            /></a>
         </div>
-
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center">
             <form
-                class="w-full max-w-"
+                class="w-full"
                 id="form-registro"
                 :action="route('user.store')"
                 method="POST"
                 enctype="multipart/form-data"
             >
                 <input type="hidden" name="_token" :value="csrf_token" />
-
-                <div class="grid grid-cols-2 items-center px-12">
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-first-name"
-                        >
-                            Nombre
-                        </label>
+                <div
+                    class="grid md:grid-cols-2 px-0 md:px-12 overflow-y-auto h-80 md:overflow-visible"
+                >
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-first-name"
                             v-model="name"
                             @keyup="validateName(this.name)"
@@ -180,16 +179,9 @@ export default {
                             maxlength="200"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-surname"
-                        >
-                            Apellido
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-surname"
                             v-model="surname"
                             @keyup="validateSurname(this.surname)"
@@ -199,16 +191,9 @@ export default {
                             maxlength="200"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-username"
-                        >
-                            Username
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-username"
                             v-model="user"
                             @keyup="validateUser(this.user)"
@@ -218,16 +203,9 @@ export default {
                             maxlength="50"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-email"
-                        >
-                            Correo
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-email"
                             type="email"
                             placeholder="Email"
@@ -237,52 +215,32 @@ export default {
                             maxlength="200"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-first-pass"
-                        >
-                            Contraseña
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-first-pass"
                             type="password"
                             v-model="pass1"
                             @keyup="validatePassword(this.pass1)"
-                            placeholder="******************"
+                            placeholder="******"
                             name="password"
                             maxlength="200"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-second-pass"
-                        >
-                            Repetir contraseña
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none"
+                            class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                             id="grid-second-pass"
                             type="password"
                             v-model="pass2"
                             @keyup="comparePasswords(this.pass1, this.pass2)"
-                            placeholder="******************"
+                            placeholder="******"
                             maxlength="200"
                         />
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="grid-role"
-                        >
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <select
-                            class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
+                            class="appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 rounded focus:outline-none"
                             name="role"
                             id="grid-role"
                         >
@@ -294,25 +252,18 @@ export default {
                             </option>
                         </select>
                     </div>
-
-                    <div class="w-full px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-l font-bold mb-2"
-                            for="picture"
-                        >
-                        </label>
+                    <div class="w-full px-3 mb-6">
                         <input
-                            class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none"
+                            class="appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 rounded focus:outline-none"
                             name="picture"
                             id="picture"
                             type="file"
                             accept=".jpg,.jpeg,.png"
                         />
                     </div>
-
-                    <div class="flex items-center justify-between mt-4 ml-3">
+                    <div class="w-full px-3 mb-6">
                         <button
-                            class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none"
                             id="btn-color"
                             type="submit"
                             @click="sendForm"
@@ -321,8 +272,7 @@ export default {
                             Registrarse
                         </button>
                     </div>
-
-                    <div class="flex items-center justify-between mt-4">
+                    <div class="w-full px-3 mb-6">
                         <a
                             class="inline-block align-baseline font-bold text-l"
                             :href="route('user.login')"
@@ -348,10 +298,6 @@ export default {
 
 .logo {
     width: 60%;
-}
-
-#logoBorder {
-    border-right: solid 3px black;
 }
 
 #btn-color {
