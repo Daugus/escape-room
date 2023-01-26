@@ -27,15 +27,20 @@ export default {
                 }
             );
 
-            const Scientist = await res.json();
-            console.log(Scientist);
+            const Scientistlist = await res.json();
+            console.log(Scientistlist);
+
+            for (let i = 0; i < Scientistlist.length; i++) {
+                const imagen = Scientistlist[i].image;
+                console.log(imagen);
+            }
         },
     },
 };
 </script>
 
 <template>
-    <div class="bg-white font-sans leading-normal tracking-normal">
+    <body class="bg-white font-sans leading-normal tracking-normal">
         <div class="carousel relative shadow-2xl bg-white">
             <div class="carousel-inner relative overflow-hidden w-full">
                 <!--Slide 1-->
@@ -50,15 +55,13 @@ export default {
                 />
                 <div
                     class="carousel-item absolute opacity-0"
-                    style="height: 70vh"
+                    style="height: 50vh"
                 >
                     <div
                         class="block h-full w-full bg-indigo-500 text-white text-5xl text-center"
                     >
-                        <img
-                            src="@/src/img/password/prueba.jpg"
-                            class="h-fit w-fit"
-                        />
+                        Slide 1
+                        <!-- <img src="@/src/img/password/{{ imagen }}" alt="" /> -->
                     </div>
                 </div>
                 <label
@@ -158,7 +161,7 @@ export default {
                 </ol>
             </div>
         </div>
-    </div>
+    </body>
 </template>
 
 <style scoped lang="scss">
