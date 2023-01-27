@@ -64,7 +64,7 @@ export default {
                     style="height: 100vh"
                 >
                     <div
-                        class="block h-full w-full bg-indigo-500 text-white text-5xl text-center"
+                        class="block h-10 w-10 border text-white text-5xl text-center"
                     >
                         <!-- Slide 1 -->
                         <!-- <img src="@/src/img/password/{{ imagen }}" alt="" /> -->
