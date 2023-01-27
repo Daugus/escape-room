@@ -7,6 +7,8 @@ export default {
     data() {
         return {
             imagenes: [],
+            nombre: "",
+            imagen: "",
         };
     },
     async mounted() {
@@ -18,7 +20,7 @@ export default {
             const token = document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
-            const Scientistlist = await fetch(
+            const res = await fetch(
                 `${window.location.origin}/api/password/getScientist`,
                 {
                     method: "POST",
@@ -29,8 +31,10 @@ export default {
                 }
             );
 
-            // const Scientistlist = await res.json();
+            const Scientistlist = await res.json();
             console.log(Scientistlist);
+            this.nombre = Scientistlist[0].name;
+            this.imagen = Scientistlist[1].image;
 
             for (let i = 0; i < Scientistlist.length; i++) {
                 this.imagenes.push(Scientistlist[i].image);
@@ -62,9 +66,9 @@ export default {
                     <div
                         class="block h-full w-full bg-indigo-500 text-white text-5xl text-center"
                     >
-                        Slide 1
+                        <!-- Slide 1 -->
                         <!-- <img src="@/src/img/password/{{ imagen }}" alt="" /> -->
-                        {{ imagenes[0] }}
+                        {{ nombre }}
                     </div>
                 </div>
                 <label
@@ -92,8 +96,7 @@ export default {
                     <div
                         class="block h-full w-full bg-orange-500 text-white text-5xl text-center"
                     >
-                        Slide 2
-                        {{ imagenes[1] }}
+                        {{ nombre }}
                     </div>
                 </div>
                 <label
