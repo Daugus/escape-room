@@ -1,10 +1,6 @@
 @extends('layouts.master')
 {{-- @section('title', 'index') --}}
 
-@section('vitejs')
-    {{-- @vite(['resources/js/components/main/main.js']) --}}
-@endsection
-
 @section('content')
     <div id="borde-monitor" class="grid grid-cols-3 items-center justify-center py-24 px-96">
         <div>

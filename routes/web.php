@@ -6,13 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
 // juego
-use App\Http\Controllers\LabController;
-
-use App\Http\Controllers\OvejaController;
-use App\Http\Controllers\HangmanController;
-use App\Http\Controllers\KukuController;
-use App\Http\Controllers\GroupingController;
-use App\Http\Controllers\EquilibradoController;
+use App\Http\Controllers\GameController;
 
 // menú
 use App\Http\Controllers\SobreNosotrosController;
@@ -39,13 +33,13 @@ Route::post('/perfil/editar', [UserController::class, 'update'])->name('user.upd
 Route::delete('/perfil/eliminar', [UserController::class, 'destroy'])->name('user.destroy')->middleware('logged');
 
 // juego
-Route::get('/lab', [LabController::class, 'index'])->name('laboratorio.index');
+Route::get('/jugar/lab', [GameController::class, 'lab'])->name('laboratorio.index');
 
-Route::get('/hangman', [HangmanController::class, 'index'])->name('hangman.index');
-Route::get('/kuku', [KukuController::class, 'index'])->name('kuku.index');
-Route::get('/agrupando', [GroupingController::class, 'index'])->name('agrupando.index');
-Route::get('/equilibrado', [EquilibradoController::class, 'index'])->name('equilibrado.index');
-Route::get('/oveja', [OvejaController::class, 'index'])->name('oveja.index');
+Route::get('/jugar/hangman', [GameController::class, 'hangman'])->name('hangman.index');
+Route::get('/jugar/kuku', [GameController::class, 'kuku'])->name('kuku.index');
+Route::get('/jugar/agrupando', [GameController::class, 'agrupando'])->name('agrupando.index');
+Route::get('/jugar/equilibrado', [GameController::class, 'equilibrado'])->name('equilibrado.index');
+Route::get('/jugar/oveja', [GameController::class, 'oveja'])->name('oveja.index');
 
 // menús
 Route::get('/administrar-pruebas', [PruebasController::class, 'index'])->name('pruebas.index')->middleware('profesor');
