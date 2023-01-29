@@ -34,6 +34,9 @@
             <a href="{{ route('user.show') }}" class="underline text-blue-600 hover:text-blue-800 ">Perfil</a>
         </li>
         <li>
+            <a href="{{ route('user.logout') }}" class="underline text-blue-600 hover:text-blue-800 ">Logout</a>
+        </li>
+        <li>
             <a href="{{ route('sobre-nosotros.index') }}" class="underline text-blue-600 hover:text-blue-800">Sobre
                 nosotros</a>
         </li>

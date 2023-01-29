@@ -6,13 +6,6 @@
 @endsection
 
 @section('content')
-    <pre class="absolute bottom-0 text-white">
-"role": "alumno",
-"name": "Augusto", "surname": "de la Cámara",
-"nickname": "dlc", "picture": "user.png"
-"email": "dlc@email.com",
-</pre>
-
     <div id="borde-monitor" class="grid grid-cols-6 items-center justify-center py-24 px-96">
         <div>
             <img src="{{ asset('src/img/users/' . session('user')->picture) }}"

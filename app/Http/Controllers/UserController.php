@@ -113,7 +113,7 @@ class UserController extends Controller
         $picture = $user->picture;
 
         if ($picture !== 'user.png') {
-            $ruta = public_path('src/img/users' . $picture);
+            $ruta = public_path('src/img/users/' . $picture);
             if (file_exists($ruta)) File::delete($ruta);
         }
 
