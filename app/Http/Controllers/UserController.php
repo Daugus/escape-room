@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -82,7 +83,43 @@ class UserController extends Controller
 
     public function logout()
     {
-        session()->forget('user');
+        session()->flush();
+        return redirect('/');
+    }
+
+    public function edit()
+    {
+        return view('user.edit', ['user' => session('user')]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->nickname = $request->nickname;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect()->action([UserController::class, 'show']);
+    }
+
+    public function destroy()
+    {
+        $user = User::findOrFail(session('user')->id);
+
+        $picture = $user->picture;
+
+        if ($picture !== 'user.png') {
+            $ruta = public_path('src/img/users' . $picture);
+            if (file_exists($ruta)) File::delete($ruta);
+        }
+
+        $user->delete();
+        session()->flush();
+
         return redirect('/');
     }
 }
