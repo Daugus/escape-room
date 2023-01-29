@@ -8,7 +8,7 @@
             <ul>
                 <li><a href="{{ route('hangman.index') }}">Hangman</a></li>
                 <li><a href="{{ route('pruebas.index') }}">Kukú</a></li>
-                <li><a href="{{ route('pruebas.index') }}">Agrupando</a></li>
+                <li><a href="{{ route('agrupando.index') }}">Agrupando</a></li>
                 <li><a href="{{ route('pruebas.index') }}">Oveja</a></li>
             </ul>
         </div>

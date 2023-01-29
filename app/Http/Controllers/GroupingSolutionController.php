@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HangmanSolution;
+use App\Models\GroupingSolution;
 use Illuminate\Http\Request;
 
-class HangmanSolutionController extends Controller
+class GroupingSolutionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class HangmanSolutionController extends Controller
      */
     public function index()
     {
-        $solutions = HangmanSolution::orderBy('microorganism', 'asc')->paginate(15);
-        return view('pruebas.hangman.index', compact('solutions'));
+        $solutions = GroupingSolution::orderBy('field', 'asc')->orderBy('concept', 'asc')->paginate(15);
+        return view('pruebas.agrupando.index', compact('solutions'));
     }
 
     /**
@@ -25,7 +25,7 @@ class HangmanSolutionController extends Controller
      */
     public function create()
     {
-        return view('pruebas.hangman.create');
+        return view('pruebas.agrupando.create');
     }
 
     /**
@@ -37,71 +37,74 @@ class HangmanSolutionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'microorganism' => 'required|unique:hangman_solutions|max:50',
+            'field' => 'required',
+            'concept' => 'required|unique:grouping_solutions|max:50',
         ]);
 
-        $solution = new HangmanSolution($request->all());
+        $solution = new GroupingSolution($request->all());
         $solution->save();
 
-        return redirect()->action([HangmanSolutionController::class, 'index']);
+        return redirect()->action([GroupingSolutionController::class, 'index']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HangmanSolution  $hangmanSolution
+     * @param  \App\Models\GroupingSolution  $GroupingSolution
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
-        return redirect()->action([HangmanSolutionController::class, 'index']);
+        return redirect()->action([GroupingSolutionController::class, 'index']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HangmanSolution  $hangmanSolution
+     * @param  \App\Models\GroupingSolution  $GroupingSolution
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $solution = HangmanSolution::findOrFail($id);
-        return view('pruebas.hangman.edit', compact('solution'));
+        $solution = GroupingSolution::findOrFail($id);
+        return view('pruebas.agrupando.edit', compact('solution'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HangmanSolution  $hangmanSolution
+     * @param  \App\Models\GroupingSolution  $GroupingSolution
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'microorganism' => 'required|unique:hangman_solutions|max:50'
+            'field' => 'required',
+            'concept' => 'required|max:50',
         ]);
 
-        $solution = HangmanSolution::findOrFail($id);
+        $solution = GroupingSolution::findOrFail($id);
 
-        $solution->microorganism = $request->microorganism;
+        $solution->field = $request->field;
+        $solution->concept = $request->concept;
 
         $solution->save();
 
-        return redirect()->action([HangmanSolutionController::class, 'index']);
+        return redirect()->action([GroupingSolutionController::class, 'index']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HangmanSolution  $hangmanSolution
+     * @param  \App\Models\GroupingSolution  $GroupingSolution
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $solution = HangmanSolution::findOrFail($id);
+        $solution = GroupingSolution::findOrFail($id);
         $solution->delete();
 
-        return redirect()->action([HangmanSolutionController::class, 'index']);
+        return redirect()->action([GroupingSolutionController::class, 'index']);
     }
 }
