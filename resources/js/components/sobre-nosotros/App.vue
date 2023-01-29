@@ -58,10 +58,6 @@ import route from "ziggy";
                 </div>
             </div>
             <br />
-            <!-- <h1 class="border-b-4 border-black">Información</h1>
-            <p class="p-4">
-                ¿Qué tenía el vial? Es una sala de escape room online
-            </p> -->
 
             <h1 class="border-b-4 border-black">Sobre nosotros</h1>
             <p class="p-4">
