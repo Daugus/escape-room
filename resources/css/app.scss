@@ -120,3 +120,12 @@ body {
         transform: skewY(-20deg);
     }
 }
+
+// borde monitor
+#borde-monitor {
+    height: 100vh;
+    width: 100%;
+    background-image: url("@/src/img/menu/fondoMenu.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}

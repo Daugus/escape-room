@@ -53,7 +53,7 @@ class UserController extends Controller
         }
 
         $user->save();
-        return print("guarda");
+        return redirect('/login');
     }
 
     public function login()
