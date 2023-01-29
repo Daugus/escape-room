@@ -6,7 +6,7 @@
         <div>
             <h1>Pruebas:</h1>
             <ul>
-                <li><a href="{{ route('pruebas.index') }}">Hangman</a></li>
+                <li><a href="{{ route('pruebas.hangman.index') }}">Hangman</a></li>
                 <li><a href="{{ route('pruebas.index') }}">Kukú</a></li>
                 <li><a href="{{ route('pruebas.index') }}">Agrupando</a></li>
                 <li><a href="{{ route('pruebas.index') }}">Oveja</a></li>
