@@ -34,6 +34,10 @@
             <a href="{{ route('user.show') }}" class="underline text-blue-600 hover:text-blue-800 ">Perfil</a>
         </li>
         <li>
+            <a href="{{ route('pruebas.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Admin
+                pruebas</a>
+        </li>
+        <li>
             <a href="{{ route('user.logout') }}" class="underline text-blue-600 hover:text-blue-800 ">Logout</a>
         </li>
         <li>

@@ -2,22 +2,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-// menú
+// usuario
 use App\Http\Controllers\UserController;
 
-// laboratoriao
+// juego
 use App\Http\Controllers\LabController;
 
-// pruebas
 use App\Http\Controllers\OvejaController;
 use App\Http\Controllers\HangmanController;
 use App\Http\Controllers\KukuController;
 use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
+
+// menú
 use App\Http\Controllers\SobreNosotrosController;
+use App\Http\Controllers\PruebasController;
 
 /*
-    middlewares (especificados en Kernel.php):
+    si no hay ninguno especificado, cualquier usuario puede entrar
+    lista (especificados en Kernel.php):
     - invitado: comprueba que la sesión NO esté iniciada
     - logged: comprueba que la sesión esté iniciada
     - profesor: comprueba que la sesión esté iniciada y el usuario sea profesor
@@ -45,6 +48,7 @@ Route::get('/equilibrado', [EquilibradoController::class, 'index'])->name('equil
 Route::get('/oveja', [OvejaController::class, 'index'])->name('oveja.index');
 
 // menús
+Route::get('/administrar-pruebas', [PruebasController::class, 'index'])->name('pruebas.index')->middleware('profesor');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobre-nosotros.index');
 
 Route::get('/', function () {
