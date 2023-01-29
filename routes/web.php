@@ -13,6 +13,7 @@ use App\Http\Controllers\SobreNosotrosController;
 use App\Http\Controllers\PruebasController;
 
 use App\Http\Controllers\HangmanSolutionController;
+use App\Http\Controllers\KukuSolutionController;
 use App\Http\Controllers\GroupingSolutionController;
 use App\Http\Controllers\OvejaSolutionController;
 
@@ -98,6 +99,7 @@ Route::get('/administrar', [PruebasController::class, 'index'])
     ->middleware('profesor');
 
 Route::resource('/administrar/hangman', HangmanSolutionController::class);
+Route::resource('/administrar/kuku', KukuSolutionController::class);
 Route::resource('/administrar/agrupando', GroupingSolutionController::class);
 Route::resource('/administrar/oveja', OvejaSolutionController::class);
 
