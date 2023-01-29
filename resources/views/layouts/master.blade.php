@@ -45,19 +45,20 @@
                 nosotros</a>
         </li>
         <li>
-            <a href="{{ route('hangman.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
+            <a href="{{ route('prueba.hangman') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
         </li>
         <li>
-            <a href="{{ route('kuku.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
+            <a href="{{ route('prueba.kuku') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
         </li>
         <li>
-            <a href="{{ route('agrupando.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
+            <a href="{{ route('prueba.agrupando') }}"
+                class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
         </li>
         <li>
-            <a href="{{ route('oveja.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
+            <a href="{{ route('prueba.oveja') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
         </li>
         <li>
-            <a href="{{ route('equilibrado.index') }}"
+            <a href="{{ route('prueba.equilibrado') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>
     </ul>

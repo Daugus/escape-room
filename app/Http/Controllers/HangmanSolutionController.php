@@ -14,7 +14,7 @@ class HangmanSolutionController extends Controller
      */
     public function index()
     {
-        $solutions = HangmanSolution::orderBy('id', 'desc')->paginate(25);
+        $solutions = HangmanSolution::orderBy('id', 'asc')->paginate(15);
         return view('pruebas.hangman.index', compact('solutions'));
     }
 
@@ -25,7 +25,7 @@ class HangmanSolutionController extends Controller
      */
     public function create()
     {
-        //
+        return view('pruebas.hangman.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class HangmanSolutionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'microorganism' => 'required|unique:hangman_solutions|max:50'
+        ]);
+
+        $solution = new HangmanSolution($request->all());
+        $solution->save();
+
+        return redirect()->action([HangmanSolutionController::class, 'index']);
     }
 
     /**
@@ -45,9 +52,9 @@ class HangmanSolutionController extends Controller
      * @param  \App\Models\HangmanSolution  $hangmanSolution
      * @return \Illuminate\Http\Response
      */
-    public function show(HangmanSolution $hangmanSolution)
+    public function show()
     {
-        //
+        return redirect()->action([HangmanSolutionController::class, 'index']);
     }
 
     /**
@@ -56,9 +63,10 @@ class HangmanSolutionController extends Controller
      * @param  \App\Models\HangmanSolution  $hangmanSolution
      * @return \Illuminate\Http\Response
      */
-    public function edit(HangmanSolution $hangmanSolution)
+    public function edit($id)
     {
-        //
+        $solution = HangmanSolution::findOrFail($id);
+        return view('pruebas.hangman.edit', compact('solution'));
     }
 
     /**
@@ -68,9 +76,19 @@ class HangmanSolutionController extends Controller
      * @param  \App\Models\HangmanSolution  $hangmanSolution
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HangmanSolution $hangmanSolution)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'microorganism' => 'required|unique:hangman_solutions|max:50'
+        ]);
+
+        $solution = HangmanSolution::findOrFail($id);
+
+        $solution->microorganism = $request->microorganism;
+
+        $solution->save();
+
+        return redirect()->action([HangmanSolutionController::class, 'index']);
     }
 
     /**
@@ -79,8 +97,11 @@ class HangmanSolutionController extends Controller
      * @param  \App\Models\HangmanSolution  $hangmanSolution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HangmanSolution $hangmanSolution)
+    public function destroy($id)
     {
-        //
+        $solution = HangmanSolution::findOrFail($id);
+        $solution->delete();
+
+        return redirect()->action([HangmanSolutionController::class, 'index']);
     }
 }

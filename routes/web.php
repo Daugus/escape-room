@@ -60,7 +60,6 @@ Route::delete('/perfil/eliminar', [UserController::class, 'destroy'])
     ->name('user.destroy')
     ->middleware('logged');
 
-
 // juego
 Route::get('/jugar/lab', [GameController::class, 'lab'])
     ->name('laboratorio.index')
@@ -68,23 +67,23 @@ Route::get('/jugar/lab', [GameController::class, 'lab'])
 
 
 Route::get('/jugar/hangman', [GameController::class, 'hangman'])
-    ->name('hangman.index')
+    ->name('prueba.hangman')
     ->middleware('logged');
 
 Route::get('/jugar/kuku', [GameController::class, 'kuku'])
-    ->name('kuku.index')
+    ->name('prueba.kuku')
     ->middleware('logged');
 
 Route::get('/jugar/agrupando', [GameController::class, 'agrupando'])
-    ->name('agrupando.index')
+    ->name('prueba.agrupando')
     ->middleware('logged');
 
 Route::get('/jugar/equilibrado', [GameController::class, 'equilibrado'])
-    ->name('equilibrado.index')
+    ->name('prueba.equilibrado')
     ->middleware('logged');
 
 Route::get('/jugar/oveja', [GameController::class, 'oveja'])
-    ->name('oveja.index')
+    ->name('prueba.oveja')
     ->middleware('logged');
 
 
@@ -96,9 +95,7 @@ Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
     ->middleware('profesor');
 
-Route::get('/adminstrar/hangman', [HangmanSolutionController::class, 'index'])
-    ->name('pruebas.hangman.index')
-    ->middleware('profesor');
+Route::resource('/administrar/hangman', HangmanSolutionController::class);
 
 Route::get('/', function () {
     return view('index');

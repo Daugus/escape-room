@@ -3,7 +3,7 @@
         <ul class="flex gap-3">
             @if ($paginator->onFirstPage())
                 <li class="">
-                    <a class="" href="#" tabindex="-1">Anterior</a>
+                    <a class="" tabindex="-1">Anterior</a>
                 </li>
             @else
                 <li class=""><a class="" href="{{ $paginator->previousPageUrl() }}">Anterior</a></li>
@@ -16,7 +16,7 @@
 
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
-                        @if ($page == $paginator->currentPage())
+                        @if ($page === $paginator->currentPage())
                             <li class="">
                                 <a class="underline">{{ $page }}</a>
                             </li>
@@ -35,7 +35,7 @@
                 </li>
             @else
                 <li class="">
-                    <a class="" href="#">Siguiente</a>
+                    <a class="">Siguiente</a>
                 </li>
             @endif
         </ul>
