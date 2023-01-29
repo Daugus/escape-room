@@ -14,6 +14,7 @@ use App\Http\Controllers\PruebasController;
 
 use App\Http\Controllers\HangmanSolutionController;
 use App\Http\Controllers\GroupingSolutionController;
+use App\Http\Controllers\OvejaSolutionController;
 
 /*
     si no hay ninguno especificado, cualquier usuario puede entrar
@@ -98,6 +99,7 @@ Route::get('/administrar', [PruebasController::class, 'index'])
 
 Route::resource('/administrar/hangman', HangmanSolutionController::class);
 Route::resource('/administrar/agrupando', GroupingSolutionController::class);
+Route::resource('/administrar/oveja', OvejaSolutionController::class);
 
 Route::get('/', function () {
     return view('index');

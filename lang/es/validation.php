@@ -150,6 +150,7 @@ return [
         'microorganism' => 'microorganismo',
         'field' => 'campo',
         'concept' => 'concepto',
+        'definition' => 'definición',
     ],
 
 ];
