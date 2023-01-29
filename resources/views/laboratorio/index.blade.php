@@ -17,15 +17,15 @@
         </div>
 
         {{-- CADA OVEJA CON SU PAREJA --}}
-        <a href="{{ route('oveja.index')}}" id="oveja"></a>
+        <a href="{{ route('prueba.oveja') }}" id="oveja"></a>
         {{-- KUKU --}}
-        <a href="{{ route('kuku.index')}}" id="kuku"></a>
+        <a href="{{ route('prueba.kuku') }}" id="kuku"></a>
         {{-- HANGMAN --}}
-        <a href="{{ route('hangman.index')}}" id="hangman"></a>
+        <a href="{{ route('prueba.hangman') }}" id="hangman"></a>
         {{-- TODO BIEN EQUILIBRADO --}}
-        <a href="{{ route('equilibrado.index')}}" id="equilibrado"></a>
+        <a href="{{ route('prueba.equilibrado') }}" id="equilibrado"></a>
         {{-- AGRUPANDO --}}
-        <a href="{{ route('agrupando.index')}}" id="agrupando"></a>
+        <a href="{{ route('prueba.agrupando') }}" id="agrupando"></a>
         {{-- NECESITAMOS UNA CONTRASEÑA --}}
         <a href="#" id="password"></a>
 

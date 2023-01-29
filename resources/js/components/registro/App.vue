@@ -147,7 +147,7 @@ export default {
 
 <template>
     <div
-        id="wrapper"
+        id="borde-monitor"
         class="grid grid-cols-1 md:grid-cols-2 items-center py-24 px-10 md:p-14"
     >
         <div class="flex justify-center md:border-r-4">
@@ -288,14 +288,6 @@ export default {
 </template>
 
 <style scoped>
-#wrapper {
-    height: 100vh;
-    width: 100%;
-    background-image: url("@/src/img/menu/fondoMenu.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
-
 .logo {
     width: 60%;
 }
