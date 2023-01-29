@@ -43,7 +43,7 @@ export default {
 <template>
     <div class="zone" :id="getId">
         <div class="container">
-            <p>{{ definitionInfo.definition }} ,{{ definitionInfo.id }}</p>
+            <p>{{ definitionInfo.definition }}</p>
             <img src="@/src/img/oveja/hoja.png" />
         </div>
     </div>

@@ -11,12 +11,12 @@ export default {
     },
     methods: {
         // muestra la carta y la envía a App.vue si no está revelada
-        flip(e) {
-            if (document.querySelector(`#${this.getId}.flipped`))
-                return console.log("econntardo");
+        flip() {
+            let card = document.querySelector(`#${this.getId} .card`);
+            if (card.classList === "flipped") return;
 
-            e.target.classList.add("flipped");
-            this.$emit("getFlippedCard", e.target);
+            card.classList.add("flipped");
+            this.$emit("getFlippedCard", card.parentElement);
         },
     },
     computed: {
@@ -40,36 +40,91 @@ export default {
 </script>
 
 <template>
-    <article
-        class="border border-black flex flex-col justify-center items-center aspect-square"
-        @click="flip"
-        :data-id="cardInfo.id"
-        :id="getId"
-    >
-        <p>{{ cardInfo.id }}</p>
+    <div class="cardBox" @click="flip" :data-id="cardInfo.id" :id="getId">
+        <div class="card">
+            <div class="front">
+                <img src="@/src/img/kuku/ParasolCorporation.png" />
+            </div>
+            <div class="back">
+                <h1>{{ cardInfo.id }}</h1>
 
-        <!-- muestra un img o un p dependiendo del tipo de carta -->
-        <img v-if="cardInfo.image" :src="imageSource" :alt="cardInfo.alt" />
-        <p v-else class="text-center">{{ cardInfo.name }}</p>
-    </article>
+                <!-- muestra un img o un p dependiendo del tipo de carta -->
+                <img
+                    v-if="cardInfo.image"
+                    :src="imageSource"
+                    :alt="cardInfo.alt"
+                />
+                <p v-else class="text-center">{{ cardInfo.name }}</p>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
-article {
-    background-color: black;
-    transform: rotate3d(0, 1, 0, 180deg);
+.cardBox {
+    font-size: 1.2em;
+    margin: 1% 0 0 1%;
+    perspective: 100rem;
+    transition: all 0.3s ease 0s;
+    width: 100%;
 
-    * {
-        display: none;
+    &:hover {
+        cursor: pointer;
+    }
+
+    .card {
+        background: #222;
+        height: 300px;
+        transform-style: preserve-3d;
+        transition: transform 0.4s ease 0s;
+        width: 100%;
+        animation: flip 1s 1;
+
+        .front,
+        .back {
+            backface-visibility: hidden;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            padding: 5%;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .front {
+            background-color: rgb(30, 30, 30);
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            background-color: rgb(255, 255, 255);
+
+            h1 {
+                position: absolute;
+                top: 3%;
+                left: 3%;
+                opacity: 0.05;
+            }
+        }
     }
 }
 
-.flipped {
-    background-color: white;
-    transform: rotate3d(0, 0, 0, 0deg);
-
-    * {
-        display: initial;
+@keyframes flip {
+    from {
+        transform: rotateY(180deg);
     }
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+// .cardBox:hover .card,
+.flipped {
+    transform: rotateY(180deg);
 }
 </style>

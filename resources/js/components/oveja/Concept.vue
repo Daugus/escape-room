@@ -125,9 +125,7 @@ export default {
     <div class="fondo self-center" :id="getDraggableId">
         <div :id="getDragzoneId">
             <div class="wrapper">
-                <p class="text-center">
-                    {{ conceptInfo.concept }} {{ conceptInfo.id }}
-                </p>
+                <p class="text-center">{{ conceptInfo.concept }}</p>
             </div>
         </div>
     </div>
