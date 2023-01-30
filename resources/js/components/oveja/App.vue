@@ -14,6 +14,7 @@ export default {
             definitionRectList: [],
             movible: true,
             indexes: [1, 2, 3, 4, 5, 6],
+            contador: 0,
         };
     },
     async mounted() {
@@ -102,7 +103,10 @@ export default {
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
 
-                console.log("YA NO SE PUEDE MOVER");
+                this.contador++;
+                console.log(this.contador);
+                if (this.contador === 6) {
+                }
             }
         },
         getConceptRef(id) {
