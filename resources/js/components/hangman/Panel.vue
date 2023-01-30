@@ -9,7 +9,6 @@ export default {
     data() {
         return {
             word: [],
-            rigthLetters: [],
             wordGuessed: false,
         };
     },
@@ -42,8 +41,6 @@ export default {
                 this.word[positions[i]] = this.letter;
             }
 
-            this.rigthLetters.push(this.letter);
-
             // Comparar la palabra secreta y la del panel
             if (this.word.join("") === this.secretWord.join("")) {
                 this.wordGuessed = true;
@@ -66,7 +63,7 @@ export default {
         // Comprobar el marcador de errores
         errors: function () {
             let element = document.querySelector(".panel");
-            if (this.errors === 6) {
+            if (this.errors === 5) {
                 element.classList.remove("default");
                 element.classList.add("fail");
             }
@@ -84,7 +81,7 @@ export default {
 
 <style scoped lang="scss">
 @font-face {
-    font-family: digital-7;
+    font-family: digital7;
     src: url("@/src/fonts/digital-7.ttf");
 }
 
@@ -107,7 +104,7 @@ export default {
     }
 
     p {
-        font-family: digital-7;
+        font-family: digital7;
         font-size: 4vw;
         letter-spacing: 0.3rem;
         margin: 0.5rem 1rem;

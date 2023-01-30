@@ -49,6 +49,9 @@ export default {
             const data = await res.json();
             let word = data[0].microorganism;
             this.wordArray = word.toUpperCase().split("");
+
+            // Guardar los datos en localStorage
+            localStorage.setItem("palabra", this.wordArray.join(""));
         },
         // Hacer llamada para generar una nueva palabra
         getNewWord(newWord) {
@@ -70,9 +73,6 @@ export default {
         quitChallenge(call) {
             // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
             this.quit = call;
-
-            // Guardar los datos en localStorage
-            localStorage.setItem("palabra", this.wordArray.join(""));
         },
     },
     watch: {
