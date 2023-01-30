@@ -17,11 +17,14 @@ use App\Http\Controllers\GroupingController;
 use App\Http\Controllers\EquilibradoController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\SobreNosotrosController;
+use App\Http\Controllers\SalaEsperaController;
 
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::get('/registro', [RegistroController::class, 'index'])->name('registro.index');
 Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])->name('sobre-nosotros.index');
+
+Route::get('/sala-espera', [SalaEsperaController::class, 'index'])->name('sala-espera.index');
 
 Route::get('/lab', [LabController::class, 'index'])->name('laboratorio.index');
 
