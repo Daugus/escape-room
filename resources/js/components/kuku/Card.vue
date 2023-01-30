@@ -13,7 +13,7 @@ export default {
         // muestra la carta y la envía a App.vue si no está revelada
         flip() {
             let card = document.querySelector(`#${this.getId} .card`);
-            if (card.classList === "flipped") return;
+            if (card.classList.contains("flipped")) return;
 
             card.classList.add("flipped");
             this.$emit("getFlippedCard", card.parentElement);
@@ -102,7 +102,7 @@ export default {
             background-color: rgb(30, 30, 30);
 
             img {
-                width: 85%;
+                width: 80%;
             }
         }
 

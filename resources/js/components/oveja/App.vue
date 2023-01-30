@@ -14,6 +14,7 @@ export default {
             definitionRectList: [],
             movible: true,
             indexes: [1, 2, 3, 4, 5, 6],
+            guessedCouples: 0,
         };
     },
     async mounted() {
@@ -89,9 +90,6 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
-            console.log(conceptInfo);
-            console.log(targetDefinitionInfo);
-
             if (
                 conceptInfo.start.x >= targetDefinitionInfo.start.x &&
                 conceptInfo.start.y >= targetDefinitionInfo.start.y &&
@@ -102,7 +100,13 @@ export default {
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
 
-                console.log("YA NO SE PUEDE MOVER");
+                this.guessedCouples++;
+                if (this.guessedCouples === 6) {
+                    setTimeout(() => {
+                        localStorage.setItem("oveja", "superado");
+                        location.replace(route("laboratorio.index"));
+                    }, 2500);
+                }
             }
         },
         getConceptRef(id) {

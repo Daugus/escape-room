@@ -183,7 +183,7 @@ export default {
         p {
             max-width: 70%;
             max-height: 34%;
-            font-size: 2.35vh;
+            font-size: 2vh;
             font-weight: 600;
         }
     }

@@ -18,15 +18,11 @@ export default {
     },
     mounted() {
         // Comprobar si existen los datos guardados
-        if (
-            localStorage.getItem("intentos") &&
-            localStorage.getItem("cooldown")
-        ) {
+        if (localStorage.getItem("intentos")) {
             this.tries = localStorage.getItem("intentos");
 
             // Borrar el items del localStorage
             localStorage.removeItem("intentos");
-            localStorage.removeItem("cooldown");
         }
     },
     computed: {
@@ -52,7 +48,7 @@ export default {
                     progress = "100%";
 
                     // Crear una cuenta regresiva en base al numero de intentos
-                    this.tries = this.tries + 1;
+                    if (this.tries < 30) this.tries++;
                     this.time = this.tries * 120;
 
                     // Cambiar estilos del panel y de las teclas
@@ -66,6 +62,15 @@ export default {
                     smoke.style.opacity = "1";
                     alarm.volume = 1;
                     alarm.play();
+
+                    // Guardar la hora a la que tiene que acabar el contador
+                    let waittime = 120000 * this.tries;
+                    localStorage.setItem("cooldown", Date.now() + waittime);
+                    // Guardar los datos en localStorage
+                    localStorage.setItem("intentos", this.tries);
+                    // Borrar los items del localStorage
+                    localStorage.removeItem("letras");
+                    localStorage.removeItem("palabra");
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
@@ -88,16 +93,6 @@ export default {
                             // Desactivar gas
                             smoke.style.opacity = "0";
 
-                            // Guardar la hora a la que tiene que acabar el contador
-                            let waittime = 120000 * this.tries;
-                            localStorage.setItem(
-                                "cooldown",
-                                Date.now() + waittime
-                            );
-                            // Guardar los datos en localStorage
-                            localStorage.setItem("intentos", this.tries);
-                            // Borrar el item del localStorage
-                            localStorage.removeItem("letras");
                             // Redirigir al laboratorio
                             location.replace(route("laboratorio.index"));
                         }, 3000);
@@ -134,12 +129,20 @@ export default {
             let progressBar = document.querySelector(".progress");
             progressBar.style.setProperty("--errorProgress", "0%");
 
-            // Se ejecuta en 5 segundos (5000 milesimas)
+            // Se ejecuta en 2.5 segundos (2500 milesimas)
             setTimeout(() => {
                 progressBar.style.setProperty("--bg", "#0b0");
                 progressBar.style.setProperty("--accent", "#0f0");
                 progressBar.style.setProperty("--errorProgress", "100%");
-            }, 5000);
+
+                // Se ejecuta en 2.5 segundos (2500 milesimas)
+                setTimeout(() => {
+                    localStorage.removeItem("cooldown");
+                    localStorage.removeItem("palabra");
+                    localStorage.setItem("hangman", "superado");
+                    location.replace(route("laboratorio.index"));
+                }, 2500);
+            }, 2500);
         },
         quit: function () {
             if (this.quit === null) return;
@@ -152,7 +155,7 @@ export default {
             // Redirigir al laboratorio
             setTimeout(() => {
                 location.replace(route("laboratorio.index"));
-            }, 1000);
+            }, 500);
         },
     },
 };
@@ -250,20 +253,20 @@ export default {
             position: absolute;
             pointer-events: none;
         }
-    }
-}
 
-#smoke1 {
-    animation: smoke 12s infinite;
-}
-#smoke2 {
-    animation: smoke 6s infinite;
-}
-#smoke3 {
-    animation: movement-smoke 27s infinite;
-}
-#smoke4 {
-    animation: movement-smoke 72s infinite;
+        #smoke1 {
+            animation: smoke 12s infinite;
+        }
+        #smoke2 {
+            animation: smoke 6s infinite;
+        }
+        #smoke3 {
+            animation: movement-smoke 27s infinite;
+        }
+        #smoke4 {
+            animation: movement-smoke 72s infinite;
+        }
+    }
 }
 
 @keyframes smoke {
