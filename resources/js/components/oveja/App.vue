@@ -90,9 +90,9 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
-            console.log(conceptInfo);
-            console.log(targetDefinitionInfo);
-
+            const concept = document.querySelector(
+                `#draggable-${conceptInfo.id}`
+            );
             if (
                 conceptInfo.start.x >= targetDefinitionInfo.start.x &&
                 conceptInfo.start.y >= targetDefinitionInfo.start.y &&
@@ -103,10 +103,15 @@ export default {
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
 
+                concept.classList.add("bg-lime-600");
+                concept.classList.remove("bg-red-600");
+
                 this.contador++;
-                console.log(this.contador);
                 if (this.contador === 6) {
+                    location.replace(route("laboratorio.index"));
                 }
+            } else {
+                concept.classList.add("bg-red-600");
             }
         },
         getConceptRef(id) {
