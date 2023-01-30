@@ -89,12 +89,12 @@ class UserController extends Controller
 
     public function edit()
     {
-        return view('user.edit', ['user' => session('user')]);
+        return view('perfil.edit', ['user' => session('user')]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail(session('user')->id);
 
         $user->name = $request->name;
         $user->surname = $request->surname;
@@ -102,6 +102,7 @@ class UserController extends Controller
         $user->email = $request->email;
 
         $user->save();
+        session(['user' => $user]);
 
         return redirect()->action([UserController::class, 'show']);
     }

@@ -11,6 +11,7 @@ const changePreview = () => {
     const img = document.createElement("img");
     img.src = URL.createObjectURL(file);
     img.id = "image-preview";
+    img.classList.add("h-32");
     document.querySelector("#preview-container").appendChild(img);
 };
 
