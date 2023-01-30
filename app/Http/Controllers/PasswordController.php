@@ -87,9 +87,9 @@ class PasswordController extends Controller
 
 
 
-        $data = PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNotNull('code')->limit(1)->get();
+        $data = PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNotNull('code')->inRandomOrder()->limit(1)->get();
         $data = $data->merge(PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNull('code')
-            ->limit(3)->get());
+            ->inRandomOrder()->limit(3)->get());
 
         return response()->json($data);
     }

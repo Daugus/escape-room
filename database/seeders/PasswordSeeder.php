@@ -125,7 +125,7 @@ class PasswordSeeder extends Seeder
         $password14->discovery_year = '1789';
         $password14->text = 'Martin Heinrich Klaproth ( Wernigerode, Brandeburgo, Alemania, 1 de diciembre de 1743 - † Berlín, Alemania, 1 de enero de 1817 ) fue un químico alemán. Descubrió el uranio, el circonio, el titanio y el telurio en 1798, ya que aisló este último metal y le dio ese nombre, pero el descubrimiento se atribuyó a Müller.';
         $password14->code = 'U1789';
-        $password14->image = 'Martin H. Klaproth.jpg';
+        $password14->image = 'Martin-H-Klaproth.jpg';
 
         $password15 = new PasswordSolution();
         $password15->name = 'Anders G. Ekeberg';

@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "vue": "^3.2.45",
+        "vue3-carousel": "^0.2.9",
         "ziggy-js": "^1.5.0"
     }
 }

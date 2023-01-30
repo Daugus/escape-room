@@ -57,6 +57,7 @@ export default {
         },
         // recibe el elemento html de la carta
         getFlippedCard(card) {
+            console.log(card);
             const firstCard = this.flippedCards[0];
             this.flippedCards.push(card);
 

@@ -16,6 +16,7 @@ export default {
                 return console.log("econntardo");
 
             e.target.classList.add("flipped");
+            console.log(e.targetc);
             this.$emit("getFlippedCard", e.target);
         },
     },
