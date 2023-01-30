@@ -38,6 +38,9 @@
                 pruebas</a>
         </li>
         <li>
+            <a href="{{ route('ranking.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Ranking</a>
+        </li>
+        <li>
             <a href="{{ route('user.logout') }}" class="underline text-blue-600 hover:text-blue-800 ">Logout</a>
         </li>
         <li>

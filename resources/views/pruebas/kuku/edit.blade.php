@@ -26,7 +26,8 @@
 
                 <div id="preview-container">
                     @if (old('formula') === null)
-                        <img src="{{ asset('src/img/kuku/formulas/' . $solution->answer) }}" id="image-preview">
+                        <img src="{{ asset('src/img/kuku/formulas/' . $solution->answer) }}" class="h-32"
+                            id="image-preview">
                     @endif
                 </div>
 
