@@ -11,7 +11,12 @@ class Game extends Model
 
     protected $table = 'games';
     protected $primaryKey = 'id';
-    protected $fillable = ['time', 'state', 'used_hints', 'difficulty_id', 'group_id'];
+    protected $fillable = ['time', 'state', 'difficulty_id', 'group_id'];
 
     public $timestamps = false;
+
+    public function difficulty()
+    {
+        return $this->belongsTo(Difficulty::class);
+    }
 }

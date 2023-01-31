@@ -66,6 +66,7 @@ class KukuSolutionController extends Controller
         $solution = SharedSolution::findOrFail($id);
         $solution->question = $request->name;
 
+        // renombra el archivo solo si cambia
         if ($fileChanged) {
             // borra la imagen original
             $ruta = public_path('src/img/kuku/formulas/' . $request->previousFileName);

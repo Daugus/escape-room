@@ -14,4 +14,9 @@ class Difficulty extends Model
     protected $fillable = ['name', 'level', 'time'];
 
     public $timestamps = false;
+
+    public function games()
+    {
+        return $this->hasMany(Game::class, 'difficulty_id', 'id');
+    }
 }

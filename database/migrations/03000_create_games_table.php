@@ -18,7 +18,6 @@ return new class extends Migration
 
             $table->time('time')->nullable();
             $table->enum('state', ['cancelada', 'perdida', 'ganada']);
-            $table->smallInteger('used_hints');
 
             $table->foreignId('difficulty_id')->constrained('difficulties')->cascadeOnDelete();
             $table->foreignId('group_id')->constrained('groups')->cascadeOnDelete();
