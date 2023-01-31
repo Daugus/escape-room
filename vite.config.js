@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 import glob from "glob";
 
-let jsFiles = glob.sync("./resources/js/components/**/main.js");
+let jsFiles = glob.sync("./resources/js/**/*.js");
 
 export default defineConfig({
     plugins: [

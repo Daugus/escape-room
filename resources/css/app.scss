@@ -33,6 +33,11 @@
     src: url("@/src/fonts/Reach Story.ttf");
 }
 
+@font-face {
+    font-family: Tangerine;
+    src: url("@/src/fonts/tangerine.ttf");
+}
+
 body {
     min-height: 100vh;
 }
@@ -48,27 +53,6 @@ body {
 
     & > * {
         position: absolute;
-        // background: rgba(255, 0, 0, 0.5);
-    }
-
-    // ------ CONTADORES ------
-    #general-counter {
-        inset: 29% 87% 64% 3.3%;
-        clip-path: polygon(0 0, 100% 18%, 100% 95%, 0 100%);
-
-        span {
-            transform: skewY(5deg);
-            transform: rotate(1.5deg);
-            font-size: 4rem;
-        }
-    }
-
-    #hangman-counter {
-        inset: 32% 27.3% 64.2% 64.5%;
-
-        span {
-            font-size: 2.5rem;
-        }
     }
 
     span {
@@ -83,6 +67,84 @@ body {
         transform: rotateY(10deg);
         color: white;
         text-shadow: 0 0 1rem white;
+    }
+
+    // ------ CONTADORES ------
+    #general-counter {
+        inset: 29% 87% 64% 3.3%;
+        clip-path: polygon(0 0, 100% 18%, 100% 95%, 0 100%);
+
+        span {
+            transform: skewY(5deg);
+            transform: rotate(1.5deg);
+            font-size: 5vh;
+        }
+    }
+
+    #hangman-counter {
+        inset: 32% 27.3% 64.2% 64.5%;
+
+        span {
+            font-size: 4.5vh;
+        }
+    }
+
+    // ------ GAS HANGMAN ------
+    .gas-container {
+        opacity: 0;
+        position: absolute;
+        overflow: hidden;
+        inset: 38.3% 25.4% 42% 61.75%;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 100%,
+            77.5% 100%,
+            73% 86.7%,
+            19.2% 86.7%,
+            19.2% 100%,
+            0 100%
+        );
+
+        .smoke {
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            #smoke1 {
+                animation: smoke 12s infinite;
+            }
+            #smoke2 {
+                animation: smoke 6s infinite;
+            }
+            #smoke3 {
+                animation: movement-smoke 27s infinite;
+            }
+            #smoke4 {
+                animation: movement-smoke 72s infinite;
+            }
+        }
+    }
+
+    // ------ PIZARRA ------
+    #pizarra {
+        inset: 29.2% 51% 53% 30.1%;
+        color: black;
+        font-family: "Tangerine";
+        font-size: 1.4vh;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5% 1%;
     }
 
     // ------ CADA OVEJA CON SU PAREJA ------
@@ -113,6 +175,59 @@ body {
     #password {
         inset: 57.6% 87.6% 38.2% 9.7%;
         transform: skewY(-20deg);
+    }
+}
+
+// ------ KEYFRAMES ------
+@keyframes smoke {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.7;
+        filter: saturate(6);
+        transform: scale(1.02);
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes movement-smoke {
+    0% {
+        left: 0;
+        top: 0;
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+    17% {
+        opacity: 0.7;
+        filter: saturate(7);
+        transform: rotate(2deg);
+    }
+    34% {
+        opacity: 0.3;
+        filter: blur(1rem);
+        filter: saturate(3);
+    }
+    51% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    68% {
+        opacity: 0.3;
+        filter: blur(1rem);
+        filter: saturate(5);
+    }
+    85% {
+        opacity: 0.7;
+        transform: rotate(-2deg);
+    }
+    100% {
+        left: 0;
+        top: 0;
+        opacity: 0.3;
+        transform: scale(0.9);
     }
 }
 
