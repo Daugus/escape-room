@@ -3,7 +3,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "instalar": "composer install && npm i && npm run build"
+        "instalar": "composer install && npm i && npm run build",
+        "deploy": "npm i && composer install && php artisan key:generate && php artisan migrate --seed && npm run build"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^4.0.0",

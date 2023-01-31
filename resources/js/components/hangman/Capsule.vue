@@ -18,11 +18,15 @@ export default {
     },
     mounted() {
         // Comprobar si existen los datos guardados
-        if (localStorage.getItem("intentos")) {
+        if (
+            localStorage.getItem("intentos") &&
+            localStorage.getItem("cooldown")
+        ) {
             this.tries = localStorage.getItem("intentos");
 
-            // Borrar el item del localStorage
+            // Borrar el items del localStorage
             localStorage.removeItem("intentos");
+            localStorage.removeItem("cooldown");
         }
     },
     computed: {
@@ -45,9 +49,6 @@ export default {
                     progress = "75%";
                     break;
                 case 5:
-                    progress = "91%";
-                    break;
-                case 6:
                     progress = "100%";
 
                     // Crear una cuenta regresiva en base al numero de intentos
@@ -80,19 +81,29 @@ export default {
                         keys.forEach((key) => {
                             key.style.setProperty("--color", "#000");
                         });
-                        // Bajar volumen de la ala
-                        alarm.volume = 0.1;
 
-                        console.log("FUNCIONA CARAJO");
+                        setTimeout(() => {
+                            this.$emit("getNewWord", this.newWord);
+                            this.$emit("getErrors", this.errors);
+                            // Desactivar gas
+                            smoke.style.opacity = "0";
+
+                            // Guardar la hora a la que tiene que acabar el contador
+                            let waittime = 120000 * this.tries;
+                            localStorage.setItem(
+                                "cooldown",
+                                Date.now() + waittime
+                            );
+                            // Guardar los datos en localStorage
+                            localStorage.setItem("intentos", this.tries);
+                            // Borrar el item del localStorage
+                            localStorage.removeItem("letras");
+                            // Redirigir al laboratorio
+                            location.replace(route("laboratorio.index"));
+                        }, 3000);
                     }, 5000);
 
-                    // Mandar orden para generar nueva palabra y reiniciar errores
-                    setTimeout(() => {
-                        this.$emit("getNewWord", this.newWord);
-                        this.$emit("getErrors", this.errors);
-                        // Desactivar gas
-                        smoke.style.opacity = "0";
-                    }, this.tries * 120000);
+                    break;
             }
             return progress;
         },
@@ -137,9 +148,6 @@ export default {
             let alarm = document.querySelector("audio");
             alarm.pause();
             alarm.currentTime = 0;
-
-            // Guardar los datos en localStorage
-            localStorage.setItem("intentos", this.tries);
 
             // Redirigir al laboratorio
             setTimeout(() => {
@@ -310,15 +318,6 @@ export default {
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1500px) {
     .capsule {

@@ -1,0 +1,44 @@
+version: "3.5"
+
+services:
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=docker
+      - MYSQL_USER=g2
+      - MYSQL_PASSWORD=root
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      backend:
+        aliases:
+          - db
+
+  laravel-app:
+    depends_on:
+      - mysql-db
+    build:
+      context: "."
+      args:
+        uid: ${UID}
+    container_name: laravel-app
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${UID}
+    volumes:
+      - .:/var/www/html
+    ports:
+      - 8000:80
+    networks:
+      backend:
+        aliases:
+          - laravel-app
+    # command: "npm run deploy"
+
+networks:
+  backend:
+    name: backend-network
