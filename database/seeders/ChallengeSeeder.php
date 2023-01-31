@@ -24,9 +24,6 @@ class ChallengeSeeder extends Seeder
         $ahorcado = new Challenge();
         $ahorcado->name = 'Ahorcado';
 
-        $equilibrado = new Challenge();
-        $equilibrado->name = 'Todo bien equilibrado';
-
         $agrupando = new Challenge();
         $agrupando->name = 'Agrupando';
 
@@ -36,7 +33,6 @@ class ChallengeSeeder extends Seeder
         $oveja->save();
         $kuku->save();
         $ahorcado->save();
-        $equilibrado->save();
         $agrupando->save();
         $contra->save();
     }
