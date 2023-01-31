@@ -13,8 +13,5 @@ Route::post('kuku/getCards', [GameController::class, 'getCards']);
 // Ruta para coger el JSON de Agrupando desde Vue
 Route::post('agrupando/getConcepts', [GameController::class, 'getConcepts']);
 
-// Ruta para coger el JSON de Todo Bien Equilibrado desde Vue
-Route::post('equilibrado/getFormulas', [GameController::class, 'getFormulas']);
-
 // Ruta para coger el JSON de Cada Oveja con su Pareja desde Vue
 Route::post('oveja/getIncubationMethods', [GameController::class, 'getIncubationMethods']);
