@@ -56,7 +56,7 @@ Route::get('/perfil/editar', [UserController::class, 'edit'])
     ->name('user.edit')
     ->middleware('logged');
 
-Route::post('/perfil/editar', [UserController::class, 'update'])
+Route::put('/perfil/editar', [UserController::class, 'update'])
     ->name('user.update')
     ->middleware('logged');
 
