@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('vitejs')
-    @vite(['resources/js/components/kuku/main.js'])
+    @vite(['resources/js/lab.js'])
 @endsection
 
 @section('content')
@@ -9,13 +9,18 @@
         {{-- COUNTERS --}}
         <div id="general-counter">
             {{-- Cambiar contador en base a la dificultad --}}
-            <span>--:--:--</span>
+            <span>00:00:00</span>
         </div>
         <div id="hangman-counter">
             {{-- Cambiar el contador en base al de Hangman --}}
-            <span>--:--</span>
-            <div class="smokes">
-                AQUI VAN GASES
+            <span>00:00</span>
+        </div>
+        <div class="gas-container">
+            <div class="smoke">
+                <img src="{{ asset('src/img/lab/smokes/smoke_1.png') }}" id="smoke1" />
+                <img src="{{ asset('src/img/lab/smokes/smoke_2.png') }}" id="smoke2" />
+                <img src="{{ asset('src/img/lab/smokes/smoke_3.png') }}" id="smoke3" />
+                <img src="{{ asset('src/img/lab/smokes/smoke_4.png') }}" id="smoke4" />
             </div>
         </div>
 
@@ -29,5 +34,8 @@
         <a href="{{ route('prueba.agrupando') }}" id="agrupando"></a>
         {{-- NECESITAMOS UNA CONTRASEÑA --}}
         <a href="#" id="password"></a>
+
+        {{-- HINTS --}}
+        <div id="pizarra"></div>
     </div>
 @endsection

@@ -14,7 +14,7 @@ export default {
             definitionRectList: [],
             movible: true,
             indexes: [1, 2, 3, 4, 5, 6],
-            contador: 0,
+            guessedCouples: 0,
         };
     },
     async mounted() {
@@ -106,9 +106,12 @@ export default {
                 concept.classList.add("bg-lime-600");
                 concept.classList.remove("bg-red-600");
 
-                this.contador++;
-                if (this.contador === 6) {
-                    location.replace(route("laboratorio.index"));
+                this.guessedCouples++;
+                if (this.guessedCouples === 6) {
+                    setTimeout(() => {
+                        localStorage.setItem("oveja", "superado");
+                        location.replace(route("laboratorio.index"));
+                    }, 2500);
                 }
             } else {
                 concept.classList.add("bg-red-600");

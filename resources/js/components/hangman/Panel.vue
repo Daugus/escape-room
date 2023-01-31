@@ -4,7 +4,6 @@ export default {
         secretWord: Array,
         letter: String,
         errors: Number,
-        quit: Boolean,
     },
     data() {
         return {
@@ -44,19 +43,13 @@ export default {
             // Comparar la palabra secreta y la del panel
             if (this.word.join("") === this.secretWord.join("")) {
                 this.wordGuessed = true;
+
                 let panel = document.querySelector(".panel");
-                let keys = document.querySelectorAll("button:not(#ESC)");
 
                 // Cambiar estilos del panel
-                panel.classList.add("success");
                 panel.classList.remove("default");
+                panel.classList.add("success");
 
-                // Quitar luces de las teclas incorrectas
-                keys.forEach((key) => {
-                    if (this.rigthLetters.includes(key.id) === false) {
-                        key.style.setProperty("--color", "#000");
-                    }
-                });
                 this.$emit("wordGuessed", this.wordGuessed);
             }
         },
