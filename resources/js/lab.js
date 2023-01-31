@@ -247,11 +247,8 @@ const changeEnviroment = () => {
     // SI SE HA SUPERADO LA PRUEBA "HANGMAN"
     if (localStorage.getItem("hangman") === "superado") {
         hangman.style.visibility = "hidden";
-        console.log("LA PRUEBA HANGMAN HA SIDO SUPERADA");
 
         for (let i = 0; i < numbers[0].hints.length; i++) {
-            console.log(numbers[0].hints[i]);
-
             let newP = document.createElement("p");
             newP.setAttribute("id", "hints-" + (i + 1));
             newP.innerText = "- " + numbers[0].hints[i]
@@ -262,11 +259,8 @@ const changeEnviroment = () => {
     // SI SE HA SUPERADO LA PRUEBA "KUKU"
     if (localStorage.getItem("kuku") === "superado") {
         kuku.style.visibility = "hidden";
-        console.log("LA PRUEBA KUKU HA SIDO SUPERADA");
 
         for (let i = 0; i < numbers[1].hints.length; i++) {
-            console.log(numbers[1].hints[i]);
-
             let newP = document.createElement("p");
             newP.setAttribute("id", "hints-" + (i + 1));
             newP.innerText = "- " + numbers[1].hints[i]
@@ -277,11 +271,8 @@ const changeEnviroment = () => {
     // SI SE HA SUPERADO LA PRUEBA "OVEJA"
     if (localStorage.getItem("oveja") === "superado") {
         oveja.style.visibility = "hidden";
-        console.log("LA PRUEBA OVEJA HA SIDO SUPERADA");
 
         for (let i = 0; i < numbers[2].hints.length; i++) {
-            console.log(numbers[2].hints[i]);
-
             let newP = document.createElement("p");
             newP.setAttribute("id", "hints-" + (i + 1));
             newP.innerText = "- " + numbers[2].hints[i]
