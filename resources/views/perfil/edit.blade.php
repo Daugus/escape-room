@@ -39,6 +39,9 @@
                             maxlength="200"
                             value="{{ old('Nombre', $user->name) }}" maxlength="50"
                         />
+                          @error('name')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <input
@@ -50,6 +53,9 @@
                             maxlength="200"
                             value="{{ old('Nombre', $user->surname) }}" maxlength="50"
                         />
+                          @error('surname')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <input
@@ -61,6 +67,9 @@
                             maxlength="50"
                             value="{{ old('Nombre', $user->nickname) }}" maxlength="50"
                         />
+                          @error('nickname')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <input
@@ -72,6 +81,9 @@
                             maxlength="200"
                             value="{{ old('Nombre', $user->email) }}" maxlength="50"
                         />
+                          @error('email')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <input
@@ -82,6 +94,9 @@
                             name="password"
                             maxlength="200"
                         />
+                          @error('password')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <input
@@ -102,12 +117,22 @@
                             accept=".jpg,.jpeg,.png"
                             value="{{ old('Nombre', $user->picture) }}" maxlength="50"
                         />
+{{-- 
+                        @error('record')
+                            <p> {{}}
+                        @enderror --}}
+
+                        <input type="hidden" name="previouseFileName" value="{{ $user->picture }}">
+                        <input type="hidden" name="fileChanged" value="false">
 
                         <div id="preview-container" class="justify-self-stretch flex justify-center px-0 md:px-12">
                             @if (old('picture')=== null)
                                 <img src="{{ asset ('src/img/users/'.$user->picture)}}" class="h-32" id="image-preview">
                             @endif
                         </div>
+                          @error('picture')
+                    <p>{{ $message }}</p>
+                @enderror
                     </div>
                     <div class="w-full px-3 mb-6">
                         <button
