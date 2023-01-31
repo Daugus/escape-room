@@ -60,7 +60,7 @@ export default {
                     </div>
                     <div class="grid grid-rows-2">
                         <div class="flex px-4">
-                            <p class="self-end">Opty</p>
+                            <p class="self-end">{{}}</p>
                         </div>
                         <div class="flex p-4">
                             <img
@@ -80,7 +80,7 @@ export default {
                     </div>
                     <div class="grid grid-rows-2">
                         <div class="flex px-4">
-                            <p class="self-end">Opty</p>
+                            <p class="self-end"></p>
                         </div>
                         <div class="flex p-4">
                             <img
