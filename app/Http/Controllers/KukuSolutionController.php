@@ -54,22 +54,29 @@ class KukuSolutionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:50',
-            'formula' => 'required|mimes:jpg,png,webp',
-        ]);
+        // por defecto solo valida el nombre,
+        // en caso de que se haya cambiado la imagen, esta también se valida
+        $validaciones = ['name' => 'required|max:50'];
+
+        $fileChanged = $request->fileChanged === 'true';
+        if ($fileChanged) $validaciones['formula'] = 'required|mimes:jpg,png,webp';
+
+        $request->validate($validaciones);
 
         $solution = SharedSolution::findOrFail($id);
         $solution->question = $request->name;
 
-        $ruta = public_path('src/img/kuku/formulas/' . $request->previousFileName);
-        if (file_exists($ruta)) File::delete($ruta);
+        if ($fileChanged) {
+            // borra la imagen original
+            $ruta = public_path('src/img/kuku/formulas/' . $request->previousFileName);
+            if (file_exists($ruta)) File::delete($ruta);
 
-        $file = strtolower(preg_replace('/[()., ]/', '-', $solution->question));
+            $file = strtolower(preg_replace('/[()., ]/', '-', $solution->question));
 
-        $fileName = $file . '.' . $request->formula->extension();
-        $request->formula->move(public_path('src/img/kuku/formulas'), $fileName);
-        $solution->answer = $fileName;
+            $fileName = $file . '.' . $request->formula->extension();
+            $request->formula->move(public_path('src/img/kuku/formulas'), $fileName);
+            $solution->answer = $fileName;
+        }
 
         $solution->save();
 

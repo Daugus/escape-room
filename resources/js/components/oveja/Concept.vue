@@ -1,6 +1,7 @@
 <script>
 export default {
     expose: ["id", "movible"],
+    // fondo: ".fondo",
     data() {
         return {
             id: 0,
@@ -52,6 +53,7 @@ export default {
 
                 concept.classList.remove("drag");
 
+                // this.$fondo.querySelector("div").classList.add("bg-lime-500");
                 const conceptRect = concept.getBoundingClientRect();
 
                 const conceptInfo = {
@@ -91,7 +93,6 @@ export default {
                 this.distanciaY = elementRect.y;
 
                 concept.classList.add("absolute");
-
                 pos3 = event.clientX;
                 pos4 = event.clientY;
 
@@ -183,7 +184,7 @@ export default {
         p {
             max-width: 70%;
             max-height: 34%;
-            font-size: 2.35vh;
+            font-size: 2vh;
             font-weight: 600;
         }
     }

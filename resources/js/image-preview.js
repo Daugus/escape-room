@@ -1,8 +1,12 @@
 "use strict";
 
+const fileChanged = document.querySelector('[name="fileChanged"]');
+
 const changePreview = () => {
     const [file] = inputFile.files;
     if (!file) return;
+
+    fileChanged.value = "true";
 
     const preview = document.querySelector("#image-preview");
 
@@ -19,4 +23,7 @@ const inputFile = document.querySelector('[type="file"]');
 
 inputFile.addEventListener("input", changePreview);
 
-if (document.querySelector("#image-preview")) changePreview();
+if (document.querySelector("#image-preview")) {
+    changePreview();
+    fileChanged.value = "false";
+}

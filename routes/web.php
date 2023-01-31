@@ -10,6 +10,7 @@ use App\Http\Controllers\GameController;
 
 // menú
 use App\Http\Controllers\SobreNosotrosController;
+use App\Http\Controllers\RankingController;
 use App\Http\Controllers\PruebasController;
 
 use App\Http\Controllers\HangmanSolutionController;
@@ -94,14 +95,18 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
     ->name('sobre-nosotros.index');
 
+Route::get('/ranking', [RankingController::class, 'index'])
+    ->name('ranking.index')
+    ->middleware('logged');
+
 Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
     ->middleware('profesor');
 
-Route::resource('/administrar/hangman', HangmanSolutionController::class);
-Route::resource('/administrar/kuku', KukuSolutionController::class);
-Route::resource('/administrar/agrupando', GroupingSolutionController::class);
-Route::resource('/administrar/oveja', OvejaSolutionController::class);
+Route::resource('/administrar/hangman', HangmanSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/kuku', KukuSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/agrupando', GroupingSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/oveja', OvejaSolutionController::class)->middleware('profesor');
 
 Route::get('/', function () {
     return view('index');

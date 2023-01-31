@@ -22,11 +22,13 @@
 
             <div>
                 <label for="formula">Fórmula:</label>
-                <input type="file" name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png">
+                <input type="file" name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png"
+                    value="{{ old('formula', $solution->answer) }}">
 
                 <div id="preview-container">
                     @if (old('formula') === null)
-                        <img src="{{ asset('src/img/kuku/formulas/' . $solution->answer) }}" id="image-preview">
+                        <img src="{{ asset('src/img/kuku/formulas/' . $solution->answer) }}" class="h-32"
+                            id="image-preview">
                     @endif
                 </div>
 
@@ -35,6 +37,7 @@
                 @enderror
 
                 <input type="hidden" name="previousFileName" value="{{ $solution->answer }}">
+                <input type="hidden" name="fileChanged" value="">
             </div>
 
             <button type="submit">Guardar</button>
