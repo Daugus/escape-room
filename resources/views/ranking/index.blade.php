@@ -6,7 +6,7 @@
         <table class="table-auto">
             <thead>
                 <tr>
-                    <th class="border border-gray-700">Tiempo</th>
+                    <th class="border border-gray-700 bg-neutral-200 appearance-none w-full text-gray-700 rounded py-3 px-4">Tiempo</th>
                 </tr>
             </thead>
 

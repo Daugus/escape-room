@@ -9,7 +9,7 @@ class GroupingSolutionController extends Controller
 {
     public function index()
     {
-        $solutions = GroupingSolution::orderBy('field', 'asc')->orderBy('concept', 'asc')->paginate(15);
+        $solutions = GroupingSolution::orderBy('field', 'asc')->orderBy('concept', 'asc')->paginate(8);
         return view('pruebas.agrupando.index', compact('solutions'));
     }
 

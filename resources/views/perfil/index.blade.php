@@ -23,7 +23,7 @@
                 @csrf
                 @method('DELETE')
                 <a  class=" m-3 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500" href="{{ route('user.edit') }}">Editar perfil</a>
-                <button class=" m-3 mt-6 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500" type="submit">Eliminar cuenta</button>
+                <button class=" m-3 mt-6 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-red-600" type="submit">Eliminar cuenta</button>
             </form>
         </div>
     </div>

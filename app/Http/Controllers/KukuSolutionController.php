@@ -10,7 +10,7 @@ class KukuSolutionController extends Controller
 {
     public function index()
     {
-        $solutions = SharedSolution::where('challenge_id', '2')->orderBy('id', 'desc')->paginate(4);
+        $solutions = SharedSolution::where('challenge_id', '2')->orderBy('id', 'desc')->paginate(3);
         return view('pruebas.kuku.index', compact('solutions'));
     }
 
