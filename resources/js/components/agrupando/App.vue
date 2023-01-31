@@ -10,6 +10,8 @@ export default {
         return {
             conceptList: [],
             folderInfoList: [],
+            distanciaTop: "",
+            distanciaLeft: "",
         };
     },
     async mounted() {
@@ -65,6 +67,12 @@ export default {
                 document
                     .querySelector(`#${fileInfo.id}`)
                     .classList.add("correct");
+
+                setTimeout(() => {
+                    document
+                        .querySelector(`#${fileInfo.id}`)
+                        .classList.add("hidden");
+                }, 400);
             } else {
                 document
                     .querySelector(`#${fileInfo.id}`)
@@ -76,36 +84,81 @@ export default {
 </script>
 
 <template>
-    <section class="grid grid-cols-2 gap-3">
-        <div class="grid grid-cols-2 gap-3">
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Análisis"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Microbiología"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Medida"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Biotecnología"
-            />
-        </div>
+    <div class="bg">
+        <section>
+            <div>
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Análisis"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Microbiología"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Medida"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Biotecnología"
+                />
+            </div>
 
-        <div class="border-2 border-black p-2 relative">
-            <p>Conceptos</p>
-            <File
-                v-for="(concept, index) in conceptList"
-                :conceptInfo="concept"
-                :conceptListIndex="index"
-                @getCurrentFileInfo="getCurrentFileInfo"
-            />
-        </div>
-    </section>
+            <div>
+                <File
+                    v-for="(concept, index) in conceptList"
+                    :conceptInfo="concept"
+                    :conceptListIndex="index"
+                    @getCurrentFileInfo="getCurrentFileInfo"
+                />
+            </div>
+        </section>
+    </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.bg {
+    height: 100vh;
+
+    overflow: hidden;
+
+    background-image: url("@/src/img/agrupando/bg.png");
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+section {
+    height: 100%;
+    width: 100%;
+
+    margin-top: 4.75%;
+    margin-bottom: 16%;
+    margin-left: 39%;
+
+    & > :nth-child(1) {
+        height: max-content;
+        display: flex;
+        flex-direction: row;
+        height: 58%;
+        width: 60.9%;
+        padding: 1%;
+        gap: 1%;
+    }
+
+    & > :nth-child(2) {
+        height: 42%;
+        width: 60.9%;
+        padding: 1%;
+
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+</style>

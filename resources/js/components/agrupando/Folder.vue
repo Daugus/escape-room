@@ -40,12 +40,28 @@ export default {
 </script>
 
 <template>
-    <article
-        class="border-2 border-black border-3 aspect-square p-2"
-        :id="bdField"
-    >
+    <article class="border-black border-3 aspect-square p-2" :id="bdField">
+        <img src="@/src/img/agrupando/folder.png" />
         <p>{{ field }}</p>
     </article>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+article {
+    width: 10%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+
+    img {
+        width: 100%;
+    }
+
+    p {
+        font-size: 1.5vh;
+    }
+}
+</style>
