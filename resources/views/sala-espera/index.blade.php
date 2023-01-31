@@ -7,4 +7,9 @@
 
 @section('content')
     <div id="vue"></div>
+    <div class="hidden" id='session'>
+        {{ json_encode(session('user')) }}
+    </div>
 @endsection
+
+

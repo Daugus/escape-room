@@ -45,11 +45,12 @@
                 nosotros</a>
         </li>
         <li>
+            <a href="{{ route('sala-espera.index') }}" class="underline text-blue-600 hover:text-blue-800">sala de espera</a>
+        </li>
+        <li>
             <a href="{{ route('prueba.hangman') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
         </li>
-          <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
-        </li>
+
         <li>
             <a href="{{ route('prueba.kuku') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
         </li>
@@ -64,9 +65,7 @@
             <a href="{{ route('prueba.equilibrado') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>
-        <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
-        </li>
+
     </ul>
 
     @yield('content')
