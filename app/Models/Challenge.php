@@ -15,14 +15,8 @@ class Challenge extends Model
 
     public $timestamps = false;
 
-
-    public function hints()
-    {
-        return $this->belongsToMany(hint::class, 'foreign_key');
-    }
-
     public function shared_solutions()
     {
-        return $this->belongsToMany(shared_solution::class, 'foreign_key');
+        return $this->hasMany(SharedSolution::class, 'challenge_id', 'id');
     }
 }

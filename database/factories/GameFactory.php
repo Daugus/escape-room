@@ -62,7 +62,6 @@ class GameFactory extends Factory
         return [
             'time' => $time,
             'state' => $state,
-            'used_hints' => $this->faker->numberBetween(0, 5),
             'difficulty_id' => $difficulty_id,
             'group_id' => $this->faker->numberBetween(1, Group::count())
         ];

@@ -22,8 +22,7 @@
 
             <div>
                 <label for="formula">Fórmula:</label>
-                <input type="file" name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png"
-                    value="{{ old('formula', $solution->answer) }}">
+                <input type="file" name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png">
 
                 <div id="preview-container">
                     @if (old('formula') === null)
@@ -37,7 +36,7 @@
                 @enderror
 
                 <input type="hidden" name="previousFileName" value="{{ $solution->answer }}">
-                <input type="hidden" name="fileChanged" value="">
+                <input type="hidden" name="fileChanged" value="false">
             </div>
 
             <button type="submit">Guardar</button>
