@@ -14,6 +14,7 @@ export default {
             definitionRectList: [],
             movible: true,
             indexes: [1, 2, 3, 4, 5, 6],
+            contador: 0,
         };
     },
     async mounted() {
@@ -89,9 +90,9 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
-            console.log(conceptInfo);
-            console.log(targetDefinitionInfo);
-
+            const concept = document.querySelector(
+                `#draggable-${conceptInfo.id}`
+            );
             if (
                 conceptInfo.start.x >= targetDefinitionInfo.start.x &&
                 conceptInfo.start.y >= targetDefinitionInfo.start.y &&
@@ -102,7 +103,15 @@ export default {
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
 
-                console.log("YA NO SE PUEDE MOVER");
+                concept.classList.add("bg-lime-600");
+                concept.classList.remove("bg-red-600");
+
+                this.contador++;
+                if (this.contador === 6) {
+                    location.replace(route("laboratorio.index"));
+                }
+            } else {
+                concept.classList.add("bg-red-600");
             }
         },
         getConceptRef(id) {

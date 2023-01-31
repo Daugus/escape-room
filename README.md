@@ -94,7 +94,24 @@ git push
 ## Proyecto
 
 <details>
-<summary>Configurar y desplegar</summary>
+<summary>Docker</summary>
+
+```bash
+docker compose build
+docker compose up -d
+docker exec -u 1000 -it laravel-app bash
+```
+
+Una vez dentro
+
+```bash
+npm run deploy
+```
+
+</details>
+
+<details>
+<summary>XAMPP</summary>
 
 ### Instalar extensiones para Visual Studio Code
 
