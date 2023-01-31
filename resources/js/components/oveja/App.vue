@@ -13,9 +13,20 @@ export default {
             conceptList: [],
             definitionRectList: [],
             movible: true,
+            indexes: [1, 2, 3, 4, 5, 6],
+            contador: 0,
         };
     },
     async mounted() {
+        for (let i = this.indexes.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+
+            [this.indexes[i], this.indexes[j]] = [
+                this.indexes[j],
+                this.indexes[i],
+            ];
+        }
+
         await this.getIncubationMethods();
         document.body.classList.add("overflow-clip");
     },
@@ -79,6 +90,9 @@ export default {
                 (definition) => definition.id === conceptInfo.id
             )[0];
 
+            const concept = document.querySelector(
+                `#draggable-${conceptInfo.id}`
+            );
             if (
                 conceptInfo.start.x >= targetDefinitionInfo.start.x &&
                 conceptInfo.start.y >= targetDefinitionInfo.start.y &&
@@ -88,6 +102,16 @@ export default {
                 this.$refs.conceptos.filter(
                     (concepto) => concepto.id === conceptInfo.id
                 )[0].movible = false;
+
+                concept.classList.add("bg-lime-600");
+                concept.classList.remove("bg-red-600");
+
+                this.contador++;
+                if (this.contador === 6) {
+                    location.replace(route("laboratorio.index"));
+                }
+            } else {
+                concept.classList.add("bg-red-600");
             }
         },
         getConceptRef(id) {
@@ -98,20 +122,21 @@ export default {
 </script>
 
 <template>
-    <div class="grid h-screen grid-oveja p-6">
-        <div class="grid grid-cols-6 gap-6">
-            <Concept
-                v-for="concept in conceptList"
-                :conceptInfo="concept"
-                @getCurrentConceptInfo="getCurrentConceptInfo"
-                ref="conceptos"
-            />
-        </div>
-        <div class="my-auto grid grid-cols-6 gap-6 auto-rows-max">
+    <div class="grid-oveja grid">
+        <div class="definitions">
             <Definition
                 v-for="definition in definitionList"
                 :definitionInfo="definition"
                 @getCurrentDefinitionInfo="getCurrentDefinitionInfo"
+            />
+        </div>
+        <div class="methods">
+            <Concept
+                v-for="(concept, index) in conceptList"
+                :conceptInfo="concept"
+                :index="indexes[index]"
+                @getCurrentConceptInfo="getCurrentConceptInfo"
+                ref="conceptos"
             />
         </div>
     </div>
@@ -119,6 +144,29 @@ export default {
 
 <style scoped lang="scss">
 .grid-oveja {
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+
+    background-image: url("@/src/img/oveja/table.png");
+    background-size: contain;
+    box-shadow: 0 0 5rem black;
+
+    .methods,
+    .definitions {
+        width: 100%;
+        margin-block: 1%;
+        display: flex;
+    }
+
+    .methods {
+        justify-content: space-around;
+    }
+
+    .definitions {
+        margin-inline: 1rem;
+    }
 }
 </style>

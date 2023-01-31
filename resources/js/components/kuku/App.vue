@@ -70,8 +70,8 @@ export default {
                 // si la id de las cartas (el id de la fila en la bd) no coincide, se ocultan ambas
                 if (firstCard.dataset.id !== secondCard.dataset.id) {
                     setTimeout(() => {
-                        firstCard.classList.remove("flipped");
-                        secondCard.classList.remove("flipped");
+                        firstCard.lastChild.classList.remove("flipped");
+                        secondCard.lastChild.classList.remove("flipped");
                     }, 500);
                 }
 
@@ -83,15 +83,28 @@ export default {
 </script>
 
 <template>
-    <section>
-        <div class="grid grid-cols-6 gap-5 mx-28" id="grid">
-            <Card
-                v-for="card in cardList"
-                :cardInfo="card"
-                @getFlippedCard="getFlippedCard"
-            />
-        </div>
-    </section>
+    <div class="bg">
+        <section>
+            <div class="grid grid-cols-6 gap-5 mx-28" id="grid">
+                <Card
+                    v-for="card in cardList"
+                    :cardInfo="card"
+                    @getFlippedCard="getFlippedCard"
+                />
+            </div>
+        </section>
+    </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.bg {
+    height: 100vh;
+    background-image: url("@/src/img/kuku/table.png");
+    background-size: contain;
+
+    section {
+        padding-top: 1.5%;
+        height: 50%;
+    }
+}
+</style>

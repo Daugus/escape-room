@@ -6,37 +6,67 @@ import route from "ziggy";
 export default {
     data() {
         return {
-            username: "",
+            csrf_token: "",
+            user: "",
             pass: "",
-            error: "",
+            error: false,
         };
     },
-
+    mounted() {
+        this.csrf_token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+    },
     methods: {
         onSubmit(event) {
             event.preventDefault();
 
-            if (this.error.exists) return console.log("ERROR");
-
-            document.querySelector("#form-login").submit();
+            if (this.validateForm())
+                document.querySelector("#form-login").submit();
         },
+        validateUser(user) {
+            const input = document.querySelector("#username");
 
-        validateUsername(username) {
-            document.getElementById("username").style.borderColor = "green";
+            if (user === "") {
+                this.error = true;
+                input.style.borderColor = "red";
+            } else {
+                this.error = false;
+                input.style.borderColor = "green";
+            }
         },
-
         validatePassword(pass) {
-            document.getElementById("password").classList;
+            const input = document.querySelector("#pass");
+
+            if (pass === "") {
+                this.error = true;
+                input.style.borderColor = "red";
+            } else {
+                this.error = false;
+                input.style.borderColor = "green";
+            }
+        },
+        validateForm() {
+            // Comprobar las validaciones
+            this.validateUser(this.user);
+            this.validatePassword(this.pass1);
+
+            return !this.error;
+        },
+        validateForm() {
+            // Comprobar las validaciones
+            this.validateUser(this.user);
+            this.validatePassword(this.pass1);
+
+            return !this.error;
         },
     },
-
-    watch: {},
 };
 </script>
 
 <template>
     <div
-        id="wrapper"
+        id="borde-monitor"
         class="grid grid-cols-1 md:grid-cols-2 items-center py-32 px-12 md:p-14"
     >
         <div class="flex justify-center md:border-r-4">
@@ -46,15 +76,26 @@ export default {
         </div>
 
         <div class="flex justify-center items-center">
-            <form class="w-full max-w-sm" id="form-login">
+            <form
+                class="w-full max-w-sm"
+                id="form-login"
+                :action="route('user.login')"
+                method="POST"
+            >
+                <input type="hidden" name="_token" :value="csrf_token" />
+
                 <div class="w-full mb-6">
                     <label class="text-2xl font-bold" for="username">
                         Username
                     </label>
                     <input
                         class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                        v-model="user"
                         id="username"
                         type="text"
+                        placeholder="Username"
+                        name="nickname"
+                        @keyup="validateUser(this.user)"
                     />
                 </div>
                 <div class="w-full mb-6">
@@ -63,9 +104,12 @@ export default {
                     </label>
                     <input
                         class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
+                        v-model="pass"
                         id="pass"
                         type="password"
                         placeholder="**********"
+                        name="password"
+                        @keyup="validatePassword(this.pass)"
                     />
                 </div>
 
@@ -81,9 +125,10 @@ export default {
                 <div class="w-full mb-6">
                     <a
                         class="inline-block align-baseline font-bold text-l"
-                        :href="route('registro.index')"
+                        :href="route('user.create')"
                     >
-                        No tienes cuenta? Registrate!
+                        ¿No tienes cuenta?
+                        <span class="underline">Registrate!</span>
                     </a>
                 </div>
             </form>
@@ -92,14 +137,6 @@ export default {
 </template>
 
 <style scoped>
-#wrapper {
-    height: 100vh;
-    width: 100%;
-    background-image: url("@/src/img/menu/fondoMenu.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
-
 .logo {
     width: 60%;
 }

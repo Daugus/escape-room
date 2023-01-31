@@ -5,7 +5,7 @@ import route from "ziggy";
 <script></script>
 
 <template>
-    <div id="wrapper" class="grid items-center py-12 md:p-16">
+    <div id="borde-monitor" class="grid items-center py-12 md:p-16">
         <div class="m-12 p-6 overflow-y-scroll h-4/5">
             <div class="flex justify-center mb-8">
                 <img
@@ -88,14 +88,6 @@ import route from "ziggy";
 </template>
 
 <style scoped>
-#wrapper {
-    height: 100vh;
-    width: 100%;
-    background-image: url("@/src/img/menu/fondoMenu.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
-
 #bg-text {
     background-color: #e6a002;
 }

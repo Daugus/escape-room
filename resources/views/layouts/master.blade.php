@@ -9,6 +9,8 @@
 
     <title>Escape Room</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('src/img/parasol.ico') }}">
+
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
@@ -23,39 +25,47 @@
             <a href="{{ route('index') }}" class="underline text-blue-600 hover:text-blue-800 ">Inicio</a>
         </li>
         <li>
-            <a href="{{ route('login.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
+            <a href="{{ route('user.login') }}" class="underline text-blue-600 hover:text-blue-800 ">Login</a>
         </li>
         <li>
-            <a href="{{ route('registro.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>
+            <a href="{{ route('user.create') }}" class="underline text-blue-600 hover:text-blue-800 ">Registro</a>
         </li>
         <li>
-            <a href="{{ route('sobre-nosotros.index') }}" class="underline text-blue-600 hover:text-blue-800">Sobre nosotros</a>
+            <a href="{{ route('user.show') }}" class="underline text-blue-600 hover:text-blue-800 ">Perfil</a>
         </li>
         <li>
-            <a href="{{ route('sala-espera.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Sala de espera</a>
+            <a href="{{ route('pruebas.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Admin
+                pruebas</a>
         </li>
         <li>
-            <a href="{{ route('hangman.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
+            <a href="{{ route('user.logout') }}" class="underline text-blue-600 hover:text-blue-800 ">Logout</a>
         </li>
         <li>
-            <a href="{{ route('kuku.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
+            <a href="{{ route('sobre-nosotros.index') }}" class="underline text-blue-600 hover:text-blue-800">Sobre
+                nosotros</a>
         </li>
         <li>
-            <a href="{{ route('agrupando.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
+            <a href="{{ route('sala-espera.index') }}" class="underline text-blue-600 hover:text-blue-800">sala de espera</a>
         </li>
         <li>
-            <a href="{{ route('oveja.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
+            <a href="{{ route('prueba.hangman') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
         </li>
-          <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
+
+        <li>
+            <a href="{{ route('prueba.kuku') }}" class="underline text-blue-600 hover:text-blue-800 ">Kukú</a>
         </li>
         <li>
-            <a href="{{ route('equilibrado.index') }}"
+            <a href="{{ route('prueba.agrupando') }}"
+                class="underline text-blue-600 hover:text-blue-800 ">Agrupando</a>
+        </li>
+        <li>
+            <a href="{{ route('prueba.oveja') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
+        </li>
+        <li>
+            <a href="{{ route('prueba.equilibrado') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>
-        <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
-        </li>
+
     </ul>
 
     @yield('content')

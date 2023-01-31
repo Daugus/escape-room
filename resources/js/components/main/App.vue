@@ -4,7 +4,7 @@ import Button from "./Button.vue";
 
 <template>
     <div
-        id="wrapper"
+        id="borde-monitor"
         class="grid grid-cols-1 md:grid-cols-2 items-center py-24 px-10 md:p-14"
     >
         <div class="flex justify-center md:border-r-4">
@@ -13,19 +13,19 @@ import Button from "./Button.vue";
 
         <div class="grid grid-rows-3 gap-y-10 md:pl-12">
             <Button
-                ruta="registro"
+                ruta="user.create"
                 imagen="src/img/menu/BTN1.png"
                 texto="Nuevo
                 Usuario"
             >
             </Button>
             <Button
-                ruta="login"
+                ruta="user.login"
                 imagen="src/img/menu/BTN2.png"
                 texto="Iniciar Sesión"
             />
             <Button
-                ruta="hangman"
+                ruta="hangman.index"
                 imagen="src/img/menu/BTN3.png"
                 texto="Demo"
             />
@@ -34,13 +34,6 @@ import Button from "./Button.vue";
 </template>
 
 <style scoped lang="scss">
-#wrapper {
-    height: 100vh;
-    width: 100%;
-    background-image: url("@/src/img/menu/fondoMenu.jpg");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
 .logo {
     width: 60%;
 }

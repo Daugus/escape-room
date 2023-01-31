@@ -30,17 +30,14 @@ export default {
             if (localStorage.getItem("letras")) {
                 // Comprobar las letras con la palabra
                 const letters = localStorage.getItem("letras").split(",");
-
-                console.log(letters);
+                // Borrar el item del localStorage
+                localStorage.removeItem("letras");
 
                 letters.forEach((letter) =>
                     setTimeout(() => {
                         this.getLetterKey(letter);
                     }, 500)
                 );
-
-                // Borrar el item del localStorage
-                localStorage.removeItem("letras");
             }
         }, 500);
     },
@@ -64,6 +61,9 @@ export default {
             if (this.usedLetters.includes(char) === true) return;
 
             this.usedLetters.push(char);
+            // Guardar los datos en localStorage
+            localStorage.setItem("letras", this.usedLetters);
+
             this.checkLetter(char);
             this.$emit("getLetterKey", char);
         },
@@ -85,9 +85,6 @@ export default {
         quitChallenge() {
             // Emitir llamada a funcion "quitChallenge" de otros componentes
             this.$emit("quitChallenge", true);
-
-            // Guardar los datos en localStorage
-            localStorage.setItem("letras", this.usedLetters);
         },
     },
     watch: {
@@ -98,9 +95,12 @@ export default {
             keys.forEach((key) => {
                 this.usedLetters.push(key.id);
             });
+
+            // Borrar el item del localStorage
+            localStorage.removeItem("letras");
         },
         errors: function () {
-            if (this.errors === 6) {
+            if (this.errors === 5) {
                 // Quitar eventListener al documento para poder usar el teclado fisico
                 document.removeEventListener("keyup", this.pressedKey);
 
@@ -111,6 +111,9 @@ export default {
                         this.getLetterKey(key.id)
                     );
                 });
+
+                // Vaciar array de teclas usadas
+                this.usedLetters = [];
             } else if (this.errors === 0) {
                 // Añadir eventListener al documento para poder usar el teclado fisico
                 document.addEventListener("keyup", this.pressedKey);
@@ -122,9 +125,10 @@ export default {
                         this.getLetterKey(key.id)
                     );
                 });
+
+                // Vaciar array de teclas usadas
+                this.usedLetters = [];
             }
-            // Vaciar array de teclas usadas
-            this.usedLetters = [];
         },
     },
 };
