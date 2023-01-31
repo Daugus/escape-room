@@ -6,15 +6,35 @@ import route from "ziggy";
 export default {
     data() {
         return {
-            session: {},
+            difficulties: [],
         };
     },
-    mounted() {
-        const sessionDiv = document.querySelector("#session");
-        if (sessionDiv) {
-            this.session = JSON.parse(sessionDiv.innerText);
-            sessionDiv.remove();
-        }
+    async mounted() {
+        await this.getDifficulties();
+    },
+
+    methods: {
+        async getDifficulties() {
+            const token = document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content");
+
+            console.log(token);
+
+            const res = await fetch(
+                `${window.location.origin}/api/sala-espera/getDifficulties`,
+                {
+                    method: "POST",
+                    headers: new Headers({
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": token,
+                    }),
+                }
+            );
+
+            this.difficulties = await res.json();
+            console.log(this.difficulties);
+        },
     },
 };
 </script>
@@ -23,7 +43,7 @@ export default {
     <div id="wrapper" class="flex justify-center py-12 md:p-28">
         <div class="grid grid-rows-3 gap-8">
             <!-- Boton atras -->
-            <div class="grid grid-cols-3">
+            <div class="grid grid-cols-4">
                 <div class="flex items-stretch justify-center">
                     <a
                         class="self-center bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
@@ -45,6 +65,11 @@ export default {
                         :href="route('index')"
                         >Jugar</a
                     >
+                </div>
+                <div class="flex items-stretch">
+                    <select>
+                        <option value=""></option>
+                    </select>
                 </div>
             </div>
 

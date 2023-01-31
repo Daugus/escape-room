@@ -84,9 +84,6 @@ class PasswordController extends Controller
     }
     public function getScientist()
     {
-
-
-
         $data = PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNotNull('code')->limit(1)->get();
         $data = $data->merge(PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNull('code')
             ->limit(3)->get());

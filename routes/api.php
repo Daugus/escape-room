@@ -18,3 +18,6 @@ Route::post('equilibrado/getFormulas', [GameController::class, 'getFormulas']);
 
 // Ruta para coger el JSON de Cada Oveja con su Pareja desde Vue
 Route::post('oveja/getIncubationMethods', [GameController::class, 'getIncubationMethods']);
+
+// Traer dificultades
+Route::post('sala-espera/getDifficulties', [SalaEsperaController::class, 'getDiffculties']);

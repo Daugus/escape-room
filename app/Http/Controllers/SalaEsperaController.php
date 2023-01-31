@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Difficulty;
 use Illuminate\Http\Request;
 
 class SalaEsperaController extends Controller
@@ -25,6 +26,13 @@ class SalaEsperaController extends Controller
     public function create()
     {
         //
+    }
+
+    public function getDifficulties()
+    {
+        $data = Difficulty::query()->select('id', 'name')->get();
+
+        return response()->json($data);
     }
 
     /**
