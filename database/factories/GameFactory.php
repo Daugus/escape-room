@@ -21,10 +21,10 @@ class GameFactory extends Factory
     {
         $difficulty_id = $this->faker->numberBetween(1, 3);
 
-        $estadoPartida = $this->faker->numberBetween(1, 5);
+        $estadoPartida = $this->faker->numberBetween(1, 7);
 
         if ($estadoPartida === 1) {
-            // cancelada (1/5)
+            // cancelada (1/7)
             $time = null;
             $state = 'cancelada';
         } else {
@@ -41,12 +41,12 @@ class GameFactory extends Factory
             }
 
             if ($estadoPartida === 2) {
-                // tiempo (1/5)
+                // tiempo (1/7)
                 $time_minutes = $maxtime;
                 $time_seconds = 0;
                 $state = 'perdida';
             } else {
-                // ganada (3/5)
+                // ganada (5/7)
                 $time_minutes = $this->faker->numberBetween(10, $maxtime);
                 $time_seconds = $this->faker->numberBetween(0, 59);
                 $state = 'ganada';
