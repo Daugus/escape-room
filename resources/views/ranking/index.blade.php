@@ -38,7 +38,7 @@
                 @endif
             </select>
 
-            <button type="submit">Filtrar</button>
+            <button class="appearance-none mx-auto flex text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500" type="submit">Filtrar</button>
         </form>
 
         <table class="table-auto">
