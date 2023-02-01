@@ -13,14 +13,14 @@ import Button from "./Button.vue";
 
         <div class="grid grid-rows-3 gap-y-5 md:pl-12">
             <Button
-                ruta="sobre-nosotros.index"
-                imagen="src/img/menu/BTN5.png"
-                texto="Sobre nosotros"
-            />
-            <Button
                 ruta="laboratorio.index"
                 imagen="src/img/menu/BTN3.png"
                 texto="Jugar"
+            />
+            <Button
+                ruta="user.show"
+                imagen="src/img/menu/BTN2.png"
+                texto="Perfil Personal"
             />
             <Button
                 ruta="ranking.index"
@@ -28,9 +28,14 @@ import Button from "./Button.vue";
                 texto="Ranking"
             />
             <Button
+                ruta="sobre-nosotros.index"
+                imagen="src/img/menu/BTN5.png"
+                texto="Sobre nosotros"
+            />
+            <Button
                 ruta="user.logout"
                 imagen="src/img/menu/BTN4.png"
-                texto="Cerrar Sesion"
+                texto="Cerrar Sesión"
             />
         </div>
     </div>

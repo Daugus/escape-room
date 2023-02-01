@@ -26,7 +26,7 @@ export default {
 
 <style scoped lang="scss">
 img {
-    width: 65%;
+    width: 45%;
 }
 div {
     text-align: center;
