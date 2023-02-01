@@ -11,21 +11,26 @@ import Button from "./Button.vue";
             <img class="logo" src="@/src/img/menu/ParasolCorporation.png" />
         </div>
 
-        <div class="grid grid-rows-3 gap-y-10 md:pl-12">
+        <div class="grid grid-rows-3 gap-y-5 md:pl-12">
             <Button
-                ruta="user.create"
-                imagen="src/img/menu/BTN1.png"
-                texto="Nuevo Usuario"
+                ruta="sobre-nosotros.index"
+                imagen="src/img/menu/BTN5.png"
+                texto="Sobre nosotros"
             />
             <Button
-                ruta="user.login"
-                imagen="src/img/menu/BTN2.png"
-                texto="Iniciar Sesión"
-            />
-            <Button
-                ruta="prueba.hangman"
+                ruta="laboratorio.index"
                 imagen="src/img/menu/BTN3.png"
-                texto="Demo"
+                texto="Jugar"
+            />
+            <Button
+                ruta="ranking.index"
+                imagen="src/img/menu/BTN6.png"
+                texto="Ranking"
+            />
+            <Button
+                ruta="user.logout"
+                imagen="src/img/menu/BTN4.png"
+                texto="Cerrar Sesion"
             />
         </div>
     </div>

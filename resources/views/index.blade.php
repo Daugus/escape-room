@@ -2,7 +2,11 @@
 {{-- @section('title', 'index') --}}
 
 @section('vitejs')
-    @vite(['resources/js/components/main/main.js'])
+    @if (session()->has('user'))
+        @vite(['resources/js/components/main-logged/main.js'])
+    @else
+        @vite(['resources/js/components/main/main.js'])
+    @endif
 @endsection
 
 @section('content')
