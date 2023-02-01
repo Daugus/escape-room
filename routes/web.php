@@ -99,7 +99,8 @@ Route::get('/administrar', [PruebasController::class, 'index'])
     ->middleware('profesor');
 
 Route::get('/sala-espera', [SalaEsperaController::class, 'index'])
-    ->name('sala-espera.index');
+    ->name('sala-espera.index')
+    ->middleware('logged');
 
 Route::resource('/administrar/hangman', HangmanSolutionController::class);
 Route::resource('/administrar/kuku', KukuSolutionController::class);

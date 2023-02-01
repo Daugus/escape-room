@@ -6,44 +6,38 @@ import route from "ziggy";
 export default {
     data() {
         return {
-            difficulties: [],
+            session: {},
         };
     },
-    async mounted() {
-        await this.getDifficulties();
+
+    mounted() {
+        // Trae los datos de la sesión logeada
+        const sessionDiv = document.querySelector("#session");
+        if (sessionDiv) {
+            this.session = JSON.parse(sessionDiv.innerText);
+            sessionDiv.remove();
+        }
     },
 
-    methods: {
-        async getDifficulties() {
-            const token = document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content");
-
-            console.log(token);
-
-            const res = await fetch(
-                `${window.location.origin}/api/sala-espera/getDifficulties`,
-                {
-                    method: "POST",
-                    headers: new Headers({
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": token,
-                    }),
-                }
-            );
-
-            this.difficulties = await res.json();
-            console.log(this.difficulties);
+    computed: {
+        // Traer la imagen del usuario
+        imageSource() {
+            return this.session.picture
+                ? new URL(
+                      `/public/src/img/users/${this.session.picture}`,
+                      import.meta.url
+                  )
+                : null;
         },
     },
 };
 </script>
 
 <template>
-    <div id="wrapper" class="flex justify-center py-12 md:p-28">
+    <div id="wrapper" class="flex justify-center py-12 md:px-28">
         <div class="grid grid-rows-3 gap-8">
             <!-- Boton atras -->
-            <div class="grid grid-cols-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8">
                 <div class="flex items-stretch justify-center">
                     <a
                         class="self-center bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
@@ -54,10 +48,20 @@ export default {
                 <!-- Nombre grupo -->
                 <div class="flex items-stretch">
                     <input
-                        class="self-center appearance-none w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
+                        class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
                         type="text"
                         placeholder="NOMBRE GRUPO"
                     />
+                </div>
+                <!-- Dificultad -->
+                <div class="flex items-stretch">
+                    <select
+                        class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
+                    >
+                        <option value="facil">Facil</option>
+                        <option value="normal">Normal</option>
+                        <option value="dificil">Difícil</option>
+                    </select>
                 </div>
                 <div class="flex items-stretch justify-center">
                     <a
@@ -66,76 +70,43 @@ export default {
                         >Jugar</a
                     >
                 </div>
-                <div class="flex items-stretch">
-                    <select>
-                        <option value=""></option>
-                    </select>
-                </div>
             </div>
 
             <!-- Tarjetas -->
             <div class="row-span-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                 <!-- Tajeta 1 -->
-                <div class="grid grid-cols-2 bg-slate-200 w-80 rounded-lg">
-                    <div class="flex p-4 bg-orange-400 rounded-l-lg">
-                        <img
-                            class="self-center rounded-full"
-                            src="@/src/img/password/prueba.jpg"
-                        />
+                <div
+                    class="grid grid-cols-2 bg-orange-400 rounded-lg w-96 h-3/5"
+                >
+                    <div class="flex p-4">
+                        <div
+                            class="border-2 border-black bg-white h-40 rounded-lg"
+                        >
+                            <img
+                                class="self-top m-3 p-1 w-32 h-32 object-cover rounded-lg"
+                                :src="imageSource"
+                            />
+                        </div>
                     </div>
                     <div class="grid grid-rows-2">
                         <div class="flex px-4">
-                            <p class="self-end">{{}}</p>
+                            <p
+                                class="self-center text-2xl border-b-4 border-black"
+                                id="tipography"
+                            >
+                                {{ session.nickname }}
+                            </p>
                         </div>
-                        <div class="flex p-4">
+                        <div class="flex mb-4 mr-6 opacity-60">
                             <img
-                                class="self-center"
+                                class="self-end"
                                 src="@/src/img/sala-espera/ParasolCorporation.png"
                             />
                         </div>
                     </div>
                 </div>
                 <!-- Tarjeta 2 -->
-                <div class="grid grid-cols-2 bg-slate-200 w-80 rounded-lg">
-                    <div class="flex p-4 bg-orange-400 rounded-l-lg">
-                        <img
-                            class="self-center rounded-full"
-                            src="@/src/img/password/prueba.jpg"
-                        />
-                    </div>
-                    <div class="grid grid-rows-2">
-                        <div class="flex px-4">
-                            <p class="self-end"></p>
-                        </div>
-                        <div class="flex p-4">
-                            <img
-                                class="self-center"
-                                src="@/src/img/sala-espera/ParasolCorporation.png"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div class="grid grid-cols-2 bg-slate-200 w-80 rounded-lg">
-                    <div class="flex p-4 bg-orange-400 rounded-l-lg">
-                        <img
-                            class="self-center rounded-full"
-                            src="@/src/img/password/prueba.jpg"
-                        />
-                    </div>
-                    <div class="grid grid-rows-2">
-                        <div class="flex px-4">
-                            <p class="self-end">Opty</p>
-                        </div>
-                        <div class="flex p-4">
-                            <img
-                                class="self-center"
-                                src="@/src/img/sala-espera/ParasolCorporation.png"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <!-- Tarjeta 4 -->
+                <div></div>
             </div>
         </div>
     </div>
@@ -148,5 +119,9 @@ export default {
     background-image: url("@/src/img/menu/fondoMenu.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100vh;
+}
+
+#tipography {
+    font-family: Eurostile;
 }
 </style>
