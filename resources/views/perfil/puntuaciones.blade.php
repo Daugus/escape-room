@@ -2,7 +2,8 @@
 {{-- @section('title', 'index') --}}
 
 @section('content')
-    <div id="borde-monitor" class=" gap-3 grid grid-cols-2 items-center justify-center py-24 px-64">
-
+    <div id="borde-monitor" class="flex flex-col justify-center items-center gap-5">
+        {{ session('user')->id }}
+        <x-ranking :games="$games"></x-ranking>
     </div>
 @endsection

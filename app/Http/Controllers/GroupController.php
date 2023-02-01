@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Game;
-use Illuminate\Database\Eloquent\Collection;
 
 // controlador para todas las vistas y apis para el juego
 class GroupController extends Controller

@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Game;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $userCount = '';
+    private $difficulty = '';
+
     public function show()
     {
         return view('perfil.index');
@@ -152,8 +157,34 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function puntuaciones()
+    public function puntuaciones($userCount = '', $difficulty = '')
     {
-        return view('perfil.puntuaciones');
+        $this->userCount = $userCount;
+        $this->difficulty = $difficulty;
+
+        $games = Game::selectRaw('groups.name AS group_name, difficulties.name AS diff_name, games.*')
+            ->join('groups', 'games.group_id', 'groups.id')
+            ->join('difficulties', 'games.difficulty_id', 'difficulties.id')
+            ->where('games.state', 'ganada')
+            ->whereRaw("games.difficulty_id like '%$this->difficulty%'")
+            ->whereIn('games.group_id', function ($query) {
+                $query->select('group_id')
+                    ->from('user_group')
+                    ->join('users', 'user_group.group_id', 'users.id')
+                    ->whereIn('user_group.group_id', function ($query) {
+                        $query->select('user_group.group_id')
+                            ->from('user_group.group_id')
+                            ->join('users', 'user_group_user_id', 'users.id')
+                            ->groupBy('user_group.group_id')
+                            ->having('users.id', session('user')->id);
+                    })
+                    ->groupBy('user_group.group_id')
+                    ->havingRaw("count(users.id) like '%$this->userCount%'")
+                    ->get();
+            })
+            ->orderBy('games.time', 'ASC')
+            ->paginate(8);
+
+        return view('perfil.puntuaciones', compact('games'));
     }
 }
