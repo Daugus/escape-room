@@ -95,7 +95,7 @@ export default {
                         type="text"
                         placeholder="Username"
                         name="nickname"
-                        @keyup="validateUser(this.user)"
+                        @keyup="validateUser(user)"
                     />
                 </div>
                 <div class="w-full mb-6">
@@ -109,7 +109,7 @@ export default {
                         type="password"
                         placeholder="**********"
                         name="password"
-                        @keyup="validatePassword(this.pass)"
+                        @keyup="validatePassword(pass)"
                     />
                 </div>
 
