@@ -108,7 +108,7 @@ export default {
     <div :id="draggableId">
         <div :id="dragzoneId">
             <img src="@/src/img/agrupando/file.png" />
-            <p>{{ conceptInfo.concept }}</p>
+            <p draggable="nones">{{ conceptInfo.concept }}</p>
             <!-- <pre>{{ conceptInfo.field }}</pre> -->
         </div>
     </div>
@@ -118,26 +118,42 @@ export default {
 // estiliza todos los elementos que empiecen por "draggable"
 [id^="draggable"] {
     width: 10vh;
-
+    padding: 1%;
     z-index: 9;
     top: v-bind("distanceTop");
     left: v-bind("distanceLeft");
 
+    &:hover {
+        background-color: rgba(0, 255, 255, 0.2);
+        border: 1px solid rgba(0, 255, 255, 0.75);
+        border-radius: 5%;
+    }
+
     img {
         width: 50%;
+        filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
+        pointer-events: none;
     }
 
     p,
     pre {
+        cursor: default;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
         font-size: 1.5vh;
+        text-shadow: 0 0 0.5rem black;
+
+        &::selection {
+            display: none;
+        }
     }
 }
 
 // estiliza todos los elementos que empiecen por "dragzone"
 [id^="dragzone"] {
-    cursor: move;
     z-index: 10;
-
     display: flex;
     flex-direction: column;
     justify-content: center;

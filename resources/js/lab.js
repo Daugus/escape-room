@@ -190,11 +190,77 @@ const hintsGenerator = (object) => {
     }
 }
 
+const counter = (time) => {
+    let countDownDate = time;
+    let x = setInterval(function () {
+        let now = Date.now();
+        let distance = countDownDate - now;
+
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        if (hours < 10) {
+            if (minutes < 10) {
+                if (seconds < 10) {
+                    hangmanCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
+                } else {
+                    hangmanCounter.innerHTML = hours + ":0" + minutes + ":" + seconds;
+                }
+            } else {
+                hangmanCounter.innerHTML = hours + minutes + ":" + seconds;
+            }
+        } else {
+
+        }
+
+
+
+        if (distance < 0) {
+            clearInterval(x);
+            localStorage.removeItem("counter");
+        }
+    }, 1000);
+}
+
 // CAMBIAR EL ESCENARIO SEGUN LAS VARIABLES
 const changeEnviroment = () => {
-    console.log(localStorage);
+    // EJECUTAR F11
 
     // CONTADORES
+    const generalCounter = document.querySelector("#general-counter span");
+    const counter = () => {
+        let countDownDate = Date.now() + 3600000;
+        let x = setInterval(function () {
+            let now = Date.now();
+            let distance = countDownDate - now;
+
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (hours < 10) {
+                if (minutes < 10) {
+                    if (seconds < 10) {
+                        generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
+                    } else {
+                        generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":" + seconds;
+                    }
+                } else {
+                    generalCounter.innerHTML = "0" + hours + ":" + minutes + ":" + seconds;
+                }
+            } else {
+                generalCounter.innerHTML = hours + ":" + minutes + ":" + seconds;
+            }
+
+            if (distance < 0) {
+                clearInterval(x);
+                localStorage.removeItem("counter");
+            }
+        }, 1000);
+    }
+    counter();
+
     const hangmanCounter = document.querySelector("#hangman-counter span");
 
     // PIZARRA

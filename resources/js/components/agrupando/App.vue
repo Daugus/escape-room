@@ -2,6 +2,7 @@
 import route from "ziggy";
 import File from "./File.vue";
 import Folder from "./Folder.vue";
+import Tab from "./Tab.vue";
 </script>
 
 <script>
@@ -10,8 +11,7 @@ export default {
         return {
             conceptList: [],
             folderInfoList: [],
-            distanciaTop: "",
-            distanciaLeft: "",
+            guessedFiles: 0,
         };
     },
     async mounted() {
@@ -73,6 +73,8 @@ export default {
                         .querySelector(`#${fileInfo.id}`)
                         .classList.add("hidden");
                 }, 400);
+
+                this.guessedFiles++;
             } else {
                 document
                     .querySelector(`#${fileInfo.id}`)
@@ -85,7 +87,12 @@ export default {
 
 <template>
     <div class="bg">
-        <section>
+        <!-- CAROUSEL -->
+        <section id="carousel" v-if="guessedFiles === 20">
+            <Tab />
+        </section>
+        <!-- PRUEBA: AGRUPANDO -->
+        <section id="agrupando" v-else>
             <div>
                 <Folder
                     @getCurrentFolderInfo="getCurrentFolderInfo"
@@ -120,8 +127,7 @@ export default {
 <style scoped lang="scss">
 .bg {
     height: 100vh;
-
-    overflow: hidden;
+    width: 100vw;
 
     background-image: url("@/src/img/agrupando/bg.png");
     background-size: cover;
@@ -131,34 +137,37 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    position: relative;
 }
 
 section {
-    height: 100%;
-    width: 100%;
+    position: absolute;
+    background-image: url("@/src/img/agrupando/windows_bg.jpg");
+    background-size: cover;
+    inset: 8.5% 19.6% 28.5% 19.4%;
+}
 
-    margin-top: 4.75%;
-    margin-bottom: 16%;
-    margin-left: 39%;
-
+#agrupando {
+    padding: 2%;
     & > :nth-child(1) {
         height: max-content;
         display: flex;
         flex-direction: row;
-        height: 58%;
-        width: 60.9%;
-        padding: 1%;
+        height: 55%;
         gap: 1%;
     }
 
     & > :nth-child(2) {
-        height: 42%;
-        width: 60.9%;
-        padding: 1%;
+        height: 45%;
 
         display: grid;
         grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(2, 1fr);
     }
+}
+
+#carousel {
+    background-color: rgba(255, 0, 0, 0.467);
 }
 </style>

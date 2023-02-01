@@ -42,13 +42,13 @@ export default {
 <template>
     <article class="border-black border-3 aspect-square p-2" :id="bdField">
         <img src="@/src/img/agrupando/folder.png" />
-        <p>{{ field }}</p>
+        <p draggable="false">{{ field }}</p>
     </article>
 </template>
 
 <style scoped lang="scss">
 article {
-    width: 10%;
+    width: 12%;
     height: max-content;
     display: flex;
     flex-direction: column;
@@ -58,10 +58,19 @@ article {
 
     img {
         width: 100%;
+        filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
+        pointer-events: none;
     }
 
     p {
+        cursor: default;
+        color: white;
         font-size: 1.5vh;
+        text-shadow: 0 0 0.5rem black;
+
+        &::selection {
+            display: none;
+        }
     }
 }
 </style>
