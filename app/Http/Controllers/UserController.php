@@ -103,7 +103,7 @@ class UserController extends Controller
             'email' => 'required|max:255|unique:users,email,' . session('user')->id,
         ];
 
-        //comprobante de si es una archivo valido 
+        //comprobante de si es una archivo valido
         $fileChanged = $request->fileChanged === 'true';
         if ($fileChanged) $validaciones['picture'] = 'mimes:jpg,png,webp';
 
@@ -116,7 +116,7 @@ class UserController extends Controller
         $user->nickname = $request->nickname;
         $user->email = $request->email;
 
-        //comprobante de si el archivo a cambiado 
+        //comprobante de si el archivo a cambiado
         if ($fileChanged) {
             if ($request->previousFileName !== "user.png") {
                 $ruta = public_path('src/img/users/' . $request->previousFileName);
@@ -150,5 +150,10 @@ class UserController extends Controller
         session()->flush();
 
         return redirect('/');
+    }
+
+    public function puntuaciones()
+    {
+        return view('perfil.puntuaciones');
     }
 }

@@ -52,6 +52,10 @@ Route::get('/perfil', [UserController::class, 'show'])
     ->name('user.show')
     ->middleware('logged');
 
+Route::get('/perfil/puntuaciones', [UserController::class, 'puntuaciones'])
+    ->name('user.puntuaciones')
+    ->middleware('logged');
+
 Route::get('/perfil/editar', [UserController::class, 'edit'])
     ->name('user.edit')
     ->middleware('logged');
