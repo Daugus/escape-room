@@ -90,13 +90,9 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
     ->name('prueba.oveja')
     ->middleware('logged');
 
-// pruebas
-use App\Http\Controllers\OvejaController;
-use App\Http\Controllers\HangmanController;
-use App\Http\Controllers\KukuController;
-use App\Http\Controllers\GroupingController;
-use App\Http\Controllers\EquilibradoController;
-use App\Http\Controllers\PasswordController;
+Route::get('/jugar/password', [GameController::class, 'password'])
+    ->name('prueba.password')
+    ->middleware('logged');
 
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
@@ -112,7 +108,6 @@ Route::post('/ranking', [GroupController::class, 'filter'])
 Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
     ->middleware('profesor');
-Route::get('/infocientificos', [PasswordController::class, 'index'])->name('infocientificos.index');
 
 Route::resource('/administrar/hangman', HangmanSolutionController::class)->middleware('profesor');
 Route::resource('/administrar/kuku', KukuSolutionController::class)->middleware('profesor');

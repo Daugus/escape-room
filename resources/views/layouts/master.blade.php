@@ -48,7 +48,7 @@
                 nosotros</a>
         </li>
           <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
+            <a href="{{ route('prueba.password') }}" class="underline text-blue-600 hover:text-blue-800 ">Password</a>
         </li>
         <li>
             <a href="{{ route('prueba.hangman') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
@@ -67,9 +67,7 @@
             <a href="{{ route('prueba.equilibrado') }}"
                 class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
         </li>
-        <li>
-            <a href="{{ route('infocientificos.index') }}" class="underline text-blue-600 hover:text-blue-800 ">Infocientificos</a>
-        </li>
+     
     </ul>
 
     @yield('content')
