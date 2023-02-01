@@ -19,7 +19,7 @@ export default {
 
 <template>
     <div class="flex">
-        <a :href="rutaHref"><img :src="imagen" /></a>
+        <a class="space-x-3" ef="rutaHref"><img :src="imagen" /></a>
         <a class="font-bold text-3xl" :href="rutaHref">{{ texto }}</a>
     </div>
 </template>
@@ -27,6 +27,7 @@ export default {
 <style scoped lang="scss">
 img {
     width: 55%;
+    max-width: 55%;
 }
 div {
     text-align: center;

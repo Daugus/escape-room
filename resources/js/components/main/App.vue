@@ -11,7 +11,9 @@ import Button from "./Button.vue";
             <img class="logo" src="@/src/img/menu/ParasolCorporation.png" />
         </div>
 
-        <div class="grid grid-rows-3 gap-y-10 md:pl-12">
+        <div
+            class="md:grid md:grid-rows-3 md:gap-y-2 md:ml-8 overflow-y-auto h-96 gap-4 flex flex-col"
+        >
             <Button
                 ruta="user.create"
                 imagen="src/img/menu/BTN1.png"
