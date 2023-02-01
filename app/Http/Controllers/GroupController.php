@@ -15,7 +15,13 @@ class GroupController extends Controller
     public function index()
     {
         $games = $this->query();
-        return view('ranking.index', compact('games'));
+        return view('ranking.index', [
+            'games' => $games,
+            'options' => [
+                'userCount' => '',
+                'difficulty' => '',
+            ]
+        ]);
     }
 
     public function filter(Request $request)

@@ -157,15 +157,41 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function puntuaciones($userCount = '', $difficulty = '')
+    public function puntuaciones()
+    {
+        $games = $this->queryPuntuaciones();
+        return view('perfil.puntuaciones', [
+            'games' => $games,
+            'options' => [
+                'userCount' => '',
+                'difficulty' => '',
+            ]
+        ]);
+    }
+
+    public function filterPuntuaciones(Request $request)
+    {
+        $games = $this->queryPuntuaciones($request->userCount, $request->difficulty);
+        return view(
+            'ranking.index',
+            [
+                'games' => $games,
+                'options' => [
+                    'userCount' => $request->userCount,
+                    'difficulty' => $request->difficulty
+                ]
+            ]
+        );
+    }
+
+    public function queryPuntuaciones($userCount = '', $difficulty = '')
     {
         $this->userCount = $userCount;
         $this->difficulty = $difficulty;
 
-        $games = Game::selectRaw('groups.name AS group_name, difficulties.name AS diff_name, games.*')
+        return Game::selectRaw('groups.name AS group_name, difficulties.name AS diff_name, games.*')
             ->join('groups', 'games.group_id', 'groups.id')
             ->join('difficulties', 'games.difficulty_id', 'difficulties.id')
-            ->where('games.state', 'ganada')
             ->whereRaw("games.difficulty_id like '%$this->difficulty%'")
             ->whereIn('games.group_id', function ($query) {
                 $query->select('group_id')
@@ -173,18 +199,14 @@ class UserController extends Controller
                     ->join('users', 'user_group.group_id', 'users.id')
                     ->whereIn('user_group.group_id', function ($query) {
                         $query->select('user_group.group_id')
-                            ->from('user_group.group_id')
-                            ->join('users', 'user_group_user_id', 'users.id')
-                            ->groupBy('user_group.group_id')
-                            ->having('users.id', session('user')->id);
+                            ->from('user_group')
+                            ->where('user_group.user_id', session('user')->id);
                     })
                     ->groupBy('user_group.group_id')
                     ->havingRaw("count(users.id) like '%$this->userCount%'")
                     ->get();
             })
-            ->orderBy('games.time', 'ASC')
+            ->orderBy('games.id', 'DESC')
             ->paginate(8);
-
-        return view('perfil.puntuaciones', compact('games'));
     }
 }
