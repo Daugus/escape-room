@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 // modelos para apis
 use Illuminate\Database\Eloquent\Collection;
 use App\Models\SharedSolution;
 use App\Models\GroupingSolution;
 use App\Models\HangmanSolution;
+use App\Models\PasswordSolution;
 
 // controlador para todas las vistas y apis para el juego
 class GameController extends Controller
@@ -102,6 +101,22 @@ class GameController extends Controller
             ->inRandomOrder()
             ->limit(6)
             ->get();
+
+        return response()->json($data);
+    }
+
+
+    // prueba 6: contraseña
+    public function password()
+    {
+        return view('infocientificos.index');
+    }
+
+    public function getScientists()
+    {
+        $data = PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNotNull('code')->inRandomOrder()->limit(1)->get();
+        $data = $data->merge(PasswordSolution::query()->select('id', 'name', 'element', 'discovery_year', 'text', 'code', 'image')->whereNull('code')
+            ->inRandomOrder()->limit(3)->get());
 
         return response()->json($data);
     }

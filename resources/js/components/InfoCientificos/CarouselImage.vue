@@ -58,8 +58,7 @@ img {
     margin: 10px;
 }
 #carousel {
-    height: max-content;
-    width: max-content;
+    height: 70vh;
 }
 p {
     width: 600px;
@@ -67,7 +66,6 @@ p {
     font-size: 25px;
 }
 .container {
-    width: 100vh;
     background-color: aqua;
 }
 </style>

@@ -90,6 +90,9 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
     ->name('prueba.oveja')
     ->middleware('logged');
 
+Route::get('/jugar/password', [GameController::class, 'password'])
+    ->name('prueba.password')
+    ->middleware('logged');
 
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
