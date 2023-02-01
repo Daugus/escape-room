@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Game;
-use Illuminate\Database\Eloquent\Collection;
 
 // controlador para todas las vistas y apis para el juego
 class GroupController extends Controller
@@ -16,7 +15,13 @@ class GroupController extends Controller
     public function index()
     {
         $games = $this->query();
-        return view('ranking.index', compact('games'));
+        return view('ranking.index', [
+            'games' => $games,
+            'options' => [
+                'userCount' => '',
+                'difficulty' => '',
+            ]
+        ]);
     }
 
     public function filter(Request $request)
