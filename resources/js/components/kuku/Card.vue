@@ -61,6 +61,13 @@ export default {
 </template>
 
 <style scoped lang="scss">
+* {
+    user-select: none;
+}
+
+img {
+    pointer-events: none;
+}
 .cardBox {
     margin: 1% 0 0 1%;
     perspective: 100rem;

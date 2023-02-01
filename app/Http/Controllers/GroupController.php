@@ -24,7 +24,7 @@ class GroupController extends Controller
         ]);
     }
 
-    public function filter(Request $request)
+    public function filterIndex(Request $request)
     {
         $games = $this->query($request->userCount, $request->difficulty);
         return view(
@@ -37,6 +37,10 @@ class GroupController extends Controller
                 ]
             ]
         );
+    }
+
+    public function show()
+    {
     }
 
     private function query($userCount = '', $difficulty = '')

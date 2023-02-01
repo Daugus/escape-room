@@ -55,6 +55,9 @@ Route::get('/perfil', [UserController::class, 'show'])
 Route::get('/perfil/puntuaciones', [UserController::class, 'puntuaciones'])
     ->name('user.puntuaciones')
     ->middleware('logged');
+Route::post('/perfil/puntuaciones', [UserController::class, 'filterPuntuaciones'])
+    ->name('user.filterPuntuaciones')
+    ->middleware('logged');
 
 Route::get('/perfil/editar', [UserController::class, 'edit'])
     ->name('user.edit')
@@ -105,8 +108,8 @@ Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
 Route::get('/ranking', [GroupController::class, 'index'])
     ->name('ranking.index')
     ->middleware('logged');
-Route::post('/ranking', [GroupController::class, 'filter'])
-    ->name('ranking.filter')
+Route::post('/ranking', [GroupController::class, 'filterIndex'])
+    ->name('ranking.filterIndex')
     ->middleware('logged');
 
 Route::get('/administrar', [PruebasController::class, 'index'])

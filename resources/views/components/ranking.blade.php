@@ -1,7 +1,7 @@
 <table class="table-auto">
     <thead>
         <tr>
-            @if ($showState)
+            @if ($showState == 'true')
                 <th class="border border-gray-700 bg-neutral-200 appearance-none text-gray-700 rounded py-3 px-4">
                     Estado
                 </th>
@@ -22,7 +22,7 @@
     <tbody>
         @foreach ($games as $game)
             <tr>
-                @if ($showState)
+                @if ($showState == 'true')
                     <td class="border border-gray-700 px-3 py-1">{{ ucfirst($game->state) }}</td>
                 @endif
 

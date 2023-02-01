@@ -13,6 +13,7 @@ class UserController extends Controller
 {
     private $userCount = '';
     private $difficulty = '';
+    private $state = '';
 
     public function show()
     {
@@ -165,33 +166,37 @@ class UserController extends Controller
             'options' => [
                 'userCount' => '',
                 'difficulty' => '',
+                'state' => '',
             ]
         ]);
     }
 
     public function filterPuntuaciones(Request $request)
     {
-        $games = $this->queryPuntuaciones($request->userCount, $request->difficulty);
+        $games = $this->queryPuntuaciones($request->userCount, $request->difficulty, $request->state);
         return view(
-            'ranking.index',
+            'perfil.puntuaciones',
             [
                 'games' => $games,
                 'options' => [
                     'userCount' => $request->userCount,
-                    'difficulty' => $request->difficulty
+                    'difficulty' => $request->difficulty,
+                    'state' => $request->state,
                 ]
             ]
         );
     }
 
-    public function queryPuntuaciones($userCount = '', $difficulty = '')
+    public function queryPuntuaciones($userCount = '', $difficulty = '', $state = '')
     {
         $this->userCount = $userCount;
         $this->difficulty = $difficulty;
+        $this->state = $state;
 
         return Game::selectRaw('groups.name AS group_name, difficulties.name AS diff_name, games.*')
             ->join('groups', 'games.group_id', 'groups.id')
             ->join('difficulties', 'games.difficulty_id', 'difficulties.id')
+            ->whereRaw("games.state like '%$this->state%'")
             ->whereRaw("games.difficulty_id like '%$this->difficulty%'")
             ->whereIn('games.group_id', function ($query) {
                 $query->select('group_id')

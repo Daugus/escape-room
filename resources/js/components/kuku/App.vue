@@ -32,29 +32,30 @@ export default {
                 }
             );
 
-            const cards = await res.json();
+            const data = await res.json();
+
+            const formulas = [];
 
             // llena el array con dos cartas (una con la imagen y
             // otra con el texto) por cada resultado de la bd
-            for await (const card of cards) {
-                this.cardList.push({ id: card.id, name: card.name });
+            for await (const formula of data) {
+                formulas.push({ id: formula.id, name: formula.name });
 
-                this.cardList.push({
-                    id: card.id,
-                    alt: card.name,
-                    image: card.image,
+                formulas.push({
+                    id: formula.id,
+                    alt: formula.name,
+                    image: formula.image,
                 });
             }
 
             // mezcla las cartas
-            for (let i = this.cardList.length - 1; i > 0; i--) {
+            for (let i = formulas.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
 
-                [this.cardList[i], this.cardList[j]] = [
-                    this.cardList[j],
-                    this.cardList[i],
-                ];
+                [formulas[i], formulas[j]] = [formulas[j], formulas[i]];
             }
+
+            this.cardList = formulas;
         },
         // recibe el elemento html de la carta
         getFlippedCard(card) {
