@@ -1,5 +1,6 @@
 <script setup>
 import route from "ziggy";
+import tarjeta from "./Tarjeta.vue";
 </script>
 
 <script>
@@ -36,7 +37,7 @@ export default {
 
 <template>
     <div id="wrapper" class="flex justify-center py-12 md:px-28">
-        <div class="grid grid-rows-3 gap-8">
+        <div class="grid grid-rows-3">
             <!-- Boton atras -->
             <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8">
                 <div class="flex items-stretch justify-center">
@@ -51,7 +52,7 @@ export default {
                     <input
                         class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
                         type="text"
-                        placeholder="NOMBRE GRUPO"
+                        placeholder="NOMBRE DE GRUPO"
                     />
                 </div>
                 <!-- Dificultad -->
@@ -76,8 +77,8 @@ export default {
             <!-- Tarjetas -->
             <div class="row-span-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                 <!-- Tajeta 1 -->
-                <div
-                    class="grid grid-cols-2 bg-orange-400 rounded-lg w-96 h-3/5"
+                <!-- <div
+                    class="grid grid-cols-2 bg-orange-400 rounded-lg w-96 h-1/2 border-2 border-black shadow-2xl"
                 >
                     <div class="flex p-4">
                         <div
@@ -98,16 +99,21 @@ export default {
                                 {{ session.nickname }}
                             </p>
                         </div>
-                        <div class="flex mb-4 mr-6 opacity-60">
+                        <div class="flex mb-4 mr-6">
                             <img
                                 class="self-end"
                                 src="@/src/img/sala-espera/ParasolCorporation.png"
                             />
                         </div>
                     </div>
+                </div> -->
+                <!-- Añadir tarjeta -->
+                <div>
+                    <button class="h-12 w-12 bg-orange-400 rounded-lg">
+                        +
+                    </button>
                 </div>
-                <!-- Tarjeta 2 -->
-                <div></div>
+                <tarjeta />
             </div>
         </div>
     </div>
