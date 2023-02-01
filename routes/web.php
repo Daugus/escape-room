@@ -112,6 +112,10 @@ Route::post('/ranking', [GroupController::class, 'filterIndex'])
     ->name('ranking.filterIndex')
     ->middleware('logged');
 
+Route::get('/group/{id}', [GroupController::class, 'show'])
+    ->name('ranking.group')
+    ->middleware('logged');
+
 Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
     ->middleware('profesor');

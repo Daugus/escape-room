@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Game;
+use App\Models\Group;
+use App\Models\User;
 
 // controlador para todas las vistas y apis para el juego
 class GroupController extends Controller
@@ -39,8 +42,16 @@ class GroupController extends Controller
         );
     }
 
-    public function show()
+    public function show($id)
     {
+        $group = Group::findOrFail($id);
+        $users = User::select('u.nickname', 'u.picture')
+            ->fromRaw('users AS u')
+            ->join(DB::raw('user_group AS ug'), 'u.id', 'ug.user_id')
+            ->where('ug.group_id', $id)
+            ->get();
+
+        return view('ranking.show', ['group' => $group, 'users' => $users]);
     }
 
     private function query($userCount = '', $difficulty = '')
