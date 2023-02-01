@@ -45,9 +45,9 @@ class UserController extends Controller
         $user = new User($request->all());
         $user->password = bcrypt($user->password);
 
-        $nickname = $user->nickname;
 
         if (isset($request->picture)) {
+            $nickname = $user->nickname;
             $fileName = $nickname . '.' . $request->picture->extension();
             $request->picture->move(public_path('src/img/users'), $fileName);
             $user->picture = $fileName;
@@ -89,19 +89,48 @@ class UserController extends Controller
 
     public function edit()
     {
-        return view('user.edit', ['user' => session('user')]);
+        return view('perfil.edit', ['user' => session('user')]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::findOrFail($id);
+
+        $validaciones = [
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'nickname' => 'required|max:255|unique:users,nickname,' . session('user')->id,
+            'password' => 'required|max:255',
+            'email' => 'required|max:255|unique:users,email,' . session('user')->id,
+        ];
+
+        //comprobante de si es una archivo valido 
+        $fileChanged = $request->fileChanged === 'true';
+        if ($fileChanged) $validaciones['picture'] = 'mimes:jpg,png,webp';
+
+        $request->validate($validaciones);
+
+        $user = User::findOrFail(session('user')->id);
 
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->nickname = $request->nickname;
         $user->email = $request->email;
 
+        //comprobante de si el archivo a cambiado 
+        if ($fileChanged) {
+            if ($request->previousFileName !== "user.png") {
+                $ruta = public_path('src/img/users/' . $request->previousFileName);
+                if (file_exists($ruta)) File::delete($ruta);
+            }
+
+            $nickname = $user->nickname;
+            $fileName = $nickname . '.' . $request->picture->extension();
+            $request->picture->move(public_path('src/img/users'), $fileName);
+            $user->picture = $fileName;
+        }
+
         $user->save();
+        session(['user' => $user]);
 
         return redirect()->action([UserController::class, 'show']);
     }

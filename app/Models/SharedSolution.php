@@ -17,6 +17,6 @@ class SharedSolution extends Model
 
     public function challenge()
     {
-        return $this->belongsTo(Challenge::class, 'foreign_key');
+        return $this->belongsTo(Challenge::class, 'id', 'challenge_id');
     }
 }

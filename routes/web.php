@@ -10,7 +10,7 @@ use App\Http\Controllers\GameController;
 
 // menú
 use App\Http\Controllers\SobreNosotrosController;
-use App\Http\Controllers\RankingController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PruebasController;
 
 use App\Http\Controllers\HangmanSolutionController;
@@ -56,7 +56,7 @@ Route::get('/perfil/editar', [UserController::class, 'edit'])
     ->name('user.edit')
     ->middleware('logged');
 
-Route::post('/perfil/editar', [UserController::class, 'update'])
+Route::put('/perfil/editar', [UserController::class, 'update'])
     ->name('user.update')
     ->middleware('logged');
 
@@ -85,12 +85,18 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
     ->name('prueba.oveja')
     ->middleware('logged');
 
+Route::get('/jugar/password', [GameController::class, 'password'])
+    ->name('prueba.password')
+    ->middleware('logged');
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
     ->name('sobre-nosotros.index');
 
-Route::get('/ranking', [RankingController::class, 'index'])
+Route::get('/ranking', [GroupController::class, 'index'])
     ->name('ranking.index')
+    ->middleware('logged');
+Route::post('/ranking', [GroupController::class, 'filter'])
+    ->name('ranking.filter')
     ->middleware('logged');
 
 Route::get('/administrar', [PruebasController::class, 'index'])

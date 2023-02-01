@@ -17,6 +17,6 @@ class Group extends Model
 
     public function users()
     {
-        return $this->belongsToMany(Alumno::class, 'user_group');
+        return $this->belongsToMany(UserGroup::class, 'user_group');
     }
 }

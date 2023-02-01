@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(50)->create();
+        User::factory(120)->create();
 
         $password = '$2y$10$n/8l8e.y.qN8lrvZwf1zke8RJjZI5rQSs4xlIY4nDEVE0CfSCiZZC'; // 123
 

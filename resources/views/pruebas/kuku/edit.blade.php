@@ -10,19 +10,23 @@
             @csrf
             @method('PUT')
 
-            <div>
-                <label for="name">Nombre:</label>
-                <input type="text" name="name" id="name" placeholder="Nombre"
-                    value="{{ old('name', $solution->question) }}" maxlength="50">
+            <div class="mb-10">
+                <label class="bg-neutral-200 appearance-none w-full text-gray-700 border rounded py-3 px-4"
+                    for="name">Nombre:</label>
+                <input class="bg-neutral-100 appearance-none w-full text-gray-700 border rounded py-3 px-4" type="text"
+                    name="name" id="name" placeholder="Nombre" value="{{ old('name', $solution->question) }}"
+                    maxlength="50">
 
                 @error('name')
-                    <p>{{ $message }}</p>
+                    <p class="appearance-none w-full text-red-600 border rounded py-3 px-4">{{ $message }}</p>
                 @enderror
             </div>
 
             <div>
-                <label for="formula">Fórmula:</label>
-                <input type="file" name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png"
+                <label class="bg-neutral-200 appearance-none w-full text-gray-700 border rounded py-3 px-4"
+                    for="formula">Fórmula:</label>
+                <input class="bg-neutral-100 appearance-none w-full text-gray-700 border rounded py-3 px-4" type="file"
+                    name="formula" id="formula" placeholder="Fórmula" accept=".jpg,.jpeg,.png"
                     value="{{ old('formula', $solution->answer) }}">
 
                 <div id="preview-container">
@@ -33,14 +37,16 @@
                 </div>
 
                 @error('formula')
-                    <p>{{ $message }}</p>
+                    <p class="appearance-none w-full text-red-600 border rounded py-3 px-4">{{ $message }}</p>
                 @enderror
 
                 <input type="hidden" name="previousFileName" value="{{ $solution->answer }}">
-                <input type="hidden" name="fileChanged" value="">
+                <input type="hidden" name="fileChanged" value="false">
             </div>
 
-            <button type="submit">Guardar</button>
+            <button
+                class="mt-3 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500"
+                type="submit">Guardar</button>
         </form>
     </div>
 @endsection

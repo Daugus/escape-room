@@ -10,7 +10,7 @@ class KukuSolutionController extends Controller
 {
     public function index()
     {
-        $solutions = SharedSolution::where('challenge_id', '2')->orderBy('id', 'desc')->paginate(4);
+        $solutions = SharedSolution::where('challenge_id', '2')->orderBy('id', 'desc')->paginate(3);
         return view('pruebas.kuku.index', compact('solutions'));
     }
 
@@ -66,6 +66,7 @@ class KukuSolutionController extends Controller
         $solution = SharedSolution::findOrFail($id);
         $solution->question = $request->name;
 
+        // renombra el archivo solo si cambia
         if ($fileChanged) {
             // borra la imagen original
             $ruta = public_path('src/img/kuku/formulas/' . $request->previousFileName);

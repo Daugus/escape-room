@@ -15,3 +15,6 @@ Route::post('agrupando/getConcepts', [GameController::class, 'getConcepts']);
 
 // Ruta para coger el JSON de Cada Oveja con su Pareja desde Vue
 Route::post('oveja/getIncubationMethods', [GameController::class, 'getIncubationMethods']);
+
+
+Route::post('password/getScientists', [GameController::class, 'getScientists']);

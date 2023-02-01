@@ -48,6 +48,9 @@
                 nosotros</a>
         </li>
         <li>
+            <a href="{{ route('prueba.password') }}" class="underline text-blue-600 hover:text-blue-800 ">Password</a>
+        </li>
+        <li>
             <a href="{{ route('prueba.hangman') }}" class="underline text-blue-600 hover:text-blue-800 ">Hangman</a>
         </li>
         <li>

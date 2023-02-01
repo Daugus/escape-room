@@ -6,7 +6,7 @@ const changePreview = () => {
     const [file] = inputFile.files;
     if (!file) return;
 
-    fileChanged.value = "true";
+    if (fileChanged) fileChanged.value = "true";
 
     const preview = document.querySelector("#image-preview");
 
