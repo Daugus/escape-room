@@ -15,7 +15,6 @@ class GroupingSeeder extends Seeder
      */
     public function run()
     {
-        //
         $analisis1 = new GroupingSolution();
         $analisis1->field = 'análisis';
         $analisis1->concept = 'Rockwell';
@@ -151,10 +150,6 @@ class GroupingSeeder extends Seeder
         $analisis34->field = 'análisis';
         $analisis34->concept = 'Izod';
 
-        $analisis35 = new GroupingSolution();
-        $analisis35->field = 'análisis';
-        $analisis35->concept = 'Wohler';
-
         $analisis36 = new GroupingSolution();
         $analisis36->field = 'análisis';
         $analisis36->concept = 'Austenita';
@@ -198,10 +193,6 @@ class GroupingSeeder extends Seeder
         $analisis46 = new GroupingSolution();
         $analisis46->field = 'análisis';
         $analisis46->concept = 'Avogadro';
-
-        $analisis47 = new GroupingSolution();
-        $analisis47->field = 'análisis';
-        $analisis47->concept = 'Dalton';
 
         $analisis48 = new GroupingSolution();
         $analisis48->field = 'análisis';
@@ -559,10 +550,6 @@ class GroupingSeeder extends Seeder
         $medida23->field = 'medida';
         $medida23->concept = 'Fracción molar';
 
-        $medida24 = new GroupingSolution();
-        $medida24->field = 'medida';
-        $medida24->concept = 'Tensión superficial';
-
         $medida25 = new GroupingSolution();
         $medida25->field = 'medida';
         $medida25->concept = 'Presión';
@@ -837,7 +824,6 @@ class GroupingSeeder extends Seeder
         $analisis32->save();
         $analisis33->save();
         $analisis34->save();
-        $analisis35->save();
         $analisis36->save();
         $analisis37->save();
         $analisis38->save();
@@ -849,7 +835,6 @@ class GroupingSeeder extends Seeder
         $analisis44->save();
         $analisis45->save();
         $analisis46->save();
-        $analisis47->save();
         $analisis48->save();
         $analisis49->save();
         $analisis50->save();
@@ -941,7 +926,6 @@ class GroupingSeeder extends Seeder
         $medida21->save();
         $medida22->save();
         $medida23->save();
-        $medida24->save();
         $medida25->save();
         $medida26->save();
         $medida27->save();

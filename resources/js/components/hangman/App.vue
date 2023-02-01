@@ -19,6 +19,8 @@ export default {
         };
     },
     async mounted() {
+        console.log(localStorage);
+
         // Comprobar si existen los datos guardados
         if (localStorage.getItem("palabra")) {
             this.wordArray = localStorage.getItem("palabra").split("");
@@ -49,6 +51,9 @@ export default {
             const data = await res.json();
             let word = data[0].microorganism;
             this.wordArray = word.toUpperCase().split("");
+
+            // Guardar los datos en localStorage
+            localStorage.setItem("palabra", this.wordArray.join(""));
         },
         // Hacer llamada para generar una nueva palabra
         getNewWord(newWord) {
@@ -68,11 +73,10 @@ export default {
         },
         // Llamada a los hijos para generar objetos con data necesaria
         quitChallenge(call) {
-            // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
-            this.quit = call;
-
             // Guardar los datos en localStorage
             localStorage.setItem("palabra", this.wordArray.join(""));
+            // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
+            this.quit = call;
         },
     },
     watch: {
@@ -106,7 +110,6 @@ export default {
                 :secretWord="wordArray"
                 :letter="letter"
                 :errors="errors"
-                :quit="quit"
                 @wordGuessed="wordGuessed"
             />
             <Keyboard
@@ -188,15 +191,6 @@ img {
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-}
 /* Extra large devices (large laptops and desktops, 1500px and down) */
 @media only screen and (max-width: 1500px) {
     .section {

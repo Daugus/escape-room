@@ -21,7 +21,7 @@ export default {
         if (localStorage.getItem("intentos")) {
             this.tries = localStorage.getItem("intentos");
 
-            // Borrar el item del localStorage
+            // Borrar el items del localStorage
             localStorage.removeItem("intentos");
         }
     },
@@ -45,13 +45,10 @@ export default {
                     progress = "75%";
                     break;
                 case 5:
-                    progress = "91%";
-                    break;
-                case 6:
                     progress = "100%";
 
                     // Crear una cuenta regresiva en base al numero de intentos
-                    this.tries = this.tries + 1;
+                    if (this.tries < 30) this.tries++;
                     this.time = this.tries * 120;
 
                     // Cambiar estilos del panel y de las teclas
@@ -65,6 +62,15 @@ export default {
                     smoke.style.opacity = "1";
                     alarm.volume = 1;
                     alarm.play();
+
+                    // Guardar la hora a la que tiene que acabar el contador
+                    let waittime = 120000 * this.tries;
+                    localStorage.setItem("cooldown", Date.now() + waittime);
+                    // Guardar los datos en localStorage
+                    localStorage.setItem("intentos", this.tries);
+                    // Borrar los items del localStorage
+                    localStorage.removeItem("letras");
+                    localStorage.removeItem("palabra");
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
@@ -80,19 +86,19 @@ export default {
                         keys.forEach((key) => {
                             key.style.setProperty("--color", "#000");
                         });
-                        // Bajar volumen de la ala
-                        alarm.volume = 0.1;
 
-                        console.log("FUNCIONA CARAJO");
+                        setTimeout(() => {
+                            this.$emit("getNewWord", this.newWord);
+                            this.$emit("getErrors", this.errors);
+                            // Desactivar gas
+                            smoke.style.opacity = "0";
+
+                            // Redirigir al laboratorio
+                            location.replace(route("laboratorio.index"));
+                        }, 3000);
                     }, 5000);
 
-                    // Mandar orden para generar nueva palabra y reiniciar errores
-                    setTimeout(() => {
-                        this.$emit("getNewWord", this.newWord);
-                        this.$emit("getErrors", this.errors);
-                        // Desactivar gas
-                        smoke.style.opacity = "0";
-                    }, this.tries * 120000);
+                    break;
             }
             return progress;
         },
@@ -123,12 +129,20 @@ export default {
             let progressBar = document.querySelector(".progress");
             progressBar.style.setProperty("--errorProgress", "0%");
 
-            // Se ejecuta en 5 segundos (5000 milesimas)
+            // Se ejecuta en 2.5 segundos (2500 milesimas)
             setTimeout(() => {
                 progressBar.style.setProperty("--bg", "#0b0");
                 progressBar.style.setProperty("--accent", "#0f0");
                 progressBar.style.setProperty("--errorProgress", "100%");
-            }, 5000);
+
+                // Se ejecuta en 2.5 segundos (2500 milesimas)
+                setTimeout(() => {
+                    localStorage.removeItem("cooldown");
+                    localStorage.removeItem("palabra");
+                    localStorage.setItem("hangman", "superado");
+                    location.replace(route("laboratorio.index"));
+                }, 2500);
+            }, 2500);
         },
         quit: function () {
             if (this.quit === null) return;
@@ -138,13 +152,10 @@ export default {
             alarm.pause();
             alarm.currentTime = 0;
 
-            // Guardar los datos en localStorage
-            localStorage.setItem("intentos", this.tries);
-
             // Redirigir al laboratorio
             setTimeout(() => {
                 location.replace(route("laboratorio.index"));
-            }, 1000);
+            }, 500);
         },
     },
 };
@@ -242,20 +253,20 @@ export default {
             position: absolute;
             pointer-events: none;
         }
-    }
-}
 
-#smoke1 {
-    animation: smoke 12s infinite;
-}
-#smoke2 {
-    animation: smoke 6s infinite;
-}
-#smoke3 {
-    animation: movement-smoke 27s infinite;
-}
-#smoke4 {
-    animation: movement-smoke 72s infinite;
+        #smoke1 {
+            animation: smoke 12s infinite;
+        }
+        #smoke2 {
+            animation: smoke 6s infinite;
+        }
+        #smoke3 {
+            animation: movement-smoke 27s infinite;
+        }
+        #smoke4 {
+            animation: movement-smoke 72s infinite;
+        }
+    }
 }
 
 @keyframes smoke {
@@ -310,15 +321,6 @@ export default {
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (max-width: 600px) {
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-}
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
-}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (max-width: 1500px) {
     .capsule {

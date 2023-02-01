@@ -140,9 +140,6 @@ class HangmanSeeder extends Seeder
         $ahorcado42 = new HangmanSolution();
         $ahorcado42->microorganism = 'Serratia marcescens';
 
-        $ahorcado43 = new HangmanSolution();
-        $ahorcado43->microorganism = 'Proteus vulgaris';
-
         $ahorcado44 = new HangmanSolution();
         $ahorcado44->microorganism = 'Klebsiella pneumoniae';
 
@@ -194,7 +191,6 @@ class HangmanSeeder extends Seeder
         $ahorcado40->save();
         $ahorcado41->save();
         $ahorcado42->save();
-        $ahorcado43->save();
         $ahorcado44->save();
         $ahorcado45->save();
         $ahorcado46->save();
