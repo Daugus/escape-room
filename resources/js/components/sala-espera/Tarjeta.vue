@@ -1,3 +1,11 @@
+<!--
+    Comprobar si los nickname escritos existen de los nuevos jugadores
+    Añadir jugadores
+    Al eliminar cambiar de posiciones
+    Arreglar el diseño cuando haya más de 3 tarjetas
+
+-->
+
 <script setup>
 import route from "ziggy";
 </script>
