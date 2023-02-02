@@ -10,10 +10,20 @@ export default {
         return {
             conceptList: [],
             folderInfoList: [],
+            error: false,
         };
     },
     async mounted() {
-        await this.getConcepts();
+        if (screen.width < 1024) {
+            localStorage.setItem("agrupando", "superado");
+            this.error = true;
+            setTimeout(
+                () => location.replace(route("laboratorio.index")),
+                5000
+            );
+        } else {
+            await this.getConcepts();
+        }
     },
     methods: {
         async getConcepts() {
@@ -76,6 +86,7 @@ export default {
 </script>
 
 <template>
+    <div v-if="error" id="ERROR"></div>
     <section class="grid grid-cols-2 gap-3">
         <div class="grid grid-cols-2 gap-3">
             <Folder
@@ -108,4 +119,12 @@ export default {
     </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+#ERROR {
+    height: 100vh;
+    width: 100%;
+    background-image: url("@/src/img/menu/ERROR.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
+</style>

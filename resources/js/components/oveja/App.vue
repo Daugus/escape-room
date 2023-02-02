@@ -15,20 +15,30 @@ export default {
             movible: true,
             indexes: [1, 2, 3, 4, 5, 6],
             guessedCouples: 0,
+            error: false,
         };
     },
     async mounted() {
-        for (let i = this.indexes.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
+        if (screen.width < 1024) {
+            this.error = true;
+            localStorage.setItem("oveja", "superado");
+            setTimeout(
+                () => location.replace(route("laboratorio.index")),
+                5000
+            );
+        } else {
+            for (let i = this.indexes.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
 
-            [this.indexes[i], this.indexes[j]] = [
-                this.indexes[j],
-                this.indexes[i],
-            ];
+                [this.indexes[i], this.indexes[j]] = [
+                    this.indexes[j],
+                    this.indexes[i],
+                ];
+            }
+
+            await this.getIncubationMethods();
+            document.body.classList.add("overflow-clip");
         }
-
-        await this.getIncubationMethods();
-        document.body.classList.add("overflow-clip");
     },
     methods: {
         // Coger una palabra aleatoria desde un JSON
@@ -125,7 +135,8 @@ export default {
 </script>
 
 <template>
-    <div class="grid-oveja grid">
+    <div v-if="error" id="ERROR"></div>
+    <div v-else class="grid-oveja grid">
         <div class="definitions">
             <Definition
                 v-for="definition in definitionList"
@@ -171,5 +182,12 @@ export default {
     .definitions {
         margin-inline: 1rem;
     }
+}
+#ERROR {
+    height: 100vh;
+    width: 100%;
+    background-image: url("@/src/img/menu/ERROR.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
 }
 </style>
