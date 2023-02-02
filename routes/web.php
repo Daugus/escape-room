@@ -78,8 +78,7 @@ Route::get('/jugar/corcho', [GameController::class, 'corcho'])
     ->middleware('logged');
 
 Route::get('/jugar/hangman', [GameController::class, 'hangman'])
-    ->name('prueba.hangman')
-    ->middleware('logged');
+    ->name('prueba.hangman');
 
 Route::get('/jugar/kuku', [GameController::class, 'kuku'])
     ->name('prueba.kuku')

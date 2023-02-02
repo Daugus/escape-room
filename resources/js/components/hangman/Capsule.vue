@@ -137,25 +137,34 @@ export default {
 
                 // Se ejecuta en 2.5 segundos (2500 milesimas)
                 setTimeout(() => {
-                    localStorage.removeItem("cooldown");
-                    localStorage.removeItem("palabra");
-                    localStorage.setItem("hangman", "superado");
-                    location.replace(route("laboratorio.index"));
+                    if (localStorage.getItem("tiempo") === null) {
+                        console.log("volver a main");
+                        // location.replace(route("index"));
+                    } else {
+                        localStorage.removeItem("cooldown");
+                        localStorage.removeItem("palabra");
+                        localStorage.setItem("hangman", "superado");
+                        location.replace(route("laboratorio.index"));
+                    }
                 }, 2500);
             }, 2500);
         },
         quit: function () {
             if (this.quit === null) return;
 
-            // Parar alarma
-            let alarm = document.querySelector("audio");
-            alarm.pause();
-            alarm.currentTime = 0;
-
-            // Redirigir al laboratorio
-            setTimeout(() => {
-                location.replace(route("laboratorio.index"));
-            }, 500);
+            if (localStorage.getItem("tiempo") === null) {
+                console.log("volver a main");
+                // location.replace(route("index"));
+            } else {
+                // Parar alarma
+                let alarm = document.querySelector("audio");
+                alarm.pause();
+                alarm.currentTime = 0;
+                // Redirigir al laboratorio
+                setTimeout(() => {
+                    location.replace(route("laboratorio.index"));
+                }, 500);
+            }
         },
     },
 };

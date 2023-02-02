@@ -19,8 +19,6 @@ export default {
         };
     },
     async mounted() {
-        console.log(localStorage);
-
         // Comprobar si existen los datos guardados
         if (localStorage.getItem("palabra")) {
             this.wordArray = localStorage.getItem("palabra").split("");
@@ -73,8 +71,10 @@ export default {
         },
         // Llamada a los hijos para generar objetos con data necesaria
         quitChallenge(call) {
-            // Guardar los datos en localStorage
-            localStorage.setItem("palabra", this.wordArray.join(""));
+            if (localStorage.getItem("tiempo") === null) {
+                // Guardar los datos en localStorage
+                localStorage.setItem("palabra", this.wordArray.join(""));
+            }
             // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
             this.quit = call;
         },
