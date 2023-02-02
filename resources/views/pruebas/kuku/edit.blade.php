@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('vitejs')
-    @vite(['resources/js/image-preview.js'])
+    @vite(['resources/js/utils/image-preview.js'])
 @endsection
 
 @section('content')

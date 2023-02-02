@@ -2,7 +2,7 @@
 {{-- @section('title', 'index') --}}
 
 @section('vitejs')
-    @vite(['resources/js/image-preview.js'])
+    @vite(['resources/js/utils/image-preview.js'])
 @endsection
 
 @section('content')
@@ -78,7 +78,8 @@
 
                         <div id="preview-container" class="justify-self-stretch flex justify-center px-0 md:px-12">
                             @if (old('picture') === null)
-                                <img src="{{ asset('src/img/users/' . $user->picture) }}" class="h-32" id="image-preview">
+                                <img src="{{ asset('src/img/users/' . $user->picture) }}" class="h-32"
+                                    id="image-preview">
                             @endif
                         </div>
                         @error('picture')
