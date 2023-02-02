@@ -50,7 +50,6 @@ class UserController extends Controller
         $user = new User($request->all());
         $user->password = bcrypt($user->password);
 
-
         if (isset($request->picture)) {
             $nickname = $user->nickname;
             $fileName = $nickname . '.' . $request->picture->extension();
@@ -99,7 +98,6 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-
         $validaciones = [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',

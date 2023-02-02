@@ -18,20 +18,7 @@ class SalaEsperaController extends Controller
      */
     public function index()
     {
-        //
         return view('sala-espera.index');
-    }
-
-    public function createGroup(Request $request)
-    {
-        $userGroup = Group::query()->insert('name');
-        $userGroup->save();
-    }
-
-    public function userGroup(Request $request)
-    {
-        $userGroup = Group::query()->insert('name');
-        $userGroup->save();
     }
 
     /**
@@ -42,14 +29,32 @@ class SalaEsperaController extends Controller
      */
     public function store(Request $request)
     {
-        //insert en user group y despues insert en game con la dificulty
-        $difficulty = Game::query()->insert('difficulty_id');
-        $difficulty->save();
+        $group = new Group();
+        $group->name = $request->groupName;
+
+        $group->save();
+
+        $userIds = $request->userIds;
+
+        foreach ($userIds as $userId) {
+            $user_group = new UserGroup();
+            $user_group->group_id = $group->id;
+            $user_group->user_id = $userId;
+
+            $user_group->save();
+        }
+
+        $game = new Game();
+        $game->state = 'cancelada';
+        $game->difficulty_id = $request->difficulty;
+        $game->group_id = $group->id;
+
+        $game->save();
     }
 
     public function getUser(Request $request)
     {
-        $data = User::query()->select('nickname', 'picture')
+        $data = User::query()->select('id', 'nickname', 'picture')
             ->where(DB::raw('LOWER(nickname)'), $request->nickname)
             ->limit(1)
             ->get();

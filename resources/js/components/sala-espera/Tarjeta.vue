@@ -17,17 +17,35 @@ export default {
         return {
             nickname: "",
             csrf_token: "",
-            error: {
-                exists: false,
-                mensaje: "",
-            },
-            pictureUrl: "",
             user: {},
+            imageName: "",
         };
     },
-    async mounted() {},
+    props: {
+        existingUser: Object,
+        userIndex: Number,
+        usedNicknames: Array,
+    },
+    mounted() {
+        if (this.existingUser.nickname) {
+            this.nickname = this.existingUser.nickname;
+            this.user = this.existingUser;
+            this.imageName = this.user.picture;
+        }
+    },
+    computed: {
+        pictureUrl() {
+            return new URL(
+                `/public/src/img/users/${this.imageName}`,
+                import.meta.url
+            );
+        },
+    },
     methods: {
         async getUser() {
+            if (this.usedNicknames.includes(this.nickname.toLowerCase()))
+                return;
+
             const token = document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
@@ -45,58 +63,63 @@ export default {
                 }
             );
             const userArray = await res.json();
+
             if (userArray.length === 0) {
-                // error
             } else {
                 this.user = userArray.shift();
 
-                this.pictureUrl = new URL(
-                    `/public/src/img/users/${this.user.picture}`,
-                    import.meta.url
-                );
+                this.imageName = this.user.picture;
+
+                this.$emit("agregarUsuario", [this.userIndex, this.user]);
             }
+        },
+        eliminarTarjeta() {
+            this.$emit("eliminarTarjeta", this.userIndex);
         },
     },
 };
 </script>
 
 <template>
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <!-- Tajeta jugador nuevo -->
-        <div
-            class="grid grid-cols-2 bg-orange-500 rounded-lg w-96 h-1/2 border-2 border-black shadow-2xl"
-        >
-            <div class="flex p-4">
-                <div class="border-2 border-black bg-white h-40 rounded-lg">
-                    <!-- Foto del jugador nuevo -->
-                    <img
-                        class="self-top m-3 p-1 w-32 h-32 object-cover rounded-lg"
-                        :src="pictureUrl"
-                    />
-                </div>
-            </div>
-            <div class="grid grid-rows-3">
-                <div class="flex">
-                    <!-- Buscar jugador por el nickname -->
-                    <input
-                        class="self-end appearance-none w-full h-12 text-gray-700 border rounded py-3 px-4 focus:outline-none"
-                        type="text"
-                        placeholder="Buscar jugador"
-                        v-model="nickname"
-                    />
-                    <!-- Eliminar tarjeta -->
-                    <button class="self-start text-lg font-bold m-3">X</button>
-                </div>
-                <div>
-                    <!-- Boton de buscar -->
-                    <button @click="getUser">BUSCAR</button>
-                </div>
-                <img
-                    class="self-end mb-4"
-                    src="@/src/img/sala-espera/ParasolCorporation.png"
-                />
-            </div>
+    <div
+        class="grid grid-cols-3 grid-rows-2 bg-amber-500 rounded-lg border-2 border-black shadow-2xl p-4 gap-4 max-w-lg"
+    >
+        <div class="row-span-2">
+            <img
+                class="border-2 border-black bg-white rounded-lg"
+                :src="pictureUrl"
+            />
         </div>
+
+        <div class="col-span-2 gap-4 flex justify-center items-center">
+            <input
+                class="appearance-none text-gray-700 border-2 border-black rounded-xl p-2 focus:outline-none"
+                type="text"
+                placeholder="Buscar jugador"
+                v-model="nickname"
+            />
+
+            <button
+                v-if="nickname === '' || user.nickname"
+                @click="eliminarTarjeta"
+                class="bg-white basis-8 h-8 text-xl border-2 border-black rounded-full"
+            >
+                x
+            </button>
+
+            <button
+                v-else
+                @click="getUser"
+                class="bg-white basis-8 h-8 text-xl border-2 border-black rounded-full"
+            >
+                +
+            </button>
+        </div>
+
+        <img
+            class="max-w-xs border-2 border-black bg-white rounded-lg p-2"
+            src="@/src/img/sala-espera/ParasolCorporation.png"
+        />
     </div>
 </template>
 
