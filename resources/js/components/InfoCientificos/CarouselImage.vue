@@ -5,34 +5,19 @@ export default {
     },
     props: {
         scientist: Object,
-        index: Number,
-        listLength: Number,
     },
     async mounted() {
         console.log(this.scientist);
     },
     methods: {},
     computed: {
-        // crea un URL para usar como href eSn el img
+        // crea un URL para usar como href en el img
         imageSource() {
             return new URL(
                 `/public/src/img/password/${this.scientist.image}`,
                 import.meta.url
             );
         },
-        // carouselId() {
-        //     return `carousel-${this.index}`;
-        // },
-        // forPrevious() {
-        //     return this.index === 1
-        //         ? `carousel-${this.index - 1}`
-        //         : `carousel-${this.listLength}`;
-        // },
-        // forNext() {
-        //     return this.index === this.listLength
-        //         ? `carousel-${this.index + 1}`
-        //         : `carousel-1`;
-        // },
     },
 };
 </script>

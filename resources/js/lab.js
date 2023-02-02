@@ -190,39 +190,6 @@ const hintsGenerator = (object) => {
     }
 }
 
-const counter = (time) => {
-    let countDownDate = time;
-    let x = setInterval(function () {
-        let now = Date.now();
-        let distance = countDownDate - now;
-
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        if (hours < 10) {
-            if (minutes < 10) {
-                if (seconds < 10) {
-                    hangmanCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
-                } else {
-                    hangmanCounter.innerHTML = hours + ":0" + minutes + ":" + seconds;
-                }
-            } else {
-                hangmanCounter.innerHTML = hours + minutes + ":" + seconds;
-            }
-        } else {
-
-        }
-
-
-
-        if (distance < 0) {
-            clearInterval(x);
-            localStorage.removeItem("counter");
-        }
-    }, 1000);
-}
-
 // CAMBIAR EL ESCENARIO SEGUN LAS VARIABLES
 const changeEnviroment = () => {
     // EJECUTAR F11
@@ -239,18 +206,28 @@ const changeEnviroment = () => {
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (hours < 10) {
-                if (minutes < 10) {
-                    if (seconds < 10) {
-                        generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
-                    } else {
-                        generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":" + seconds;
-                    }
-                } else {
-                    generalCounter.innerHTML = "0" + hours + ":" + minutes + ":" + seconds;
-                }
-            } else {
-                generalCounter.innerHTML = hours + ":" + minutes + ":" + seconds;
+            // LOS TRES MENORES QUE 10
+            if (hours < 10 && minutes < 10 && seconds < 10) {
+                generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
+                // HORAS Y MINUTOS MENORES QUE 10
+            } else if (hours < 10 && minutes < 10) {
+                generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":" + seconds;
+                // HORAS Y SEGUNDOS MENORES QUE 10
+            } else if (hours < 10 && seconds < 10) {
+                generalCounter.innerHTML = "0" + hours + ":" + minutes + ":0" + seconds;
+                // HORAS QUE 10
+            } else if (hours < 10) {
+                generalCounter.innerHTML = "0" + hours + ":" + minutes + ":" + seconds;
+                // MINUTOS Y SEGUNDOS MENORES QUE 10
+            } else if (minutes < 10 && seconds < 10) {
+                generalCounter.innerHTML = hours + ":0" + minutes + ":0" + seconds;
+                // MINUTOS MENORES QUE 10
+            } else if (minutes < 10) {
+                generalCounter.innerHTML = hours + ":0" + minutes + ":" + seconds;
+                // SEGUNDOS MENORES QUE 10
+            } else if (seconds < 10) {
+                generalCounter.innerHTML = hours + ":" + minutes + ":0" + seconds;
+                // SEGUNDOS MENORES QUE 10
             }
 
             if (distance < 0) {

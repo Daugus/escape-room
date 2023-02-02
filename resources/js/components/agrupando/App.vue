@@ -3,6 +3,7 @@ import route from "ziggy";
 import File from "./File.vue";
 import Folder from "./Folder.vue";
 import Tab from "./Tab.vue";
+import Pin from "./Pin.vue";
 </script>
 
 <script>
@@ -75,6 +76,12 @@ export default {
                 }, 400);
 
                 this.guessedFiles++;
+
+                if (this.guessedFiles === 20) {
+                    setTimeout(() => {
+                        localStorage.setItem("agrupando", "superado");
+                    }, 3000);
+                }
             } else {
                 document
                     .querySelector(`#${fileInfo.id}`)
@@ -82,14 +89,31 @@ export default {
             }
         },
     },
+    computed: {
+        success() {
+            return localStorage.getItem("agrupando") != null;
+        },
+        pin() {
+            return localStorage.getItem("pin") != null;
+        },
+    },
 };
 </script>
 
 <template>
     <div class="bg">
+        <!-- PIN -->
+        <section id="pin" v-if="pin === true">
+            <div>
+                <Pin />
+            </div>
+        </section>
+
         <!-- CAROUSEL -->
-        <section id="carousel" v-if="guessedFiles === 20">
-            <Tab />
+        <section id="tab" v-else-if="success === true">
+            <div>
+                <Tab />
+            </div>
         </section>
         <!-- PRUEBA: AGRUPANDO -->
         <section id="agrupando" v-else>
@@ -130,7 +154,8 @@ export default {
     width: 100vw;
 
     background-image: url("@/src/img/agrupando/bg.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
 
     display: flex;
     flex-direction: column;
@@ -143,9 +168,13 @@ export default {
 
 section {
     position: absolute;
-    background-image: url("@/src/img/agrupando/windows_bg.jpg");
-    background-size: cover;
     inset: 8.5% 19.6% 28.5% 19.4%;
+
+    &:not(#pin) {
+        background-image: url("@/src/img/agrupando/windows_bg.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
 }
 
 #agrupando {
@@ -167,7 +196,26 @@ section {
     }
 }
 
-#carousel {
-    background-color: rgba(255, 0, 0, 0.467);
+#pin,
+#tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tab div {
+    height: 80%;
+    width: 80%;
+
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    border-radius: 1vh;
+    overflow: hidden;
+}
+
+#pin div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>
