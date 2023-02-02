@@ -32,6 +32,8 @@ export default {
 
                 let data = await res.json();
 
+                localStorage.setItem("codigoPuerta", data[0].code);
+
                 for (let i = data.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
 

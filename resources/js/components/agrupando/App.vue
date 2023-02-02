@@ -14,16 +14,13 @@ export default {
             folderInfoList: [],
             error: false,
             guessedFiles: 0,
+            test: true,
         };
     },
     async mounted() {
         if (screen.width < 1024) {
-            localStorage.setItem("agrupando", "superado");
             this.error = true;
-            setTimeout(
-                () => location.replace(route("laboratorio.index")),
-                5000
-            );
+            localStorage.setItem("agrupando", "superado");
         } else {
             await this.getConcepts();
         }
@@ -111,8 +108,6 @@ export default {
 </script>
 
 <template>
-    <div v-if="error" id="ERROR"></div>
-
     <div class="bg">
         <!-- PIN -->
         <section id="pin" v-if="pin === true">
@@ -161,13 +156,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-#ERROR {
-    height: 100vh;
-    width: 100%;
-    background-image: url("@/src/img/menu/ERROR.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100vh;
-}
 .bg {
     height: 100vh;
     width: 100vw;
