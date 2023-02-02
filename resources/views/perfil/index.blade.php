@@ -3,6 +3,11 @@
 
 @section('content')
     <div id="borde-monitor" class=" gap-3 grid grid-cols-2 items-center justify-center py-24 px-64">
+        <div class="absolute top-28 right-40">
+            <button class="bg-amber-500 text-white font-bold py-2 px-4 rounded">
+                <a href={{ route ('index')}} >Volver</a>
+            </button>
+        </div>
         <div>
             <img src="{{ asset('src/img/users/' . session('user')->picture) }}"
                 alt="Foto de perfil de {{ session('user')->nickname }}"
@@ -25,7 +30,8 @@
             <form action="{{ route('user.destroy') }}" method="POST">
                 @csrf
                 @method('DELETE')
-
+                <a class="m-3 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500"
+                    href="{{ route('user.edit') }}">Editar perfil</a>
                 <a class="m-3 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500"
                     href="{{ route('user.puntuaciones') }}">Mis puntuaciones</a>
 
@@ -34,11 +40,13 @@
                         href="{{ route('pruebas.index') }}">Administrar pruebas</a>
                 @endif
 
-                <a class="m-3 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500"
-                    href="{{ route('user.edit') }}">Editar perfil</a>
+
                 <button
                     class="m-3 mt-6 flex items-center justify-center appearance-none  text-white font-bold py-2 px-4 rounded focus:outline-none bg-red-600"
-                    type="submit">Eliminar cuenta</button>
+                    type="submit"
+                >
+                    Eliminar cuenta
+                </button>
             </form>
         </div>
     </div>

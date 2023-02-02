@@ -27,16 +27,6 @@ class RegistroController extends Controller
     {
         //
 
-        // $request->validate([
-        //     'role' => 'required|bool',
-        //     'name' => 'required|max:30',
-        //     'surname' => 'required|max:60',
-        //     'nickname' => 'required|max:60',
-        //     'password' => 'required|max:30',
-        //     'email' => 'required|max:60',
-        //     'picture' => 'mimes:jpg,png,webp'
-        // ]);
-
         $user = new User($request->all());
 
         $nickname = $user->nickname;

@@ -3,6 +3,11 @@
 
 @section('content')
     <div id="borde-monitor" class="flex flex-col justify-center items-center gap-5">
+        <div class="static">
+            <button class="absolute top-28 right-40 bg-amber-500 text-white font-bold py-2 px-4 rounded">
+                <a href={{ route ('pruebas.index')}} >Volver</a>
+            </button>
+        </div>
         <a class=" block text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500" href="{{ route('agrupando.create') }}">Agregar solución</a>
 
         <table class="table-auto">

@@ -15,6 +15,7 @@ export default {
     async mounted() {
         await this.getCards();
     },
+
     methods: {
         async getCards() {
             const token = document

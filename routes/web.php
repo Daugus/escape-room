@@ -17,6 +17,7 @@ use App\Http\Controllers\HangmanSolutionController;
 use App\Http\Controllers\KukuSolutionController;
 use App\Http\Controllers\GroupingSolutionController;
 use App\Http\Controllers\OvejaSolutionController;
+use App\Http\Controllers\SalaEsperaController;
 
 /*
     si no hay ninguno especificado, cualquier usuario puede entrar
@@ -46,7 +47,6 @@ Route::post('/signup', [UserController::class, 'store'])
 Route::get('/logout', [UserController::class, 'logout'])
     ->name('user.logout')
     ->middleware('logged');
-
 
 Route::get('/perfil', [UserController::class, 'show'])
     ->name('user.show')
@@ -110,6 +110,10 @@ Route::post('/ranking', [GroupController::class, 'filter'])
 Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
     ->middleware('profesor');
+
+Route::get('/sala-espera', [SalaEsperaController::class, 'index'])
+    ->name('sala-espera.index')
+    ->middleware('logged');
 
 Route::resource('/administrar/hangman', HangmanSolutionController::class)->middleware('profesor');
 Route::resource('/administrar/kuku', KukuSolutionController::class)->middleware('profesor');

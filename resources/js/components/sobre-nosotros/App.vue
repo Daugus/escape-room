@@ -8,10 +8,11 @@ import route from "ziggy";
     <div id="borde-monitor" class="grid items-center py-12 md:p-16">
         <div class="m-12 p-6 overflow-y-scroll h-4/5">
             <div class="flex justify-center mb-8">
-                <img
-                    src="@/src/img/sobre-nosotros/ParasolCorporation.png"
-                    class="w-full md:w-3/6"
-                />
+                <a class="w-full md:w-3/6" :href="route('index')">
+                    <img
+                        src="@/src/img/sobre-nosotros/ParasolCorporation.png"
+                    />
+                </a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3">
                 <div>
@@ -57,13 +58,10 @@ import route from "ziggy";
                     </p>
                 </div>
             </div>
-            <br />
-            <h1 class="border-b-4 border-black">Información</h1>
-            <p class="p-4">
-                ¿Qué tenía el vial? Es una sala de escape room online
-            </p>
-
-            <h1 class="border-b-4 border-black">Sobre nosotros</h1>
+            <br /><br />
+            <h1 class="border-b-4 border-black text-3xl font-bold">
+                Sobre nosotros
+            </h1>
             <p class="p-4">
                 Parasol corporation nace apartir de un proyecto con el objetivo
                 de crear una escape room para el departamento de quimica del
