@@ -18,17 +18,21 @@ export default {
 </script>
 
 <template>
-    <div class="flex">
-        <a class="space-x-3" ef="rutaHref"><img :src="imagen" /></a>
-        <a class="font-bold text-3xl" :href="rutaHref">{{ texto }}</a>
+    <div class="flex justify-start items-center gap-8">
+        <a :href="rutaHref"
+            ><img
+                :src="imagen"
+                class="h-[20vh] max-h-14 md:max-h-24 aspect-square"
+        /></a>
+        <a
+            class="font-bold text-3xl text-left whitespace-nowrap"
+            :href="rutaHref"
+            >{{ texto }}</a
+        >
     </div>
 </template>
 
 <style scoped lang="scss">
-img {
-    width: 55%;
-    max-width: 55%;
-}
 div {
     text-align: center;
     align-items: center;
