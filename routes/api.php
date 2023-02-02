@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\SalaEsperaController;
 
 // Ruta para coger el JSON de Hangman desde Vue
 Route::post('hangman/getWord', [GameController::class, 'getWord']);
@@ -19,8 +20,8 @@ Route::post('equilibrado/getFormulas', [GameController::class, 'getFormulas']);
 // Ruta para coger el JSON de Cada Oveja con su Pareja desde Vue
 Route::post('oveja/getIncubationMethods', [GameController::class, 'getIncubationMethods']);
 
-
+// Ruta para coger el JSON de Password desde Vue
 Route::post('password/getScientists', [GameController::class, 'getScientists']);
 
-// Ruta para traer dificultades
-Route::post('sala-espera/getDifficulties', [SalaEsperaController::class, 'getDiffculties']);
+// Ruta para coger el JSON de la sala de espera desde VUE
+Route::post('sala-espera/getUser', [SalaEsperaController::class, 'getUser']);

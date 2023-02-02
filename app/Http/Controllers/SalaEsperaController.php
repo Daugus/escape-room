@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Difficulty;
+use App\Models\Group;
+use App\Models\UserGroup;
+use App\Models\Game;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SalaEsperaController extends Controller
 {
@@ -18,21 +22,16 @@ class SalaEsperaController extends Controller
         return view('sala-espera.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createGroup(Request $request)
     {
-        //
+        $userGroup = Group::query()->insert('name');
+        $userGroup->save();
     }
 
-    public function getDifficulties()
+    public function userGroup(Request $request)
     {
-        $data = Difficulty::query()->select('id', 'name')->get();
-
-        return response()->json($data);
+        $userGroup = Group::query()->insert('name');
+        $userGroup->save();
     }
 
     /**
@@ -43,51 +42,18 @@ class SalaEsperaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //insert en user group y despues insert en game con la dificulty
+        $difficulty = Game::query()->insert('difficulty_id');
+        $difficulty->save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function getUser(Request $request)
     {
-        //
-    }
+        $data = User::query()->select('nickname', 'picture')
+            ->where(DB::raw('LOWER(nickname)'), $request->nickname)
+            ->limit(1)
+            ->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json($data);
     }
 }

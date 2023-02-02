@@ -13,7 +13,7 @@ import Button from "./Button.vue";
 
         <div class="grid grid-rows-3 gap-y-5 md:pl-12">
             <Button
-                ruta="laboratorio.index"
+                ruta="sala-espera.index"
                 imagen="src/img/menu/BTN3.png"
                 texto="Jugar"
             />
@@ -30,7 +30,7 @@ import Button from "./Button.vue";
             <Button
                 ruta="sobre-nosotros.index"
                 imagen="src/img/menu/BTN5.png"
-                texto="Sobre nosotros"
+                texto="Información"
             />
             <Button
                 ruta="user.logout"

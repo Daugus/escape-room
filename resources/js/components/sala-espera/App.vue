@@ -1,5 +1,6 @@
 <script setup>
 import route from "ziggy";
+import btnplay from "./Btnplay.vue";
 import tarjeta from "./Tarjeta.vue";
 </script>
 
@@ -8,6 +9,12 @@ export default {
     data() {
         return {
             session: {},
+            nickname: "",
+            csrf_token: "",
+            error: {
+                exists: false,
+                mensaje: "",
+            },
         };
     },
 
@@ -21,7 +28,7 @@ export default {
     },
 
     computed: {
-        // Traer la imagen del usuario
+        // Trae la imagen del usuario
         imageSource() {
             return this.session.picture
                 ? new URL(
@@ -38,8 +45,8 @@ export default {
 <template>
     <div id="wrapper" class="flex justify-center py-12 md:px-28">
         <div class="grid grid-rows-3">
-            <!-- Boton atras -->
             <div class="grid grid-cols-1 md:grid-cols-4 md:gap-8">
+                <!-- Boton atras -->
                 <div class="flex items-stretch justify-center">
                     <a
                         class="self-center bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded"
@@ -47,7 +54,7 @@ export default {
                         >Atras</a
                     >
                 </div>
-                <!-- Nombre grupo -->
+                <!-- Nombre de grupo -->
                 <div class="flex items-stretch">
                     <input
                         class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
@@ -60,25 +67,20 @@ export default {
                     <select
                         class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
                     >
-                        <option value="facil">Facil</option>
-                        <option value="normal">Normal</option>
-                        <option value="dificil">Difícil</option>
+                        <option value="1">Facil</option>
+                        <option value="2">Normal</option>
+                        <option value="3">Difícil</option>
                     </select>
                 </div>
-                <div class="flex items-stretch justify-center">
-                    <a
-                        class="self-center bg-orange-400 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded flex justify-center"
-                        :href="route('index')"
-                        >Jugar</a
-                    >
-                </div>
+                <!-- Boton juagar -->
+                <btnplay />
             </div>
 
             <!-- Tarjetas -->
             <div class="row-span-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                 <!-- Tajeta 1 -->
-                <!-- <div
-                    class="grid grid-cols-2 bg-orange-400 rounded-lg w-96 h-1/2 border-2 border-black shadow-2xl"
+                <div
+                    class="grid grid-cols-2 bg-amber-500 rounded-lg w-96 h-1/2 border-2 border-black shadow-2xl"
                 >
                     <div class="flex p-4">
                         <div
@@ -106,13 +108,12 @@ export default {
                             />
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!-- Añadir tarjeta -->
                 <div>
-                    <button class="h-12 w-12 bg-orange-400 rounded-lg">
-                        +
-                    </button>
+                    <button class="h-12 w-12 bg-amber-500 rounded-lg">+</button>
                 </div>
+                <!-- Tarjeta nueva -->
                 <tarjeta />
             </div>
         </div>
@@ -129,6 +130,6 @@ export default {
 }
 
 #tipography {
-    font-family: Eurostile;
+    font-family: "Eurostile";
 }
 </style>

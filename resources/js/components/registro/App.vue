@@ -64,7 +64,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = name === "" ? "blue" : "red";
+                input.style.borderColor = name === "" ? "orange" : "red";
             }
         },
 
@@ -76,7 +76,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = surname === "" ? "blue" : "red";
+                input.style.borderColor = surname === "" ? "orange" : "red";
             }
         },
 
@@ -88,7 +88,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = user === "" ? "blue" : "red";
+                input.style.borderColor = user === "" ? "orange" : "red";
             }
         },
 
@@ -100,7 +100,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = email === "" ? "blue" : "red";
+                input.style.borderColor = email === "" ? "orange" : "red";
             }
         },
 
@@ -112,7 +112,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = pass1 === "" ? "blue" : "red";
+                input.style.borderColor = pass1 === "" ? "orange" : "red";
             }
 
             this.comparePasswords(this.pass1, this.pass2);
@@ -126,7 +126,7 @@ export default {
                 input.style.borderColor = "green";
             } else {
                 this.error = true;
-                input.style.borderColor = pass2 === "" ? "blue" : "red";
+                input.style.borderColor = pass2 === "" ? "orange" : "red";
             }
         },
 

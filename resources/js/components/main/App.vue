@@ -32,7 +32,7 @@ import Button from "./Button.vue";
             <Button
                 ruta="sobre-nosotros.index"
                 imagen="src/img/menu/BTN5.png"
-                texto="Sobre nosotros"
+                texto="Información"
             />
         </div>
     </div>
