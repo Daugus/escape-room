@@ -73,11 +73,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@font-face {
-    font-family: digital7;
-    src: url("@/src/fonts/digital-7.ttf");
-}
-
 .panel {
     display: flex;
     justify-content: center;
@@ -97,7 +92,7 @@ export default {
     }
 
     p {
-        font-family: digital7;
+        font-family: "Digital7";
         font-size: 4vw;
         letter-spacing: 0.3rem;
         margin: 0.5rem 1rem;
