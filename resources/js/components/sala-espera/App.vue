@@ -95,6 +95,8 @@ export default {
                 }
 
                 localStorage.setItem("dificultad", minutos * 60 * 1000);
+
+                location.replace("/jugar/lab");
             } catch (error) {
                 return;
             }
