@@ -25,9 +25,14 @@ import Button from "./Button.vue";
                 texto="Iniciar Sesión"
             />
             <Button
-                ruta="hangman.index"
+                ruta="prueba.hangman"
                 imagen="src/img/menu/BTN3.png"
                 texto="Demo"
+            />
+            <Button
+                ruta="sobre-nosotros.index"
+                imagen="src/img/menu/BTN5.png"
+                texto="Sobre nosotros"
             />
         </div>
     </div>

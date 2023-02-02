@@ -9,7 +9,7 @@ class HangmanSolutionController extends Controller
 {
     public function index()
     {
-        $solutions = HangmanSolution::orderBy('microorganism', 'asc')->paginate(15);
+        $solutions = HangmanSolution::orderBy('microorganism', 'asc')->paginate(8);
         return view('pruebas.hangman.index', compact('solutions'));
     }
 

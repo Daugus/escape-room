@@ -9,6 +9,7 @@ export default {
         return {
             cardList: [],
             flippedCards: [],
+            guessedCards: 0,
         };
     },
     async mounted() {
@@ -74,6 +75,16 @@ export default {
                         firstCard.lastChild.classList.remove("flipped");
                         secondCard.lastChild.classList.remove("flipped");
                     }, 500);
+                } else {
+                    this.guessedCards++;
+                    this.guessedCards++;
+
+                    if (this.guessedCards === 18) {
+                        setTimeout(() => {
+                            localStorage.setItem("kuku", "superado");
+                            location.replace(route("laboratorio.index"));
+                        }, 2500);
+                    }
                 }
 
                 this.flippedCards = [];

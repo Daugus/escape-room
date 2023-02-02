@@ -10,6 +10,7 @@ use App\Http\Controllers\GameController;
 
 // menú
 use App\Http\Controllers\SobreNosotrosController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\PruebasController;
 
 use App\Http\Controllers\HangmanSolutionController;
@@ -51,11 +52,15 @@ Route::get('/perfil', [UserController::class, 'show'])
     ->name('user.show')
     ->middleware('logged');
 
+Route::get('/perfil/puntuaciones', [UserController::class, 'puntuaciones'])
+    ->name('user.puntuaciones')
+    ->middleware('logged');
+
 Route::get('/perfil/editar', [UserController::class, 'edit'])
     ->name('user.edit')
     ->middleware('logged');
 
-Route::post('/perfil/editar', [UserController::class, 'update'])
+Route::put('/perfil/editar', [UserController::class, 'update'])
     ->name('user.update')
     ->middleware('logged');
 
@@ -89,10 +94,20 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
     ->name('prueba.oveja')
     ->middleware('logged');
 
+Route::get('/jugar/password', [GameController::class, 'password'])
+    ->name('prueba.password')
+    ->middleware('logged');
 
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
     ->name('sobre-nosotros.index');
+
+Route::get('/ranking', [GroupController::class, 'index'])
+    ->name('ranking.index')
+    ->middleware('logged');
+Route::post('/ranking', [GroupController::class, 'filter'])
+    ->name('ranking.filter')
+    ->middleware('logged');
 
 Route::get('/administrar', [PruebasController::class, 'index'])
     ->name('pruebas.index')
@@ -102,10 +117,10 @@ Route::get('/sala-espera', [SalaEsperaController::class, 'index'])
     ->name('sala-espera.index')
     ->middleware('logged');
 
-Route::resource('/administrar/hangman', HangmanSolutionController::class);
-Route::resource('/administrar/kuku', KukuSolutionController::class);
-Route::resource('/administrar/agrupando', GroupingSolutionController::class);
-Route::resource('/administrar/oveja', OvejaSolutionController::class);
+Route::resource('/administrar/hangman', HangmanSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/kuku', KukuSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/agrupando', GroupingSolutionController::class)->middleware('profesor');
+Route::resource('/administrar/oveja', OvejaSolutionController::class)->middleware('profesor');
 
 Route::get('/', function () {
     return view('index');

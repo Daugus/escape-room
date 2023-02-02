@@ -13,7 +13,7 @@ export default {
         // muestra la carta y la envía a App.vue si no está revelada
         flip() {
             let card = document.querySelector(`#${this.getId} .card`);
-            if (card.classList === "flipped") return;
+            if (card.classList.contains("flipped")) return;
 
             card.classList.add("flipped");
             this.$emit("getFlippedCard", card.parentElement);
@@ -65,7 +65,6 @@ export default {
     margin: 1% 0 0 1%;
     perspective: 100rem;
     transition: all 0.3s ease 0s;
-    position: relative;
 
     height: 22vh;
 
@@ -93,23 +92,23 @@ export default {
             text-align: center;
             font-size: 1.2em;
             padding: 5%;
-            position: absolute;
             width: 100%;
             height: 100%;
         }
 
         .front {
             background-color: rgb(30, 30, 30);
+            position: absolute;
 
             img {
-                width: 85%;
+                width: 80%;
             }
         }
 
         .back {
             transform: rotateY(180deg);
             background-color: rgb(255, 255, 255);
-            overflow: hidden;
+            word-wrap: break-word;
 
             h1 {
                 position: absolute;
@@ -122,7 +121,7 @@ export default {
 
             p {
                 text-transform: uppercase;
-                font-size: 2.5vh;
+                word-break: break-all;
             }
 
             img {

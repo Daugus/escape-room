@@ -35,7 +35,7 @@ class PasswordSeeder extends Seeder
         $password3->name = 'Carl W. Scheele';
         $password3->element = 'Oxigeno';
         $password3->discovery_year = '1772';
-        $password3->text = 'Carl Wilhelm Scheele (Stralsund, Pomerania sueca, en la actual Alemania, 19 de diciembre de 1742-Köping, Suecia, 21 de mayo de 1786) fue un químico sueco conocido por sus trabajos farmacéuticos y por el descubrimiento de muchos elementos y sustancias químicas, de los que el más importante fue el oxígeno, el cual descubrio en 1772, de forma independiente y algún tiempo antes que Joseph Priestley. Scheele fue uno de los mejores químicos del siglo XVIII, contribuyendo significativamente a poner a Suecia a la vanguardia de la ciencia química y, principalmente, de la mineralógica de la época.';
+        $password3->text = 'Carl Wilhelm Scheele (Stralsund, Pomerania sueca, en la actual Alemania, 19 de diciembre de 1742-Köping, Suecia, 21 de mayo de 1786) fue un químico sueco conocido por sus trabajos farmacéuticos y por el descubrimiento de muchos elementos y sustancias químicas, de los que el más importante fue el oxígeno, el cual descubrio en 1772, de forma independiente y algún tiempo antes que Joseph Priestley. ';
         $password3->code = 'O1772';
         $password3->image = 'Carl-W-Scheele.jpg';
 
@@ -43,7 +43,7 @@ class PasswordSeeder extends Seeder
         $password4->name = 'Daniel Rutherford';
         $password4->element = 'Nitrogeno';
         $password4->discovery_year = '1772';
-        $password4->text = 'Daniel Rutherford (Edimburgo, Escocia, 6 de noviembre de 1749- Edimburgo, 15 de noviembre de 1819) fue un médico, químico, y botánico escocés. Siendo aún estudiante, descubrió la existencia del nitrógeno en 1772, de manera independiente a estudios paralelos de Scheele, Henry Cavendish (1731-1810), y Joseph Priestley (1733-1804). Este fue uno de los más famosos aficionados químicos, y describió la atmósfera como el oxígeno vital (1778), que llamó «aire desflogisticado», un nombre que significa aire sin flogisto.';
+        $password4->text = 'Daniel Rutherford (Edimburgo, Escocia, 6 de noviembre de 1749- Edimburgo, 15 de noviembre de 1819) fue un médico, químico, y botánico escocés. Siendo aún estudiante, descubrió la existencia del nitrógeno en 1772, de manera independiente a estudios paralelos de Scheele.';
         $password4->code = 'N1772';
         $password4->image = 'Daniel-Rutherford.jpg';
 
@@ -51,7 +51,7 @@ class PasswordSeeder extends Seeder
         $password5->name = 'Fausto Elhuyar';
         $password5->element = 'Wolframio';
         $password5->discovery_year = '1783';
-        $password5->text = 'Fausto Fermín de Elhuyar, Fausto Fermín Delhuyar o Fausto Fermín D Elhuyar y De Lubice (Logroño, 11 de octubre de 1755 – Madrid, 6 de febrero de 1833)1​ fue un químico e ingeniero de minas español, descubridor del wolframio junto a su hermano Juan José Elhuyar en 1783​ También estuvo al cargo del Real Seminario de Minería de la Ciudad de México y fue responsable de la edificación del Palacio de Minería. Elhuyar abandonó Nueva España justo después de la independencia.';
+        $password5->text = 'Fausto Fermín de Elhuyar(Logroño, 11 de octubre de 1755 – Madrid, 6 de febrero de 1833)1​ fue un químico e ingeniero de minas español, descubridor del wolframio junto a su hermano Juan José Elhuyar en 1783​ También estuvo al cargo del Real Seminario de Minería de la Ciudad de México. Elhuyar abandonó Nueva España justo después de la independencia.';
         $password5->code = 'W1783';
         $password5->image = 'Fausto-Elhuyar.jpg';
 
@@ -59,7 +59,7 @@ class PasswordSeeder extends Seeder
         $password6->name = 'Hennig Brand';
         $password6->element = 'Fósforo';
         $password6->discovery_year = '1669';
-        $password6->text = 'Hennig Brand (1630-1710) fue un comerciante, soplador de vidrio,1​ farmacéutico y alquimista aficionado alemán que vivió y trabajó en Hamburgo, recordado por haber descubierto el fósforo alrededor de 1669. Comunicó su secreto a Daniel Kraft con la condición de no revelarlo a nadie; pero Johann von Löwenstern-Kunckel finalmente descubrió la manera de obtener fósforo (1674). Recibió una pensión de Juan Federico de Brunswick-Luneburgo.';
+        $password6->text = 'Hennig Brand (1630-1710) fue un comerciante, soplador de vidrio, farmacéutico y alquimista aficionado alemán que vivió y trabajó en Hamburgo, recordado por haber descubierto el fósforo alrededor de 1669. Comunicó su secreto a Daniel Kraft con la condición de no revelarlo a nadie.';
         $password6->code = 'P1669';
         $password6->image = 'Hennig-Brand.jpg';
 
@@ -75,7 +75,7 @@ class PasswordSeeder extends Seeder
         $password8->name = 'Henry Cavendish ';
         $password8->element = 'hidrogeno';
         $password8->discovery_year = '1766';
-        $password8->text = 'Henry Cavendish (Reino Unido; Niza, Reino de Cerdeña, 10 de octubre de 1731-Londres, Reino Unido, 24 de febrero de 1810) fue un físico y químico británico y francés. Como físico, es conocido por el experimento de Cavendish (mediante el que posteriormente se determinó la constante de gravitación universal); y como químico, por el descubrimiento del hidrógeno en 1766 y de la composición del agua. Parte de su popularidad posterior deriva de su singular carácter personal (extremadamente reservado) y de las múltiples anécdotas que jalonan su biografía.';
+        $password8->text = 'Henry Cavendish (Reino Unido; Niza, Reino de Cerdeña, 10 de octubre de 1731-Londres, Reino Unido, 24 de febrero de 1810) fue un físico y químico británico y francés. Como físico, es conocido por el experimento de Cavendish y como químico, por el descubrimiento del hidrógeno en 1766.';
         $password8->code = 'H1766';
         $password8->image = 'Henry-Cavendish.jpg';
 
@@ -91,7 +91,7 @@ class PasswordSeeder extends Seeder
         $password10->name = 'Johan Gadolin  ';
         $password10->element = 'Ireio';
         $password10->discovery_year = '1794';
-        $password10->text = 'Johan Gadolin (Turku, Flag of Finland.svg Finlandia, 5 de junio de 1760 - 15 de agosto de 1852) fue un químico, físico y mineralogista finés. Fue el descubridor del elemento químico itrio en 1794. Además de ese descubrimiento, fue el fundador de la investigación química finesa, como el segundo titular de la cátedra de química, establecida en 1761, habiendo sido su primer titular Pehr Adrian Gadd (4 de abril de 1727-11 de agosto de 1797).';
+        $password10->text = 'Johan Gadolin (Turku, Flag of Finland.svg Finlandia, 5 de junio de 1760 - 15 de agosto de 1852) fue un químico, físico y mineralogista finés. Fue el descubridor del elemento químico itrio en 1794. Además de ese descubrimiento, fue el fundador de la investigación química finesa.';
         $password10->code = 'I1794';
         $password10->image = 'Johan-Gadolin.jpg';
 
@@ -107,7 +107,7 @@ class PasswordSeeder extends Seeder
         $password12->name = 'Louis J. Gay-Lussac';
         $password12->element = 'Boro';
         $password12->discovery_year = '1808';
-        $password12->text = 'Gay, (Saint-Léonard-de-Noblat, 6 de diciembre de 1778-París, 9 de mayo de 1850) fue un químico y físico francés. Es conocido en la actualidad por su contribución a las leyes de los gases y el descubrimiento del boro en 1808. En 1802, Gay-Lussac fue el primero en formular la ley según la cual un gas se expande proporcionalmente a su temperatura (absoluta) si se mantiene constante la presión (Ley de Charles) y que aumenta proporcionalmente su presión si el volumen se mantiene constante (Ley de Gay-Lussac). También se le cita como Louis Joseph en algunas fuentes de información';
+        $password12->text = 'Louis J. Gay-Lussac, (Saint-Léonard-de-Noblat, 6 de diciembre de 1778-París, 9 de mayo de 1850) fue un químico y físico francés. Es conocido en la actualidad por su contribución a las leyes de los gases y el descubrimiento del boro en 1808.';
         $password12->code = 'B1808';
         $password12->image = 'Louis-J-Gay-Lussac.jpg';
 
@@ -125,7 +125,7 @@ class PasswordSeeder extends Seeder
         $password14->discovery_year = '1789';
         $password14->text = 'Martin Heinrich Klaproth ( Wernigerode, Brandeburgo, Alemania, 1 de diciembre de 1743 - † Berlín, Alemania, 1 de enero de 1817 ) fue un químico alemán. Descubrió el uranio, el circonio, el titanio y el telurio en 1798, ya que aisló este último metal y le dio ese nombre, pero el descubrimiento se atribuyó a Müller.';
         $password14->code = 'U1789';
-        $password14->image = 'Martin H. Klaproth.jpg';
+        $password14->image = 'Martin-H-Klaproth.jpg';
 
         $password15 = new PasswordSolution();
         $password15->name = 'Anders G. Ekeberg';
@@ -243,7 +243,7 @@ class PasswordSeeder extends Seeder
         $password31->name = 'Eugene A. Demarcay';
         $password31->element = 'Europio';
         $password31->discovery_year = '1890';
-        $password31->text = 'Eugène-Anatole Demarçay (París, 1 de enero de 1852 - París, 5 de marzo de 1903) fue un químico francés, especialista en estudios de espectroscopia. Estudió con Jean-Baptiste Dumas pero no ocupó puesto de trabajo en ninguna universidad sino que la mayor parte de su vida trabajó en un laboratorio propio e independiente donde descubrio el europio en 1890​ Durante un experimento, una explosión le hizo perder la vista en uno de sus ojos.';
+        $password31->text = 'Eugène-Anatole Demarçay (París, 1 de enero de 1852 - París, 5 de marzo de 1903) fue un químico francés, la mayor parte de su vida trabajó en un laboratorio propio e independiente donde descubrio el europio en 1890​ Durante un experimento, una explosión le hizo perder la vista en uno de sus ojos.';
         $password31->image = 'Eugene-A-Demarcay.jpg';
 
         $password32 = new PasswordSolution();
@@ -299,7 +299,7 @@ class PasswordSeeder extends Seeder
         $password39->name = 'Georges Urbain';
         $password39->element = 'Lutecio';
         $password39->discovery_year = '1907';
-        $password39->text = 'Georges Urbain (París, 12 de abril de 1872 – 5 de noviembre de 1938) fue un químico francés, profesor de la Universidad de París. En 1907 separó el iterbio obtenido por Jean Charles Galissard de Marignac en dos compuestos: el iterbio propiamente dicho y el lutecio, descubriendo así este nuevo elemento químico. Ese mismo año afirmó haber descubierto el elemento 72 al que denominó "celtio"; en 1911 publicó sus resultados.';
+        $password39->text = 'Georges Urbain (París, 12 de abril de 1872 – 5 de noviembre de 1938) fue un químico francés, profesor de la Universidad de París. En 1907 separó el iterbio obtenido por Jean Charles Galissard y obtuvo el el lutecio, descubriendo así este nuevo elemento químico.';
         $password39->image = 'Georges-Urbain.jpg';
 
         $password40 = new PasswordSolution();
@@ -348,7 +348,7 @@ class PasswordSeeder extends Seeder
         $password46->name = 'Jean C. Galissard de Marignac';
         $password46->element = 'Gadolinio';
         $password46->discovery_year = '1880';
-        $password46->text = 'Jean Charles Galissard de Marignac (Ginebra, 24 de abril de 1817 - Ginebra, 15 de abril de 1894) fue un químico suizo, cuyo trabajo con los pesos atómicos sugirió la posibilidad de la existencia de isótopos y la fracción de empaquetamiento de los núcleos y cuyo estudio de los elementos químicos llamados tierras raras condujo al descubrimiento del iterbio en 1878, y al codescubrimiento del gadolinio en 1880.';
+        $password46->text = 'Jean Charles Galissard de Marignac (Ginebra, 24 de abril de 1817 - Ginebra, 15 de abril de 1894) fue un químico suizo,el descubrio el iterbio en 1878, y al codescubrimiento del gadolinio en 1880.';
         $password46->image = 'Jean-C-Galissard-de-Marignac.jpg';
 
         $password47 = new PasswordSolution();
@@ -523,7 +523,7 @@ class PasswordSeeder extends Seeder
         $password71->name = 'Wilhelm Hisinger';
         $password71->element = 'Cerio';
         $password71->discovery_year = '1803';
-        $password71->text = 'Wilhelm Hisinger (Västmanland, 23 de diciembre de 1766 - Skinnskatteberg, 28 de junio de 1852) fue un naturalista, mineralogista, físico, químico, geólogo sueco que en 1807, trabajando en coordinación con Jöns Jakob Berzelius, señaló que, en la electrólisis, una determinada sustancia siempre se depositaba en el mismo electrodo, y que las sustancias atraídas por el mismo polo o electrodo tenían otras propiedades en común.1​ Demostró que había por lo menos una correlación cualitativa entre la naturaleza química y eléctrica de los cuerpos.';
+        $password71->text = 'Wilhelm Hisinger (Västmanland, 23 de diciembre de 1766 - Skinnskatteberg, 28 de junio de 1852) fue un naturalista, mineralogista, físico, químico, geólogo sueco que en 1803 descubrio el Cerio una determinada sustancia siempre se depositaba en el mismo electrodo.';
         $password71->image = 'Wilhelm-Hisinger.jpg';
 
         $password72 = new PasswordSolution();
