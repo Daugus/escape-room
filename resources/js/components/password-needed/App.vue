@@ -53,7 +53,12 @@ export default {
                 ligth = document.getElementById("green");
                 ligth.style.backgroundColor = "#0f0";
                 ligth.style.boxShadow = "0 0 1rem #7f7";
-                this.win;
+                setTimeout(() => {
+                    this.win = true;
+                }, 1000);
+                setTimeout(() => {
+                    location.replace(route("user.puntuaciones"));
+                }, 5000);
             } else {
                 ligth = document.getElementById("red");
                 ligth.style.backgroundColor = "#f00";
@@ -69,9 +74,9 @@ export default {
 </script>
 
 <template>
-    <section>
-        <div v-if="win" id="WIN"></div>
-        <div v-else class="luces">
+    <div v-if="win" id="WIN"></div>
+    <section v-else>
+        <div class="luces">
             <span id="red"></span>
             <span id="green"></span>
         </div>
