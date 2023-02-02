@@ -21,7 +21,6 @@ export default {
                 "L",
                 "M",
                 "N",
-                "Ñ",
                 "O",
                 "P",
                 "Q",
@@ -35,18 +34,20 @@ export default {
                 "Y",
                 "Z",
             ],
-            numeros: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+            numeros: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
         };
     },
 };
 </script>
 
 <template>
-    <Button :caracteres="letras"></Button>
-    <Button :caracteres="numeros"></Button>
-    <Button :caracteres="numeros"></Button>
-    <Button :caracteres="numeros"></Button>
-    <Button :caracteres="numeros"></Button>
+    <div class="flex justify-center items-center h-screen">
+        <Button :caracteres="letras"></Button>
+        <Button :caracteres="numeros"></Button>
+        <Button :caracteres="numeros"></Button>
+        <Button :caracteres="numeros"></Button>
+        <Button :caracteres="numeros"></Button>
+    </div>
 </template>
 
 <style scoped lang="scss"></style>

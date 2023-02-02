@@ -33,7 +33,7 @@
         {{-- AGRUPANDO --}}
         <a href="{{ route('prueba.agrupando') }}" id="agrupando"></a>
         {{-- NECESITAMOS UNA CONTRASEÑA --}}
-        <a href="#" id="password"></a>
+        <a href="{{ route('prueba.password') }}" id="password"></a>
 
         {{-- HINTS --}}
         <div id="pizarra"></div>

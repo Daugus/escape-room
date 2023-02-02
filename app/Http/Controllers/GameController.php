@@ -93,7 +93,7 @@ class GameController extends Controller
     // prueba 6: contraseña
     public function password()
     {
-        return view('infocientificos.index');
+        return view('password.index');
     }
 
     public function getScientists()
