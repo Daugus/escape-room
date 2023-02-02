@@ -2,6 +2,8 @@
 import route from "ziggy";
 import Concept from "./Concept.vue";
 import Definition from "./Definition.vue";
+
+import { encryptStorage } from "#/utils/encrypt.js";
 </script>
 
 <script>
@@ -109,7 +111,7 @@ export default {
                 this.guessedCouples++;
                 if (this.guessedCouples === 6) {
                     setTimeout(() => {
-                        localStorage.setItem("oveja", "superado");
+                        encryptStorage.setItem("oveja", "superado");
                         location.replace(route("laboratorio.index"));
                     }, 2500);
                 }

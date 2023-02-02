@@ -1,3 +1,7 @@
+<script setup>
+import { encryptStorage } from "#/utils/encrypt.js";
+</script>
+
 <script>
 export default {
     emits: ["getNewWord", "getErrors"],
@@ -18,11 +22,11 @@ export default {
     },
     mounted() {
         // Comprobar si existen los datos guardados
-        if (localStorage.getItem("intentos")) {
-            this.tries = localStorage.getItem("intentos");
+        if (encryptStorage.getItem("intentos")) {
+            this.tries = encryptStorage.getItem("intentos");
 
             // Borrar el items del localStorage
-            localStorage.removeItem("intentos");
+            encryptStorage.removeItem("intentos");
         }
     },
     computed: {
@@ -65,12 +69,12 @@ export default {
 
                     // Guardar la hora a la que tiene que acabar el contador
                     let waittime = 120000 * this.tries;
-                    localStorage.setItem("cooldown", Date.now() + waittime);
+                    encryptStorage.setItem("cooldown", Date.now() + waittime);
                     // Guardar los datos en localStorage
-                    localStorage.setItem("intentos", this.tries);
+                    encryptStorage.setItem("intentos", this.tries);
                     // Borrar los items del localStorage
-                    localStorage.removeItem("letras");
-                    localStorage.removeItem("palabra");
+                    encryptStorage.removeItem("letras");
+                    encryptStorage.removeItem("palabra");
 
                     // Se ejecuta en 5 segundos (5000 milesimas)
                     setTimeout(() => {
@@ -137,9 +141,9 @@ export default {
 
                 // Se ejecuta en 2.5 segundos (2500 milesimas)
                 setTimeout(() => {
-                    localStorage.removeItem("cooldown");
-                    localStorage.removeItem("palabra");
-                    localStorage.setItem("hangman", "superado");
+                    encryptStorage.removeItem("cooldown");
+                    encryptStorage.removeItem("palabra");
+                    encryptStorage.setItem("hangman", "superado");
                     location.replace(route("laboratorio.index"));
                 }, 2500);
             }, 2500);

@@ -1,3 +1,7 @@
+<script setup>
+import { encryptStorage } from "#/utils/encrypt.js";
+</script>
+
 <script>
 export default {
     data() {
@@ -11,9 +15,9 @@ export default {
     },
     methods: {
         async getScientist() {
-            if (localStorage.getItem("cientificos")) {
+            if (encryptStorage.getItem("cientificos")) {
                 this.scientistlist = JSON.parse(
-                    localStorage.getItem("cientificos")
+                    encryptStorage.getItem("cientificos")
                 );
             } else {
                 const token = document
@@ -70,7 +74,7 @@ export default {
         },
         quit() {
             const cientificosString = JSON.stringify(this.scientistlist);
-            localStorage.setItem("cientificos", cientificosString);
+            encryptStorage.setItem("cientificos", cientificosString);
 
             // Redirigir al laboratorio
             setTimeout(() => {

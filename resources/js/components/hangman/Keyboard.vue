@@ -1,5 +1,7 @@
 <script setup>
 import Key from "./Key.vue";
+
+import { encryptStorage } from "#/utils/encrypt.js";
 </script>
 
 <script>
@@ -27,11 +29,11 @@ export default {
             });
 
             // Comprobar si existen los datos guardados
-            if (localStorage.getItem("letras")) {
+            if (encryptStorage.getItem("letras")) {
                 // Comprobar las letras con la palabra
-                const letters = localStorage.getItem("letras").split(",");
+                const letters = encryptStorage.getItem("letras").split(",");
                 // Borrar el item del localStorage
-                localStorage.removeItem("letras");
+                encryptStorage.removeItem("letras");
 
                 letters.forEach((letter) =>
                     setTimeout(() => {
@@ -62,7 +64,7 @@ export default {
 
             this.usedLetters.push(char);
             // Guardar los datos en localStorage
-            localStorage.setItem("letras", this.usedLetters);
+            encryptStorage.setItem("letras", this.usedLetters);
 
             this.checkLetter(char);
             this.$emit("getLetterKey", char);
@@ -97,7 +99,7 @@ export default {
             });
 
             // Borrar el item del localStorage
-            localStorage.removeItem("letras");
+            encryptStorage.removeItem("letras");
         },
         errors: function () {
             if (this.errors === 5) {

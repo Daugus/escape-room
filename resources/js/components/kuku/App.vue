@@ -1,6 +1,8 @@
 <script setup>
 import Card from "./Card.vue";
 import route from "ziggy";
+
+import { encryptStorage } from "#/utils/encrypt.js";
 </script>
 
 <script>
@@ -80,7 +82,7 @@ export default {
 
                     if (this.guessedCards === 18) {
                         setTimeout(() => {
-                            localStorage.setItem("kuku", "superado");
+                            encryptStorage.setItem("kuku", "superado");
                             location.replace(route("laboratorio.index"));
                         }, 2500);
                     }

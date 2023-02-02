@@ -1,3 +1,7 @@
+<script setup>
+import { encryptStorage } from "#/utils/encrypt.js";
+</script>
+
 <script>
 export default {
     data() {
@@ -8,8 +12,8 @@ export default {
         };
     },
     mounted() {
-        if (localStorage.getItem("pin")) {
-            this.lsPin = localStorage.getItem("pin");
+        if (encryptStorage.getItem("pin")) {
+            this.lsPin = encryptStorage.getItem("pin");
         }
 
         const buttons = document.querySelectorAll("button:not(#delete)");

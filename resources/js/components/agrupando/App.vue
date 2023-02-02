@@ -4,6 +4,8 @@ import File from "./File.vue";
 import Folder from "./Folder.vue";
 import Tab from "./Tab.vue";
 import Pin from "./Pin.vue";
+
+import { encryptStorage } from "#/utils/encrypt.js";
 </script>
 
 <script>
@@ -79,7 +81,7 @@ export default {
 
                 if (this.guessedFiles === 20) {
                     setTimeout(() => {
-                        localStorage.setItem("agrupando", "superado");
+                        encryptStorage.setItem("agrupando", "superado");
                     }, 3000);
                 }
             } else {
@@ -91,10 +93,10 @@ export default {
     },
     computed: {
         success() {
-            return localStorage.getItem("agrupando") != null;
+            return encryptStorage.getItem("agrupando") != null;
         },
         pin() {
-            return localStorage.getItem("pin") != null;
+            return encryptStorage.getItem("pin") != null;
         },
     },
 };

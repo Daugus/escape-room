@@ -3,6 +3,8 @@ import Keyboard from "./Keyboard.vue";
 import Panel from "./Panel.vue";
 import Capsule from "./Capsule.vue";
 import route from "ziggy";
+
+import { encryptStorage } from "#/utils/encrypt.js";
 </script>
 
 <script>
@@ -22,11 +24,11 @@ export default {
         console.log(localStorage);
 
         // Comprobar si existen los datos guardados
-        if (localStorage.getItem("palabra")) {
-            this.wordArray = localStorage.getItem("palabra").split("");
+        if (encryptStorage.getItem("palabra")) {
+            this.wordArray = encryptStorage.getItem("palabra").split("");
 
             // Borrar el item del localStorage
-            localStorage.removeItem("palabra");
+            encryptStorage.removeItem("palabra");
         } else {
             // Sino, generar una palabra aleatoria nueva
             await this.getWord();
@@ -53,7 +55,7 @@ export default {
             this.wordArray = word.toUpperCase().split("");
 
             // Guardar los datos en localStorage
-            localStorage.setItem("palabra", this.wordArray.join(""));
+            encryptStorage.setItem("palabra", this.wordArray.join(""));
         },
         // Hacer llamada para generar una nueva palabra
         getNewWord(newWord) {
@@ -74,7 +76,7 @@ export default {
         // Llamada a los hijos para generar objetos con data necesaria
         quitChallenge(call) {
             // Guardar los datos en localStorage
-            localStorage.setItem("palabra", this.wordArray.join(""));
+            encryptStorage.setItem("palabra", this.wordArray.join(""));
             // Cambiar la variable "quit" para que se pueda ejecutar el "saveData" de Capsule y Panel
             this.quit = call;
         },
