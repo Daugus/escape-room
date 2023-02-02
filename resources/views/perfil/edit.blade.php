@@ -7,6 +7,11 @@
 
 @section('content')
     <div id="borde-monitor" class="grid grid-cols-1 md:grid-cols-2 items-center py-24 px-10 md:p-14">
+        <div class="absolute top-28 right-40">
+            <button class="bg-amber-500 text-white font-bold py-2 px-4 rounded">
+                <a href={{ route ('user.show')}} >Volver</a>
+            </button>
+        </div>
         <div class="flex justify-center md:border-r-4">
             <a class="w-3/5" :href="route('index')"><img src="{{ asset('src/img/menu/parasolCorporation.png') }}" /></a>
         </div>
