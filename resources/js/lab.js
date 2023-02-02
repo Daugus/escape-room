@@ -226,8 +226,6 @@ const hintsGenerator = (object) => {
 
 // CAMBIAR EL ESCENARIO SEGUN LAS VARIABLES
 const changeEnviroment = () => {
-    // EJECUTAR F11
-
     // CONTADORES
     const generalCounter = document.querySelector("#general-counter span");
     const counter = () => {
@@ -235,9 +233,9 @@ const changeEnviroment = () => {
         if (localStorage.getItem("tiempo")) {
             countDownDate = localStorage.getItem("tiempo");
         } else {
-            countDownDate = Date.now() + localStorage.getItem("dificultad");
-            localStorage.removeItem("dificultad");
-            S;
+            let difficulty = parseInt(localStorage.getItem("dificultad"));
+            countDownDate = Date.now() + difficulty;
+            localStorage.removeItem("dificultad")
             localStorage.setItem("tiempo", countDownDate);
         }
 
@@ -245,55 +243,27 @@ const changeEnviroment = () => {
             let now = Date.now();
             let distance = countDownDate - now;
 
-            let hours = Math.floor(
-                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-            );
-            let minutes = Math.floor(
-                (distance % (1000 * 60 * 60)) / (1000 * 60)
-            );
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // LOS TRES MENORES QUE 10
-            if (hours < 10 && minutes < 10 && seconds < 10) {
-                generalCounter.innerHTML =
-                    "0" + hours + ":0" + minutes + ":0" + seconds;
-                // HORAS Y MINUTOS MENORES QUE 10
-            } else if (hours < 10 && minutes < 10) {
-                generalCounter.innerHTML =
-                    "0" + hours + ":0" + minutes + ":" + seconds;
-                // HORAS Y SEGUNDOS MENORES QUE 10
-            } else if (hours < 10 && seconds < 10) {
-                generalCounter.innerHTML =
-                    "0" + hours + ":" + minutes + ":0" + seconds;
-                // HORAS QUE 10
-            } else if (hours < 10) {
-                generalCounter.innerHTML =
-                    "0" + hours + ":" + minutes + ":" + seconds;
-                // MINUTOS Y SEGUNDOS MENORES QUE 10
-            } else if (minutes < 10 && seconds < 10) {
-                generalCounter.innerHTML =
-                    hours + ":0" + minutes + ":0" + seconds;
-                // MINUTOS MENORES QUE 10
+            if (minutes < 10 && seconds < 10) {
+                generalCounter.innerText = `00:0${minutes}:0${seconds}`;
             } else if (minutes < 10) {
-                generalCounter.innerHTML =
-                    hours + ":0" + minutes + ":" + seconds;
-                // SEGUNDOS MENORES QUE 10
+                generalCounter.innerText = `00:0${minutes}:${seconds}`;
             } else if (seconds < 10) {
-                generalCounter.innerHTML =
-                    hours + ":" + minutes + ":0" + seconds;
-                // SEGUNDOS MENORES QUE 10
+                generalCounter.innerText = `00:${minutes}:0${seconds}`;
+            } else {
+                generalCounter.innerText = `00:${minutes}:${seconds}`;
             }
 
             if (distance < 0) {
-                generalCounter.innerHTML = "00:00:00";
+                generalCounter.innerText = "00:00:00";
                 clearInterval(x);
                 localStorage.clear();
             }
         }, 1000);
     };
     counter();
-
-    const hangmanCounter = document.querySelector("#hangman-counter span");
 
     // PIZARRA
     const board = document.getElementById("pizarra");
@@ -307,6 +277,7 @@ const changeEnviroment = () => {
     const smokes = document.querySelector(".gas-container");
 
     // SI SE HA FALLADO EN LA PRUEBA DE HANGMAN
+    const hangmanCounter = document.querySelector("#hangman-counter span");
     if (localStorage.getItem("cooldown")) {
         smokes.style.opacity = "1";
         smokes.style.transition = "all 10s ease-out";
@@ -317,19 +288,17 @@ const changeEnviroment = () => {
             let now = Date.now();
             let distance = countDownDate - now;
 
-            let minutes = Math.floor(
-                (distance % (1000 * 60 * 60)) / (1000 * 60)
-            );
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (minutes < 10) {
                 if (seconds < 10) {
-                    hangmanCounter.innerHTML = "0" + minutes + ":0" + seconds;
+                    hangmanCounter.innerHTML = `0${minutes}:0${seconds}`;
                 } else {
-                    hangmanCounter.innerHTML = "0" + minutes + ":" + seconds;
+                    hangmanCounter.innerHTML = `0${minutes}:${seconds}`;
                 }
             } else {
-                hangmanCounter.innerHTML = minutes + ":" + seconds;
+                hangmanCounter.innerHTML = `${minutes}:${seconds}`;
             }
 
             if (distance < 0) {
