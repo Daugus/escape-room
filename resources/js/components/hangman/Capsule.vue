@@ -88,13 +88,18 @@ export default {
                         });
 
                         setTimeout(() => {
-                            this.$emit("getNewWord", this.newWord);
-                            this.$emit("getErrors", this.errors);
-                            // Desactivar gas
-                            smoke.style.opacity = "0";
+                            if (localStorage.getItem("tiempo") == null) {
+                                localStorage.clear();
+                                location.replace(route("index"));
+                            } else {
+                                this.$emit("getNewWord", this.newWord);
+                                this.$emit("getErrors", this.errors);
+                                // Desactivar gas
+                                smoke.style.opacity = "0";
 
-                            // Redirigir al laboratorio
-                            location.replace(route("laboratorio.index"));
+                                // Redirigir al laboratorio
+                                location.replace(route("laboratorio.index"));
+                            }
                         }, 3000);
                     }, 5000);
 
@@ -137,9 +142,9 @@ export default {
 
                 // Se ejecuta en 2.5 segundos (2500 milesimas)
                 setTimeout(() => {
-                    if (localStorage.getItem("tiempo") === null) {
-                        console.log("volver a main");
-                        // location.replace(route("index"));
+                    if (localStorage.getItem("tiempo") == null) {
+                        localStorage.clear();
+                        location.replace(route("index"));
                     } else {
                         localStorage.removeItem("cooldown");
                         localStorage.removeItem("palabra");
@@ -152,9 +157,9 @@ export default {
         quit: function () {
             if (this.quit === null) return;
 
-            if (localStorage.getItem("tiempo") === null) {
-                console.log("volver a main");
-                // location.replace(route("index"));
+            if (localStorage.getItem("tiempo") == null) {
+                localStorage.clear();
+                location.replace(route("index"));
             } else {
                 // Parar alarma
                 let alarm = document.querySelector("audio");
