@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 // modelos para apis
 use Illuminate\Database\Eloquent\Collection;
+
+use App\Models\Game;
 use App\Models\SharedSolution;
 use App\Models\GroupingSolution;
 use App\Models\HangmanSolution;
@@ -16,6 +18,12 @@ class GameController extends Controller
     public function lab()
     {
         return view('laboratorio.index');
+    }
+
+    public function queryActiveGame()
+    {
+        $game = Game::select('end_date')->where('id', 1001)->get();
+        return view('index', compact('game'));
     }
 
     // prueba 5: agrupando

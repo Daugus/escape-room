@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'logged' => \App\Http\Middleware\LoggedMiddleware::class,
         'profesor' => \App\Http\Middleware\ProfesorMiddleware::class,
         'invitado' => \App\Http\Middleware\InvitadoMiddleware::class,
+        'partida' => \App\Http\Middleware\PartidaEnCursoMiddleware::class,
     ];
 }

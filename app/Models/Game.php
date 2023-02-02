@@ -11,7 +11,7 @@ class Game extends Model
 
     protected $table = 'games';
     protected $primaryKey = 'id';
-    protected $fillable = ['time', 'state', 'difficulty_id', 'group_id'];
+    protected $fillable = ['time', 'state', 'difficulty_id', 'group_id', 'end_date'];
 
     public $timestamps = false;
 

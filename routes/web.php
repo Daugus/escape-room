@@ -71,27 +71,33 @@ Route::delete('/perfil/eliminar', [UserController::class, 'destroy'])
 // juego
 Route::get('/jugar/lab', [GameController::class, 'lab'])
     ->name('laboratorio.index')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 
 Route::get('/jugar/hangman', [GameController::class, 'hangman'])
     ->name('prueba.hangman')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 
 Route::get('/jugar/kuku', [GameController::class, 'kuku'])
     ->name('prueba.kuku')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 
 Route::get('/jugar/agrupando', [GameController::class, 'agrupando'])
     ->name('prueba.agrupando')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 
 Route::get('/jugar/oveja', [GameController::class, 'oveja'])
     ->name('prueba.oveja')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 
 Route::get('/jugar/password', [GameController::class, 'password'])
     ->name('prueba.password')
-    ->middleware('logged');
+    ->middleware('logged')
+    ->middleware('partida');
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
     ->name('sobre-nosotros.index');
@@ -111,6 +117,8 @@ Route::resource('/administrar/hangman', HangmanSolutionController::class)->middl
 Route::resource('/administrar/kuku', KukuSolutionController::class)->middleware('profesor');
 Route::resource('/administrar/agrupando', GroupingSolutionController::class)->middleware('profesor');
 Route::resource('/administrar/oveja', OvejaSolutionController::class)->middleware('profesor');
+
+Route::get('/test', [GameController::class, 'queryActiveGame']);
 
 Route::get('/', function () {
     return view('index');

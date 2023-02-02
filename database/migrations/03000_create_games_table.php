@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->time('time')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->enum('state', ['cancelada', 'perdida', 'ganada']);
 
             $table->foreignId('difficulty_id')->constrained('difficulties')->cascadeOnDelete();
