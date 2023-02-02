@@ -2,6 +2,8 @@
 import route from "ziggy";
 import File from "./File.vue";
 import Folder from "./Folder.vue";
+import Tab from "./Tab.vue";
+import Pin from "./Pin.vue";
 </script>
 
 <script>
@@ -11,6 +13,7 @@ export default {
             conceptList: [],
             folderInfoList: [],
             error: false,
+            guessedFiles: 0,
         };
     },
     async mounted() {
@@ -75,6 +78,20 @@ export default {
                 document
                     .querySelector(`#${fileInfo.id}`)
                     .classList.add("correct");
+
+                setTimeout(() => {
+                    document
+                        .querySelector(`#${fileInfo.id}`)
+                        .classList.add("hidden");
+                }, 400);
+
+                this.guessedFiles++;
+
+                if (this.guessedFiles === 20) {
+                    setTimeout(() => {
+                        localStorage.setItem("agrupando", "superado");
+                    }, 3000);
+                }
             } else {
                 document
                     .querySelector(`#${fileInfo.id}`)
@@ -82,41 +99,65 @@ export default {
             }
         },
     },
+    computed: {
+        success() {
+            return localStorage.getItem("agrupando") != null;
+        },
+        pin() {
+            return localStorage.getItem("pin") != null;
+        },
+    },
 };
 </script>
 
 <template>
     <div v-if="error" id="ERROR"></div>
-    <section class="grid grid-cols-2 gap-3">
-        <div class="grid grid-cols-2 gap-3">
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Análisis"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Microbiología"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Medida"
-            />
-            <Folder
-                @getCurrentFolderInfo="getCurrentFolderInfo"
-                field="Biotecnología"
-            />
-        </div>
 
-        <div class="border-2 border-black p-2 relative">
-            <p>Conceptos</p>
-            <File
-                v-for="(concept, index) in conceptList"
-                :conceptInfo="concept"
-                :conceptListIndex="index"
-                @getCurrentFileInfo="getCurrentFileInfo"
-            />
-        </div>
-    </section>
+    <div class="bg">
+        <!-- PIN -->
+        <section id="pin" v-if="pin === true">
+            <div>
+                <Pin />
+            </div>
+        </section>
+
+        <!-- CAROUSEL -->
+        <section id="tab" v-else-if="success === true">
+            <div>
+                <Tab />
+            </div>
+        </section>
+        <!-- PRUEBA: AGRUPANDO -->
+        <section id="agrupando" v-else>
+            <div>
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Análisis"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Microbiología"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Medida"
+                />
+                <Folder
+                    @getCurrentFolderInfo="getCurrentFolderInfo"
+                    field="Biotecnología"
+                />
+            </div>
+
+            <div>
+                <File
+                    v-for="(concept, index) in conceptList"
+                    :conceptInfo="concept"
+                    :conceptListIndex="index"
+                    @getCurrentFileInfo="getCurrentFileInfo"
+                />
+            </div>
+        </section>
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -126,5 +167,75 @@ export default {
     background-image: url("@/src/img/menu/ERROR.png");
     background-repeat: no-repeat;
     background-size: 100% 100vh;
+}
+.bg {
+    height: 100vh;
+    width: 100vw;
+
+    background-image: url("@/src/img/agrupando/bg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    position: relative;
+}
+
+section {
+    position: absolute;
+    inset: 8.5% 19.6% 28.5% 19.4%;
+
+    &:not(#pin) {
+        background-image: url("@/src/img/agrupando/windows_bg.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+#agrupando {
+    padding: 2%;
+    & > :nth-child(1) {
+        height: max-content;
+        display: flex;
+        flex-direction: row;
+        height: 55%;
+        gap: 1%;
+    }
+
+    & > :nth-child(2) {
+        height: 45%;
+
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+#pin,
+#tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#tab div {
+    height: 80%;
+    width: 80%;
+
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    border-radius: 1vh;
+    overflow: hidden;
+}
+
+#pin div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
 }
 </style>

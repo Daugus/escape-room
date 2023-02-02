@@ -38,6 +38,16 @@
     src: url("@/src/fonts/tangerine.ttf");
 }
 
+@font-face {
+    font-family: Primary;
+    src: url("@/src/fonts/KGPrimaryItalics.ttf");
+}
+
+@font-face {
+    font-family: Spaceport;
+    src: url("@/src/fonts/Spaceport_2006.otf");
+}
+
 body {
     min-height: 100vh;
 }
@@ -139,8 +149,9 @@ body {
     #pizarra {
         inset: 29.2% 51% 53% 30.1%;
         color: black;
-        font-family: "Tangerine";
-        font-size: 1.4vh;
+        font-family: "Primary";
+        font-size: 1.5vh;
+        font-weight: 600;
         display: flex;
         flex-direction: column;
         align-items: flex-start;

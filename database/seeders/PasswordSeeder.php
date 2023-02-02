@@ -84,7 +84,7 @@ class PasswordSeeder extends Seeder
         $password9->element = 'Potasio';
         $password9->discovery_year = '1807';
         $password9->text = 'Sir Humphrey Davy, 1er Baronet, conocido como Humphrey Davy (Penzance, Cornualles,1​ Reino Unido, 17 de diciembre de 1778 - Ginebra, Suiza, 29 de mayo de 1829) fue un químico británico descubridor del potasio en 1807, considerado el fundador de la electroquímica, junto con Alessandro Volta y Michael Faraday.';
-        $password9->code = 'K1807 ';
+        $password9->code = 'K1807';
         $password9->image = 'Humphrey-Davy.jpg';
 
         $password10 = new PasswordSolution();

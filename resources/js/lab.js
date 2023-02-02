@@ -12,7 +12,7 @@ const passwordGenerator = () => {
             let pinArray = localStorage.getItem("pin").split("");
             value = pinArray[i];
         } else {
-            // Generar un numero random entre 0 y 9
+            // Generar un número random entre 0 y 9
             value = Math.floor((Math.random() * (9 - 0 + 1)) + 0);
         }
 
@@ -23,7 +23,7 @@ const passwordGenerator = () => {
         repeat = repeatChecker(value);
         zero = zeroChecker(value);
 
-        // Generar objeto del numero
+        // Generar objeto del número
         let number = {
             value: value,
             parity: parity,
@@ -37,7 +37,7 @@ const passwordGenerator = () => {
         // Llamar al generador de pistas
         hintsGenerator(number);
 
-        // Guardar el numero en la array
+        // Guardar el número en la array
         numbers.push(number);
         password = '' + password + value;
     }
@@ -46,7 +46,7 @@ const passwordGenerator = () => {
     localStorage.setItem("pin", password);
 }
 
-// Comprobar la paridad del numero
+// Comprobar la paridad del número
 const parityChecker = (value) => {
     let remainder = value % 2;
     if (remainder == 0) {
@@ -57,7 +57,7 @@ const parityChecker = (value) => {
     return parity;
 }
 
-// Comprobar la posicion del numero
+// Comprobar la posición del número
 const positionChecker = (loop) => {
     let position;
     switch (loop) {
@@ -74,7 +74,7 @@ const positionChecker = (loop) => {
     return position;
 }
 
-// Comprobar si el numero es menor, igual o mayor que 5
+// Comprobar si el número es menor, igual o mayor que 5
 const equalityChecker = (value) => {
     let equality;
     if (value < 5) {
@@ -87,7 +87,7 @@ const equalityChecker = (value) => {
     return equality;
 }
 
-// Comprobar si el numero se ha repetido
+// Comprobar si el número se ha repetido
 const repeatChecker = (value) => {
     let repeat;
     for (let i = 0; i < numbers.length; i++) {
@@ -100,7 +100,7 @@ const repeatChecker = (value) => {
     return repeat;
 }
 
-// Comprobar si el numero es 0
+// Comprobar si el número es 0
 const zeroChecker = (value) => {
     let zero;
     if (value == 0) {
@@ -113,75 +113,75 @@ const zeroChecker = (value) => {
 
 // Generador de pistas
 const hintsGenerator = (object) => {
-    // Primera pista: Numero nulo
+    // Primera pista: número nulo
     if (object.zero) {
-        let hint1 = 'El numero en ' + object.position + ' posicion es nulo.';
+        let hint1 = 'El número en ' + object.position + ' posición es nulo.';
         object.hints.push(hint1);
         return;
     }
 
-    // Segunda pista: Numero repetido
+    // Segunda pista: número repetido
     if (numbers.length >= 1) {
         for (let i = 0; i < numbers.length; i++) {
             if (object.value == numbers[i].value) {
-                let hint2 = 'El numero en ' + object.position + ' posicion es igual al numero en ' + numbers[i].position + ' posicion.';
+                let hint2 = 'El número en ' + object.position + ' posición es igual al número en ' + numbers[i].position + ' posición.';
                 object.hints.push(hint2);
                 return;
             }
         }
     }
 
-    // Tercera pista: Paridad del numero
-    let hint3 = 'El numero en ' + object.position + ' posicion es ' + object.parity + '.';
+    // Tercera pista: Paridad del número
+    let hint3 = 'El número en ' + object.position + ' posición es ' + object.parity + '.';
     object.hints.push(hint3);
 
     // Cuarta pista: Menor, igual o mayor que 5
-    let hint4 = 'El numero en ' + object.position + ' posicion es ' + object.equality + ' que 5.';
+    let hint4 = 'El número en ' + object.position + ' posición es ' + object.equality + ' que 5.';
     object.hints.push(hint4);
 
     if (numbers.length > 0) {
-        // Quinta pista: El doble que un numero
+        // Quinta pista: El doble que un número
         for (let i = 0; i < numbers.length; i++) {
             if (object.value != numbers[i].value) {
                 let double = numbers[i].value * 2;
                 if (double == object.value) {
-                    let hint5 = 'El numero en ' + object.position + ' posicion es el doble que el numero en ' + numbers[i].position + ' posicion.';
+                    let hint5 = 'El número en ' + object.position + ' posición es el doble que el número en ' + numbers[i].position + ' posición.';
                     object.hints.push(hint5);
                     return;
                 }
             }
         }
 
-        // Sexta pista: El doble de un numero
+        // Sexta pista: El doble de un número
         for (let i = 0; i < numbers.length; i++) {
             if (object.value != numbers[i].value) {
                 let double = object.value / 2;
                 if (double == numbers[i].value) {
-                    let hint6 = 'El numero en ' + object.position + ' posicion es el doble que el numero en ' + numbers[i].position + ' posicion.';
+                    let hint6 = 'El número en ' + object.position + ' posición es el doble que el número en ' + numbers[i].position + ' posición.';
                     object.hints.push(hint6);
                     return;
                 }
             }
         }
 
-        // Septima pista: El triple de un numero
+        // Septima pista: El triple de un número
         for (let i = 0; i < numbers.length; i++) {
             if (object.value != numbers[i].value) {
                 let double = object.value / 3;
                 if (double == numbers[i].value) {
-                    let hint7 = 'El numero en ' + object.position + ' posicion es el triple que el numero en ' + numbers[i].position + ' posicion.';
+                    let hint7 = 'El número en ' + object.position + ' posición es el triple que el número en ' + numbers[i].position + ' posición.';
                     object.hints.push(hint7);
                     return;
                 }
             }
         }
 
-        // Octava pista: El cuadruple de un numero
+        // Octava pista: El cuadruple de un número
         for (let i = 0; i < numbers.length; i++) {
             if (object.value != numbers[i].value) {
                 let double = object.value / 4;
                 if (double == numbers[i].value) {
-                    let hint8 = 'El numero en ' + object.position + ' posicion es el cuadruple que el numero en ' + numbers[i].position + ' posicion.';
+                    let hint8 = 'El número en ' + object.position + ' posición es el cuadruple que el número en ' + numbers[i].position + ' posición.';
                     object.hints.push(hint8);
                     return;
                 }
@@ -192,9 +192,59 @@ const hintsGenerator = (object) => {
 
 // CAMBIAR EL ESCENARIO SEGUN LAS VARIABLES
 const changeEnviroment = () => {
-    console.log(localStorage);
+    // EJECUTAR F11
 
     // CONTADORES
+    const generalCounter = document.querySelector("#general-counter span");
+    const counter = () => {
+        let countDownDate;
+        if (localStorage.getItem("tiempo")) {
+            countDownDate = localStorage.getItem("tiempo");
+        } else {
+            countDownDate = Date.now() + 3600000;
+            localStorage.setItem("tiempo", countDownDate);
+        }
+
+        let x = setInterval(function () {
+            let now = Date.now();
+            let distance = countDownDate - now;
+
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // LOS TRES MENORES QUE 10
+            if (hours < 10 && minutes < 10 && seconds < 10) {
+                generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":0" + seconds;
+                // HORAS Y MINUTOS MENORES QUE 10
+            } else if (hours < 10 && minutes < 10) {
+                generalCounter.innerHTML = "0" + hours + ":0" + minutes + ":" + seconds;
+                // HORAS Y SEGUNDOS MENORES QUE 10
+            } else if (hours < 10 && seconds < 10) {
+                generalCounter.innerHTML = "0" + hours + ":" + minutes + ":0" + seconds;
+                // HORAS QUE 10
+            } else if (hours < 10) {
+                generalCounter.innerHTML = "0" + hours + ":" + minutes + ":" + seconds;
+                // MINUTOS Y SEGUNDOS MENORES QUE 10
+            } else if (minutes < 10 && seconds < 10) {
+                generalCounter.innerHTML = hours + ":0" + minutes + ":0" + seconds;
+                // MINUTOS MENORES QUE 10
+            } else if (minutes < 10) {
+                generalCounter.innerHTML = hours + ":0" + minutes + ":" + seconds;
+                // SEGUNDOS MENORES QUE 10
+            } else if (seconds < 10) {
+                generalCounter.innerHTML = hours + ":" + minutes + ":0" + seconds;
+                // SEGUNDOS MENORES QUE 10
+            }
+
+            if (distance < 0) {
+                clearInterval(x);
+                localStorage.removeItem("counter");
+            }
+        }, 1000);
+    }
+    counter();
+
     const hangmanCounter = document.querySelector("#hangman-counter span");
 
     // PIZARRA
