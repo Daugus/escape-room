@@ -8,17 +8,17 @@ import tarjeta from "./Tarjeta.vue";
 export default {
     data() {
         return {
+            csrf_token: "",
             session: {},
             nickname: "",
-            csrf_token: "",
-            error: {
-                exists: false,
-                mensaje: "",
-            },
         };
     },
 
     mounted() {
+        this.csrf_token = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+
         // Trae los datos de la sesión logeada
         const sessionDiv = document.querySelector("#session");
         if (sessionDiv) {
@@ -59,7 +59,7 @@ export default {
                     <input
                         class="self-center appearance-none md:w-full h-12 text-gray-700 bg-slate-200 border rounded py-3 px-4"
                         type="text"
-                        placeholder="NOMBRE DE GRUPO"
+                        placeholder="Nombre de grupo"
                     />
                 </div>
                 <!-- Dificultad -->
@@ -72,8 +72,14 @@ export default {
                         <option value="3">Difícil</option>
                     </select>
                 </div>
-                <!-- Boton juagar -->
-                <btnplay />
+                <!-- Boton jugar -->
+                <div class="flex items-stretch justify-center">
+                    <a
+                        class="self-center bg-orange-400 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded flex justify-center"
+                        :href="route('laboratorio.index')"
+                        >Jugar</a
+                    >
+                </div>
             </div>
 
             <!-- Tarjetas -->
@@ -109,6 +115,7 @@ export default {
                         </div>
                     </div>
                 </div>
+
                 <!-- Añadir tarjeta -->
                 <div>
                     <button class="h-12 w-12 bg-amber-500 rounded-lg">+</button>
@@ -127,9 +134,5 @@ export default {
     background-image: url("@/src/img/menu/fondoMenu.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100vh;
-}
-
-#tipography {
-    font-family: "Eurostile";
 }
 </style>
