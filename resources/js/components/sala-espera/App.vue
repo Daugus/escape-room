@@ -9,10 +9,7 @@ export default {
         return {
             csrf_token: "",
             session: {},
-            users: [
-                { id: 122, nickname: "carmen", picture: "user.png" },
-                { id: 123, nickname: "iker", picture: "user.png" },
-            ],
+            users: [],
             group: "",
             difficulty: "1",
         };

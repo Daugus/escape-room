@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <ul class="absolute right-0 flex gap-2">
+    {{-- <ul class="absolute right-0 flex gap-2">
         <li>
             <a href="{{ route('index') }}" class="underline text-blue-600 hover:text-blue-800 ">Inicio</a>
         </li>
@@ -72,7 +72,7 @@
         <li>
             <a href="{{ route('prueba.oveja') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
         </li>
-    </ul>
+    </ul> --}}
 
     @yield('content')
 </body>

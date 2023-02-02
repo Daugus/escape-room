@@ -8,7 +8,7 @@ export default {
         return {
             buttons: [
                 {
-                    ruta: "laboratorio.index",
+                    ruta: "sala-espera.index",
                     imagen: "src/img/menu/BTN3.png",
                     texto: "Jugar",
                 },
