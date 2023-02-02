@@ -1,3 +1,7 @@
+<script setup>
+import route from "ziggy";
+</script>
+
 <script>
 export default {
     data() {
@@ -26,15 +30,33 @@ export default {
     },
     methods: {
         pinCheck(number) {
-            console.log(number);
+            this.pin.splice(this.numbersCounter, 1, number);
             this.numbersCounter++;
+        },
+        deleteNumber() {
+            this.numbersCounter--;
+            this.pin.splice(this.numbersCounter, 1, "-");
         },
     },
     watch: {
         numbersCounter: function () {
             if (this.numbersCounter === 3) {
-                if (this.pin + "" === this.pin.join("")) {
+                if (this.lsPin + "" === this.pin.join("")) {
+                    let password = document.querySelector(".password h1");
+                    password.style.color = "#0f0";
+                    localStorage.setItem("pinGuessed", true);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 500);
                 } else {
+                    let password = document.querySelector(".password h1");
+                    password.classList.add("error");
+
+                    setTimeout(() => {
+                        password.classList.remove("error");
+                        this.pin = ["-", "-", "-"];
+                        this.numbersCounter = 0;
+                    }, 300);
                 }
             }
         },
@@ -58,9 +80,13 @@ export default {
             <button>7</button>
             <button>8</button>
             <button>9</button>
-            <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+            <a :href="route('laboratorio.index')"
+                ><i class="fa-solid fa-right-from-bracket"></i
+            ></a>
             <button>0</button>
-            <button id="delete"><i class="fa-solid fa-delete-left"></i></button>
+            <button id="delete" @click="deleteNumber()">
+                <i class="fa-solid fa-delete-left"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -89,10 +115,6 @@ img {
 
         font-size: 5vh;
         font-family: "Spaceport";
-
-        h1 {
-            animation: error 0.15s 2;
-        }
     }
 
     .numbers {
@@ -117,6 +139,10 @@ img {
             font-size: 3vh;
         }
     }
+}
+
+.error {
+    animation: error 0.15s 2;
 }
 
 @keyframes error {

@@ -94,7 +94,9 @@ export default {
             </button>
         </div>
         <div class="actions">
-            <button id="close" @click="quit()">x</button>
+            <button id="close" @click="quit()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
     </nav>
     <section>

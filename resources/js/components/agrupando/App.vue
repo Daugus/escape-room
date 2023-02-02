@@ -80,6 +80,7 @@ export default {
                 if (this.guessedFiles === 20) {
                     setTimeout(() => {
                         localStorage.setItem("agrupando", "superado");
+                        location.reload();
                     }, 3000);
                 }
             } else {
@@ -94,7 +95,7 @@ export default {
             return localStorage.getItem("agrupando") != null;
         },
         pin() {
-            return localStorage.getItem("pin") != null;
+            return localStorage.getItem("pinGuessed") != null;
         },
     },
 };
@@ -103,7 +104,7 @@ export default {
 <template>
     <div class="bg">
         <!-- PIN -->
-        <section id="pin" v-if="pin === true">
+        <section id="pin" v-if="pin === false">
             <div>
                 <Pin />
             </div>
@@ -154,7 +155,7 @@ export default {
     width: 100vw;
 
     background-image: url("@/src/img/agrupando/bg.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 
     display: flex;
@@ -172,7 +173,7 @@ section {
 
     &:not(#pin) {
         background-image: url("@/src/img/agrupando/windows_bg.jpg");
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
     }
 }
