@@ -29,11 +29,39 @@ export default {
 </script>
 
 <template>
-    <div class="grid grid-cols-1 grid-rows-3 text-lg">
-        <button @click="sumar">^</button>
+    <div class="password grid grid-cols-1 grid-rows-3">
+        <button @click="sumar"><i class="fa-solid fa-chevron-up"></i></button>
         <p>{{ caracteres[i] }}</p>
-        <button @click="restar">v</button>
+        <button @click="restar">
+            <i class="fa-solid fa-chevron-down"></i>
+        </button>
     </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.password {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    button,
+    p {
+        text-shadow: 0 0 1rem #fff;
+        color: #fff;
+    }
+
+    button {
+        font-size: 3vh;
+    }
+
+    p {
+        font-family: "Digital7";
+        font-size: 6vh;
+    }
+}
+</style>
