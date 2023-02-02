@@ -63,10 +63,6 @@
         <li>
             <a href="{{ route('prueba.oveja') }}" class="underline text-blue-600 hover:text-blue-800 ">Oveja</a>
         </li>
-        <li>
-            <a href="{{ route('prueba.equilibrado') }}"
-                class="underline text-blue-600 hover:text-blue-800 ">Equilibrado</a>
-        </li>
     </ul>
 
     @yield('content')

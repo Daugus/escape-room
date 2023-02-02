@@ -2,8 +2,8 @@
 export default {
     data() {
         return {
-            distanceTop: "4rem",
-            distanceLeft: "2rem",
+            distanceTop: 0,
+            distanceLeft: 0,
         };
     },
     props: {
@@ -11,10 +11,16 @@ export default {
         conceptListIndex: Number,
     },
     mounted() {
-        this.dragElement(
-            document.getElementById(this.draggableId),
-            document.getElementById(this.dragzoneId)
-        );
+        const file = document.getElementById(this.draggableId);
+        const dragzone = document.getElementById(this.dragzoneId);
+
+        this.distanceTop = dragzone.offsetTop + "px";
+        this.distanceLeft = dragzone.offsetLeft + "px";
+
+        setTimeout(() => {
+            file.style.position = "absolute";
+            this.dragElement(file, dragzone);
+        }, 500);
     },
     methods: {
         // permite que el File sea arrastrado
@@ -25,8 +31,11 @@ export default {
                 pos4 = 0;
 
             const dragPointerUp = () => {
-                document.onpointerup = null;
-                document.onpointermove = null;
+                document.onmouseup = null;
+                document.onmousemove = null;
+
+                document.ontouchend = null;
+                document.ontouchmove = null;
 
                 file.classList.remove("drag");
 
@@ -72,11 +81,15 @@ export default {
 
                 file.classList.add("drag");
 
-                document.onpointerup = dragPointerUp;
-                document.onpointermove = dragPointerMove;
+                document.onmouseup = dragPointerUp;
+                document.onmousemove = dragPointerMove;
+
+                document.ontouchend = dragPointerUp;
+                document.ontouchmove = dragPointerMove;
             };
 
-            dragzone.onpointerdown = dragPointerDown;
+            dragzone.onmousedown = dragPointerDown;
+            dragzone.ontouchstart = dragPointerDown;
         },
     },
     // genera las id únicas que van a usar el template
@@ -94,13 +107,9 @@ export default {
 <template>
     <div :id="draggableId">
         <div :id="dragzoneId">
-            <div
-                class="wrapper flex justify-center items-center flex-col h-full"
-            >
-                <pre>{{ conceptListIndex }}</pre>
-                <p>{{ conceptInfo.concept }}</p>
-                <pre>{{ conceptInfo.field }}</pre>
-            </div>
+            <img src="@/src/img/agrupando/file.png" />
+            <p draggable="nones">{{ conceptInfo.concept }}</p>
+            <!-- <pre>{{ conceptInfo.field }}</pre> -->
         </div>
     </div>
 </template>
@@ -108,41 +117,65 @@ export default {
 <style scoped lang="scss">
 // estiliza todos los elementos que empiecen por "draggable"
 [id^="draggable"] {
-    width: 10rem;
-    height: 10rem;
-    border: 0.2rem solid #0f2c65;
-    border-radius: 0.2rem;
-    box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.2);
-    transition: border-color 0.2s, box-shadow 0.2s;
-
+    width: 10vh;
+    padding: 1%;
     z-index: 9;
-    position: absolute;
     top: v-bind("distanceTop");
     left: v-bind("distanceLeft");
 
-    &.drag {
-        border-color: white;
-        box-shadow: 3px 6px 24px rgba(0, 0, 0, 0.5);
+    &:hover {
+        background-color: rgba(0, 255, 255, 0.2);
+        border: 1px solid rgba(0, 255, 255, 0.75);
+        border-radius: 5%;
+    }
+
+    img {
+        width: 50%;
+        filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.25));
+        pointer-events: none;
+    }
+
+    p,
+    pre {
+        cursor: default;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+        font-size: 1.5vh;
+        text-shadow: 0 0 0.5rem black;
+
+        &::selection {
+            display: none;
+        }
     }
 }
 
 // estiliza todos los elementos que empiecen por "dragzone"
 [id^="dragzone"] {
-    width: 100%;
-    height: 100%;
-
-    cursor: move;
     z-index: 10;
-    background-color: #0f2c65;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.wrapper {
-    position: relative;
-    border-radius: 10px;
+.hidden {
+    display: none;
 }
 
 .correct {
-    display: none;
+    animation: disappear 0.5s 1;
+}
+
+@keyframes disappear {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
 }
 </style>

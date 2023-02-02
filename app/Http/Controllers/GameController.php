@@ -18,22 +18,6 @@ class GameController extends Controller
         return view('laboratorio.index');
     }
 
-    // prueba 4: equilibrado
-    public function equilibrado()
-    {
-        return view('equilibrado.index');
-    }
-
-    public function getFormulas()
-    {
-        $data = SharedSolution::query()->where('challenge_id', '=', '4')
-            ->inRandomOrder()
-            ->limit(4)
-            ->get();
-
-        return response()->json($data);
-    }
-
     // prueba 5: agrupando
     public function agrupando()
     {
