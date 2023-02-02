@@ -8,6 +8,7 @@ export default {
     data() {
         return {
             password: "",
+            win: false,
             letras: [
                 "A",
                 "B",
@@ -52,6 +53,7 @@ export default {
                 ligth = document.getElementById("green");
                 ligth.style.backgroundColor = "#0f0";
                 ligth.style.boxShadow = "0 0 1rem #7f7";
+                this.win;
             } else {
                 ligth = document.getElementById("red");
                 ligth.style.backgroundColor = "#f00";
@@ -68,7 +70,8 @@ export default {
 
 <template>
     <section>
-        <div class="luces">
+        <div v-if="win" id="WIN"></div>
+        <div v-else class="luces">
             <span id="red"></span>
             <span id="green"></span>
         </div>
@@ -90,6 +93,13 @@ export default {
 </template>
 
 <style scoped lang="scss">
+#WIN {
+    height: 100vh;
+    width: 100%;
+    background-image: url("@/src/img/menu/winscreen.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+}
 section {
     position: relative;
     height: 100vh;
