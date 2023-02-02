@@ -19,6 +19,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "encrypt-storage": "^2.12.14",
         "vue": "^3.2.45",
         "ziggy-js": "^1.5.0"
     }
