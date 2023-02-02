@@ -37,5 +37,6 @@
 
         {{-- HINTS --}}
         <div id="pizarra"></div>
+        <a href="{{ route('corcho.index') }}" id="corcho"></a>
     </div>
 @endsection

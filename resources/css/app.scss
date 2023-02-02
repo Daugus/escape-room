@@ -52,6 +52,28 @@ body {
     min-height: 100vh;
 }
 
+// ------ CORCHO ------
+.corcho {
+    width: 100%;
+    height: 100vh;
+    background-image: url("@/src/img/corcho/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    a {
+        position: absolute;
+        top: 2vh;
+        right: 2vh;
+        font-size: 6vh;
+        opacity: 0.5;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
 // ------ LABORATORIO ------
 #lab {
     background: url("@/src/img/lab/lab.png");
@@ -156,6 +178,12 @@ body {
         flex-direction: column;
         align-items: flex-start;
         padding: 0.5% 1%;
+    }
+
+    // ------ CORCHO ------
+    #corcho {
+        inset: 26% 72.5% 49.7% 15.7%;
+        clip-path: polygon(0 0, 100% 13%, 100% 82%, 0 100%);
     }
 
     // ------ CADA OVEJA CON SU PAREJA ------

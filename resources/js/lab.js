@@ -201,7 +201,8 @@ const changeEnviroment = () => {
         if (localStorage.getItem("tiempo")) {
             countDownDate = localStorage.getItem("tiempo");
         } else {
-            countDownDate = Date.now() + 3600000;
+            countDownDate = Date.now() + localStorage.getItem("dificultad");
+            localStorage.removeItem("dificultad"); S
             localStorage.setItem("tiempo", countDownDate);
         }
 
@@ -238,8 +239,9 @@ const changeEnviroment = () => {
             }
 
             if (distance < 0) {
+                generalCounter.innerHTML = "00:00:00";
                 clearInterval(x);
-                localStorage.removeItem("counter");
+                localStorage.clear();
             }
         }, 1000);
     }

@@ -18,6 +18,12 @@ class GameController extends Controller
         return view('laboratorio.index');
     }
 
+    // corcho
+    public function corcho()
+    {
+        return view('corcho.index');
+    }
+
     // prueba 5: agrupando
     public function agrupando()
     {

@@ -73,6 +73,10 @@ Route::get('/jugar/lab', [GameController::class, 'lab'])
     ->name('laboratorio.index')
     ->middleware('logged');
 
+Route::get('/jugar/corcho', [GameController::class, 'corcho'])
+    ->name('corcho.index')
+    ->middleware('logged');
+
 Route::get('/jugar/hangman', [GameController::class, 'hangman'])
     ->name('prueba.hangman')
     ->middleware('logged');
@@ -92,6 +96,7 @@ Route::get('/jugar/oveja', [GameController::class, 'oveja'])
 Route::get('/jugar/password', [GameController::class, 'password'])
     ->name('prueba.password')
     ->middleware('logged');
+
 // menús
 Route::get('/sobre-nosotros', [SobreNosotrosController::class, 'index'])
     ->name('sobre-nosotros.index');
