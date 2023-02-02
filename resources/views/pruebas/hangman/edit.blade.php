@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+<div class="absolute top-28 right-40">
+            <button class="bg-amber-500 text-white font-bold py-2 px-4 rounded">
+                <a href={{ route ('hangman.index')}} >Volver</a>
+            </button>
+        </div>
     <div id="borde-monitor" class="flex flex-col justify-center items-center gap-5">
         <form action="{{ route('hangman.update', $solution->id) }}" method="POST">
             @csrf

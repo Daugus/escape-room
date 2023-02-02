@@ -2,6 +2,11 @@
 {{-- @section('title', 'index') --}}
 
 @section('content')
+<div class="absolute top-28 right-40">
+            <button class="bg-amber-500 text-white font-bold py-2 px-4 rounded">
+                <a href={{ route ('pruebas.index')}} >Volver</a>
+            </button>
+        </div>
     <div id="borde-monitor" class="flex flex-col justify-center items-center gap-5">
         <a class="appearance-none block text-white font-bold py-2 px-4 rounded focus:outline-none bg-amber-500" href="{{ route('kuku.create') }}">Agregar solución</a>
 
