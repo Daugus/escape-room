@@ -55,10 +55,11 @@ export default {
                 ligth.style.boxShadow = "0 0 1rem #7f7";
                 setTimeout(() => {
                     this.win = true;
+                    setTimeout(() => {
+                        localStorage.clear();
+                        location.replace(route("user.puntuaciones"));
+                    }, 4000);
                 }, 1000);
-                setTimeout(() => {
-                    location.replace(route("user.puntuaciones"));
-                }, 5000);
             } else {
                 ligth = document.getElementById("red");
                 ligth.style.backgroundColor = "#f00";

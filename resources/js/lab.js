@@ -1,3 +1,5 @@
+const { set } = require("lodash");
+
 // GENERADOR DEL PIN DEL PORTATIL
 const numbers = [];
 let password = "";
@@ -259,7 +261,9 @@ const changeEnviroment = () => {
             if (distance < 0) {
                 generalCounter.innerText = "00:00:00";
                 clearInterval(x);
+                // FALTA PONER IMAGEN DE CUANDO PIERDES
                 localStorage.clear();
+                location.replace(route("user.puntuaciones"));
             }
         }, 1000);
     };
