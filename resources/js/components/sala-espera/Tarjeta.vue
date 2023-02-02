@@ -85,16 +85,11 @@ export default {
                         v-model="nickname"
                     />
                     <!-- Eliminar tarjeta -->
-                    <button
-                        class="self-start text-lg font-bold m-3"
-                        id="tipography"
-                    >
-                        X
-                    </button>
+                    <button class="self-start text-lg font-bold m-3">X</button>
                 </div>
                 <div>
                     <!-- Boton de buscar -->
-                    <button id="tipography" @click="getUser">BUSCAR</button>
+                    <button @click="getUser">BUSCAR</button>
                 </div>
                 <img
                     class="self-end mb-4"
@@ -105,8 +100,4 @@ export default {
     </div>
 </template>
 
-<style>
-#tipography {
-    font-family: Eurostile;
-}
-</style>
+<style></style>

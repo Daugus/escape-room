@@ -198,7 +198,7 @@ export default {
                             v-model="user"
                             @keyup="validateUser(user)"
                             type="text"
-                            placeholder="Username"
+                            placeholder="Nombre de usuario"
                             name="nickname"
                             maxlength="50"
                         />

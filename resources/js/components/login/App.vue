@@ -86,21 +86,21 @@ export default {
 
                 <div class="w-full mb-6">
                     <label class="text-2xl font-bold" for="username">
-                        Username
+                        Nombre de usuario
                     </label>
                     <input
                         class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
                         v-model="user"
                         id="username"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Nombre de usuario"
                         name="nickname"
                         @keyup="validateUser(user)"
                     />
                 </div>
                 <div class="w-full mb-6">
                     <label class="text-2xl font-bold" for="password">
-                        Password
+                        Contraseña
                     </label>
                     <input
                         class="appearance-none w-full text-gray-700 border rounded py-3 px-4 focus:outline-none"
