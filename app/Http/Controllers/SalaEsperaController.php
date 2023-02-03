@@ -50,6 +50,16 @@ class SalaEsperaController extends Controller
         $game->group_id = $group->id;
 
         $game->save();
+
+        return json_encode(['id' => $game->id]);
+    }
+
+    public function update(Request $request)
+    {
+        $game = Game::findOrFail($request->game_id);
+        $game->state = $request->state;
+
+        $game->save();
     }
 
     public function getUser(Request $request)

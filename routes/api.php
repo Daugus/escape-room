@@ -25,3 +25,6 @@ Route::post('sala-espera/getUser', [SalaEsperaController::class, 'getUser']);
 
 // Ruta para crear una partida desde Vue
 Route::post('sala-espera/crearPartida', [SalaEsperaController::class, 'store']);
+
+// Ruta para cambiar el estado de una partida desde Vue
+Route::post('sala-espera/finalizarPartida', [SalaEsperaController::class, 'update']);

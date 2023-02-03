@@ -41,6 +41,26 @@ export default {
         };
     },
     methods: {
+        async updateGame() {
+            const token = document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content");
+
+            const res = await fetch(
+                `${window.location.origin}/api/sala-espera/finalizarPartida`,
+                {
+                    method: "POST",
+                    headers: new Headers({
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": token,
+                    }),
+                    body: JSON.stringify({
+                        game_id: localStorage.getItem("game_id"),
+                        state: "ganada",
+                    }),
+                }
+            );
+        },
         checkPassword() {
             const chars = document.querySelectorAll(".password p");
             let ligth;
@@ -55,6 +75,8 @@ export default {
                 ligth.style.boxShadow = "0 0 1rem #7f7";
                 setTimeout(() => {
                     this.win = true;
+                    this.updateGame();
+
                     setTimeout(() => {
                         localStorage.clear();
                         location.replace(route("user.puntuaciones"));

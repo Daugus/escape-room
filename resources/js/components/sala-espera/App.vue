@@ -76,6 +76,8 @@ export default {
                         }),
                     }
                 );
+                const data = await res.json();
+                localStorage.setItem("game_id", data.id);
 
                 let minutos = 0;
 

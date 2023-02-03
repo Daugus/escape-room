@@ -224,6 +224,27 @@ const hintsGenerator = (object) => {
     }
 };
 
+const updateGame = async () => {
+    const token = document
+        .querySelector('meta[name="csrf-token"]')
+        .getAttribute("content");
+
+    const res = await fetch(
+        `${window.location.origin}/api/sala-espera/finalizarPartida`,
+        {
+            method: "POST",
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": token,
+            }),
+            body: JSON.stringify({
+                game_id: localStorage.getItem("game_id"),
+                state: "perdida",
+            }),
+        }
+    );
+};
+
 // CAMBIAR EL ESCENARIO SEGUN LAS VARIABLES
 const changeEnviroment = () => {
     // CONTADORES
@@ -235,7 +256,6 @@ const changeEnviroment = () => {
         } else {
             let difficulty = parseInt(localStorage.getItem("dificultad"));
             countDownDate = Date.now() + difficulty;
-            localStorage.removeItem("dificultad")
             localStorage.setItem("tiempo", countDownDate);
         }
 
@@ -243,7 +263,9 @@ const changeEnviroment = () => {
             let now = Date.now();
             let distance = countDownDate - now;
 
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (minutes < 10 && seconds < 10) {
@@ -260,8 +282,13 @@ const changeEnviroment = () => {
                 generalCounter.innerText = "00:00:00";
                 clearInterval(x);
                 // FALTA PONER IMAGEN DE CUANDO PIERDES
-                localStorage.clear();
-                location.replace(route("user.puntuaciones"));
+
+                updateGame();
+
+                setTimeout(() => {
+                    localStorage.clear();
+                    location.replace(route("user.puntuaciones"));
+                }, 1000);
             }
         }, 1000);
     };
@@ -290,7 +317,9 @@ const changeEnviroment = () => {
             let now = Date.now();
             let distance = countDownDate - now;
 
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let minutes = Math.floor(
+                (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (minutes < 10) {
@@ -353,6 +382,11 @@ const changeEnviroment = () => {
 };
 
 window.addEventListener("load", () => {
+    if (localStorage.getItem("dificultad") === null) {
+        localStorage.clear();
+        location.replace("/sala-espera");
+    }
+
     passwordGenerator();
     changeEnviroment();
 });
