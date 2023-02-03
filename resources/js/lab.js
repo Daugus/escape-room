@@ -322,14 +322,14 @@ const changeEnviroment = () => {
             );
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (minutes < 10) {
-                if (seconds < 10) {
-                    hangmanCounter.innerHTML = `0${minutes}:0${seconds}`;
-                } else {
-                    hangmanCounter.innerHTML = `0${minutes}:${seconds}`;
-                }
+            if (minutes < 10 && seconds < 10) {
+                generalCounter.innerText = `00:0${minutes}:0${seconds}`;
+            } else if (minutes < 10) {
+                generalCounter.innerText = `00:0${minutes}:${seconds}`;
+            } else if (seconds < 10) {
+                generalCounter.innerText = `00:${minutes}:0${seconds}`;
             } else {
-                hangmanCounter.innerHTML = `${minutes}:${seconds}`;
+                generalCounter.innerText = `00:${minutes}:${seconds}`;
             }
 
             if (distance < 0) {
