@@ -1,5 +1,3 @@
-const { set } = require("lodash");
-
 // GENERADOR DEL PIN DEL PORTATIL
 const numbers = [];
 let password = "";
