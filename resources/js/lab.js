@@ -2,7 +2,12 @@
 const numbers = [];
 let password = "";
 
-let parity, position, equality, repeat, zero;
+let parity,
+    position,
+    equality,
+    repeat,
+    zero,
+    endTime = 0;
 
 const passwordGenerator = () => {
     for (let i = 0; i < 3; i++) {
@@ -224,7 +229,7 @@ const hintsGenerator = (object) => {
     }
 };
 
-const updateGame = async () => {
+const updateGame = async (duracion) => {
     const token = document
         .querySelector('meta[name="csrf-token"]')
         .getAttribute("content");
@@ -240,6 +245,7 @@ const updateGame = async () => {
             body: JSON.stringify({
                 game_id: localStorage.getItem("game_id"),
                 state: "perdida",
+                duration: duracion,
             }),
         }
     );
@@ -283,12 +289,23 @@ const changeEnviroment = () => {
                 clearInterval(x);
                 // FALTA PONER IMAGEN DE CUANDO PIERDES
 
-                updateGame();
+                const startTime = parseInt(localStorage.getItem("start_time"));
 
-                setTimeout(() => {
-                    localStorage.clear();
-                    location.replace(route("user.puntuaciones"));
-                }, 1000);
+                endTime = Date.now();
+
+                const duracion = endTime - startTime;
+
+                const minutes = Math.floor(
+                    (duracion % (1000 * 60 * 60)) / (1000 * 60)
+                );
+                const seconds = Math.floor((duracion % (1000 * 60)) / 1000);
+
+                updateGame(`00:${minutes}:${seconds}`);
+
+                // setTimeout(() => {
+                //     localStorage.clear();
+                //     location.replace(route("user.puntuaciones"));
+                // }, 1000);
             }
         }, 1000);
     };
@@ -323,13 +340,13 @@ const changeEnviroment = () => {
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             if (minutes < 10 && seconds < 10) {
-                generalCounter.innerText = `00:0${minutes}:0${seconds}`;
+                hangmanCounter.innerText = `00:0${minutes}:0${seconds}`;
             } else if (minutes < 10) {
-                generalCounter.innerText = `00:0${minutes}:${seconds}`;
+                hangmanCounter.innerText = `00:0${minutes}:${seconds}`;
             } else if (seconds < 10) {
-                generalCounter.innerText = `00:${minutes}:0${seconds}`;
+                hangmanCounter.innerText = `00:${minutes}:0${seconds}`;
             } else {
-                generalCounter.innerText = `00:${minutes}:${seconds}`;
+                hangmanCounter.innerText = `00:${minutes}:${seconds}`;
             }
 
             if (distance < 0) {
@@ -382,10 +399,10 @@ const changeEnviroment = () => {
 };
 
 window.addEventListener("load", () => {
-    if (localStorage.getItem("dificultad") === null) {
-        localStorage.clear();
-        location.replace("/sala-espera");
-    }
+    // if (localStorage.getItem("dificultad") === null) {
+    //     localStorage.clear();
+    //     location.replace("/sala-espera");
+    // }
 
     passwordGenerator();
     changeEnviroment();

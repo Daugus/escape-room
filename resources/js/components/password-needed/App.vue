@@ -41,7 +41,7 @@ export default {
         };
     },
     methods: {
-        async updateGame() {
+        async updateGame(duracion) {
             const token = document
                 .querySelector('meta[name="csrf-token"]')
                 .getAttribute("content");
@@ -57,6 +57,7 @@ export default {
                     body: JSON.stringify({
                         game_id: localStorage.getItem("game_id"),
                         state: "ganada",
+                        duration: duracion,
                     }),
                 }
             );
@@ -75,7 +76,21 @@ export default {
                 ligth.style.boxShadow = "0 0 1rem #7f7";
                 setTimeout(() => {
                     this.win = true;
-                    this.updateGame();
+
+                    const startTime = parseInt(
+                        localStorage.getItem("start_time")
+                    );
+
+                    const endTime = Date.now();
+
+                    const duracion = endTime - startTime;
+
+                    const minutes = Math.floor(
+                        (duracion % (1000 * 60 * 60)) / (1000 * 60)
+                    );
+                    const seconds = Math.floor((duracion % (1000 * 60)) / 1000);
+
+                    this.updateGame(`00:${minutes}:${seconds}`);
 
                     setTimeout(() => {
                         localStorage.clear();

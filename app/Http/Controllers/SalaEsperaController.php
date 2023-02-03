@@ -58,6 +58,7 @@ class SalaEsperaController extends Controller
     {
         $game = Game::findOrFail($request->game_id);
         $game->state = $request->state;
+        $game->time = $request->duration;
 
         $game->save();
     }
