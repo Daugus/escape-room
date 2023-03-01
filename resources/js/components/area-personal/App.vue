@@ -10,7 +10,7 @@ import route from "ziggy";
         class="grid grid-cols-1 md:grid-cols-2 items-center py-24 px-10 md:p-14"
     >
         <div class="flex justify-center md:border-r-4">
-            <img class="logo" src="@/src/img/menu/ParasolCorporation.png" />
+            <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
     </div>
 </template>

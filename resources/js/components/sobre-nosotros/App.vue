@@ -10,7 +10,7 @@ import route from "ziggy";
             <div class="flex justify-center mb-8">
                 <a class="w-full md:w-3/6" :href="route('index')">
                     <img
-                        src="@/src/img/sobre-nosotros/ParasolCorporation.png"
+                        src="@/src/img/sobre-nosotros/parasolCorporation.png"
                     />
                 </a>
             </div>

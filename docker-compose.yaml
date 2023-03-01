@@ -30,14 +30,13 @@ services:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${UID}
     volumes:
-      - .:/var/www/html
+      - .:/app
     ports:
       - 8000:80
     networks:
       backend:
         aliases:
           - laravel-app
-    # command: "npm run deploy"
 
 networks:
   backend:

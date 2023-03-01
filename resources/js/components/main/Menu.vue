@@ -16,7 +16,7 @@ export default {
         class="grid grid-cols-1 md:grid-cols-2 items-center gap-y-12 pt-24 pb-40 md:py-24 px-10 md:p-14"
     >
         <div class="flex justify-center md:border-r-4">
-            <img class="logo" src="@/src/img/menu/ParasolCorporation.png" />
+            <img class="logo" src="@/src/img/menu/parasolCorporation.png" />
         </div>
 
         <div

@@ -43,7 +43,7 @@ export default {
     <div class="cardBox" @click="flip" :data-id="cardInfo.id" :id="getId">
         <div class="card">
             <div class="front">
-                <img src="@/src/img/kuku/ParasolCorporation.png" />
+                <img src="@/src/img/kuku/parasolCorporation.png" />
             </div>
             <div class="back">
                 <h1>{{ cardInfo.id }}</h1>

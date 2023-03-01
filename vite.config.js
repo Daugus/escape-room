@@ -20,6 +20,7 @@ export default defineConfig({
             "@": path.resolve(__dirname, "./public"),
             ziggy: "/vendor/tightenco/ziggy/src/js",
             "ziggy-vue": "/vendor/tightenco/ziggy/src/js/vue",
+            bootstrap: path.resolve(__dirname, "resources/js/bootstrap"),
         },
     },
 });

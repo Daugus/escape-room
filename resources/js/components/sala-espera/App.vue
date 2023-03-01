@@ -185,7 +185,7 @@ export default {
 
                 <img
                     class="max-w-xs border-2 border-black bg-white rounded-lg p-2"
-                    src="@/src/img/sala-espera/ParasolCorporation.png"
+                    src="@/src/img/sala-espera/parasolCorporation.png"
                 />
             </div>
 

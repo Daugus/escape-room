@@ -65,7 +65,7 @@ export default {
 </script>
 
 <template>
-    <img src="@/src/img/agrupando/ParasolCorporation.png" />
+    <img src="@/src/img/agrupando/parasolCorporation.png" />
     <div class="panel">
         <div class="password">
             <h1>{{ pinString }}</h1>
